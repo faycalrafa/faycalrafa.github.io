@@ -157,6 +157,24 @@
 }
 
 /*
+ * Micro-animations & High-Craft Kinetics
+ */
+@keyframes flowPulse {
+  from {
+    stroke-dashoffset: 12;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.data-flow-pulse {
+  stroke: #3b82f6;
+  stroke-dashoffset: 0;
+  animation: flowPulse 1.4s linear infinite;
+}
+
+/*
  * Accessibility: Respect OS Reduced-Motion Preference
  */
 @media (prefers-reduced-motion: reduce) {
@@ -167,6 +185,11 @@
   ::view-transition-group(*),
   ::view-transition-old(*),
   ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  .data-flow-pulse,
+  .animate-pulse {
     animation: none !important;
   }
 }

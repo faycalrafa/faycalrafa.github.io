@@ -19,14 +19,9 @@ import CvModal from './CvModal.astro';
         Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">Faycal Rafa</span>
       </h1>
 
-      <!-- Senior Title & Technical Role -->
+      <!-- Senior Title & Technical Role (Single consolidated authoritative headline) -->
       <p class="mt-3 text-xl font-semibold text-zinc-200 sm:text-2xl">
-        Senior Software Engineer &amp; Technical Lead
-      </p>
-
-      <!-- Subtitle Tagline -->
-      <p class="mt-1 text-sm font-medium text-blue-400 sm:text-base">
-        Software Engineer &amp; Systems Architect
+        Senior Software Engineer <span class="text-blue-400 font-medium sm:text-xl">•</span> Technical Lead &amp; Systems Architect
       </p>
 
       <!-- Engineering Bio Summary -->
@@ -44,80 +39,76 @@ import CvModal from './CvModal.astro';
         </div>
       </div>
 
-      <!-- Action CTAs Cluster -->
+      <!-- Streamlined Hero Action CTAs (2 Core Actions) -->
       <div class="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
-        <!-- Primary Action 1: View Projects Archive -->
+        <!-- Primary Action: Explore Projects & Architecture -->
         <a
           href="/projects"
           data-astro-prefetch="hover"
-          class="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-md hover:bg-blue-500 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          aria-label="View all software projects"
+          class="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-md hover:bg-blue-500 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          aria-label="Explore Projects & Architecture"
         >
           <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M3 5a2 2 0 012-2h4l2 2h4a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
           </svg>
-          <span>View Projects</span>
+          <span>Explore Projects &amp; Architecture</span>
         </a>
 
-        <!-- Primary Action 2: Direct CV Download -->
+        <!-- Secondary Action: Preview / Download CV -->
         <a
           href="/Faycal_Rafa_CV_2026.pdf"
           download="Faycal_Rafa_CV_2026.pdf"
-          class="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-900/80 px-4 py-3 text-sm font-semibold text-zinc-200 shadow-md hover:bg-zinc-800 hover:text-white transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          aria-label="Download Faycal Rafa CV (PDF)"
+          data-open-cv-modal
+          class="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-900/80 px-5 py-3 text-sm font-semibold text-zinc-200 shadow-md hover:bg-zinc-800 hover:text-white transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 cursor-pointer"
+          aria-label="Preview or Download Faycal Rafa CV (PDF)"
         >
           <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M10 3v10" /><path d="M6 9l4 4 4-4" /><path d="M3 15v1a2 2 0 002 2h10a2 2 0 002-2v-1" />
           </svg>
-          <span>Download CV</span>
+          <span>Preview / Download CV</span>
         </a>
+      </div>
 
-        <!-- Direct WhatsApp Action -->
-        <a
-          href="https://wa.me/213540980238"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm font-semibold text-emerald-300 hover:bg-emerald-400/20 transition-all focus-visible:outline-2 focus-visible:outline-emerald-500"
-          aria-label="Chat on WhatsApp (+213 540 98 02 38)"
-        >
-          <svg class="h-4 w-4 fill-current text-[#25D366]" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          <span>WhatsApp (+213 540 98 02 38)</span>
-        </a>
-
-        <!-- Flagship Project Quick Teaser Action -->
+      <!-- Featured Architecture Spotlight Pill -->
+      <div class="mt-8">
         <a
           href="/projects/bookreader"
           data-astro-prefetch="hover"
-          class="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 px-5 py-3 text-sm font-semibold text-white shadow-md hover:from-amber-500 hover:to-amber-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600 transition-all"
+          class="group inline-flex items-center gap-2.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-xs font-semibold text-amber-300 hover:bg-amber-500/20 hover:border-amber-500/50 transition-all duration-200 shadow-xs"
+          aria-label="Explore BookReader Flagship Architecture"
         >
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
-            <path d="M6 6h10" /><path d="M6 10h10" />
+          <span class="flex h-2 w-2 rounded-full bg-amber-400 animate-pulse" aria-hidden="true"></span>
+          <span class="text-amber-400 font-bold uppercase tracking-wider text-[10px]">Featured Spotlight</span>
+          <span class="text-zinc-500 dark:text-zinc-400" aria-hidden="true">•</span>
+          <span>Explore BookReader Flagship (Android • Media3 • TTS)</span>
+          <svg class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 text-amber-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
           </svg>
-          <span>Explore BookReader Flagship</span>
         </a>
       </div>
 
       <!-- Quick Stats Counter Bento Row -->
-      <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3 max-w-3xl">
+      <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 max-w-3xl">
         <!-- Stat 1: Years Experience -->
-        <div class="rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-4 shadow-xs backdrop-blur-xs transition-colors">
-          <div class="text-2xl font-black tracking-tight text-blue-400">6+</div>
+        <div class="stat-card group rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-4 shadow-xs backdrop-blur-xs transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:shadow-lg hover:shadow-blue-500/5">
+          <div class="text-2xl font-black tracking-tight text-blue-400">
+            <span class="stat-number" data-target="6">6</span>+
+          </div>
           <div class="mt-1 text-xs font-semibold text-zinc-100">Years Experience</div>
           <div class="mt-0.5 text-xs text-zinc-400">Software engineering &amp; tech leadership</div>
         </div>
 
         <!-- Stat 2: Companies & Platforms -->
-        <div class="rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-4 shadow-xs backdrop-blur-xs transition-colors">
-          <div class="text-2xl font-black tracking-tight text-indigo-400">7</div>
+        <div class="stat-card group rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-4 shadow-xs backdrop-blur-xs transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/40 hover:shadow-lg hover:shadow-indigo-500/5">
+          <div class="text-2xl font-black tracking-tight text-indigo-400">
+            <span class="stat-number" data-target="7">7</span>
+          </div>
           <div class="mt-1 text-xs font-semibold text-zinc-100">Companies &amp; SaaS Platforms</div>
           <div class="mt-0.5 text-xs text-zinc-400">Fintech, automotive, e-commerce, logistics</div>
         </div>
 
         <!-- Stat 3: Technical Specialization -->
-        <div class="rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-4 shadow-xs backdrop-blur-xs transition-colors">
+        <div class="stat-card group rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-4 shadow-xs backdrop-blur-xs transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/5">
           <div class="text-2xl font-black tracking-tight text-emerald-400">Full-Stack</div>
           <div class="mt-1 text-xs font-semibold text-zinc-100">Microservices &amp; Native Mobile</div>
           <div class="mt-0.5 text-xs text-zinc-400">TypeScript, NestJS, Kotlin, Compose M3</div>
@@ -130,3 +121,32 @@ import CvModal from './CvModal.astro';
   <!-- Embedded CV modal dialog component: iframe and object preview fallback -->
   <CvModal />
 </section>
+
+<script>
+  function initHeroCounters() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const counters = document.querySelectorAll<HTMLElement>('.stat-number[data-target]');
+    counters.forEach((counter) => {
+      const target = parseInt(counter.dataset.target || '0', 10);
+      if (isNaN(target) || target <= 0) return;
+      const duration = 1000;
+      const startTime = performance.now();
+
+      function update(now: number) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease out quad
+        const current = Math.floor(progress * (2 - progress) * target);
+        counter.textContent = current.toString();
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          counter.textContent = target.toString();
+        }
+      }
+      requestAnimationFrame(update);
+    });
+  }
+
+  document.addEventListener('astro:page-load', initHeroCounters);
+</script>

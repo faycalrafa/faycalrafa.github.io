@@ -1,0 +1,440 @@
+---
+// src/components/ArchitectureBlueprint.astro
+// Interactive Production System Architecture Blueprints for Faycal Rafa Portfolio
+// Compliant with Astro 5 ClientRouter, Tailwind CSS v4, and modern accessibility standards.
+
+interface NodeItem {
+  id: string;
+  name: string;
+  role: string;
+  tech: string;
+  technicalNote: string;
+}
+
+interface BlueprintTab {
+  id: string;
+  title: string;
+  badge: string;
+  subtitle: string;
+  accentClass: string;
+  accentBorder: string;
+  badgeBg: string;
+  nodes: NodeItem[];
+}
+
+const blueprints: BlueprintTab[] = [
+  {
+    id: "fintech",
+    title: "Fintech & Microservices Topology",
+    badge: "SABIL / InvestMarket",
+    subtitle: "High-throughput, event-driven trading & digital wallet platform with sub-45ms P99 latency and zero transaction loss.",
+    accentClass: "text-emerald-400",
+    accentBorder: "border-emerald-500/30",
+    badgeBg: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+    nodes: [
+      {
+        id: "fin-clients",
+        name: "1. Client Layer",
+        role: "Web & Mobile Clients",
+        tech: "Next.js • Flutter • WebSockets",
+        technicalNote: "Sub-50ms bidirectional WebSocket streaming feeds with real-time order-book updates.",
+      },
+      {
+        id: "fin-gateway",
+        name: "2. API Gateway & Auth",
+        role: "Reverse Proxy & Throttling",
+        tech: "Reverse Proxy • JWT • Rate Limiting",
+        technicalNote: "Centralized rate limiting, strict idempotency key validation, and token authentication.",
+      },
+      {
+        id: "fin-services",
+        name: "3. NestJS Microservices",
+        role: "Decoupled Domain Services",
+        tech: "NestJS • TypeScript • Elastic DI",
+        technicalNote: "Decoupled payment settlement, account balances, and automated ledger audit trails.",
+      },
+      {
+        id: "fin-eventbus",
+        name: "4. Event Bus & Queues",
+        role: "Asynchronous Messaging",
+        tech: "Redis Streams • BullMQ",
+        technicalNote: "Guaranteed at-least-once message delivery with dead-letter queue fault isolation.",
+      },
+      {
+        id: "fin-storage",
+        name: "5. Persistence & Cache",
+        role: "Partitioned Data Store",
+        tech: "PostgreSQL • Redis In-Memory",
+        technicalNote: "Partitioned table schemas, connection pooling, and sub-10ms cached ledger state reads.",
+      },
+    ],
+  },
+  {
+    id: "bookreader",
+    title: "Native Android Media & Offline Engine",
+    badge: "BookReader Flagship",
+    subtitle: "Offline-first reader engine featuring native TTS voice synthesis, custom Scoped Storage mutex, and background MediaSessionService.",
+    accentClass: "text-amber-400",
+    accentBorder: "border-amber-500/30",
+    badgeBg: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+    nodes: [
+      {
+        id: "br-ingestion",
+        name: "1. Content Ingestion",
+        role: "HTML Parser & Scraper",
+        tech: "Jsoup • Custom Web Scrapers",
+        technicalNote: "High-throughput DOM sanitization and structured chapter extraction from raw web sources.",
+      },
+      {
+        id: "br-storage",
+        name: "2. AtomicFile Mutex",
+        role: "Scoped Storage Pipeline",
+        tech: "AtomicFile • Mutex Synchronization",
+        technicalNote: "Atomic write-replace transactions preventing file corruption during sudden OS process kills.",
+      },
+      {
+        id: "br-chunker",
+        name: "3. Sentence Chunker",
+        role: "Regex Segmentation Engine",
+        tech: "Quote-Aware Regex • CJK Parser",
+        technicalNote: "Quote-preserving sentence boundary detection ensuring natural speech prosody across languages.",
+      },
+      {
+        id: "br-media",
+        name: "4. TTS & MediaSession",
+        role: "AndroidX Media3 Service",
+        tech: "MediaSessionService • Native TTS",
+        technicalNote: "Zero-thread-collision ExoPlayer coordination with native Android TextToSpeech engines.",
+      },
+      {
+        id: "br-playback",
+        name: "5. Background Audio",
+        role: "OS Audio Focus & Controls",
+        tech: "WakeLock • Lockscreen Controls",
+        technicalNote: "Seamless lockscreen media controls, Bluetooth headset triggers, and wake-lock battery optimization.",
+      },
+    ],
+  },
+  {
+    id: "saas",
+    title: "Enterprise SaaS & Real-Time Inventory Sync",
+    badge: "AutoQual / PIASSA",
+    subtitle: "High-concurrency automotive service platform, supplier CRM, and real-time inventory catalog synchronization.",
+    accentClass: "text-blue-400",
+    accentBorder: "border-blue-500/30",
+    badgeBg: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    nodes: [
+      {
+        id: "saas-clients",
+        name: "1. Multi-Tenant Clients",
+        role: "B2B Web Portals & POS",
+        tech: "TypeScript • Flutter Mobile POS",
+        technicalNote: "Responsive operator dashboards for garages, suppliers, and multi-warehouse staff.",
+      },
+      {
+        id: "saas-gateway",
+        name: "2. REST / WebSocket Gateway",
+        role: "Bidirectional Routing",
+        tech: "Nginx • Node.js Gateways",
+        technicalNote: "Secure client authentication, multi-tenant tenancy isolation, and rate-metered endpoints.",
+      },
+      {
+        id: "saas-services",
+        name: "3. Domain Services & CRM",
+        role: "Automotive Business Logic",
+        tech: "Node.js • Laravel • Queues",
+        technicalNote: "10,000+ OEM vehicle parts matching algorithm and automated quotation workflows.",
+      },
+      {
+        id: "saas-database",
+        name: "4. Relational Database",
+        role: "Normalized Storage",
+        tech: "MySQL • PostgreSQL (ERD)",
+        technicalNote: "Normalized relational schemas with ACID constraints eliminating manual tracking bottlenecks.",
+      },
+      {
+        id: "saas-infra",
+        name: "5. Cloud & Linux Infra",
+        role: "Dockerized Deployment",
+        tech: "Docker • CI/CD • Linux Server",
+        technicalNote: "Multi-stage Docker containers with reverse-proxy routing and zero-downtime automated releases.",
+      },
+    ],
+  },
+];
+---
+
+<section
+  id="architecture"
+  class="relative py-20 border-t border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-900/30 overflow-hidden"
+  aria-labelledby="architecture-heading"
+>
+  <!-- Background Glow & Grid Accents -->
+  <div class="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:32px_32px] opacity-10 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl">
+      <div class="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-400">
+        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+          <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+          <line x1="6" y1="6" x2="6.01" y2="6"></line>
+          <line x1="6" y1="18" x2="6.01" y2="18"></line>
+        </svg>
+        <span>Systems Design &amp; Architecture</span>
+      </div>
+
+      <h2 id="architecture-heading" class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50">
+        Interactive System Architecture Blueprints
+      </h2>
+      <p class="mt-3 text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+        Explore interactive end-to-end architectural topologies of real production platforms engineered by Faycal Rafa. Hover over any architectural layer to inspect data flow contracts, fault-tolerance mechanisms, and concurrency patterns.
+      </p>
+    </div>
+
+    <!-- Switchable Tabs Bar -->
+    <div class="mt-10 flex flex-wrap items-center gap-2 border-b border-zinc-800/80 pb-4" role="tablist" aria-label="System Architecture Topologies">
+      {blueprints.map((bp, index) => (
+        <button
+          type="button"
+          role="tab"
+          id={`tab-btn-${bp.id}`}
+          data-tab-target={bp.id}
+          aria-selected={index === 0 ? "true" : "false"}
+          aria-controls={`tab-panel-${bp.id}`}
+          class:list={[
+            "tab-blueprint-btn inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-blue-500",
+            index === 0
+              ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+              : "bg-zinc-800/70 text-zinc-300 hover:bg-zinc-800 hover:text-white"
+          ]}
+        >
+          <span>{bp.title}</span>
+          <span class="hidden md:inline-flex rounded-md bg-white/10 px-2 py-0.5 text-[10px] font-medium text-zinc-200">
+            {bp.badge}
+          </span>
+        </button>
+      ))}
+    </div>
+
+    <!-- Tab Panels Container -->
+    <div class="mt-8">
+      {blueprints.map((bp, bpIndex) => (
+        <div
+          id={`tab-panel-${bp.id}`}
+          role="tabpanel"
+          aria-labelledby={`tab-btn-${bp.id}`}
+          class:list={[
+            "blueprint-panel transition-opacity duration-300",
+            bpIndex === 0 ? "block" : "hidden"
+          ]}
+        >
+          <!-- Blueprint Card Wrapper -->
+          <div class="rounded-2xl border border-zinc-800/80 bg-zinc-950/70 p-6 sm:p-8 shadow-xl backdrop-blur-md">
+            
+            <!-- Panel Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-zinc-800/80">
+              <div>
+                <div class="flex items-center gap-2.5">
+                  <h3 class="text-xl sm:text-2xl font-bold text-zinc-100">
+                    {bp.title}
+                  </h3>
+                  <span class={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${bp.badgeBg}`}>
+                    {bp.badge}
+                  </span>
+                </div>
+                <p class="mt-2 text-sm text-zinc-400 max-w-3xl leading-relaxed">
+                  {bp.subtitle}
+                </p>
+              </div>
+
+              <!-- Animated Data Pulse Status Pill -->
+              <div class="shrink-0 flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs text-zinc-400">
+                <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true"></span>
+                <span>Live Packet Stream</span>
+              </div>
+            </div>
+
+            <!-- Visual Flow Topology (Horizontal Grid with Connecting Data Vectors) -->
+            <div class="mt-8">
+              <div class="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-3 relative">
+                
+                {bp.nodes.map((node, nodeIdx) => (
+                  <div class="flex flex-col md:flex-row items-center w-full">
+                    
+                    <!-- Node Component Card -->
+                    <div
+                      class="blueprint-node group/node relative w-full flex-1 rounded-xl border border-zinc-800/90 bg-zinc-900/80 p-4 shadow-sm hover:border-zinc-600 hover:bg-zinc-800/60 hover:-translate-y-1 transition-all duration-200 cursor-pointer"
+                      data-note={node.technicalNote}
+                      data-title={node.name}
+                      data-tech={node.tech}
+                    >
+                      <!-- Top Accent Pip -->
+                      <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-400">
+                          Layer 0{nodeIdx + 1}
+                        </span>
+                        <div class="h-2 w-2 rounded-full bg-blue-500/60 group-hover/node:bg-blue-400 group-hover/node:scale-125 transition-all"></div>
+                      </div>
+
+                      <h4 class="mt-2 text-sm font-bold text-zinc-100 group-hover/node:text-blue-400 transition-colors">
+                        {node.name}
+                      </h4>
+                      <p class="mt-1 text-xs text-zinc-400">
+                        {node.role}
+                      </p>
+
+                      <div class="mt-3 pt-2.5 border-t border-zinc-800/60">
+                        <span class="inline-block text-[11px] font-mono text-zinc-300">
+                          {node.tech}
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- Directional Flow Connector Arrow / Packet Line -->
+                    {nodeIdx < bp.nodes.length - 1 && (
+                      <div class="flex md:flex-col items-center justify-center py-2 md:py-0 md:px-2 shrink-0" aria-hidden="true">
+                        <!-- Horizontal desktop arrow with animated pulse -->
+                        <div class="hidden md:flex flex-col items-center">
+                          <svg class="h-6 w-8 text-zinc-600 overflow-visible" viewBox="0 0 32 12" fill="none">
+                            <line x1="0" y1="6" x2="26" y2="6" stroke="currentColor" stroke-width="2" stroke-dasharray="4 2" class="data-flow-pulse" />
+                            <polyline points="22 2 28 6 22 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </div>
+                        <!-- Vertical mobile arrow -->
+                        <div class="flex md:hidden items-center text-zinc-600">
+                          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="2" x2="12" y2="18" stroke-dasharray="4 2" class="data-flow-pulse" />
+                            <polyline points="7 13 12 18 17 13" />
+                          </svg>
+                        </div>
+                      </div>
+                    )}
+
+                  </div>
+                ))}
+
+              </div>
+            </div>
+
+            <!-- Live Architecture Inspector Panel -->
+            <div class="mt-8 rounded-xl border border-blue-500/20 bg-blue-950/20 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div class="flex items-start gap-3">
+                <div class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400">
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-blue-400">
+                      Layer Inspection Telemetry:
+                    </span>
+                    <span class="inspector-node-title text-xs font-semibold text-zinc-200">
+                      Hover any layer above
+                    </span>
+                  </div>
+                  <p class="inspector-node-note mt-1 text-xs sm:text-sm text-zinc-300">
+                    {bp.nodes[0].technicalNote}
+                  </p>
+                </div>
+              </div>
+
+              <div class="shrink-0 text-xs font-mono text-zinc-400">
+                <span class="text-zinc-500">Contract:</span> <span class="inspector-node-tech text-blue-300 font-semibold">{bp.nodes[0].tech}</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Continuous SVG Packet Stream Animation */
+  .data-flow-pulse {
+    stroke: #3b82f6;
+    stroke-dashoffset: 0;
+    animation: flowPulse 1.4s linear infinite;
+  }
+
+  @keyframes flowPulse {
+    from {
+      stroke-dashoffset: 12;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .data-flow-pulse {
+      animation: none !important;
+      stroke: #64748b;
+    }
+  }
+</style>
+
+<script>
+  function initArchitectureBlueprints() {
+    const tabButtons = document.querySelectorAll<HTMLButtonElement>('.tab-blueprint-btn');
+    const tabPanels = document.querySelectorAll<HTMLElement>('.blueprint-panel');
+
+    // Tab Switching Logic
+    tabButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.dataset.tabTarget;
+        if (!targetId) return;
+
+        tabButtons.forEach((b) => {
+          b.setAttribute('aria-selected', 'false');
+          b.classList.remove('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-500/20');
+          b.classList.add('bg-zinc-800/70', 'text-zinc-300');
+        });
+
+        btn.setAttribute('aria-selected', 'true');
+        btn.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-500/20');
+        btn.classList.remove('bg-zinc-800/70', 'text-zinc-300');
+
+        tabPanels.forEach((panel) => {
+          if (panel.id === `tab-panel-${targetId}`) {
+            panel.classList.remove('hidden');
+            panel.classList.add('block');
+          } else {
+            panel.classList.add('hidden');
+            panel.classList.remove('block');
+          }
+        });
+      });
+    });
+
+    // Node Hover Inspector Logic
+    const panels = document.querySelectorAll<HTMLElement>('.blueprint-panel');
+    panels.forEach((panel) => {
+      const nodes = panel.querySelectorAll<HTMLElement>('.blueprint-node');
+      const titleEl = panel.querySelector<HTMLElement>('.inspector-node-title');
+      const noteEl = panel.querySelector<HTMLElement>('.inspector-node-note');
+      const techEl = panel.querySelector<HTMLElement>('.inspector-node-tech');
+
+      nodes.forEach((node) => {
+        node.addEventListener('mouseenter', () => {
+          const title = node.dataset.title;
+          const note = node.dataset.note;
+          const tech = node.dataset.tech;
+          if (titleEl && title) titleEl.textContent = title;
+          if (noteEl && note) noteEl.textContent = note;
+          if (techEl && tech) techEl.textContent = tech;
+        });
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initArchitectureBlueprints);
+</script>

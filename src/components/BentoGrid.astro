@@ -18,6 +18,7 @@
 interface SkillItem {
   name: string;
   note?: string;
+  shortNote?: string;
   featured?: boolean;
 }
 
@@ -27,6 +28,7 @@ interface ProjectProof {
   description: string;
   url: string;
   badge: string;
+  metric?: string;
 }
 
 interface SkillCluster {
@@ -64,16 +66,16 @@ const clusters: SkillCluster[] = [
       badgeText: "text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800",
     },
     skills: [
-      { name: "TypeScript", note: "Strict Mode, Generics, AST & Zod Validation", featured: true },
-      { name: "Next.js", note: "App Router, Server Components, SSR/SSG", featured: true },
-      { name: "Svelte 5", note: "Runes ($state, $derived), Reactive Micro-apps", featured: true },
-      { name: "Tailwind CSS", note: "Utility-first v4, Design Tokens, Dark Mode", featured: true },
-      { name: "Modern Web APIs", note: "Web Speech API, AudioContext, View Transitions", featured: true },
-      { name: "React & Hooks", note: "Concurrent Rendering, State Optimization", featured: false },
-      { name: "Astro 5", note: "Static Site Generation, Content Layer", featured: false },
+      { name: "TypeScript", note: "Strict Mode, Generics, AST & Zod Validation", shortNote: "Strict Mode & Generics", featured: true },
+      { name: "Next.js", note: "App Router, Server Components, SSR/SSG", shortNote: "App Router & SSR", featured: true },
+      { name: "Svelte 5", note: "Runes ($state, $derived), Reactive Micro-apps", shortNote: "Runes & Reactivity", featured: true },
+      { name: "Tailwind CSS", note: "Utility-first v4, Design Tokens, Dark Mode", shortNote: "Tokens & Dark Mode", featured: true },
+      { name: "Modern Web APIs", note: "Web Speech API, AudioContext, View Transitions", shortNote: "Speech & AudioContext", featured: true },
+      { name: "React & Hooks", note: "Concurrent Rendering, State Optimization", shortNote: "Concurrent Rendering", featured: false },
+      { name: "Astro 5", note: "Static Site Generation, Content Layer", shortNote: "Content Layer & SSG", featured: false },
     ],
     architecturalHighlights: [
-      "Zero-FOUC theme rendering and fluid Astro View Transitions.",
+      "Reactive state machines, optimistic UI updates, and complex multi-step data workflows across enterprise SaaS dashboards.",
       "In-browser interactive simulators built with Web Speech API and quote chunking regex.",
       "Strict compile-time type validation enforcing domain models across full-stack applications.",
     ],
@@ -84,6 +86,7 @@ const clusters: SkillCluster[] = [
         description: "Modern Svelte 5 & TypeScript production-ready boilerplate.",
         url: "/projects#startingpack",
         badge: "Svelte 5 / TS",
+        metric: "Svelte 5 Runes & strict TypeScript boilerplate",
       },
       {
         name: "InvestMarket Frontend",
@@ -91,6 +94,7 @@ const clusters: SkillCluster[] = [
         description: "Real-time stock portfolio and live candlestick chart interface.",
         url: "/projects#investmarket",
         badge: "Next.js / TS",
+        metric: "Real-time WebSockets & TradingView charts",
       },
     ],
   },
@@ -109,12 +113,12 @@ const clusters: SkillCluster[] = [
       badgeText: "text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800",
     },
     skills: [
-      { name: "Android Native (Kotlin & Java)", note: "Coroutines, StateFlow, TargetSDK 36", featured: true },
-      { name: "Jetpack Compose", note: "Material 3, Custom Claymorphic UI", featured: true },
-      { name: "AndroidX Media3", note: "MediaSessionService, ExoPlayer, Lockscreen Audio", featured: true },
-      { name: "Native TextToSpeech", note: "Multi-engine, CJK & Quote-Aware Segmentation", featured: true },
-      { name: "Flutter & Dart", note: "60fps Reactive Cross-Platform Interfaces", featured: true },
-      { name: "Scoped Storage & Jsoup", note: "AtomicFile Mutex Sync, HTML Scraping", featured: false },
+      { name: "Android Native (Kotlin & Java)", note: "Coroutines, StateFlow, TargetSDK 36", shortNote: "Coroutines & StateFlow", featured: true },
+      { name: "Jetpack Compose", note: "Material 3, Custom Claymorphic UI", shortNote: "Material 3", featured: true },
+      { name: "AndroidX Media3", note: "MediaSessionService, ExoPlayer, Lockscreen Audio", shortNote: "MediaSessionService", featured: true },
+      { name: "Native TextToSpeech", note: "Multi-engine, CJK & Quote-Aware Segmentation", shortNote: "Multi-engine & CJK", featured: true },
+      { name: "Flutter & Dart", note: "60fps Reactive Cross-Platform Interfaces", shortNote: "60fps Cross-Platform", featured: true },
+      { name: "Scoped Storage & Jsoup", note: "AtomicFile Mutex Sync, HTML Scraping", shortNote: "AtomicFile Mutex", featured: false },
     ],
     architecturalHighlights: [
       "Author of BookReader: Offline novel reader with background audio services.",
@@ -128,6 +132,7 @@ const clusters: SkillCluster[] = [
         description: "Flagship Android reader app with native TTS & Scoped Storage.",
         url: "/projects/bookreader",
         badge: "Android APK",
+        metric: "TargetSDK 36 • 20MB Zero-lag offline reader",
       },
       {
         name: "InstaClean",
@@ -135,6 +140,7 @@ const clusters: SkillCluster[] = [
         description: "On-demand mobile car wash ordering with real-time tracking.",
         url: "/projects#instaclean",
         badge: "Flutter / Dart",
+        metric: "60fps Flutter • Real-time GPS dispatch",
       },
     ],
   },
@@ -153,13 +159,13 @@ const clusters: SkillCluster[] = [
       badgeText: "text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800",
     },
     skills: [
-      { name: "NestJS", note: "Enterprise DI, Microservices Transports, Interceptors", featured: true },
-      { name: "Node.js", note: "Async I/O Optimization, WebSockets, Worker Threads", featured: true },
-      { name: "Microservices", note: "Decoupled Architecture, Event-Driven, High Availability", featured: true },
-      { name: "Laravel & PHP", note: "Modern PHP 8+, Eloquent ORM, Queued Workers", featured: true },
-      { name: "Python", note: "Automation, Document Extraction (docling, bs4)", featured: false },
-      { name: "Linux Bash", note: "System Administration & Deployment Automation", featured: false },
-      { name: "REST & GraphQL", note: "High-Throughput Contracts & Resilient APIs", featured: true },
+      { name: "NestJS", note: "Enterprise DI, Microservices Transports, Interceptors", shortNote: "Enterprise DI & Transports", featured: true },
+      { name: "Node.js", note: "Async I/O Optimization, WebSockets, Worker Threads", shortNote: "Async I/O & WebSockets", featured: true },
+      { name: "Microservices", note: "Decoupled Architecture, Event-Driven, High Availability", shortNote: "Event-Driven & Decoupled", featured: true },
+      { name: "Laravel & PHP", note: "Modern PHP 8+, Eloquent ORM, Queued Workers", shortNote: "PHP 8+ & Queues", featured: true },
+      { name: "Python", note: "Automation, Document Extraction (docling, bs4)", shortNote: "Automation & Extraction", featured: false },
+      { name: "Linux Bash", note: "System Administration & Deployment Automation", shortNote: "Sysadmin & Automation", featured: false },
+      { name: "REST & GraphQL", note: "High-Throughput Contracts & Resilient APIs", shortNote: "Contracts & Resilient APIs", featured: true },
     ],
     architecturalHighlights: [
       "Deconstructed monolithic fintech legacy into elastic microservices as Technical Lead at Finnetude.",
@@ -173,6 +179,7 @@ const clusters: SkillCluster[] = [
         description: "NestJS, TypeScript, and Docker microservices trading platform.",
         url: "/projects#investmarket",
         badge: "NestJS / Docker",
+        metric: "Sub-45ms P99 • NestJS microservices",
       },
       {
         name: "SABIL Mega-App",
@@ -180,6 +187,7 @@ const clusters: SkillCluster[] = [
         description: "Distributed microservices handling high-concurrency payment transactions.",
         url: "/projects#sabil",
         badge: "Microservices",
+        metric: "Sub-45ms P99 • Digital wallet microservices",
       },
     ],
   },
@@ -198,26 +206,27 @@ const clusters: SkillCluster[] = [
       badgeText: "text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800",
     },
     skills: [
-      { name: "PostgreSQL", note: "Partitioning, JSONB Storage, Complex Queries, Index Tuning", featured: true },
-      { name: "MySQL", note: "Relational Modeling, Transactions, ERD Design", featured: true },
-      { name: "MongoDB", note: "Document Modeling, Aggregation Pipelines", featured: false },
-      { name: "Docker", note: "Multi-stage Production Builds, Docker Compose", featured: true },
-      { name: "GitHub Actions", note: "Automated CI/CD Workflows, GitHub Pages Deploy", featured: true },
-      { name: "Git & Trunk-Based", note: "Semantic Releases, Branch Protection, Version Control", featured: false },
-      { name: "Linux Administration", note: "System Hardening, Process Monitoring, Nginx", featured: false },
+      { name: "PostgreSQL", note: "Partitioning, JSONB Storage, Complex Queries, Index Tuning", shortNote: "Partitioning & Tuning", featured: true },
+      { name: "MySQL", note: "Relational Modeling, Transactions, ERD Design", shortNote: "Relational ERD Design", featured: true },
+      { name: "MongoDB", note: "Document Modeling, Aggregation Pipelines", shortNote: "Aggregation Pipelines", featured: false },
+      { name: "Docker", note: "Multi-stage Production Builds, Docker Compose", shortNote: "Multi-stage Builds", featured: true },
+      { name: "GitHub Actions", note: "Automated CI/CD Workflows, GitHub Pages Deploy", shortNote: "CI/CD Workflows", featured: true },
+      { name: "Git & Trunk-Based", note: "Semantic Releases, Branch Protection, Version Control", shortNote: "Trunk-Based & SemVer", featured: false },
+      { name: "Linux Administration", note: "System Hardening, Process Monitoring, Nginx", shortNote: "Hardening & Reverse Proxy", featured: false },
     ],
     architecturalHighlights: [
-      "Zero-downtime automated static build and deployment pipeline via GitHub Actions to GitHub Pages.",
+      "Multi-container Docker orchestration, automated CI/CD release pipelines, and hardened Linux production servers with reverse-proxy routing and zero-downtime deployments.",
       "Database schema normalization and high-throughput real-time synchronization APIs (PIASSA DZ).",
       "Production containerization with multi-stage Dockerfiles optimizing image size and security.",
     ],
     projectProofs: [
       {
-        name: "GitHub Pages CI/CD",
-        tag: "DevOps",
-        description: "Automated workflow building and verifying static Astro distributions.",
-        url: "https://github.com/faycalrafa/faycalrafa.github.io",
-        badge: "GitHub Actions",
+        name: "Production CI/CD & Linux",
+        tag: "DevOps & Cloud",
+        description: "Multi-container Docker orchestration, automated CI/CD pipelines, and zero-downtime deployment.",
+        url: "/projects#investmarket",
+        badge: "Docker / CI/CD",
+        metric: "Multi-container Docker & automated release gates",
       },
       {
         name: "PIASSA SaaS CRM",
@@ -225,6 +234,7 @@ const clusters: SkillCluster[] = [
         description: "Centralized relational database with high-concurrency client sync.",
         url: "/projects#piassa",
         badge: "MySQL / Docker",
+        metric: "High-throughput supplier & POS sync",
       },
     ],
   },
@@ -259,13 +269,19 @@ const clusters: SkillCluster[] = [
       </p>
     </div>
 
-    <!-- Responsive Bento Grid Layout -->
+    <!-- Responsive Bento Grid Layout with Interactive Spotlight -->
     <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
       {clusters.map((cluster) => (
         <article
           id={`skill-cluster-${cluster.id}`}
-          class={`relative flex flex-col justify-between overflow-hidden rounded-2xl border bg-white p-6 sm:p-8 shadow-xs dark:bg-zinc-900/90 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${cluster.colSpan} ${cluster.theme.border} ${cluster.theme.hoverBorder}`}
+          class={`bento-card group relative flex flex-col justify-between overflow-hidden rounded-2xl border bg-white p-6 sm:p-8 shadow-xs dark:bg-zinc-900/90 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${cluster.colSpan} ${cluster.theme.border} ${cluster.theme.hoverBorder}`}
         >
+          <!-- Dynamic Cursor Spotlight Overlay -->
+          <div
+            class="bento-spotlight pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300"
+            aria-hidden="true"
+          />
+
           <!-- Subtle Glowing Corner Accent -->
           <div
             class={`absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-to-br ${cluster.theme.glowBg} blur-2xl pointer-events-none`}
@@ -273,7 +289,7 @@ const clusters: SkillCluster[] = [
           />
 
           <!-- Card Header & Metadata -->
-          <div>
+          <div class="relative z-10">
             <div class="flex items-center justify-between gap-4">
               <span class="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                 {cluster.category}
@@ -295,23 +311,26 @@ const clusters: SkillCluster[] = [
                 Core Technologies &amp; Tools
               </h4>
               <div class="mt-3 flex flex-wrap gap-2">
-                {cluster.skills.map((skill) => (
-                  <span
-                    class={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
-                      skill.featured
-                        ? `${cluster.theme.badgeBg} ${cluster.theme.badgeText} font-semibold shadow-2xs`
-                        : "border-zinc-200/80 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                    }`}
-                    title={skill.note ? `${skill.name}: ${skill.note}` : skill.name}
-                  >
-                    <span>{skill.name}</span>
-                    {skill.note && (
-                      <span class="hidden sm:inline text-[10px] opacity-75 font-normal">
-                        • {skill.note.split(',')[0]}
-                      </span>
-                    )}
-                  </span>
-                ))}
+                {cluster.skills.map((skill) => {
+                  const secondaryText = skill.shortNote || (skill.note ? skill.note.split(',')[0] : '');
+                  return (
+                    <span
+                      class={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
+                        skill.featured
+                          ? `${cluster.theme.badgeBg} ${cluster.theme.badgeText} font-semibold shadow-2xs`
+                          : "border-zinc-200/80 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                      }`}
+                      title={skill.note ? `${skill.name}: ${skill.note}` : skill.name}
+                    >
+                      <span>{skill.name}</span>
+                      {secondaryText && (
+                        <span class="hidden sm:inline text-[10px] opacity-75 font-normal">
+                          • {secondaryText}
+                        </span>
+                      )}
+                    </span>
+                  );
+                })}
               </div>
             </div>
 
@@ -343,7 +362,7 @@ const clusters: SkillCluster[] = [
           </div>
 
           <!-- Bottom: Verified Real-World Projects & Proof Links -->
-          <div class="mt-6 border-t border-zinc-100 dark:border-zinc-800/80 pt-4">
+          <div class="relative z-10 mt-6 border-t border-zinc-100 dark:border-zinc-800/80 pt-4">
             <h4 class="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
               Verified Project Proofs
             </h4>
@@ -351,16 +370,17 @@ const clusters: SkillCluster[] = [
               {cluster.projectProofs.map((project) => (
                 <a
                   href={project.url}
-                  class="group inline-flex items-center gap-2 rounded-xl border border-zinc-200/90 bg-zinc-50/80 px-3 py-2 text-xs text-zinc-700 hover:border-zinc-400 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-800/40 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 transition-all"
+                  class="proof-chip group/chip relative inline-flex items-center gap-2 rounded-xl border border-zinc-200/90 bg-zinc-50/80 px-3 py-2 text-xs text-zinc-700 hover:border-zinc-400 hover:bg-zinc-100 hover:-translate-y-0.5 dark:border-zinc-800 dark:bg-zinc-800/40 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 transition-all duration-200"
+                  title={project.metric || project.description}
                 >
-                  <span class="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:underline">
+                  <span class="font-semibold text-zinc-900 dark:text-zinc-100 group-hover/chip:underline">
                     {project.name}
                   </span>
                   <span class={`rounded px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider ${cluster.theme.badgeBg} ${cluster.theme.badgeText}`}>
                     {project.badge}
                   </span>
                   <svg
-                    class="h-3 w-3 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-200 transition-transform group-hover:translate-x-0.5"
+                    class="h-3 w-3 text-zinc-400 group-hover/chip:text-zinc-600 dark:group-hover/chip:text-zinc-200 transition-transform duration-200 group-hover/chip:translate-x-0.5 group-hover/chip:-translate-y-0.5"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -381,3 +401,28 @@ const clusters: SkillCluster[] = [
     </div>
   </div>
 </section>
+
+<script>
+  function initBentoSpotlight() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cards = document.querySelectorAll<HTMLElement>('.bento-card');
+    cards.forEach((card) => {
+      const spotlight = card.querySelector<HTMLElement>('.bento-spotlight');
+      if (!spotlight) return;
+
+      card.addEventListener('pointermove', (e: PointerEvent) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        spotlight.style.background = `radial-gradient(350px circle at ${x}px ${y}px, rgba(59, 130, 246, 0.09), transparent 80%)`;
+        spotlight.style.opacity = '1';
+      });
+
+      card.addEventListener('pointerleave', () => {
+        spotlight.style.opacity = '0';
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initBentoSpotlight);
+</script>

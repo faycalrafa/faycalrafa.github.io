@@ -1,0 +1,313 @@
+---
+// src/components/ConsultingCapabilities.astro
+// High-Impact B2B Consulting & Technical Leadership Conversion Strip
+// Compliant with Astro 5 ClientRouter, Tailwind CSS v4, and modern accessibility standards.
+---
+
+<section
+  id="capabilities"
+  class="relative py-20 border-t border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-950/60 overflow-hidden"
+  aria-labelledby="capabilities-heading"
+>
+  <!-- Ambient background glow -->
+  <div class="pointer-events-none absolute -top-40 right-0 -z-10 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl"></div>
+  <div class="pointer-events-none absolute bottom-0 left-0 -z-10 h-96 w-96 rounded-full bg-emerald-600/10 blur-3xl"></div>
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl">
+      <div class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-400">
+        <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true"></span>
+        <span>Advisory, Consulting &amp; Technical Leadership</span>
+      </div>
+
+      <h2 id="capabilities-heading" class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50">
+        Engagement &amp; Architecture Capabilities
+      </h2>
+      <p class="mt-3 text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+        Partnering with seed-stage startups, hyper-growth scale-ups, and established enterprises to solve critical systems bottlenecks, lead legacy migrations, and ship high-craft digital products.
+      </p>
+    </div>
+
+    <!-- 3 Core Architectural Pillars -->
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Pillar 1: Distributed Backend & Microservices -->
+      <div class="group relative flex flex-col justify-between rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-xl hover:shadow-emerald-500/5">
+        <div>
+          <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 group-hover:scale-105 transition-transform">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+          </div>
+
+          <h3 class="mt-5 text-xl font-bold text-zinc-100">
+            Distributed Backend &amp; Microservices
+          </h3>
+          <p class="mt-3 text-sm leading-relaxed text-zinc-400">
+            Decomposing monolithic bottlenecks into resilient NestJS/Node.js microservices. Designing partitioned PostgreSQL schemas, sub-10ms Redis caching layers, and zero-loss asynchronous queues.
+          </p>
+
+          <ul class="mt-5 space-y-2 text-xs text-zinc-300">
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-emerald-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Sub-45ms P99 latency &amp; idempotency guarantees</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-emerald-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Event-driven queues with dead-letter isolation</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-emerald-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Multi-tenant database schema partitioning</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-zinc-800/80 flex flex-wrap gap-1.5">
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">NestJS</span>
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">TypeScript</span>
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">PostgreSQL</span>
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">Redis</span>
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">Docker</span>
+        </div>
+      </div>
+
+      <!-- Pillar 2: Flagship Native & Cross-Platform Mobile -->
+      <div class="group relative flex flex-col justify-between rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40 hover:shadow-xl hover:shadow-amber-500/5">
+        <div>
+          <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 group-hover:scale-105 transition-transform">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+          </div>
+
+          <h3 class="mt-5 text-xl font-bold text-zinc-100">
+            Flagship Native &amp; Cross-Platform Mobile
+          </h3>
+          <p class="mt-3 text-sm leading-relaxed text-zinc-400">
+            Architecting offline-first native Android apps with Jetpack Compose Material 3 and Media3 foreground services, as well as 60fps Flutter cross-platform applications with local caching.
+          </p>
+
+          <ul class="mt-5 space-y-2 text-xs text-zinc-300">
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-amber-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>MediaSessionService &amp; lockscreen playback</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-amber-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>AtomicFile mutex with zero file-corruption</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-amber-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Real-time GPS dispatch &amp; offline queueing</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-zinc-800/80 flex flex-wrap gap-1.5">
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">Android Kotlin</span>
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">Compose M3</span>
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">Media3</span>
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">Flutter</span>
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">Dart</span>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Technical Leadership & System Rescue -->
+      <div class="group relative flex flex-col justify-between rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:shadow-xl hover:shadow-blue-500/5">
+        <div>
+          <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 group-hover:scale-105 transition-transform">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+
+          <h3 class="mt-5 text-xl font-bold text-zinc-100">
+            Technical Leadership &amp; System Rescue
+          </h3>
+          <p class="mt-3 text-sm leading-relaxed text-zinc-400">
+            Leading engineering squads across the full SDLC. Designing production CI/CD pipelines, establishing domain-driven standards, conducting code audits, and rescuing struggling architectures.
+          </p>
+
+          <ul class="mt-5 space-y-2 text-xs text-zinc-300">
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-blue-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Engineering standards &amp; modular API blueprints</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-blue-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Automated CI/CD release pipelines &amp; quality gates</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-blue-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Cross-functional squad mentorship (6+ engineers)</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-zinc-800/80 flex flex-wrap gap-1.5">
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">System Design</span>
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">CI/CD</span>
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">Linux Hardening</span>
+          <span class="rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-300">Code Audits</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Unified Conversion Bar -->
+    <div class="mt-12 rounded-2xl border border-zinc-800 bg-gradient-to-r from-zinc-900 via-zinc-900 to-zinc-950 p-6 sm:p-8 shadow-xl">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-400">
+            Let's Build Something Exceptional
+          </span>
+          <h3 class="mt-1 text-2xl font-bold text-zinc-100">
+            Ready to discuss your system architecture or leadership needs?
+          </h3>
+          <p class="mt-1 text-sm text-zinc-400">
+            Open to senior engineering roles, technical advisory, and high-impact contract consulting worldwide.
+          </p>
+        </div>
+
+        <!-- Action Buttons Cluster -->
+        <div class="flex flex-wrap items-center gap-3">
+          <!-- Copy Email Button with Animated Toast -->
+          <div class="relative">
+            <button
+              type="button"
+              id="quick-copy-email-btn"
+              class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-md hover:bg-blue-500 transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-blue-500"
+              aria-label="Copy email address to clipboard"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="7" y="7" width="10" height="10" rx="2"></rect>
+                <path d="M3 13V5a2 2 0 012-2h8"></path>
+              </svg>
+              <span id="copy-email-label">Copy Email</span>
+            </button>
+            <!-- Toast Feedback -->
+            <div
+              id="copy-toast"
+              class="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 opacity-0 -translate-y-1 transition-all duration-200 rounded-md bg-emerald-500 px-2.5 py-1 text-[11px] font-bold text-white shadow-lg whitespace-nowrap"
+              role="status"
+              aria-live="polite"
+            >
+              Copied to clipboard!
+            </div>
+          </div>
+
+          <!-- Preview CV Modal Trigger -->
+          <button
+            type="button"
+            data-open-cv-modal
+            class="inline-flex items-center gap-2 rounded-xl border border-zinc-700 bg-zinc-800/80 px-4 py-2.5 text-xs sm:text-sm font-semibold text-zinc-200 shadow-md hover:bg-zinc-700 hover:text-white transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-blue-500"
+            aria-label="Preview CV document"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10 3v10"></path>
+              <path d="M6 9l4 4 4-4"></path>
+              <path d="M3 15v1a2 2 0 002 2h10a2 2 0 002-2v-1"></path>
+            </svg>
+            <span>Preview CV</span>
+          </button>
+
+          <!-- Direct WhatsApp Action -->
+          <a
+            href="https://wa.me/213540980238"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs sm:text-sm font-semibold text-emerald-400 hover:bg-emerald-500/20 transition-all focus-visible:outline-2 focus-visible:outline-emerald-500"
+            aria-label="Chat directly on WhatsApp"
+          >
+            <svg class="h-4 w-4 fill-current text-[#25D366]" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+
+          <!-- GitHub Profile -->
+          <a
+            href="https://github.com/faycalrafa"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2.5 rounded-xl border border-zinc-700 bg-zinc-800/60 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-colors"
+            aria-label="GitHub Profile"
+            title="GitHub: @faycalrafa"
+          >
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"></path>
+            </svg>
+          </a>
+
+          <!-- LinkedIn Profile -->
+          <a
+            href="https://www.linkedin.com/in/faycal-rafa-89a366249"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2.5 rounded-xl border border-zinc-700 bg-zinc-800/60 text-zinc-400 hover:text-blue-400 hover:bg-zinc-700 transition-colors"
+            aria-label="LinkedIn Profile"
+            title="LinkedIn Profile"
+          >
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function initQuickCopyEmail() {
+    const copyBtn = document.getElementById('quick-copy-email-btn');
+    const toast = document.getElementById('copy-toast');
+    const label = document.getElementById('copy-email-label');
+    if (!copyBtn || !toast) return;
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('rafafaycal@gmail.com');
+        toast.classList.remove('opacity-0', '-translate-y-1');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        if (label) label.textContent = 'Copied!';
+
+        setTimeout(() => {
+          toast.classList.remove('opacity-100', 'translate-y-0');
+          toast.classList.add('opacity-0', '-translate-y-1');
+          if (label) label.textContent = 'Copy Email';
+        }, 2200);
+      } catch (err) {
+        console.error('Failed to copy email:', err);
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', initQuickCopyEmail);
+</script>
