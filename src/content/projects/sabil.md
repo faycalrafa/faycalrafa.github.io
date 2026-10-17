@@ -21,9 +21,9 @@ order: 4
 publishedDate: "2025-08-15"
 ---
 
-# SABIL Mega-App — Digital Payment & Financial Microservices
+# SABIL Mega-App: Digital Payment & Financial Microservices
 
-**SABIL** is a major Algerian digital payments and financial services mega-app operating at national scale. As a **Senior Software Engineer** at SABIL Company (04/2025 – 02/2026), Faycal Rafa was instrumental in designing, architecting, and optimizing the distributed microservices that power the consumer-facing mobile application and critical administrative back-office operations.
+**SABIL** is a major Algerian digital payments and financial services mega-app operating at national scale. As a **Senior Software Engineer** at SABIL Company (04/2025 - 02/2026), Faycal Rafa was instrumental in designing, architecting, and optimizing the distributed microservices that power the consumer-facing mobile application and critical administrative back-office operations.
 
 ---
 

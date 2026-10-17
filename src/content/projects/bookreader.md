@@ -24,7 +24,7 @@ order: 1
 publishedDate: "2026-03-15"
 ---
 
-# BookReader — Android Novel Reader & Audio Streaming Engine
+# BookReader: Android Novel Reader & Audio Streaming Engine
 
 **BookReader** is Faycal Rafa's ongoing flagship personal hobby project, engineered to solve the practical challenges of long-form digital novel reading on Android. Built entirely from scratch in Kotlin, BookReader marries an ergonomic Jetpack Compose Material 3 reading interface with an industrial-grade background audio narration engine powered by AndroidX Media3 and native TextToSpeech (TTS).
 
@@ -69,7 +69,7 @@ BookReader avoids standard shared preferences or non-atomic file writes for crit
 
 - **Current Version**: `v3.4.0` (Latest stable release)
 - **Primary Package**: Direct one-click APK download:
-  - `app-release.apk` (~20.1 MB) — Full standalone release with all native components bundled.
+  - `app-release.apk` (~20.1 MB): Full standalone release with all native components bundled.
 - **Update Channel**: `update-latest.apk` for continuous in-app update mechanisms.
 - **Open Source Repository**: [github.com/faycalrafa/free-novel-reader-tts-android](https://github.com/faycalrafa/free-novel-reader-tts-android)
 - **Interactive In-Browser Simulator**: Test the quote-aware sentence chunking engine directly in your browser on the [Dedicated BookReader Showcase](/projects/bookreader).

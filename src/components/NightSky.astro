@@ -1,0 +1,198 @@
+---
+// src/components/NightSky.astro
+// Atmospheric Dark Night Sky with Glowing Moon and Cosmic Animations
+---
+
+<div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden select-none" aria-hidden="true">
+  <!-- Deep Midnight Ambient Base Gradient -->
+  <div class="absolute inset-0 bg-[#060812] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(30,41,89,0.35),rgba(6,8,18,0))]"></div>
+
+  <!-- Cosmic Radial Light Source (Centered around the Moon) -->
+  <div class="absolute -top-24 right-0 sm:right-12 md:right-28 w-[38rem] h-[38rem] rounded-full bg-radial from-blue-900/20 via-indigo-950/10 to-transparent blur-3xl opacity-75"></div>
+
+  <!-- Starfield Container -->
+  <svg class="absolute inset-0 h-full w-full opacity-60" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="star-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+        <stop offset="100%" stop-color="#93c5fd" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+
+    <!-- Star Cluster (Static + Twinkling with Staggered Delays) -->
+    <circle cx="8%" cy="12%" r="1" fill="#ffffff" class="twinkle-star" style="animation-delay: 0.2s;" />
+    <circle cx="15%" cy="28%" r="1.5" fill="#ffffff" class="twinkle-star" style="animation-delay: 1.8s;" />
+    <circle cx="22%" cy="8%" r="0.8" fill="#e0e7ff" class="twinkle-star" style="animation-delay: 3.1s;" />
+    <circle cx="29%" cy="22%" r="1.2" fill="#ffffff" class="twinkle-star" style="animation-delay: 0.9s;" />
+    <circle cx="38%" cy="15%" r="1" fill="#e0e7ff" class="twinkle-star" style="animation-delay: 2.4s;" />
+    <circle cx="45%" cy="32%" r="1.4" fill="#ffffff" class="twinkle-star" style="animation-delay: 4.0s;" />
+    <circle cx="52%" cy="10%" r="0.9" fill="#ffffff" class="twinkle-star" style="animation-delay: 1.2s;" />
+    <circle cx="61%" cy="26%" r="1.3" fill="#e0e7ff" class="twinkle-star" style="animation-delay: 2.7s;" />
+    <circle cx="70%" cy="14%" r="1" fill="#ffffff" class="twinkle-star" style="animation-delay: 0.5s;" />
+    <circle cx="77%" cy="30%" r="1.5" fill="#ffffff" class="twinkle-star" style="animation-delay: 3.6s;" />
+    <circle cx="88%" cy="18%" r="0.8" fill="#e0e7ff" class="twinkle-star" style="animation-delay: 1.5s;" />
+    <circle cx="94%" cy="38%" r="1.2" fill="#ffffff" class="twinkle-star" style="animation-delay: 2.1s;" />
+
+    <circle cx="5%" cy="65%" r="1" fill="#ffffff" class="twinkle-star" style="animation-delay: 3.3s;" />
+    <circle cx="18%" cy="80%" r="1.2" fill="#e0e7ff" class="twinkle-star" style="animation-delay: 0.7s;" />
+    <circle cx="34%" cy="72%" r="0.9" fill="#ffffff" class="twinkle-star" style="animation-delay: 2.8s;" />
+    <circle cx="82%" cy="75%" r="1.1" fill="#ffffff" class="twinkle-star" style="animation-delay: 1.9s;" />
+    <circle cx="92%" cy="85%" r="1.4" fill="#e0e7ff" class="twinkle-star" style="animation-delay: 3.9s;" />
+  </svg>
+
+  <!-- Shooting Star / Meteor Streak -->
+  <div class="shooting-star-track">
+    <div class="shooting-star"></div>
+  </div>
+
+  <!-- The Celestial Glowing Moon -->
+  <div class="absolute top-6 right-5 sm:top-10 sm:right-16 md:top-12 md:right-28 lg:right-36">
+    <div class="relative flex items-center justify-center">
+      <!-- Distant Ethereal Moon Aura Halo -->
+      <div class="absolute -inset-10 sm:-inset-16 md:-inset-20 rounded-full bg-radial from-blue-300/15 via-indigo-400/8 to-transparent blur-2xl moon-halo-pulse"></div>
+
+      <!-- Main Glowing Moon Orb -->
+      <div class="moon-sphere relative h-24 w-24 sm:h-36 sm:sm:w-36 md:h-44 md:w-44 lg:h-48 lg:w-48 rounded-full overflow-hidden shadow-[0_0_50px_15px_rgba(180,210,255,0.22),0_0_100px_35px_rgba(99,102,241,0.12)]">
+        
+        <!-- Surface Gradient (Spherical Light & Shadow) -->
+        <div class="absolute inset-0 bg-radial-[at_32%_32%] from-[#fffdf5] via-[#e2e8f0] to-[#64748b]"></div>
+
+        <!-- Realistic Lunar Craters Overlay -->
+        <div class="absolute inset-0 opacity-40 mix-blend-multiply">
+          <!-- Crater 1 (Mare Imbrium) -->
+          <div class="absolute top-[22%] left-[28%] h-5 w-7 rounded-[50%] bg-[#475569] blur-[0.8px] -rotate-12"></div>
+          <!-- Crater 2 (Mare Serenitatis) -->
+          <div class="absolute top-[34%] left-[54%] h-7 w-8 rounded-[45%] bg-[#475569] blur-[1px]"></div>
+          <!-- Crater 3 (Mare Tranquillitatis) -->
+          <div class="absolute top-[48%] left-[45%] h-6 w-9 rounded-[40%] bg-[#334155] blur-[1px] rotate-6"></div>
+          <!-- Crater 4 (Oceanus Procellarum edge) -->
+          <div class="absolute top-[38%] left-[12%] h-9 w-6 rounded-[55%] bg-[#475569] blur-[1.2px] -rotate-25"></div>
+          <!-- Crater 5 (Tycho bright impact & rays) -->
+          <div class="absolute bottom-[18%] left-[42%] h-3.5 w-3.5 rounded-full bg-[#334155] shadow-[0_0_6px_2px_rgba(255,255,255,0.4)]"></div>
+          <!-- Small minor craters -->
+          <div class="absolute top-[16%] left-[48%] h-2 w-2 rounded-full bg-[#475569] blur-[0.4px]"></div>
+          <div class="absolute bottom-[32%] left-[24%] h-3 w-4 rounded-full bg-[#334155] blur-[0.6px]"></div>
+          <div class="absolute bottom-[22%] right-[22%] h-4 w-4 rounded-full bg-[#475569] blur-[0.8px]"></div>
+        </div>
+
+        <!-- Lunar Limb Brightening Rim Light -->
+        <div class="absolute inset-0 rounded-full border border-white/60 shadow-[inset_0_0_20px_rgba(255,255,255,0.5)]"></div>
+
+        <!-- Drifting Atmospheric Cloud Wisps Across Moon -->
+        <div class="moon-cloud moon-cloud-1 absolute -inset-x-8 top-2 h-8 bg-gradient-to-r from-transparent via-indigo-950/45 to-transparent blur-md"></div>
+        <div class="moon-cloud moon-cloud-2 absolute -inset-x-8 bottom-4 h-10 bg-gradient-to-r from-transparent via-slate-900/40 to-transparent blur-md"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Star twinkling animation */
+  .twinkle-star {
+    animation: star-flicker 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes star-flicker {
+    0% {
+      opacity: 0.2;
+      transform: scale(0.85);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.15);
+    }
+    100% {
+      opacity: 0.3;
+      transform: scale(0.9);
+    }
+  }
+
+  /* Lunar Aura Breathing Animation */
+  .moon-halo-pulse {
+    animation: moon-glow 9s ease-in-out infinite alternate;
+  }
+
+  @keyframes moon-glow {
+    0% {
+      opacity: 0.55;
+      transform: scale(0.96);
+    }
+    50% {
+      opacity: 0.95;
+      transform: scale(1.04);
+    }
+    100% {
+      opacity: 0.65;
+      transform: scale(0.98);
+    }
+  }
+
+  /* Cloud wisps traversing across the lunar surface */
+  .moon-cloud-1 {
+    animation: cloud-traverse-1 28s ease-in-out infinite alternate;
+  }
+  .moon-cloud-2 {
+    animation: cloud-traverse-2 36s ease-in-out infinite alternate;
+  }
+
+  @keyframes cloud-traverse-1 {
+    0% { transform: translateX(-25%); }
+    100% { transform: translateX(25%); }
+  }
+
+  @keyframes cloud-traverse-2 {
+    0% { transform: translateX(20%); }
+    100% { transform: translateX(-20%); }
+  }
+
+  /* Shooting star animation */
+  .shooting-star-track {
+    position: absolute;
+    top: 8%;
+    left: 20%;
+    width: 250px;
+    height: 1px;
+    transform: rotate(-35deg);
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .shooting-star {
+    position: absolute;
+    top: 0;
+    left: -120px;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.4), #ffffff);
+    filter: drop-shadow(0 0 4px #93c5fd);
+    animation: shoot 18s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+  }
+
+  @keyframes shoot {
+    0%, 82% {
+      left: -120px;
+      opacity: 0;
+    }
+    83% {
+      opacity: 1;
+    }
+    88% {
+      left: 260px;
+      opacity: 0;
+    }
+    100% {
+      left: 260px;
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .twinkle-star,
+    .moon-halo-pulse,
+    .moon-cloud-1,
+    .moon-cloud-2,
+    .shooting-star {
+      animation: none !important;
+    }
+  }
+</style>

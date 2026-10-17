@@ -21,15 +21,15 @@ order: 6
 publishedDate: "2024-03-10"
 ---
 
-# InstaClean — On-Demand Mobile Service Dispatching & Geolocation Platform
+# InstaClean: On-Demand Mobile Service Platform
 
-**InstaClean** is an on-demand mobile application platform connecting car owners directly with traveling vehicle detailing and cleaning specialists. Serving as **Mobile Developer** at InstaClean (01/2024 – 07/2024), Faycal Rafa designed and implemented the complete mobile client application, bridging reactive Flutter UI with native Android and iOS background location services.
+**InstaClean** is an on-demand mobile application platform connecting car owners directly with traveling vehicle detailing and cleaning specialists. Serving as **Mobile Developer** at InstaClean (01/2024 - 07/2024), Faycal Rafa designed and implemented the complete mobile client application, bridging reactive Flutter UI with native Android and iOS background location services.
 
 ---
 
 ## 1. Product Challenge & Real-Time Logistics
 
-Mobile detailing services require seamless two-way coordination between vehicle owners and mobile field technicians:
+Mobile detailing services require reliable two-way coordination between vehicle owners and mobile field technicians:
 - **Vehicle Owners**: Need transparent pricing, instant appointment booking at their home or workplace, and real-time visibility into the technician's arrival time.
 - **Mobile Technicians**: Need battery-efficient GPS turn-by-turn navigation, geofenced job status check-ins, and offline capability when servicing underground parking garages.
 

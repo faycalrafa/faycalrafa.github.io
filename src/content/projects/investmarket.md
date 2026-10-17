@@ -21,9 +21,9 @@ order: 3
 publishedDate: "2025-04-01"
 ---
 
-# InvestMarket — Real-Time Stock Trading & Fintech Microservices
+# InvestMarket: Real-Time Stock Trading & Fintech Microservices
 
-**InvestMarket** is an institutional-grade stock trading and portfolio management backend platform engineered for the fintech sector. Developed during Faycal Rafa's role as **Technical Lead** at Finnetude (08/2024 – 04/2025), the system was architected to handle high-concurrency order placement, live market tick ingestion, and real-time portfolio valuation updates.
+**InvestMarket** is an institutional-grade stock trading and portfolio management backend platform engineered for the fintech sector. Developed during Faycal Rafa's role as **Technical Lead** at Finnetude (08/2024 - 04/2025), the system was architected to handle high-concurrency order placement, live market tick ingestion, and real-time portfolio valuation updates.
 
 ---
 

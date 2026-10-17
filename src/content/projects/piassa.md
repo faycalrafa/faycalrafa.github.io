@@ -21,9 +21,9 @@ order: 5
 publishedDate: "2023-10-20"
 ---
 
-# PIASSA DZ — Automotive Parts B2B Marketplace & Supplier CRM
+# PIASSA DZ: Automotive Parts B2B Marketplace & Supplier CRM
 
-**PIASSA DZ** is an enterprise B2B automotive digital marketplace and supplier Customer Relationship Management (CRM) ecosystem operating across Algeria. During his tenure as **Full-stack Developer** at PIASSA DZ (10/2022 – 12/2023), Faycal Rafa contributed across the entire stack, engineering customer-facing mobile applications, architecting the supplier CRM back-office, and building real-time synchronization pipelines.
+**PIASSA DZ** is an enterprise B2B automotive digital marketplace and supplier Customer Relationship Management (CRM) ecosystem operating across Algeria. During his tenure as **Full-stack Developer** at PIASSA DZ (10/2022 - 12/2023), Faycal Rafa contributed across the entire stack, engineering customer-facing mobile applications, architecting the supplier CRM back-office, and building real-time synchronization pipelines.
 
 ---
 

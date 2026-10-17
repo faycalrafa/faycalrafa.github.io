@@ -220,16 +220,6 @@
 
       // 2. Quick Actions
       {
-        id: 'action-theme',
-        title: 'Toggle Theme (Dark / Light)',
-        subtitle: 'Switch between dark and light color scheme',
-        category: 'Actions',
-        badge: 'Color Mode',
-        keywords: ['theme', 'dark', 'light', 'mode', 'toggle', 'color', 'switch'],
-        icon: icons.sun,
-        action: () => toggleTheme(),
-      },
-      {
         id: 'action-download-cv',
         title: 'Download CV (PDF)',
         subtitle: 'Direct download of official Faycal_Rafa_CV_2026.pdf document',
@@ -312,20 +302,6 @@
     window.location.href = url;
   }
 
-  // Theme toggle action: toggles class="dark", persists to localStorage, dispatches custom event
-  function toggleTheme() {
-    const isDark = document.documentElement.classList.toggle('dark');
-    const theme = isDark ? 'dark' : 'light';
-    try {
-      localStorage.setItem('theme', theme);
-    } catch (e) {}
-
-    const meta = document.querySelector('meta[name="color-scheme"]');
-    if (meta) meta.setAttribute('content', theme);
-
-    // Dispatch theme-changed event for all components listening
-    window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme } }));
-  }
 
   function triggerCvDownload() {
     const link = document.createElement('a');

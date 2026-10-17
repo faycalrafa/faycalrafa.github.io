@@ -20,7 +20,7 @@ order: 2
 publishedDate: "2025-11-10"
 ---
 
-# StartingPack — Svelte 5 & TypeScript Architecture Boilerplate
+# StartingPack: Svelte 5 & TypeScript Architecture Boilerplate
 
 **StartingPack** is an open-source, production-grade starter boilerplate designed by Faycal Rafa to showcase clean software architecture principles in the modern frontend ecosystem. Built to explore and leverage Svelte 5's revolutionary **Runes** reactivity system, StartingPack provides engineering teams with an opinionated, lightning-fast foundation for building scalable single-page and full-stack web applications.
 

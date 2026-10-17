@@ -7,33 +7,33 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Design Tokens & Semantic Color Palette
+ * Design Tokens & Semantic Color Palette (Pure Night Theme)
  */
 @layer base {
   :root {
-    color-scheme: light dark;
+    color-scheme: dark;
 
-    /* Core UI Tokens - Light Mode */
-    --background: #fafafa;
-    --foreground: #09090b;
-    --card: #ffffff;
-    --card-foreground: #09090b;
-    --card-border: #e4e4e7;
-    --border: #e4e4e7;
-    --primary: #2563eb;
+    /* Core UI Tokens - Deep Obsidian / Midnight Dark Atmosphere */
+    --background: #060812;
+    --foreground: #fafafa;
+    --card: #0d1224;
+    --card-foreground: #fafafa;
+    --card-border: #1e293b;
+    --border: #1e293b;
+    --primary: #3b82f6;
     --primary-foreground: #ffffff;
-    --muted: #f4f4f5;
-    --muted-foreground: #71717a;
-    --accent: #f4f4f5;
-    --accent-foreground: #18181b;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --accent: #1e293b;
+    --accent-foreground: #fafafa;
 
     /* BookReader Signature Sepia Reading Theme Tokens */
-    --sepia-bg: #F4ECD8;
-    --sepia-surface: #EADBBE;
-    --sepia-text: #3B2F1E;
-    --sepia-muted: #78654D;
-    --sepia-accent: #B45309;
-    --sepia-border: #D8C8A8;
+    --sepia-bg: #14120e;
+    --sepia-surface: #24201a;
+    --sepia-text: #f5f2eb;
+    --sepia-muted: #a89f91;
+    --sepia-accent: #f59e0b;
+    --sepia-border: #383228;
 
     /* BookReader 3D Terracotta Brand Gradients */
     --brand-terracotta-from: #D97706; /* Amber 600 */
@@ -43,38 +43,26 @@
   }
 
   .dark {
-    /* Core UI Tokens - Dark Mode */
-    --background: #09090b;
+    /* Strict Parity for .dark class selectors */
+    --background: #060812;
     --foreground: #fafafa;
-    --card: #18181b;
+    --card: #0d1224;
     --card-foreground: #fafafa;
-    --card-border: #27272a;
-    --border: #27272a;
+    --card-border: #1e293b;
+    --border: #1e293b;
     --primary: #3b82f6;
     --primary-foreground: #ffffff;
-    --muted: #27272a;
-    --muted-foreground: #a1a1aa;
-    --accent: #27272a;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --accent: #1e293b;
     --accent-foreground: #fafafa;
-
-    /* BookReader Dark/AMOLED Reading Theme Tokens */
-    --sepia-bg: #14120e;
-    --sepia-surface: #24201a;
-    --sepia-text: #f5f2eb;
-    --sepia-muted: #a89f91;
-    --sepia-accent: #f59e0b;
-    --sepia-border: #383228;
   }
 
   /*
    * Modern Web Guidance Compliance: Map <meta name="color-scheme"> back to CSS color-scheme
-   * Prevents author CSS from silently overriding meta hints
    */
   :root:has(> head > meta[name="color-scheme"][content="dark"]) {
     color-scheme: dark;
-  }
-  :root:has(> head > meta[name="color-scheme"][content="light"]) {
-    color-scheme: light;
   }
 
   html {
@@ -90,6 +78,7 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   /* Focus ring standardization for keyboard accessibility */
@@ -100,7 +89,7 @@
 }
 
 /*
- * Custom Scrollbar Styling (Minimal, subtle, non-intrusive)
+ * Custom Scrollbar Styling (Minimal, subtle, non-intrusive night scrollbar)
  */
 ::-webkit-scrollbar {
   width: 8px;
@@ -112,35 +101,59 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #d4d4d8;
+  background-color: #334155;
   border-radius: 9999px;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background-color: #3f3f46;
-}
-
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #a1a1aa;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background-color: #52525b;
+  background-color: #475569;
 }
 
 /*
  * Astro 5 View Transitions Animation Customization
+ * Smooth native crossfade and gentle vertical reveal to eliminate any feeling of lagging or freeze
  */
-::view-transition-old(root),
+::view-transition-old(root) {
+  animation: 180ms cubic-bezier(0.4, 0, 1, 1) both vt-fade-out;
+}
+
 ::view-transition-new(root) {
-  animation-duration: 220ms;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation: 220ms cubic-bezier(0, 0, 0.2, 1) both vt-fade-in;
+}
+
+@keyframes vt-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.995);
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Prevent text aspect-ratio stretching during transitions */
 .vt-name-heading,
 .vt-name-hero {
   width: fit-content;
+}
+
+/* Touch responsiveness on mobile viewports */
+@media (hover: none) and (pointer: coarse) {
+  a, button {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 /*
