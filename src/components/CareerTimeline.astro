@@ -24,16 +24,34 @@ export interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
+    id: 'freelance',
+    company: 'Freelance',
+    role: 'Freelance Software Engineer',
+    period: '10/2026 – Present',
+    startDate: '2026-10',
+    endDate: 'Present',
+    isCurrent: true,
+    location: 'Remote / Algiers, Algeria',
+    type: 'Freelance',
+    summary: 'Delivering specialized freelance software engineering, full-stack microservices architecture, and native mobile applications for clients worldwide since October 1st, 2026.',
+    achievements: [
+      'Architecting resilient distributed software platforms, microservices, and modern web applications for international clients.',
+      'Developing and maintaining high-performance native Android applications with Jetpack Compose, Media3, and background audio services.',
+      'Consulting on cloud architecture, system design, high-concurrency database modeling, and automated CI/CD pipelines.',
+    ],
+    skills: ['TypeScript', 'Node.js', 'NestJS', 'PostgreSQL', 'Docker', 'Android Kotlin', 'Microservices'],
+  },
+  {
     id: 'autoqual',
     company: 'AUTOQUAL',
     role: 'Software Engineer',
-    period: '04/2026 – Present',
+    period: '04/2026 – 10/2026',
     startDate: '2026-04',
-    endDate: 'Present',
-    isCurrent: true,
+    endDate: '2026-10',
+    isCurrent: false,
     location: 'Algiers, Algeria',
     type: 'Full-time',
-    summary: 'Driving end-to-end software architecture and high-performance engineering for enterprise-scale automotive digital platforms.',
+    summary: 'Drove end-to-end software architecture and high-performance engineering for enterprise-scale automotive digital platforms.',
     achievements: [
       'Architecting resilient distributed software platforms with modern TypeScript and reactive frontend systems.',
       'Establishing team-wide engineering standards, modular API blueprints, and automated code review workflows.',

@@ -338,6 +338,26 @@ const APP_SCREENS = [
                   <div class="h-1 w-24 rounded-full bg-zinc-700/60"></div>
                 </div>
               </div>
+
+              <!-- Mobile Interactive Snapping & Locking Navigation Bar -->
+              <div
+                id="mobile-snap-nav"
+                class="mt-3 flex items-center justify-between gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-amber-500/40 text-[11px] font-medium text-zinc-300 shadow-md backdrop-blur-md transition-all duration-300 md:hidden"
+                aria-live="polite"
+              >
+                <span class="flex items-center gap-1.5 text-amber-400 font-semibold">
+                  <span id="mobile-snap-dot" class="h-2 w-2 rounded-full bg-amber-400"></span>
+                  <span id="mobile-snap-count">Screen 1 of 5</span>
+                </span>
+                <span id="mobile-snap-hint" class="text-zinc-400 text-[10px]">Swipe to change</span>
+                <button
+                  id="mobile-snap-unlock-btn"
+                  type="button"
+                  class="font-semibold text-amber-400 hover:text-amber-300 underline cursor-pointer text-[11px]"
+                >
+                  Done ↓
+                </button>
+              </div>
             </div>
           </div>
 
@@ -609,6 +629,29 @@ const APP_SCREENS = [
       const lightboxTitle = document.getElementById('lightbox-title');
       const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
 
+      // Update mobile lock indicator if present
+      const mobileSnapCount = document.getElementById('mobile-snap-count');
+      const mobileSnapHint = document.getElementById('mobile-snap-hint');
+      const mobileSnapDot = document.getElementById('mobile-snap-dot');
+      const mobileSnapUnlockBtn = document.getElementById('mobile-snap-unlock-btn');
+
+      function updateMobileIndicator() {
+        if (!mobileSnapCount) return;
+        mobileSnapCount.textContent = `Screen ${activeIndex + 1} of ${screens.length}`;
+        if (mobileSnapHint) {
+          if (activeIndex === screens.length - 1) {
+            mobileSnapHint.textContent = 'Swipe down to finish';
+          } else {
+            mobileSnapHint.textContent = 'Swipe to change';
+          }
+        }
+        if (mobileSnapDot) {
+          mobileSnapDot.className = isLocked
+            ? 'h-2 w-2 rounded-full bg-emerald-400 animate-pulse'
+            : 'h-2 w-2 rounded-full bg-amber-400';
+        }
+      }
+
       function setScreen(index) {
         if (index < 0) index = screens.length - 1;
         if (index >= screens.length) index = 0;
@@ -668,6 +711,9 @@ const APP_SCREENS = [
             card.className = 'thumbnail-card group relative rounded-xl border p-2 text-left transition-all cursor-pointer border-zinc-200/90 bg-white dark:border-zinc-800 dark:bg-zinc-900/60 hover:border-amber-400/60';
           }
         });
+
+        // Sync mobile snap indicator
+        updateMobileIndicator();
       }
 
       // Tab clicks
@@ -708,6 +754,199 @@ const APP_SCREENS = [
       lightbox?.addEventListener('click', (e) => {
         if (e.target === lightbox) lightbox.close();
       });
+
+      // ═══════════════════ MOBILE-ONLY SNAP & SCROLL LOCK ═══════════════════
+      let isLocked = false;
+      let hasCompleted = false;
+      let isEngaging = false;
+      let lastSwitchTime = 0;
+      const SWITCH_COOLDOWN_MS = 250;
+
+      function isMobileUser() {
+        return window.innerWidth < 768 || window.matchMedia('(max-width: 767px)').matches;
+      }
+
+      function lockShowcase() {
+        if (isLocked || !isMobileUser() || hasCompleted || isEngaging) return;
+        if (lightbox && lightbox.open) return;
+
+        isEngaging = true;
+        isLocked = true;
+
+        if (phoneTrigger) {
+          phoneTrigger.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        updateMobileIndicator();
+        setTimeout(() => {
+          isEngaging = false;
+        }, 300);
+      }
+
+      function unlockShowcase(direction) {
+        isLocked = false;
+        if (direction === 'down') {
+          hasCompleted = true;
+        }
+        updateMobileIndicator();
+      }
+
+      mobileSnapUnlockBtn?.addEventListener('click', () => {
+        unlockShowcase('down');
+      });
+
+      // Mobile Touch Interaction
+      let touchStartY = 0;
+      let touchStartX = 0;
+      let isTouching = false;
+
+      function onTouchStart(e) {
+        if (!isLocked || !isMobileUser()) return;
+        if (lightbox && lightbox.open) return;
+        if (e.touches.length === 1) {
+          touchStartY = e.touches[0].clientY;
+          touchStartX = e.touches[0].clientX;
+          isTouching = true;
+        }
+      }
+
+      function onTouchMove(e) {
+        if (!isLocked || !isTouching || !isMobileUser() || isEngaging) return;
+        if (lightbox && lightbox.open) return;
+
+        const currentY = e.touches[0].clientY;
+        const currentX = e.touches[0].clientX;
+        const diffY = currentY - touchStartY;
+        const diffX = currentX - touchStartX;
+
+        // Ensure vertical gesture
+        if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
+          const now = Date.now();
+
+          // Swiping UP (scrolling DOWN)
+          if (diffY < -32) {
+            if (activeIndex < screens.length - 1) {
+              e.preventDefault();
+              if (now - lastSwitchTime > SWITCH_COOLDOWN_MS) {
+                lastSwitchTime = now;
+                touchStartY = currentY;
+                setScreen(activeIndex + 1);
+              }
+            } else {
+              // Reached last screenshot and scrolled down: done!
+              unlockShowcase('down');
+            }
+          }
+          // Swiping DOWN (scrolling UP)
+          else if (diffY > 32) {
+            if (activeIndex > 0) {
+              e.preventDefault();
+              if (now - lastSwitchTime > SWITCH_COOLDOWN_MS) {
+                lastSwitchTime = now;
+                touchStartY = currentY;
+                setScreen(activeIndex - 1);
+              }
+            } else {
+              // Reached first screenshot and scrolled up: release up!
+              unlockShowcase('up');
+            }
+          } else {
+            // In deadband: prevent jitter
+            e.preventDefault();
+          }
+        }
+      }
+
+      function onTouchEnd() {
+        isTouching = false;
+      }
+
+      // Wheel interaction for mobile emulation / trackpad
+      function onWheel(e) {
+        if (!isLocked || !isMobileUser() || isEngaging) return;
+        if (lightbox && lightbox.open) return;
+
+        const now = Date.now();
+        if (e.deltaY > 15) {
+          // Scroll down
+          if (activeIndex < screens.length - 1) {
+            e.preventDefault();
+            if (now - lastSwitchTime > SWITCH_COOLDOWN_MS) {
+              lastSwitchTime = now;
+              setScreen(activeIndex + 1);
+            }
+          } else {
+            unlockShowcase('down');
+          }
+        } else if (e.deltaY < -15) {
+          // Scroll up
+          if (activeIndex > 0) {
+            e.preventDefault();
+            if (now - lastSwitchTime > SWITCH_COOLDOWN_MS) {
+              lastSwitchTime = now;
+              setScreen(activeIndex - 1);
+            }
+          } else {
+            unlockShowcase('up');
+          }
+        } else {
+          e.preventDefault();
+        }
+      }
+
+      // Clear any prior listeners if re-initializing on astro:page-load
+      if (window._bookreaderShowcaseCleanup) {
+        window._bookreaderShowcaseCleanup();
+      }
+
+      window.addEventListener('touchstart', onTouchStart, { passive: true });
+      window.addEventListener('touchmove', onTouchMove, { passive: false });
+      window.addEventListener('touchend', onTouchEnd, { passive: true });
+      window.addEventListener('wheel', onWheel, { passive: false });
+
+      // Intersection Observer for scroll snapping
+      let snapObserver = null;
+      if (phoneTrigger && 'IntersectionObserver' in window) {
+        snapObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!isMobileUser()) return;
+
+              // When phone screen reaches center viewport threshold
+              if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
+                if (!hasCompleted && !isLocked) {
+                  lockShowcase();
+                }
+              }
+
+              // Reset completion if user scrolls completely away
+              if (entry.intersectionRatio === 0) {
+                hasCompleted = false;
+                if (isLocked) {
+                  isLocked = false;
+                  updateMobileIndicator();
+                }
+              }
+            });
+          },
+          { threshold: [0, 0.45, 0.75] }
+        );
+
+        snapObserver.observe(phoneTrigger);
+      }
+
+      window._bookreaderShowcaseCleanup = () => {
+        window.removeEventListener('touchstart', onTouchStart);
+        window.removeEventListener('touchmove', onTouchMove);
+        window.removeEventListener('touchend', onTouchEnd);
+        window.removeEventListener('wheel', onWheel);
+        if (snapObserver) {
+          snapObserver.disconnect();
+        }
+      };
+
+      document.addEventListener('astro:before-swap', window._bookreaderShowcaseCleanup, { once: true });
+      updateMobileIndicator();
     }
 
     // Live client-side auto-hydration for BookReader latest release
