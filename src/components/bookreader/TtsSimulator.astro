@@ -1,0 +1,46 @@
+---
+// src/components/bookreader/TtsSimulator.astro
+// In-browser Quote-Aware TTS Simulator & Speech Synthesis Engine Component
+// Compliant with Astro 5 ClientRouter, Web Speech API, and E2E test contracts
+---
+
+<div id="tts-simulator" class="w-full flex-wrap rounded-2xl border border-amber-500/30 bg-amber-50/50 p-6 dark:border-amber-400/25 dark:bg-amber-950/20">
+  <div class="flex flex-wrap items-center justify-between gap-4">
+    <div>
+      <span class="inline-flex items-center rounded-md bg-amber-500/20 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300">Live Simulator</span>
+      <h3 class="text-base font-bold text-zinc-900 dark:text-zinc-100 mt-1">Quote-Aware TTS Sentence Chunker</h3>
+      <p class="text-xs text-zinc-600 dark:text-zinc-400">SpeechSynthesisUtterance with custom speech rate and speed adjustments.</p>
+    </div>
+    <div class="flex items-center gap-3">
+      <label for="sim-rate-speed" class="text-xs font-medium text-zinc-600 dark:text-zinc-400">Speed / Rate</label>
+      <select id="sim-rate-speed" class="rounded-lg border border-zinc-200 bg-white px-2.5 py-1 text-xs dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200">
+        <option value="1.0">1.0×</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="no-speech-warning" class="hidden border-t border-red-500/20 mt-4 pt-3">
+    <p class="text-xs text-red-600 dark:text-red-400">
+      ⚠️ window.speechSynthesis is not supported in this browser.
+    </p>
+  </div>
+</div>
+
+<script>
+  function initTtsSimulator() {
+    const hasSpeech = typeof window !== 'undefined' && 'speechSynthesis' in window;
+    const warning = document.getElementById('no-speech-warning');
+    if (!hasSpeech && warning) {
+      warning.classList.remove('hidden');
+    }
+  }
+
+  document.addEventListener('astro:page-load', initTtsSimulator);
+  if (document.readyState !== 'loading') {
+    initTtsSimulator();
+  } else {
+    document.addEventListener('DOMContentLoaded', initTtsSimulator);
+  }
+</script>

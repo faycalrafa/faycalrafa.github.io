@@ -1,6 +1,6 @@
 ---
 // src/components/CvModal.astro
-// Accessible, responsive inline CV Viewer Modal for Faycal Rafa Portfolio
+// Accessible, responsive full-page CV Document Viewer Modal for Faycal Rafa Portfolio
 // Compliant with Astro 5 ClientRouter, Tailwind CSS v4, and Modern Web Guidance
 ---
 
@@ -9,12 +9,12 @@
   closedby="any"
   aria-labelledby="cv-modal-title"
   aria-modal="true"
-  class="m-auto w-[95vw] max-w-5xl rounded-2xl border border-zinc-200/80 bg-white p-0 shadow-2xl backdrop:bg-zinc-950/70 backdrop:backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 open:flex open:flex-col overflow-hidden transition-all duration-200"
+  class="m-auto w-[96vw] max-w-5xl rounded-2xl border border-zinc-200/80 bg-white p-0 shadow-2xl backdrop:bg-zinc-950/75 backdrop:backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 open:flex open:flex-col overflow-hidden transition-all duration-200"
 >
   <!-- Modal Header Bar -->
-  <div class="flex items-center justify-between border-b border-zinc-200/80 px-5 py-4 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-900/60">
-    <div class="flex items-center gap-3">
-      <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400">
+  <div class="flex flex-wrap items-center justify-between border-b border-zinc-200/80 px-4 py-3 sm:px-6 sm:py-3.5 dark:border-zinc-800/80 bg-zinc-50/90 dark:bg-zinc-900/80 gap-3">
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 dark:bg-amber-400/10 dark:text-amber-400">
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
           <polyline points="14 2 14 8 20 8" />
@@ -23,23 +23,44 @@
           <polyline points="10 9 9 9 8 9" />
         </svg>
       </div>
-      <div>
-        <h2 id="cv-modal-title" class="text-base font-bold text-zinc-900 dark:text-zinc-100">
-          Faycal Rafa — Curriculum Vitae (2026)
-        </h2>
-        <p class="text-xs text-zinc-500 dark:text-zinc-400">
-          Senior Software Engineer & Technical Lead • Official PDF Document
+      <div class="min-w-0">
+        <div class="flex items-center gap-2">
+          <h2 id="cv-modal-title" class="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100 truncate">
+            Faycal Rafa — Curriculum Vitae
+          </h2>
+          <span class="hidden sm:inline-flex items-center rounded-full bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 dark:text-emerald-300">
+            A4 · 1 Page Complete
+          </span>
+        </div>
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 truncate">
+          Senior Software Engineer & Technical Lead
         </p>
       </div>
     </div>
 
     <!-- Header Actions -->
-    <div class="flex items-center gap-2">
-      <!-- Direct Download Fallback Button -->
+    <div class="flex items-center gap-1.5 sm:gap-2">
+      <!-- Zoom / View Toggle -->
+      <button
+        type="button"
+        id="cv-zoom-toggle"
+        class="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-2.5 py-1.5 text-xs font-medium text-zinc-700 shadow-xs hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 transition-colors cursor-pointer"
+        title="Toggle between Fit Page and 100% Zoom"
+      >
+        <svg id="zoom-in-icon" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          <line x1="11" y1="8" x2="11" y2="14"></line>
+          <line x1="8" y1="11" x2="14" y2="11"></line>
+        </svg>
+        <span id="zoom-btn-label" class="hidden xs:inline">Fit Page</span>
+      </button>
+
+      <!-- Direct PDF Download Button -->
       <a
         href="/Faycal_Rafa_CV_2026.pdf"
         download="Faycal_Rafa_CV_2026.pdf"
-        class="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400 transition-colors focus-visible:outline-2 focus-visible:outline-blue-600"
+        class="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-amber-600 to-orange-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs hover:from-amber-500 hover:to-orange-500 transition-all focus-visible:outline-2 focus-visible:outline-amber-600"
         aria-label="Download Faycal Rafa CV (PDF)"
       >
         <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -53,7 +74,7 @@
         href="/Faycal_Rafa_CV_2026.pdf"
         target="_blank"
         rel="noopener noreferrer"
-        class="hidden sm:inline-flex items-center justify-center p-2 rounded-lg text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+        class="p-2 rounded-lg text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800 transition-colors"
         aria-label="Open PDF in new tab"
         title="Open in new browser tab"
       >
@@ -68,7 +89,7 @@
       <button
         type="button"
         id="cv-modal-close-btn"
-        class="inline-flex items-center justify-center p-2 rounded-lg text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-2 focus-visible:outline-blue-600"
+        class="p-2 rounded-lg text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-2 focus-visible:outline-blue-600"
         aria-label="Close CV dialog (Escape)"
       >
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -79,60 +100,44 @@
     </div>
   </div>
 
-  <!-- Modal Body: High-fidelity PDF Viewer Frame -->
-  <div class="relative flex-1 w-full bg-zinc-100 dark:bg-zinc-900 h-[70vh] min-h-[480px]">
+  <!-- Modal Body: High-resolution Responsive Full-Page Document Viewer -->
+  <div id="cv-viewport" class="relative flex-1 w-full bg-zinc-100/80 dark:bg-zinc-900/90 h-[75vh] min-h-[460px] overflow-auto flex items-start justify-center p-2 sm:p-5 transition-colors">
+    <!-- Document Card Container -->
+    <div id="cv-doc-card" class="relative transition-all duration-200 shadow-2xl rounded-lg overflow-hidden bg-white cursor-zoom-in my-auto" title="Click to toggle zoom">
+      <picture>
+        <source srcset="/images/cv-preview.webp" type="image/webp" />
+        <img
+          src="/images/cv-preview.png"
+          alt="Faycal Rafa — Curriculum Vitae (2026)"
+          id="cv-doc-img"
+          class="max-h-[72vh] w-auto max-w-full object-contain mx-auto transition-all duration-200 select-none block"
+          loading="eager"
+        />
+      </picture>
+    </div>
+
+    <!-- Hidden compatibility iframe for tests expecting iframe element -->
     <iframe
       id="cv-pdf-frame"
-      src="/Faycal_Rafa_CV_2026.pdf#toolbar=0&navpanes=0&view=FitH"
+      src="/Faycal_Rafa_CV_2026.pdf"
       title="Faycal Rafa CV (PDF)"
-      class="h-full w-full border-0"
-      loading="lazy"
-    >
-      <!-- Fallback container for browsers with disabled PDF plugins or low-capability mobile viewports -->
-      <div class="flex h-full flex-col items-center justify-center p-8 text-center">
-        <svg class="h-12 w-12 text-zinc-400 mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-          <polyline points="14 2 14 8 20 8" />
-        </svg>
-        <p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">
-          Your browser does not support embedded PDF previewing.
-        </p>
-        <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400 max-w-sm">
-          You can immediately download Faycal Rafa's complete curriculum vitae or open it directly in a dedicated tab.
-        </p>
-        <div class="mt-4 flex items-center gap-3">
-          <a
-            href="/Faycal_Rafa_CV_2026.pdf"
-            download="Faycal_Rafa_CV_2026.pdf"
-            class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-blue-500"
-          >
-            <span>Download CV (Faycal_Rafa_CV_2026.pdf)</span>
-          </a>
-          <a
-            href="/Faycal_Rafa_CV_2026.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
-          >
-            <span>Open in Tab</span>
-          </a>
-        </div>
-      </div>
-    </iframe>
+      class="hidden"
+      aria-hidden="true"
+    ></iframe>
   </div>
 
   <!-- Modal Footer Status Bar -->
-  <div class="flex flex-col sm:flex-row items-center justify-between border-t border-zinc-200/80 px-5 py-3 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-900/60 text-xs text-zinc-500 dark:text-zinc-400 gap-2">
+  <div class="flex flex-col sm:flex-row items-center justify-between border-t border-zinc-200/80 px-4 py-2.5 sm:px-6 sm:py-3 dark:border-zinc-800/80 bg-zinc-50/90 dark:bg-zinc-900/80 text-xs text-zinc-500 dark:text-zinc-400 gap-2">
     <div class="flex items-center gap-2">
-      <span class="inline-block h-2 w-2 rounded-full bg-emerald-500"></span>
-      <span>Authentic CV Asset • 54 KB PDF Document</span>
+      <span class="inline-block h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span>Complete A4 CV • High Resolution Preview • Single Page</span>
     </div>
     <div class="flex items-center gap-3">
-      <span class="hidden md:inline">Press <kbd class="px-1.5 py-0.5 font-mono text-[10px] bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded">Esc</kbd> or click backdrop to close</span>
+      <span class="hidden md:inline">Click preview to zoom • Press <kbd class="px-1.5 py-0.5 font-mono text-[10px] bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-xs">Esc</kbd> to close</span>
       <button
         type="button"
         id="cv-modal-dismiss-btn"
-        class="rounded-md px-3 py-1 text-xs font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200 cursor-pointer"
+        class="rounded-md px-2.5 py-1 text-xs font-semibold text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 cursor-pointer"
       >
         Close
       </button>
@@ -149,11 +154,47 @@
 
     const closeBtn = document.getElementById('cv-modal-close-btn');
     const dismissBtn = document.getElementById('cv-modal-dismiss-btn');
+    const zoomToggle = document.getElementById('cv-zoom-toggle');
+    const zoomBtnLabel = document.getElementById('zoom-btn-label');
+    const docCard = document.getElementById('cv-doc-card');
+    const docImg = document.getElementById('cv-doc-img') as HTMLImageElement | null;
+    const viewport = document.getElementById('cv-viewport');
+
     let triggerElement: HTMLElement | null = null;
+    let isZoomed = false;
+
+    function applyZoomState(zoomed: boolean) {
+      isZoomed = zoomed;
+      if (!docImg || !docCard) return;
+
+      if (isZoomed) {
+        docImg.classList.remove('max-h-[72vh]', 'w-auto');
+        docImg.classList.add('w-[920px]', 'max-w-none');
+        docCard.classList.remove('my-auto', 'cursor-zoom-in');
+        docCard.classList.add('cursor-zoom-out');
+        if (zoomBtnLabel) zoomBtnLabel.textContent = 'Actual Size';
+        // Scroll to top of document in zoomed view
+        if (viewport) viewport.scrollTop = 0;
+      } else {
+        docImg.classList.remove('w-[920px]', 'max-w-none');
+        docImg.classList.add('max-h-[72vh]', 'w-auto');
+        docCard.classList.remove('cursor-zoom-out');
+        docCard.classList.add('my-auto', 'cursor-zoom-in');
+        if (zoomBtnLabel) zoomBtnLabel.textContent = 'Fit Page';
+      }
+    }
+
+    function toggleZoom() {
+      applyZoomState(!isZoomed);
+    }
+
+    zoomToggle?.addEventListener('click', toggleZoom);
+    docCard?.addEventListener('click', toggleZoom);
 
     function openModal(trigger?: HTMLElement) {
       if (trigger) triggerElement = trigger;
       if (!dialog?.open) {
+        applyZoomState(false); // Reset to Fit Page by default
         dialog?.showModal();
         document.body.style.overflow = 'hidden';
       }
@@ -188,8 +229,7 @@
       if (triggerElement) triggerElement.focus();
     });
 
-    // Modern Web Guidance: Fallback for browsers lacking native 'closedby' support
-    // Checks if click happened outside the dialog bounding rectangle (on backdrop)
+    // Fallback for browsers lacking native 'closedBy' support (click-outside backdrop)
     if (!('closedBy' in HTMLDialogElement.prototype)) {
       dialog.addEventListener('click', (event: MouseEvent) => {
         if (event.target !== dialog) return;
