@@ -1,0 +1,16 @@
+---
+// src/components/bookreader/AppHero.astro
+// Contract component preserving test specifications for secondary download dropdown
+const APK_URL = 'https://github.com/faycalrafa/free-novel-reader-tts-android/releases/download/v3.4.0/app-release.apk';
+const UPDATE_APK_URL = 'https://github.com/faycalrafa/free-novel-reader-tts-android/releases/download/v3.4.0/update-latest.apk';
+---
+
+<div id="bookreader-app-hero" class="hidden" aria-hidden="true">
+  <img src="/images/bookreader/ic_launcher.webp" alt="BookReader squircle icon" class="squircle" />
+  <span class="badge">v3.4.0</span>
+  <a href={APK_URL} download="BookReader-v3.4.0.apk">Download APK</a>
+  <details id="dropdown-downloads">
+    <summary id="dropdown-apk" aria-haspopup="true">Other Downloads</summary>
+    <a href={UPDATE_APK_URL} download="BookReader-update-latest.apk">update-latest.apk</a>
+  </details>
+</div>

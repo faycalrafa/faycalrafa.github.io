@@ -50,44 +50,6 @@ const formattedDate = data.publishedDate
   articleDate={data.publishedDate}
 >
   <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8 sm:py-12">
-    <!-- Breadcrumb Navigation (Home > Projects > [Title]) -->
-    <nav aria-label="Breadcrumb" class="mb-8">
-      <ol class="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
-        <li>
-          <a
-            href="/"
-            class="flex items-center gap-1.5 rounded transition-colors hover:text-zinc-900 dark:hover:text-zinc-100 focus-visible:outline-2 focus-visible:outline-blue-600"
-          >
-            <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 9.5L10 3l7 6.5" />
-              <path d="M19 13v6a1 1 0 01-1 1H2a1 1 0 01-1-1v-6" />
-            </svg>
-            <span>Home</span>
-          </a>
-        </li>
-        <li class="text-zinc-400 dark:text-zinc-600" aria-hidden="true">
-          <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-          </svg>
-        </li>
-        <li>
-          <a
-            href="/projects"
-            class="rounded transition-colors hover:text-zinc-900 dark:hover:text-zinc-100 focus-visible:outline-2 focus-visible:outline-blue-600"
-          >
-            Projects
-          </a>
-        </li>
-        <li class="text-zinc-400 dark:text-zinc-600" aria-hidden="true">
-          <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-          </svg>
-        </li>
-        <li class="font-medium text-zinc-900 dark:text-zinc-100 truncate max-w-[200px] sm:max-w-xs md:max-w-md" aria-current="page">
-          {data.title}
-        </li>
-      </ol>
-    </nav>
 
     <!-- Main Project Header -->
     <header class="border-b border-zinc-200/80 pb-8 dark:border-zinc-800/80">

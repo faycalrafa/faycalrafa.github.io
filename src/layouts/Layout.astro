@@ -3,6 +3,7 @@ import { ClientRouter } from 'astro:transitions';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import CommandPalette from '../components/CommandPalette.astro';
+import WhatsAppFab from '../components/WhatsAppFab.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -104,6 +105,7 @@ const fullImageURL = new URL(image, Astro.site ?? 'https://faycalrafa.github.io'
       </main>
       <Footer />
       <CommandPalette />
+      <WhatsAppFab />
     </div>
 
     <!--
