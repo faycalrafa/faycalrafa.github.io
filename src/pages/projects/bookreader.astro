@@ -998,8 +998,62 @@ const APP_SCREENS = [
         }
       }
 
-      // Keep viewport pinned dead-center while locked
+      // ═══════════════════ UPWARD SNAP LOCK & SCROLL CONTROLLER ═══════════════════
+      let hasPassedBelowShowcase = false;
+      let lastScrollY = typeof window !== 'undefined' ? (window.scrollY || window.pageYOffset) : 0;
+      const showcaseSection = document.querySelector('section[aria-labelledby="showcase-heading"]');
+
+      function activateSnapLock() {
+        if (isCentering || (lightbox && lightbox.open)) return;
+
+        // Visual snap feedback: brief subtle amber ring pulse on the showcase container
+        const showcaseContainer = showcaseSection?.querySelector('.rounded-3xl');
+        if (showcaseContainer) {
+          showcaseContainer.classList.add('ring-4', 'ring-amber-500/60', 'transition-all', 'duration-500');
+          setTimeout(() => {
+            showcaseContainer.classList.remove('ring-4', 'ring-amber-500/60');
+          }, 1200);
+        }
+
+        if (isMobileUser()) {
+          hasCompleted = false;
+          lockShowcase();
+        } else {
+          isCentering = true;
+          showcaseSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          setTimeout(() => {
+            isCentering = false;
+          }, 500);
+        }
+      }
+
+      // Scroll listener tracking showcase passing and upward snap locking
       function onScroll() {
+        const currentScrollY = window.scrollY || window.pageYOffset;
+        const isScrollingUp = currentScrollY < lastScrollY;
+
+        if (showcaseSection) {
+          const showcaseRect = showcaseSection.getBoundingClientRect();
+
+          // 1. Detect when user has scrolled completely past the screenshot area downwards
+          if (showcaseRect.bottom < -20) {
+            hasPassedBelowShowcase = true;
+            hasCompleted = false; // Reset completed flag so snap lock can reactivate
+          }
+
+          // 2. When user was below screenshot area and now scrolls back up into view:
+          // Activate the snapping lock effect
+          if (hasPassedBelowShowcase && isScrollingUp) {
+            if (showcaseRect.bottom >= 40 && showcaseRect.top <= window.innerHeight * 0.85) {
+              hasPassedBelowShowcase = false;
+              activateSnapLock();
+            }
+          }
+        }
+
+        lastScrollY = currentScrollY;
+
+        // Mobile-specific viewport pinning & scroll locking
         if (!isMobileUser()) return;
 
         // Auto-lock when phone reaches center of mobile viewport during user scroll

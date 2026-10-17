@@ -6,7 +6,11 @@ const PHONE_NUMBER = '+213540980238';
 const WHATSAPP_URL = `https://wa.me/${PHONE_NUMBER.replace(/\+/g, '')}`;
 ---
 
-<aside aria-label="Direct WhatsApp Contact" class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 print:hidden">
+<aside
+  id="floating-whatsapp-fab"
+  aria-label="Direct WhatsApp Contact"
+  class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 print:hidden transition-all duration-300 transform opacity-100 translate-y-0 scale-100"
+>
   <a
     href={WHATSAPP_URL}
     target="_blank"
@@ -25,3 +29,37 @@ const WHATSAPP_URL = `https://wa.me/${PHONE_NUMBER.replace(/\+/g, '')}`;
     </span>
   </a>
 </aside>
+
+<script>
+  function setupWhatsAppFabVisibility() {
+    const fab = document.getElementById('floating-whatsapp-fab');
+    if (!fab) return;
+
+    const heroBtn = document.getElementById('hero-whatsapp-btn');
+    if (!heroBtn) {
+      fab.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4', 'scale-95');
+      fab.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0', 'scale-100');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            fab.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4', 'scale-95');
+            fab.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0', 'scale-100');
+          } else {
+            fab.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4', 'scale-95');
+            fab.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0', 'scale-100');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(heroBtn);
+  }
+
+  setupWhatsAppFabVisibility();
+  document.addEventListener('astro:page-load', setupWhatsAppFabVisibility);
+</script>
