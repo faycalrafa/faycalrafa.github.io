@@ -309,20 +309,30 @@ const APP_SCREENS = [
                 </div>
 
                 <!-- Screen Viewport with Click-to-Enlarge Action -->
+                <!-- Screen Viewport with Click-to-Enlarge Action -->
                 <div
                   id="phone-screen-trigger"
-                  class="relative aspect-[460/1024] w-full overflow-hidden rounded-[2.1rem] bg-black shadow-inner cursor-zoom-in group"
+                  class="relative aspect-[460/1024] w-full overflow-hidden rounded-[2.1rem] bg-zinc-950 shadow-inner cursor-zoom-in group select-none"
                   title="Click to view high-resolution screenshot"
                 >
+                  <!-- Active Screenshot Layer -->
                   <img
                     id="mockup-screen-img"
                     src={APP_SCREENS[0].image}
                     alt={APP_SCREENS[0].title}
-                    class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="eager"
+                  />
+                  <!-- Incoming Transition Screenshot Layer (Eliminates Flashing) -->
+                  <img
+                    id="mockup-screen-incoming"
+                    src={APP_SCREENS[0].image}
+                    alt=""
+                    class="absolute inset-0 h-full w-full object-cover opacity-0 pointer-events-none"
                     loading="eager"
                   />
                   <!-- Hover Hint Pill -->
-                  <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
                     <span class="inline-flex items-center gap-1.5 rounded-full bg-black/75 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-xs shadow-lg">
                       <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -629,6 +639,16 @@ const APP_SCREENS = [
       const lightboxTitle = document.getElementById('lightbox-title');
       const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
 
+      // Preload all screenshot images into browser memory to eliminate image decoding lag
+      screens.forEach((s) => {
+        const img = new Image();
+        img.src = s.image;
+      });
+
+      const incomingImg = document.getElementById('mockup-screen-incoming');
+      let isImageTransitioning = false;
+      let transitionTimer = null;
+
       // Update mobile lock indicator if present
       const mobileSnapCount = document.getElementById('mobile-snap-count');
       const mobileSnapHint = document.getElementById('mobile-snap-hint');
@@ -640,9 +660,9 @@ const APP_SCREENS = [
         mobileSnapCount.textContent = `Screen ${activeIndex + 1} of ${screens.length}`;
         if (mobileSnapHint) {
           if (activeIndex === screens.length - 1) {
-            mobileSnapHint.textContent = 'Swipe down to finish';
+            mobileSnapHint.textContent = 'Swipe up to finish';
           } else {
-            mobileSnapHint.textContent = 'Swipe to change';
+            mobileSnapHint.textContent = 'Swipe up / down';
           }
         }
         if (mobileSnapDot) {
@@ -652,22 +672,70 @@ const APP_SCREENS = [
         }
       }
 
-      function setScreen(index) {
+      function setScreen(index, direction) {
         if (index < 0) index = screens.length - 1;
         if (index >= screens.length) index = 0;
+        if (index === activeIndex && !isImageTransitioning) return;
+
+        const prevIndex = activeIndex;
         activeIndex = index;
 
         const data = screens[activeIndex];
         if (!data) return;
 
-        // Update Phone Mockup image
-        if (screenImg) {
+        const effectiveDirection = direction || (index >= prevIndex ? 'forward' : 'backward');
+
+        // Smooth image transition without any black screen or flash
+        if (screenImg && incomingImg) {
+          if (transitionTimer) clearTimeout(transitionTimer);
+
+          const isForward = effectiveDirection === 'forward';
+          const slideInFrom = isForward ? '28px' : '-28px';
+          const slideOutTo = isForward ? '-28px' : '28px';
+
+          // Set incoming layer to new image
+          incomingImg.src = data.image;
+          incomingImg.alt = data.title;
+
+          // Set initial un-transitioned position of incoming layer
+          incomingImg.style.transition = 'none';
+          incomingImg.style.opacity = '0';
+          incomingImg.style.transform = `translateY(${slideInFrom}) scale(0.98)`;
+
+          // Ensure active layer is visible
+          screenImg.style.transition = 'none';
+          screenImg.style.opacity = '1';
+          screenImg.style.transform = 'translateY(0) scale(1)';
+
+          // Force reflow
+          void incomingImg.offsetHeight;
+
+          // Cross-fade & directional slide
+          isImageTransitioning = true;
+          const animCurve = 'cubic-bezier(0.25, 1, 0.5, 1)';
+          incomingImg.style.transition = `opacity 320ms ${animCurve}, transform 320ms ${animCurve}`;
+          incomingImg.style.opacity = '1';
+          incomingImg.style.transform = 'translateY(0) scale(1)';
+
+          screenImg.style.transition = `opacity 320ms ${animCurve}, transform 320ms ${animCurve}`;
           screenImg.style.opacity = '0';
-          setTimeout(() => {
+          screenImg.style.transform = `translateY(${slideOutTo}) scale(0.98)`;
+
+          transitionTimer = setTimeout(() => {
             screenImg.src = data.image;
             screenImg.alt = data.title;
+            screenImg.style.transition = 'none';
             screenImg.style.opacity = '1';
-          }, 120);
+            screenImg.style.transform = 'none';
+
+            incomingImg.style.transition = 'none';
+            incomingImg.style.opacity = '0';
+            incomingImg.style.transform = 'none';
+            isImageTransitioning = false;
+          }, 330);
+        } else if (screenImg) {
+          screenImg.src = data.image;
+          screenImg.alt = data.title;
         }
 
         // Update Details text
@@ -720,7 +788,7 @@ const APP_SCREENS = [
       tabButtons.forEach(btn => {
         btn.addEventListener('click', () => {
           const idx = parseInt(btn.getAttribute('data-index') || '0', 10);
-          setScreen(idx);
+          setScreen(idx, idx >= activeIndex ? 'forward' : 'backward');
         });
       });
 
@@ -728,13 +796,13 @@ const APP_SCREENS = [
       thumbnailCards.forEach(card => {
         card.addEventListener('click', () => {
           const idx = parseInt(card.getAttribute('data-thumbnail-index') || '0', 10);
-          setScreen(idx);
+          setScreen(idx, idx >= activeIndex ? 'forward' : 'backward');
         });
       });
 
       // Arrows
-      prevBtn?.addEventListener('click', () => setScreen(activeIndex - 1));
-      nextBtn?.addEventListener('click', () => setScreen(activeIndex + 1));
+      prevBtn?.addEventListener('click', () => setScreen(activeIndex - 1, 'backward'));
+      nextBtn?.addEventListener('click', () => setScreen(activeIndex + 1, 'forward'));
 
       // Lightbox open/close
       phoneTrigger?.addEventListener('click', () => {
@@ -755,38 +823,50 @@ const APP_SCREENS = [
         if (e.target === lightbox) lightbox.close();
       });
 
-      // ═══════════════════ MOBILE-ONLY SNAP & SCROLL LOCK ═══════════════════
+      // ═══════════════════ MOBILE-ONLY SOLID CENTER SNAP & SCROLL LOCK ═══════════════════
       let isLocked = false;
       let hasCompleted = false;
-      let isEngaging = false;
-      let lastSwitchTime = 0;
-      const SWITCH_COOLDOWN_MS = 250;
+      let isCentering = false;
+      let lockedCenterY = null;
 
       function isMobileUser() {
         return window.innerWidth < 768 || window.matchMedia('(max-width: 767px)').matches;
       }
 
+      function getPhoneCenterScrollY() {
+        if (!phoneTrigger) return window.scrollY;
+        const rect = phoneTrigger.getBoundingClientRect();
+        const currentY = window.scrollY || window.pageYOffset;
+        const targetY = currentY + rect.top + (rect.height / 2) - (window.innerHeight / 2);
+        return Math.max(0, Math.round(targetY));
+      }
+
       function lockShowcase() {
-        if (isLocked || !isMobileUser() || hasCompleted || isEngaging) return;
+        if (isLocked || !isMobileUser() || hasCompleted || isCentering) return;
         if (lightbox && lightbox.open) return;
 
-        isEngaging = true;
+        isCentering = true;
         isLocked = true;
+        lockedCenterY = getPhoneCenterScrollY();
 
-        if (phoneTrigger) {
-          phoneTrigger.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
+        // Smoothly lock phone dead-center in the mobile viewport
+        window.scrollTo({ top: lockedCenterY, behavior: 'smooth' });
         updateMobileIndicator();
+
         setTimeout(() => {
-          isEngaging = false;
-        }, 300);
+          lockedCenterY = getPhoneCenterScrollY();
+          isCentering = false;
+        }, 360);
       }
 
       function unlockShowcase(direction) {
         isLocked = false;
+        lockedCenterY = null;
         if (direction === 'down') {
           hasCompleted = true;
+          window.scrollBy({ top: 120, behavior: 'smooth' });
+        } else if (direction === 'up') {
+          window.scrollBy({ top: -120, behavior: 'smooth' });
         }
         updateMobileIndicator();
       }
@@ -795,102 +875,149 @@ const APP_SCREENS = [
         unlockShowcase('down');
       });
 
-      // Mobile Touch Interaction
+      // ═══════════════════ MID-TO-BIG SWIPE TRACKING CONTROLLER ═══════════════════
+      const SWIPE_THRESHOLD_PX = 75; // Mid to big swipe threshold (>= 75px, no tiny nudges!)
       let touchStartY = 0;
       let touchStartX = 0;
+      let touchStartTime = 0;
+      let lastTouchY = 0;
       let isTouching = false;
+      let hasSwipedInCurrentTouch = false;
 
       function onTouchStart(e) {
         if (!isLocked || !isMobileUser()) return;
         if (lightbox && lightbox.open) return;
+
         if (e.touches.length === 1) {
           touchStartY = e.touches[0].clientY;
           touchStartX = e.touches[0].clientX;
+          lastTouchY = touchStartY;
+          touchStartTime = Date.now();
           isTouching = true;
+          hasSwipedInCurrentTouch = false;
         }
       }
 
       function onTouchMove(e) {
-        if (!isLocked || !isTouching || !isMobileUser() || isEngaging) return;
+        if (!isLocked || !isTouching || !isMobileUser()) return;
         if (lightbox && lightbox.open) return;
 
         const currentY = e.touches[0].clientY;
         const currentX = e.touches[0].clientX;
         const diffY = currentY - touchStartY;
         const diffX = currentX - touchStartX;
+        lastTouchY = currentY;
 
-        // Ensure vertical gesture
-        if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
-          const now = Date.now();
+        // While locked on mobile, strictly prevent page scrolling
+        if (Math.abs(diffY) > Math.abs(diffX)) {
+          e.preventDefault();
 
-          // Swiping UP (scrolling DOWN)
-          if (diffY < -32) {
-            if (activeIndex < screens.length - 1) {
-              e.preventDefault();
-              if (now - lastSwitchTime > SWITCH_COOLDOWN_MS) {
-                lastSwitchTime = now;
-                touchStartY = currentY;
-                setScreen(activeIndex + 1);
+          // Only trigger on mid-to-big swipe (>= 75px) and only once per touch gesture
+          if (!hasSwipedInCurrentTouch && !isImageTransitioning) {
+            // Swipe UP (finger dragged UP >= 75px -> user intends to scroll DOWN to next screen)
+            if (diffY <= -SWIPE_THRESHOLD_PX) {
+              hasSwipedInCurrentTouch = true;
+              if (activeIndex < screens.length - 1) {
+                setScreen(activeIndex + 1, 'forward');
+              } else {
+                unlockShowcase('down');
               }
-            } else {
-              // Reached last screenshot and scrolled down: done!
-              unlockShowcase('down');
             }
-          }
-          // Swiping DOWN (scrolling UP)
-          else if (diffY > 32) {
-            if (activeIndex > 0) {
-              e.preventDefault();
-              if (now - lastSwitchTime > SWITCH_COOLDOWN_MS) {
-                lastSwitchTime = now;
-                touchStartY = currentY;
-                setScreen(activeIndex - 1);
+            // Swipe DOWN (finger dragged DOWN >= 75px -> user intends to scroll UP to previous screen)
+            else if (diffY >= SWIPE_THRESHOLD_PX) {
+              hasSwipedInCurrentTouch = true;
+              if (activeIndex > 0) {
+                setScreen(activeIndex - 1, 'backward');
+              } else {
+                unlockShowcase('up');
               }
-            } else {
-              // Reached first screenshot and scrolled up: release up!
-              unlockShowcase('up');
             }
-          } else {
-            // In deadband: prevent jitter
-            e.preventDefault();
           }
         }
       }
 
       function onTouchEnd() {
+        if (!isLocked || !isTouching || !isMobileUser()) {
+          isTouching = false;
+          return;
+        }
+
+        // Also support quick intentional flick on release (>= 55px in < 260ms) if not triggered during move
+        if (!hasSwipedInCurrentTouch && !isImageTransitioning) {
+          const diffY = lastTouchY - touchStartY;
+          const elapsed = Date.now() - touchStartTime;
+
+          if (elapsed < 260 && Math.abs(diffY) >= 55) {
+            if (diffY < 0) {
+              hasSwipedInCurrentTouch = true;
+              if (activeIndex < screens.length - 1) {
+                setScreen(activeIndex + 1, 'forward');
+              } else {
+                unlockShowcase('down');
+              }
+            } else if (diffY > 0) {
+              hasSwipedInCurrentTouch = true;
+              if (activeIndex > 0) {
+                setScreen(activeIndex - 1, 'backward');
+              } else {
+                unlockShowcase('up');
+              }
+            }
+          }
+        }
+
         isTouching = false;
+        hasSwipedInCurrentTouch = false;
       }
 
-      // Wheel interaction for mobile emulation / trackpad
+      // Wheel interaction for desktop mobile emulation / trackpad
+      let lastWheelTime = 0;
       function onWheel(e) {
-        if (!isLocked || !isMobileUser() || isEngaging) return;
+        if (!isLocked || !isMobileUser()) return;
         if (lightbox && lightbox.open) return;
 
+        e.preventDefault();
         const now = Date.now();
-        if (e.deltaY > 15) {
-          // Scroll down
+        if (now - lastWheelTime < 380 || isImageTransitioning) return;
+
+        // Require intentional wheel stroke (magnitude >= 45)
+        if (e.deltaY >= 45) {
+          lastWheelTime = now;
           if (activeIndex < screens.length - 1) {
-            e.preventDefault();
-            if (now - lastSwitchTime > SWITCH_COOLDOWN_MS) {
-              lastSwitchTime = now;
-              setScreen(activeIndex + 1);
-            }
+            setScreen(activeIndex + 1, 'forward');
           } else {
             unlockShowcase('down');
           }
-        } else if (e.deltaY < -15) {
-          // Scroll up
+        } else if (e.deltaY <= -45) {
+          lastWheelTime = now;
           if (activeIndex > 0) {
-            e.preventDefault();
-            if (now - lastSwitchTime > SWITCH_COOLDOWN_MS) {
-              lastSwitchTime = now;
-              setScreen(activeIndex - 1);
-            }
+            setScreen(activeIndex - 1, 'backward');
           } else {
             unlockShowcase('up');
           }
-        } else {
-          e.preventDefault();
+        }
+      }
+
+      // Keep viewport pinned dead-center while locked
+      function onScroll() {
+        if (!isMobileUser()) return;
+
+        // Auto-lock when phone reaches center of mobile viewport during user scroll
+        if (!isLocked && !hasCompleted && !isCentering && phoneTrigger) {
+          const rect = phoneTrigger.getBoundingClientRect();
+          const phoneCenter = rect.top + rect.height / 2;
+          const viewportCenter = window.innerHeight / 2;
+          if (Math.abs(phoneCenter - viewportCenter) < 70) {
+            lockShowcase();
+            return;
+          }
+        }
+
+        // Maintain strict center lock while locked
+        if (isLocked && !isCentering && lockedCenterY !== null) {
+          if (Math.abs(window.scrollY - lockedCenterY) > 3) {
+            window.scrollTo({ top: lockedCenterY, behavior: 'instant' });
+          }
         }
       }
 
@@ -903,8 +1030,9 @@ const APP_SCREENS = [
       window.addEventListener('touchmove', onTouchMove, { passive: false });
       window.addEventListener('touchend', onTouchEnd, { passive: true });
       window.addEventListener('wheel', onWheel, { passive: false });
+      window.addEventListener('scroll', onScroll, { passive: true });
 
-      // Intersection Observer for scroll snapping
+      // Intersection Observer for scroll snapping and reset
       let snapObserver = null;
       if (phoneTrigger && 'IntersectionObserver' in window) {
         snapObserver = new IntersectionObserver(
@@ -924,6 +1052,7 @@ const APP_SCREENS = [
                 hasCompleted = false;
                 if (isLocked) {
                   isLocked = false;
+                  lockedCenterY = null;
                   updateMobileIndicator();
                 }
               }
@@ -940,6 +1069,7 @@ const APP_SCREENS = [
         window.removeEventListener('touchmove', onTouchMove);
         window.removeEventListener('touchend', onTouchEnd);
         window.removeEventListener('wheel', onWheel);
+        window.removeEventListener('scroll', onScroll);
         if (snapObserver) {
           snapObserver.disconnect();
         }
