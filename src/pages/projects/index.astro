@@ -1,0 +1,365 @@
+---
+/**
+ * src/pages/projects/index.astro
+ * 
+ * Production Projects Archive Page for Faycal Rafa Portfolio
+ * Aligned with Astro 5 Content Layer API, Tailwind CSS v4, and E2E Test Suites:
+ * - tests/e2e/tier1_features.test.js (T1.F07.04: Route exists; T1.F07.06: Interactive category filtering)
+ * - tests/e2e/tier2_boundaries.test.js (T2.F07.06: Instant client-side switching without full page reload)
+ * - tests/e2e/tier4_scenarios.test.js (T4.04: Contributor journey & Hobby categorization)
+ */
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+// Query all projects from Astro 5 Content Layer API
+const allProjects = await getCollection('projects');
+
+// Sort projects: featured flagship projects first, then by configured order, then date
+const sortedProjects = [...allProjects].sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  const orderA = a.data.order ?? 99;
+  const orderB = b.data.order ?? 99;
+  if (orderA !== orderB) return orderA - orderB;
+  return (b.data.publishedDate || '').localeCompare(a.data.publishedDate || '');
+});
+
+// Category counts for interactive filter tab badges
+const totalCount = sortedProjects.length;
+const hobbyCount = sortedProjects.filter((p) => p.data.category === 'hobby').length;
+const commercialCount = sortedProjects.filter((p) => p.data.category === 'commercial').length;
+const openSourceCount = sortedProjects.filter((p) => p.data.category === 'open-source').length;
+---
+
+<Layout
+  title="Projects & Architecture Archive | Faycal Rafa"
+  description="Explore enterprise microservices architectures, commercial software systems, and personal hobby projects built by Faycal Rafa, Senior Software Engineer & Technical Lead."
+>
+  <div class="relative min-h-[75vh] py-12 md:py-16">
+    <!-- Ambient decorative background gradient -->
+    <div class="pointer-events-none absolute inset-x-0 -top-32 -z-10 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
+      <div class="relative left-[calc(50%-15rem)] aspect-1155/678 w-[36rem] -translate-x-1/2 rotate-[25deg] bg-gradient-to-tr from-blue-600 to-indigo-500 opacity-15 sm:left-[calc(50%-25rem)] sm:w-[60rem] dark:opacity-10"></div>
+    </div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb Navigation -->
+      <nav class="mb-6 flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400" aria-label="Breadcrumbs">
+        <a href="/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Home</a>
+        <span class="text-zinc-400 dark:text-zinc-600">/</span>
+        <span class="font-medium text-zinc-800 dark:text-zinc-200" aria-current="page">Projects</span>
+      </nav>
+
+      <!-- Page Header: Highlighting architectural versatility and hobby passion -->
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-700 dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-400">
+          <span>Portfolio Catalog</span>
+          <span class="text-zinc-400 dark:text-zinc-600">•</span>
+          <span>{totalCount} Engineered Works</span>
+        </div>
+
+        <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl dark:text-zinc-50">
+          Projects & Architecture Archive
+        </h1>
+
+        <p class="mt-4 text-base leading-relaxed text-zinc-600 sm:text-lg dark:text-zinc-400">
+          A comprehensive showcase of enterprise microservices architectures, commercial systems, and personal hobby projects built by <strong class="font-semibold text-zinc-900 dark:text-zinc-200">Faycal Rafa</strong>. Featuring his flagship BookReader Android application, high-throughput financial trading platforms, and multi-tenant logistics microservices.
+        </p>
+      </div>
+
+      <!-- Controls: Search Input + Category Filter Bar -->
+      <div class="mt-10 flex flex-col gap-4 border-b border-zinc-200/80 pb-6 dark:border-zinc-800/80">
+        
+        <!-- Search and Quick Filter Row -->
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <!-- Real-Time Search Box -->
+          <div class="relative w-full sm:max-w-xs md:max-w-sm">
+            <label for="project-search-input" class="sr-only">Search projects by name, technology, or keywords</label>
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-zinc-400 dark:text-zinc-500">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <input
+              type="search"
+              id="project-search-input"
+              placeholder="Search projects, tech, keywords..."
+              class="w-full rounded-xl border border-zinc-200 bg-white py-2 pl-9 pr-8 text-xs sm:text-sm text-zinc-900 placeholder-zinc-400 transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500 dark:focus:border-blue-400"
+            />
+            <button
+              type="button"
+              id="clear-search-btn"
+              aria-label="Clear search query"
+              class="hidden absolute inset-y-0 right-0 items-center pr-2.5 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 cursor-pointer"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Live Status Counter -->
+          <div class="text-xs text-zinc-500 dark:text-zinc-400 font-mono sm:text-right">
+            Showing <span id="visible-count" class="font-bold text-zinc-800 dark:text-zinc-200">{totalCount}</span> of {totalCount} projects
+          </div>
+        </div>
+
+        <!-- Filter Tabs (Client-Side Interactive Switching, satisfying T1.F07.06 and T2.F07.06) -->
+        <div
+          class="flex flex-wrap items-center gap-2 pt-2"
+          role="group"
+          aria-label="Filter projects by category"
+          id="category-filter-group"
+        >
+          <button
+            type="button"
+            data-category-filter="all"
+            aria-pressed="true"
+            class="filter-btn active inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all focus-visible:outline-2 focus-visible:outline-blue-600 cursor-pointer bg-zinc-900 text-white shadow-xs dark:bg-zinc-100 dark:text-zinc-900"
+          >
+            <span>All Projects</span>
+            <span class="filter-count rounded-full bg-zinc-700 px-2 py-0.5 text-[11px] font-mono text-white dark:bg-zinc-300 dark:text-zinc-900">
+              {totalCount}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            data-category-filter="hobby"
+            aria-pressed="false"
+            class="filter-btn inline-flex items-center gap-2 rounded-xl border border-zinc-200/80 bg-white px-4 py-2 text-xs font-medium text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-800/60 transition-all focus-visible:outline-2 focus-visible:outline-blue-600 cursor-pointer"
+          >
+            <span class="h-2 w-2 rounded-full bg-amber-500" aria-hidden="true"></span>
+            <span>Hobby Projects</span>
+            <span class="filter-count rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-mono text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+              {hobbyCount}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            data-category-filter="commercial"
+            aria-pressed="false"
+            class="filter-btn inline-flex items-center gap-2 rounded-xl border border-zinc-200/80 bg-white px-4 py-2 text-xs font-medium text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-800/60 transition-all focus-visible:outline-2 focus-visible:outline-blue-600 cursor-pointer"
+          >
+            <span class="h-2 w-2 rounded-full bg-blue-500" aria-hidden="true"></span>
+            <span>Commercial</span>
+            <span class="filter-count rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-mono text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+              {commercialCount}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            data-category-filter="open-source"
+            aria-pressed="false"
+            class="filter-btn inline-flex items-center gap-2 rounded-xl border border-zinc-200/80 bg-white px-4 py-2 text-xs font-medium text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-800/60 transition-all focus-visible:outline-2 focus-visible:outline-blue-600 cursor-pointer"
+          >
+            <span class="h-2 w-2 rounded-full bg-purple-500" aria-hidden="true"></span>
+            <span>Open Source</span>
+            <span class="filter-count rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-mono text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+              {openSourceCount}
+            </span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Responsive Grid of Project Cards -->
+      <div
+        id="projects-grid"
+        class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 transition-opacity duration-200"
+      >
+        {sortedProjects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+
+      <!-- Empty State Fallback (Hidden by default, shown when category/query has 0 matches) -->
+      <div
+        id="empty-filter-state"
+        class="hidden py-16 text-center"
+        aria-live="polite"
+      >
+        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+        </div>
+        <h3 class="mt-4 text-base font-semibold text-zinc-900 dark:text-zinc-100">
+          No projects found matching your criteria
+        </h3>
+        <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+          Try clearing your search query or selecting another category filter.
+        </p>
+        <button
+          type="button"
+          id="reset-filter-btn"
+          class="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-xs font-semibold text-white hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400 transition-colors cursor-pointer"
+        >
+          Reset Filters
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!--
+    CLIENT-SIDE CATEGORY FILTER & SEARCH CONTROLLER
+    Compliant with Astro 5 ClientRouter View Transitions.
+    Operates synchronously on the DOM without full page reload (satisfying T2.F07.06).
+  -->
+  <script>
+    function setupCategoryFilter() {
+      const filterGroup = document.getElementById('category-filter-group');
+      if (!filterGroup) return;
+
+      const buttons = filterGroup.querySelectorAll<HTMLButtonElement>('[data-category-filter]');
+      const cards = document.querySelectorAll<HTMLElement>('[data-project-card]');
+      const countEl = document.getElementById('visible-count');
+      const emptyState = document.getElementById('empty-filter-state');
+      const resetBtn = document.getElementById('reset-filter-btn');
+      const searchInput = document.getElementById('project-search-input') as HTMLInputElement | null;
+      const clearSearchBtn = document.getElementById('clear-search-btn') as HTMLButtonElement | null;
+
+      let currentCategory = 'all';
+      let currentSearch = '';
+
+      function renderFiltered() {
+        let visibleCount = 0;
+        const normalizedQuery = currentSearch.trim().toLowerCase();
+
+        // 1. Update filter button styles and ARIA states
+        buttons.forEach((btn) => {
+          const btnCategory = btn.getAttribute('data-category-filter') || btn.dataset.categoryFilter;
+          const isActive = btnCategory === currentCategory;
+
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+          btn.classList.toggle('active', isActive);
+
+          const countBadge = btn.querySelector('.filter-count');
+
+          if (isActive) {
+            btn.className = 'filter-btn active inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all focus-visible:outline-2 focus-visible:outline-blue-600 cursor-pointer bg-zinc-900 text-white shadow-xs dark:bg-zinc-100 dark:text-zinc-900';
+            if (countBadge) {
+              countBadge.className = 'filter-count rounded-full bg-zinc-700 px-2 py-0.5 text-[11px] font-mono text-white dark:bg-zinc-300 dark:text-zinc-900';
+            }
+          } else {
+            btn.className = 'filter-btn inline-flex items-center gap-2 rounded-xl border border-zinc-200/80 bg-white px-4 py-2 text-xs font-medium text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-800/60 transition-all focus-visible:outline-2 focus-visible:outline-blue-600 cursor-pointer';
+            if (countBadge) {
+              countBadge.className = 'filter-count rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-mono text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400';
+            }
+          }
+        });
+
+        // 2. Filter project cards by category and search text
+        cards.forEach((card) => {
+          const cardCategory = card.getAttribute('data-category') || card.dataset.category;
+          const cardText = (card.getAttribute('data-search-text') || card.dataset.searchText || card.textContent || '').toLowerCase();
+
+          const matchesCategory = currentCategory === 'all' || cardCategory === currentCategory;
+          const matchesSearch = !normalizedQuery || cardText.includes(normalizedQuery);
+
+          if (matchesCategory && matchesSearch) {
+            card.classList.remove('hidden');
+            card.style.display = '';
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+            card.style.display = 'none';
+          }
+        });
+
+        // 3. Update counter and empty state
+        if (countEl) {
+          countEl.textContent = String(visibleCount);
+        }
+
+        if (emptyState) {
+          if (visibleCount === 0) {
+            emptyState.classList.remove('hidden');
+            emptyState.style.display = 'block';
+          } else {
+            emptyState.classList.add('hidden');
+            emptyState.style.display = 'none';
+          }
+        }
+
+        // 4. Update clear search button visibility
+        if (clearSearchBtn) {
+          if (currentSearch.trim().length > 0) {
+            clearSearchBtn.classList.remove('hidden');
+            clearSearchBtn.classList.add('flex');
+          } else {
+            clearSearchBtn.classList.add('hidden');
+            clearSearchBtn.classList.remove('flex');
+          }
+        }
+      }
+
+      function applyFilter(category: string, updateUrl: boolean = true) {
+        currentCategory = category;
+        renderFiltered();
+
+        // Optionally update URL query param without page reload
+        if (updateUrl && window.history && window.history.replaceState) {
+          const currentUrl = new URL(window.location.href);
+          if (category === 'all') {
+            currentUrl.searchParams.delete('category');
+          } else {
+            currentUrl.searchParams.set('category', category);
+          }
+          window.history.replaceState({}, '', currentUrl.toString());
+        }
+      }
+
+      // Attach click listeners to filter buttons
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetCategory = btn.getAttribute('data-category-filter') || btn.dataset.categoryFilter || 'all';
+          applyFilter(targetCategory, true);
+        });
+      });
+
+      // Search input real-time listener
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          currentSearch = searchInput.value;
+          renderFiltered();
+        });
+      }
+
+      // Clear search button listener
+      if (clearSearchBtn && searchInput) {
+        clearSearchBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          currentSearch = '';
+          searchInput.focus();
+          renderFiltered();
+        });
+      }
+
+      // Reset button click
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (searchInput) searchInput.value = '';
+          currentSearch = '';
+          applyFilter('all', true);
+        });
+      }
+
+      // Check URL query param on initial load (e.g. /projects?category=hobby)
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialCategory = urlParams.get('category');
+      if (initialCategory && ['all', 'hobby', 'commercial', 'open-source'].includes(initialCategory)) {
+        applyFilter(initialCategory, false);
+      }
+    }
+
+    // Re-initialize across Astro View Transitions
+    document.addEventListener('astro:page-load', setupCategoryFilter);
+  </script>
+</Layout>

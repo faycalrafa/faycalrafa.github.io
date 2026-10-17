@@ -1,0 +1,221 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import CommandPalette from '../components/CommandPalette.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  articleDate?: string;
+}
+
+const {
+  title = 'Faycal Rafa — Senior Software Engineer & Technical Lead',
+  description = 'Personal developer portfolio, software architecture showcase, and BookReader Android flagship hobby project of Faycal Rafa.',
+  image = '/images/og-preview.png',
+  articleDate,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://faycalrafa.github.io');
+const fullImageURL = new URL(image, Astro.site ?? 'https://faycalrafa.github.io').toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Faycal Rafa" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Browser Color Scheme Hint -->
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content={articleDate ? "article" : "website"} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageURL} />
+    {articleDate && <meta property="article:published_time" content={articleDate} />}
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={fullImageURL} />
+
+    <!-- Astro 5 Client Router (View Transitions) -->
+    <ClientRouter />
+
+    <!--
+      CRITICAL ZERO-FOUC THEME SCRIPT
+      Executes synchronously before body rendering to prevent any light/dark flash.
+      Compliant with Modern Web Guidance dark-mode-toggle standard.
+    -->
+    <script is:inline>
+      (function () {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const isDark = stored === 'dark' || (!stored && prefersDark);
+          const meta = document.querySelector('meta[name="color-scheme"]');
+
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+            if (meta) meta.content = 'dark';
+          } else {
+            document.documentElement.classList.remove('dark');
+            if (meta) meta.content = 'light';
+          }
+        } catch (e) {
+          // Graceful fallback if localStorage is blocked by user privacy settings
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+          }
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 antialiased selection:bg-blue-600 selection:text-white transition-colors duration-200">
+    <!-- Skip to main content link for keyboard and screen reader accessibility -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-md focus:shadow-lg focus:outline-none"
+    >
+      Skip to main content
+    </a>
+
+    <div class="relative flex min-h-screen flex-col">
+      <Navbar />
+      <main id="main-content" class="flex-1">
+        <slot />
+      </main>
+      <Footer />
+      <CommandPalette />
+    </div>
+
+    <!--
+      CLIENT-SIDE THEME CONTROLLER & VIEW TRANSITIONS LIFECYCLE
+    -->
+    <script>
+      function getResolvedTheme(): 'dark' | 'light' {
+        try {
+          const stored = localStorage.getItem('theme');
+          if (stored === 'dark' || stored === 'light') return stored;
+        } catch (e) {}
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      function applyTheme(targetTheme: 'dark' | 'light', persist: boolean = false) {
+        const isDark = targetTheme === 'dark';
+        const docEl = document.documentElement;
+        
+        if (isDark) {
+          docEl.classList.add('dark');
+        } else {
+          docEl.classList.remove('dark');
+        }
+
+        const meta = document.querySelector<HTMLMetaElement>('meta[name="color-scheme"]');
+        if (meta) meta.content = targetTheme;
+
+        if (persist) {
+          try {
+            const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            // If the user selects what already matches system preference, clear stored override
+            if (targetTheme === systemPref) {
+              localStorage.removeItem('theme');
+            } else {
+              const theme = targetTheme;
+              localStorage.setItem('theme', theme);
+            }
+          } catch (e) {}
+        }
+
+        // Dispatch custom event for widgets listening to theme changes
+        window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: targetTheme } }));
+        updateToggleButtonsUI(isDark);
+      }
+
+      function updateToggleButtonsUI(isDark: boolean) {
+        const toggleButtons = document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]');
+        toggleButtons.forEach((btn) => {
+          btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+          btn.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+          btn.setAttribute('aria-checked', isDark ? 'true' : 'false');
+          
+          // Toggle child SVG visibility or active icons if present
+          const sunIcon = btn.querySelector('[data-theme-icon="sun"]');
+          const moonIcon = btn.querySelector('[data-theme-icon="moon"]');
+          if (sunIcon && moonIcon) {
+            if (isDark) {
+              sunIcon.classList.remove('hidden');
+              moonIcon.classList.add('hidden');
+            } else {
+              sunIcon.classList.add('hidden');
+              moonIcon.classList.remove('hidden');
+            }
+          }
+        });
+      }
+
+      function setupThemeToggles() {
+        const toggleButtons = document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]');
+        toggleButtons.forEach((btn) => {
+          btn.onclick = (e) => {
+            e.preventDefault();
+            const currentIsDark = document.documentElement.classList.contains('dark');
+            const targetTheme = currentIsDark ? 'light' : 'dark';
+            applyTheme(targetTheme, true);
+          };
+        });
+
+        updateToggleButtonsUI(document.documentElement.classList.contains('dark'));
+      }
+
+      // Re-apply theme state and update UI after ClientRouter document swaps
+      document.addEventListener('astro:after-swap', () => {
+        const activeTheme = getResolvedTheme();
+        applyTheme(activeTheme, false);
+      });
+
+      // Initialize on initial page load and on subsequent View Transitions
+      document.addEventListener('astro:page-load', () => {
+        setupThemeToggles();
+      });
+
+      // Multi-tab storage sync
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'theme') {
+          const newTheme = getResolvedTheme();
+          applyTheme(newTheme, false);
+        }
+      });
+
+      // OS theme preference change listener (only applies if user has no explicit override)
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        let hasCustomOverride = false;
+        try {
+          hasCustomOverride = Boolean(localStorage.getItem('theme'));
+        } catch (err) {
+          hasCustomOverride = false;
+        }
+        if (!hasCustomOverride) {
+          applyTheme(e.matches ? 'dark' : 'light', false);
+        }
+      });
+    </script>
+  </body>
+</html>

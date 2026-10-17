@@ -1,0 +1,222 @@
+---
+// src/components/CvModal.astro
+// Accessible, responsive inline CV Viewer Modal for Faycal Rafa Portfolio
+// Compliant with Astro 5 ClientRouter, Tailwind CSS v4, and Modern Web Guidance
+---
+
+<dialog
+  id="cv-modal"
+  closedby="any"
+  aria-labelledby="cv-modal-title"
+  aria-modal="true"
+  class="m-auto w-[95vw] max-w-5xl rounded-2xl border border-zinc-200/80 bg-white p-0 shadow-2xl backdrop:bg-zinc-950/70 backdrop:backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 open:flex open:flex-col overflow-hidden transition-all duration-200"
+>
+  <!-- Modal Header Bar -->
+  <div class="flex items-center justify-between border-b border-zinc-200/80 px-5 py-4 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-900/60">
+    <div class="flex items-center gap-3">
+      <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
+          <polyline points="10 9 9 9 8 9" />
+        </svg>
+      </div>
+      <div>
+        <h2 id="cv-modal-title" class="text-base font-bold text-zinc-900 dark:text-zinc-100">
+          Faycal Rafa — Curriculum Vitae (2026)
+        </h2>
+        <p class="text-xs text-zinc-500 dark:text-zinc-400">
+          Senior Software Engineer & Technical Lead • Official PDF Document
+        </p>
+      </div>
+    </div>
+
+    <!-- Header Actions -->
+    <div class="flex items-center gap-2">
+      <!-- Direct Download Fallback Button -->
+      <a
+        href="/Faycal_Rafa_CV_2026.pdf"
+        download="Faycal_Rafa_CV_2026.pdf"
+        class="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400 transition-colors focus-visible:outline-2 focus-visible:outline-blue-600"
+        aria-label="Download Faycal Rafa CV (PDF)"
+      >
+        <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M10 3v10" /><path d="M6 9l4 4 4-4" /><path d="M3 15v1a2 2 0 002 2h10a2 2 0 002-2v-1" />
+        </svg>
+        <span>Download PDF</span>
+      </a>
+
+      <!-- Open in New Tab Link -->
+      <a
+        href="/Faycal_Rafa_CV_2026.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden sm:inline-flex items-center justify-center p-2 rounded-lg text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+        aria-label="Open PDF in new tab"
+        title="Open in new browser tab"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          <polyline points="15 3 21 3 21 9" />
+          <line x1="10" y1="14" x2="21" y2="3" />
+        </svg>
+      </a>
+
+      <!-- Close Button -->
+      <button
+        type="button"
+        id="cv-modal-close-btn"
+        class="inline-flex items-center justify-center p-2 rounded-lg text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-2 focus-visible:outline-blue-600"
+        aria-label="Close CV dialog (Escape)"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal Body: High-fidelity PDF Viewer Frame -->
+  <div class="relative flex-1 w-full bg-zinc-100 dark:bg-zinc-900 h-[70vh] min-h-[480px]">
+    <iframe
+      id="cv-pdf-frame"
+      src="/Faycal_Rafa_CV_2026.pdf#toolbar=0&navpanes=0&view=FitH"
+      title="Faycal Rafa CV (PDF)"
+      class="h-full w-full border-0"
+      loading="lazy"
+    >
+      <!-- Fallback container for browsers with disabled PDF plugins or low-capability mobile viewports -->
+      <div class="flex h-full flex-col items-center justify-center p-8 text-center">
+        <svg class="h-12 w-12 text-zinc-400 mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+        </svg>
+        <p class="text-sm font-medium text-zinc-800 dark:text-zinc-200">
+          Your browser does not support embedded PDF previewing.
+        </p>
+        <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400 max-w-sm">
+          You can immediately download Faycal Rafa's complete curriculum vitae or open it directly in a dedicated tab.
+        </p>
+        <div class="mt-4 flex items-center gap-3">
+          <a
+            href="/Faycal_Rafa_CV_2026.pdf"
+            download="Faycal_Rafa_CV_2026.pdf"
+            class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-blue-500"
+          >
+            <span>Download CV (Faycal_Rafa_CV_2026.pdf)</span>
+          </a>
+          <a
+            href="/Faycal_Rafa_CV_2026.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+          >
+            <span>Open in Tab</span>
+          </a>
+        </div>
+      </div>
+    </iframe>
+  </div>
+
+  <!-- Modal Footer Status Bar -->
+  <div class="flex flex-col sm:flex-row items-center justify-between border-t border-zinc-200/80 px-5 py-3 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-900/60 text-xs text-zinc-500 dark:text-zinc-400 gap-2">
+    <div class="flex items-center gap-2">
+      <span class="inline-block h-2 w-2 rounded-full bg-emerald-500"></span>
+      <span>Authentic CV Asset • 54 KB PDF Document</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="hidden md:inline">Press <kbd class="px-1.5 py-0.5 font-mono text-[10px] bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded">Esc</kbd> or click backdrop to close</span>
+      <button
+        type="button"
+        id="cv-modal-dismiss-btn"
+        class="rounded-md px-3 py-1 text-xs font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200 cursor-pointer"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  // Pure TypeScript / JavaScript Client Controller for CvModal
+  // Re-bound reliably on Astro 5 ClientRouter 'astro:page-load' event
+  function initCvModal() {
+    const dialog = document.getElementById('cv-modal') as HTMLDialogElement | null;
+    if (!dialog) return;
+
+    const closeBtn = document.getElementById('cv-modal-close-btn');
+    const dismissBtn = document.getElementById('cv-modal-dismiss-btn');
+    let triggerElement: HTMLElement | null = null;
+
+    function openModal(trigger?: HTMLElement) {
+      if (trigger) triggerElement = trigger;
+      if (!dialog?.open) {
+        dialog?.showModal();
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal() {
+      if (dialog?.open) {
+        dialog.close();
+        document.body.style.overflow = '';
+        if (triggerElement && typeof triggerElement.focus === 'function') {
+          triggerElement.focus();
+        }
+      }
+    }
+
+    // Bind triggers across the document
+    const triggerButtons = document.querySelectorAll<HTMLElement>('[data-open-cv-modal], #open-cv-modal-btn');
+    triggerButtons.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(btn);
+      });
+    });
+
+    // Close button events
+    closeBtn?.addEventListener('click', closeModal);
+    dismissBtn?.addEventListener('click', closeModal);
+
+    // Escape and dialog 'close' event
+    dialog.addEventListener('close', () => {
+      document.body.style.overflow = '';
+      if (triggerElement) triggerElement.focus();
+    });
+
+    // Modern Web Guidance: Fallback for browsers lacking native 'closedby' support
+    // Checks if click happened outside the dialog bounding rectangle (on backdrop)
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      dialog.addEventListener('click', (event: MouseEvent) => {
+        if (event.target !== dialog) return;
+        const rect = dialog.getBoundingClientRect();
+        const isDialogContent =
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width;
+
+        if (!isDialogContent) {
+          closeModal();
+        }
+      });
+    }
+
+    // Global custom event listener so CommandPalette or Navbar can trigger the viewer
+    window.addEventListener('open-cv-modal', () => {
+      openModal();
+    });
+  }
+
+  // Astro 5 lifecycle binding
+  document.addEventListener('astro:page-load', initCvModal);
+  if (document.readyState !== 'loading') {
+    initCvModal();
+  } else {
+    document.addEventListener('DOMContentLoaded', initCvModal);
+  }
+</script>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="brand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+  </defs>
+  <!-- Background Squircle -->
+  <rect width="32" height="32" rx="7" fill="url(#brand-grad)" />
+  <!-- Monogram FR -->
+  <text
+    x="16"
+    y="21.5"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    font-weight="800"
+    font-size="13.5"
+    text-anchor="middle"
+    fill="#ffffff"
+    letter-spacing="-0.5"
+  >FR</text>
+  <!-- Pulsing Active Beacon Dot -->
+  <circle cx="26" cy="6" r="2.5" fill="#10b981" stroke="#ffffff" stroke-width="1" />
+</svg>

@@ -1,0 +1,317 @@
+---
+// src/components/CareerTimeline.astro
+// Production Drop-In Blueprint for Faycal Rafa Career Timeline (F05)
+// Chronological journey covering all 7 companies from authentic CV data.
+// Compliant with Tailwind CSS v4, Astro 5 ClientRouter, and full a11y standards.
+
+export interface ExperienceItem {
+  id: string;
+  company: string;
+  role: string;
+  period: string;
+  startDate: string;
+  endDate: string;
+  isCurrent?: boolean;
+  location: string;
+  type: string;
+  url?: string;
+  urlLabel?: string;
+  summary: string;
+  achievements: string[];
+  skills: string[];
+  concurrentNote?: string;
+}
+
+const experiences: ExperienceItem[] = [
+  {
+    id: 'autoqual',
+    company: 'AUTOQUAL',
+    role: 'Software Engineer',
+    period: '04/2026 – Present',
+    startDate: '2026-04',
+    endDate: 'Present',
+    isCurrent: true,
+    location: 'Algiers, Algeria',
+    type: 'Full-time',
+    summary: 'Driving end-to-end software architecture and high-performance engineering for enterprise-scale automotive digital platforms.',
+    achievements: [
+      'Architecting resilient distributed software platforms with modern TypeScript and reactive frontend systems.',
+      'Establishing team-wide engineering standards, modular API blueprints, and automated code review workflows.',
+      'Collaborating with leadership on product roadmaps, performance telemetry, and scalable cloud microservices.',
+    ],
+    skills: ['TypeScript', 'Node.js', 'Next.js', 'PostgreSQL', 'Docker', 'Microservices'],
+  },
+  {
+    id: 'sabil',
+    company: 'SABIL Company',
+    role: 'Senior Software Engineer',
+    period: '04/2025 – 02/2026',
+    startDate: '2025-04',
+    endDate: '2026-02',
+    location: 'Bab Ezzouar, Algiers, Algeria',
+    type: 'Full-time',
+    url: 'https://sabil.dz/en/getapp/',
+    urlLabel: 'sabil.dz Mega-App',
+    summary: 'Architected and maintained high-throughput microservices powering mission-critical client transaction flows and multi-tenant banking operations.',
+    achievements: [
+      'Architected distributed, resilient microservices with NestJS and Redis handling high-concurrency payment transactions with zero loss.',
+      'Optimized PostgreSQL partitioning, indexing, and asynchronous event streams to achieve sub-45ms P99 transaction confirmation latencies.',
+      'Integrated resilient third-party banking APIs, idempotency keys, and automated settlement reconciliation pipelines.',
+    ],
+    skills: ['NestJS', 'TypeScript', 'PostgreSQL', 'Docker', 'Redis', 'Microservices', 'Event-Driven Architecture'],
+  },
+  {
+    id: 'finnetude',
+    company: 'Finnetude',
+    role: 'Technical Lead',
+    period: '08/2024 – 04/2025',
+    startDate: '2024-08',
+    endDate: '2025-04',
+    location: 'Hydra, Algiers, Algeria',
+    type: 'Technical Lead',
+    summary: 'Led the technical direction and engineering execution of real-time stock trading (InvestMarket) and portfolio management fintech platforms.',
+    achievements: [
+      'Led and mentored a cross-functional squad of 6 engineers across the entire SDLC, instituting strict TypeScript contracts and CI/CD quality gates.',
+      'Decomposed monolithic backend components into decoupled microservices, achieving superior elasticity, fault isolation, and high availability.',
+      'Architected bidirectional WebSocket streaming infrastructure for real-time stock ticker updates and instant order execution.',
+    ],
+    skills: ['TypeScript', 'NestJS', 'Node.js', 'WebSockets', 'Docker', 'PostgreSQL', 'Microservices'],
+  },
+  {
+    id: 'instaclean',
+    company: 'InstaClean',
+    role: 'Mobile Developer',
+    period: '01/2024 – 07/2024',
+    startDate: '2024-01',
+    endDate: '2024-07',
+    location: 'Cheraga, Algiers, Algeria',
+    type: 'Contract',
+    concurrentNote: 'Concurrent with early 2024 automotive platform development',
+    summary: 'Developed an all-in-one on-demand mobile application connecting car wash service agents directly with vehicle owners.',
+    achievements: [
+      'Built reactive Flutter cross-platform mobile application featuring real-time GPS tracking and agent dispatching algorithms.',
+      'Engineered custom 60fps UI interactions, offline request queuing, and persistent local caching layers.',
+      'Configured automated push notifications and transactional alerts using Firebase Cloud Messaging.',
+    ],
+    skills: ['Flutter', 'Dart', 'Android Kotlin', 'REST APIs', 'Firebase', 'Geolocation'],
+  },
+  {
+    id: 'kabri-auto',
+    company: 'Kabri Auto',
+    role: 'Full-stack Developer',
+    period: '01/2024 – 04/2024',
+    startDate: '2024-01',
+    endDate: '2024-04',
+    location: 'Cheraga, Algiers, Algeria',
+    type: 'Contract',
+    concurrentNote: 'Concurrent with early 2024 mobile application development',
+    summary: 'Developed a high-volume cross-border e-commerce platform for automotive replacement parts launched in Dubai (UAE market).',
+    achievements: [
+      'Built parts compatibility indexing engine matching complex OEM vehicle specifications with aftermarket replacement inventory.',
+      'Developed multi-currency checkout workflows, dynamic shipping calculation APIs, and automated warehouse synchronization.',
+    ],
+    skills: ['TypeScript', 'PHP / Laravel', 'PostgreSQL', 'REST APIs', 'Docker'],
+  },
+  {
+    id: 'piassa-dz',
+    company: 'PIASSA DZ',
+    role: 'Full-stack Developer',
+    period: '10/2022 – 12/2023',
+    startDate: '2022-10',
+    endDate: '2023-12',
+    location: 'Oued Romane, Algiers, Algeria',
+    type: 'Full-time',
+    url: 'https://piassa.shop/',
+    urlLabel: 'piassa.shop B2B SaaS',
+    summary: 'Built B2B SaaS automotive ecosystem, customer engagement CRM, and real-time supplier catalog synchronization APIs.',
+    achievements: [
+      'Developed high-conversion responsive client portals and mobile features for automotive suppliers and auto mechanics.',
+      'Architected full-fledged CRM system automating supplier quotations, purchase orders, and garage inventory alerts.',
+      'Created high-throughput bidirectional synchronization APIs connecting central Piassa catalog database with distributed client POS systems.',
+    ],
+    skills: ['Flutter', 'PHP / Laravel', 'TypeScript', 'MySQL', 'RESTful APIs'],
+  },
+  {
+    id: 'bfln-technologies',
+    company: 'SARL BFLN Technologies',
+    role: 'Full-stack Developer',
+    period: '07/2019 – 09/2022',
+    startDate: '2019-07',
+    endDate: '2022-09',
+    location: 'Oued Fayet, Algiers, Algeria',
+    type: 'Full-time',
+    summary: 'Led the development and rollout of an end-to-end order tracking and omnichannel call center management system.',
+    achievements: [
+      'Spearheaded the complete development and rollout of an omnichannel order tracking and call center telephony routing system.',
+      'Automated customer service operations, reducing manual dispatch times by 40% and eliminating logistics bottlenecks.',
+      'Engineered normalized relational database schemas, complex reporting aggregation queries, and real-time operator telemetry.',
+    ],
+    skills: ['JavaScript', 'PHP', 'MySQL', 'Database Design', 'Linux', 'Bash'],
+  },
+];
+---
+
+<section id="career" class="relative py-20 border-t border-zinc-200/80 dark:border-zinc-800/80 bg-white/40 dark:bg-zinc-950/40">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl">
+      <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-400">
+        <span>Experience &amp; Track Record</span>
+      </div>
+      <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50">
+        Career Journey
+      </h2>
+      <p class="mt-3 text-base text-zinc-600 sm:text-lg dark:text-zinc-400">
+        6+ years of engineering progression — from full-stack systems engineering to technical leadership across fintech, enterprise logistics, automotive SaaS, and high-scale consumer applications.
+      </p>
+    </div>
+
+    <!-- Timeline Container -->
+    <div class="relative mt-16">
+      
+      <!-- Vertical Continuous Line Connector -->
+      <div
+        class="absolute left-4 top-4 bottom-6 w-0.5 bg-gradient-to-b from-blue-600 via-indigo-500/50 to-zinc-300 dark:to-zinc-800 md:left-8"
+        aria-hidden="true"
+      ></div>
+
+      <!-- Experience Cards List -->
+      <div class="space-y-12">
+        {experiences.map((exp) => (
+          <article
+            class="relative pl-12 md:pl-20 group"
+            data-company={exp.company}
+          >
+            <!-- Timeline Node Beacon / Bullet -->
+            <div
+              class:list={[
+                'absolute left-4 md:left-8 -translate-x-1/2 top-1.5 flex items-center justify-center rounded-full transition-transform duration-200 group-hover:scale-110',
+                exp.isCurrent
+                  ? 'h-5 w-5 bg-emerald-500 ring-4 ring-emerald-500/20 shadow-md shadow-emerald-500/30'
+                  : 'h-4 w-4 bg-white dark:bg-zinc-900 border-2 border-blue-600 dark:border-blue-400'
+              ]}
+              aria-hidden="true"
+            >
+              {exp.isCurrent && (
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              )}
+            </div>
+
+            <!-- Card Content Wrapper -->
+            <div class="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-xs transition-all duration-200 hover:border-zinc-300 hover:shadow-md dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-zinc-700">
+              
+              <!-- Card Header: Role, Company, Date Badge -->
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+                      {exp.role}
+                    </h3>
+                    
+                    {exp.isCurrent && (
+                      <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 border border-emerald-500/20 dark:bg-emerald-400/10 dark:text-emerald-400">
+                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Current Role • Present
+                      </span>
+                    )}
+
+                    {exp.type && !exp.isCurrent && (
+                      <span class="inline-flex items-center rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+                        {exp.type}
+                      </span>
+                    )}
+                  </div>
+
+                  <!-- Company & Location Header -->
+                  <div class="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                    <span class="text-blue-600 dark:text-blue-400 font-semibold text-base">
+                      {exp.company}
+                    </span>
+                    <span class="text-zinc-300 dark:text-zinc-600" aria-hidden="true">•</span>
+                    <span class="text-zinc-500 dark:text-zinc-400 flex items-center gap-1 text-xs sm:text-sm">
+                      <svg class="h-3.5 w-3.5 text-zinc-400" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M10 2a6 6 0 0 0-6 6c0 4.5 6 10 6 10s6-5.5 6-10a6 6 0 0 0-6-6Z" />
+                        <circle cx="10" cy="8" r="2" />
+                      </svg>
+                      {exp.location}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Date Badge Pill -->
+                <div class="flex items-center gap-2 mt-1 sm:mt-0">
+                  <span class="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-mono font-medium text-zinc-700 shadow-2xs dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300">
+                    <svg class="h-3.5 w-3.5 text-zinc-400" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="3" y="4" width="14" height="13" rx="2" />
+                      <path d="M14 2v4M6 2v4M3 8h14" />
+                    </svg>
+                    {exp.period}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Concurrent Employment Notice Badge (for Kabri & InstaClean) -->
+              {exp.concurrentNote && (
+                <div class="mt-3 inline-flex items-center gap-1.5 rounded-md bg-amber-500/10 px-2.5 py-1 text-xs font-medium text-amber-700 border border-amber-500/20 dark:bg-amber-400/10 dark:text-amber-300">
+                  <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                  </svg>
+                  <span>{exp.concurrentNote}</span>
+                </div>
+              )}
+
+              <!-- Role Summary Paragraph -->
+              <p class="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                {exp.summary}
+              </p>
+
+              <!-- Key Responsibilities & Architectural Achievements List -->
+              <ul class="mt-4 space-y-2 text-sm text-zinc-600 dark:text-zinc-300 list-disc list-inside">
+                {exp.achievements.map((item) => (
+                  <li class="leading-relaxed">
+                    <span class="text-zinc-800 dark:text-zinc-200">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <!-- Footer: External SaaS Link + Tech Stack Tags -->
+              <div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4 border-t border-zinc-100 dark:border-zinc-800/60">
+                
+                <!-- Technology Badges / Tags -->
+                <div class="flex flex-wrap items-center gap-1.5" aria-label="Technologies used">
+                  {exp.skills.map((skill) => (
+                    <span class="inline-flex items-center rounded-md bg-zinc-100 px-2.5 py-1 text-xs font-mono font-medium text-zinc-700 border border-zinc-200/60 dark:bg-zinc-800/70 dark:text-zinc-300 dark:border-zinc-700/60">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                <!-- Verified External Link (Rendered ONLY when valid URL exists — never dead href="#") -->
+                {exp.url && (
+                  <div class="shrink-0">
+                    <a
+                      href={exp.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+                      aria-label={`Visit ${exp.company} live platform`}
+                    >
+                      <span>{exp.urlLabel || 'Live Platform'}</span>
+                      <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M15 10l-5-5m5 5l-5 5m5-5H3" />
+                      </svg>
+                    </a>
+                  </div>
+                )}
+              </div>
+
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </div>
+
+  </div>
+</section>

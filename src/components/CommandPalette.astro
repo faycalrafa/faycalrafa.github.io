@@ -1,0 +1,624 @@
+---
+// src/components/CommandPalette.astro
+// Production Drop-In Blueprint for Faycal Rafa Command Palette (F06)
+// Pure TypeScript keyboard navigation (⌘K, Ctrl+K, /), instant action dispatcher, and route switcher.
+// Fully compatible with Astro 5 ClientRouter, zero external dependencies, accessible modal dialog.
+---
+
+<!-- Command Palette Modal Dialog Root -->
+<div
+  id="command-palette-modal"
+  class="hidden fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Command Palette (Quick Actions & Search)"
+>
+  <!-- Backdrop Blur Overlay -->
+  <div
+    id="command-palette-backdrop"
+    class="fixed inset-0 bg-zinc-950/60 backdrop-blur-sm transition-opacity"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Palette Dialog Window Container -->
+  <div
+    id="command-palette-card"
+    class="relative mx-auto max-w-2xl transform rounded-2xl bg-white shadow-2xl ring-1 ring-zinc-900/10 transition-all dark:bg-zinc-900 dark:ring-zinc-800 border border-zinc-200/80 dark:border-zinc-800/80 overflow-hidden"
+  >
+    <!-- Top Search Input Header -->
+    <div class="relative flex items-center border-b border-zinc-200/80 px-4 py-3 dark:border-zinc-800/80">
+      <!-- Search Icon -->
+      <svg
+        class="pointer-events-none h-5 w-5 text-zinc-400 dark:text-zinc-500 shrink-0"
+        viewBox="0 0 20 20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="8.5" cy="8.5" r="5.5" />
+        <path d="M17.5 17.5L12.5 12.5" />
+      </svg>
+
+      <!-- Main Input Field -->
+      <input
+        type="text"
+        id="command-palette-input"
+        class="h-10 w-full bg-transparent px-3 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none dark:text-zinc-100 dark:placeholder-zinc-500"
+        placeholder="Type a command or search... (Navigation, Projects, CV, Theme)"
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+        role="combobox"
+        aria-expanded="true"
+        aria-controls="command-palette-results"
+        aria-activedescendant=""
+      />
+
+      <!-- Quick Dismiss Pill Badge -->
+      <button
+        type="button"
+        id="command-palette-close-btn"
+        class="shrink-0 rounded-md border border-zinc-200 bg-zinc-50 px-1.5 py-0.5 text-[11px] font-mono text-zinc-500 hover:text-zinc-800 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors cursor-pointer"
+        aria-label="Close command palette (Escape)"
+      >
+        ESC
+      </button>
+    </div>
+
+    <!-- Commands Results Container -->
+    <div
+      id="command-palette-results"
+      class="max-h-96 scroll-py-2 overflow-y-auto p-2"
+      role="listbox"
+      aria-label="Available commands"
+    >
+      <!-- Results populated dynamically via TypeScript below -->
+    </div>
+
+    <!-- Empty State Container (Displayed when query has zero matches) -->
+    <div
+      id="command-palette-empty"
+      class="hidden py-14 px-6 text-center"
+      aria-live="polite"
+    >
+      <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-400">
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+      </div>
+      <p class="mt-4 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        No results found
+      </p>
+      <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+        No commands or navigation destinations matching <span id="command-palette-empty-query" class="font-mono font-medium text-zinc-700 dark:text-zinc-300"></span>. Try another keyword.
+      </p>
+    </div>
+
+    <!-- Keyboard Navigation Footer Hints -->
+    <div class="flex flex-wrap items-center justify-between border-t border-zinc-200/80 bg-zinc-50/80 px-4 py-2.5 text-xs text-zinc-500 dark:border-zinc-800/80 dark:bg-zinc-950/40 dark:text-zinc-400">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1">
+          <kbd class="rounded border border-zinc-200 bg-white px-1.5 py-0.5 font-mono text-[10px] text-zinc-600 shadow-2xs dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">↑</kbd>
+          <kbd class="rounded border border-zinc-200 bg-white px-1.5 py-0.5 font-mono text-[10px] text-zinc-600 shadow-2xs dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">↓</kbd>
+          <span>Navigate</span>
+        </span>
+        <span class="inline-flex items-center gap-1">
+          <kbd class="rounded border border-zinc-200 bg-white px-1.5 py-0.5 font-mono text-[10px] text-zinc-600 shadow-2xs dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">↵</kbd>
+          <span>Select</span>
+        </span>
+      </div>
+      <div class="hidden sm:flex items-center gap-3">
+        <span class="inline-flex items-center gap-1">
+          <kbd class="rounded border border-zinc-200 bg-white px-1.5 py-0.5 font-mono text-[10px] text-zinc-600 shadow-2xs dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">esc</kbd>
+          <span>Close</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Pure TypeScript Command Palette Engine
+  // Compliant with Astro 5 ClientRouter, resilient to DOM swaps and navigation.
+
+  interface CommandItem {
+    id: string;
+    title: string;
+    subtitle: string;
+    category: 'Navigation' | 'Actions' | 'Projects' | 'Social & Links';
+    badge?: string;
+    badgeColor?: string;
+    keywords: string[];
+    icon: string;
+    action: () => void;
+  }
+
+  let isPaletteOpen = false;
+  let selectedIndex = 0;
+  let filteredCommands: CommandItem[] = [];
+  let globalKeydownHandler: ((e: KeyboardEvent) => void) | null = null;
+  let customOpenHandler: (() => void) | null = null;
+
+  // Icons repository
+  const icons = {
+    home: `<svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L10 3l7 6.5V17a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M8 18v-6h4v6"/></svg>`,
+    briefcase: `<svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="11" rx="2"/><path d="M7 6V4a2 2 0 012-2h2a2 2 0 012 2v2"/><path d="M3 11h14"/></svg>`,
+    code: `<svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7l-4 3 4 3"/><path d="M14 7l4 3-4 3"/><path d="M11 4l-2 12"/></svg>`,
+    folder: `<svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h4l2 2h4a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/></svg>`,
+    book: `<svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17.5v-13A2.5 2.5 0 016.5 2H16v16H6.5A2.5 2.5 0 004 20v-2.5z"/><path d="M6 6h6M6 10h6"/></svg>`,
+    mail: `<svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h14a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"/><path d="M3 5l7 5 7-5"/></svg>`,
+    sun: `<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`,
+    download: `<svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v10M6 9l4 4 4-4M3 15v1a2 2 0 002 2h10a2 2 0 002-2v-1"/></svg>`,
+    external: `<svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3h6v6M10 10l7-7M8 5H4a2 2 0 00-2 2v9a2 2 0 002 2h9a2 2 0 002-2v-4"/></svg>`,
+    eye: `<svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="3"/><path d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z"/></svg>`,
+    copy: `<svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M3 13V5a2 2 0 012-2h8"/></svg>`,
+  };
+
+  function createCommandDefinitions(): CommandItem[] {
+    return [
+      // 1. Navigation Commands
+      {
+        id: 'nav-home',
+        title: 'Home',
+        subtitle: 'Navigate to hero section and introduction',
+        category: 'Navigation',
+        keywords: ['home', 'index', 'main', 'landing', 'faycal'],
+        icon: icons.home,
+        action: () => navigateTo('/'),
+      },
+      {
+        id: 'nav-career',
+        title: 'Career Timeline',
+        subtitle: '7 companies: AUTOQUAL, SABIL, Finnetude, InstaClean, Kabri, PIASSA, BFLN',
+        category: 'Navigation',
+        keywords: ['career', 'timeline', 'experience', 'jobs', 'autoqual', 'sabil', 'finnetude', 'instaclean', 'kabri', 'piassa', 'bfln'],
+        icon: icons.briefcase,
+        action: () => navigateTo('/#career'),
+      },
+      {
+        id: 'nav-skills',
+        title: 'Skills Matrix (Bento Grid)',
+        subtitle: 'TypeScript, NestJS, Android Native, Media3, PostgreSQL, Docker',
+        category: 'Navigation',
+        keywords: ['skills', 'tech', 'stack', 'typescript', 'bento', 'grid', 'nestjs', 'compose', 'docker', 'postgresql'],
+        icon: icons.code,
+        action: () => navigateTo('/#skills'),
+      },
+      {
+        id: 'nav-projects',
+        title: 'Projects Archive',
+        subtitle: 'Browse all hobby and commercial software projects',
+        category: 'Navigation',
+        keywords: ['projects', 'archive', 'portfolio', 'work', 'all', 'open-source'],
+        icon: icons.folder,
+        action: () => navigateTo('/projects'),
+      },
+      {
+        id: 'nav-bookreader',
+        title: 'BookReader Android Flagship Showcase',
+        subtitle: 'Free & Open Source TTS novel reader with Jetpack Compose & Media3',
+        category: 'Projects',
+        badge: 'Hobby Project',
+        badgeColor: 'amber',
+        keywords: ['bookreader', 'flagship', 'hobby', 'android', 'tts', 'compose', 'media3', 'exoplayer', 'apk'],
+        icon: icons.book,
+        action: () => navigateTo('/projects/bookreader'),
+      },
+      {
+        id: 'nav-contact',
+        title: 'Contact Faycal Rafa',
+        subtitle: 'Reach out via email or discuss engineering opportunities',
+        category: 'Navigation',
+        keywords: ['contact', 'email', 'hire', 'message', 'reach', 'talk'],
+        icon: icons.mail,
+        action: () => navigateTo('/#contact'),
+      },
+
+      // 2. Quick Actions
+      {
+        id: 'action-theme',
+        title: 'Toggle Theme (Dark / Light)',
+        subtitle: 'Switch between dark and light color scheme',
+        category: 'Actions',
+        badge: 'Color Mode',
+        keywords: ['theme', 'dark', 'light', 'mode', 'toggle', 'color', 'switch'],
+        icon: icons.sun,
+        action: () => toggleTheme(),
+      },
+      {
+        id: 'action-download-cv',
+        title: 'Download CV (PDF)',
+        subtitle: 'Direct download of official Faycal_Rafa_CV_2026.pdf document',
+        category: 'Actions',
+        badge: 'PDF',
+        badgeColor: 'blue',
+        keywords: ['cv', 'resume', 'pdf', 'download', 'curriculum', 'vitae', 'faycal rafa'],
+        icon: icons.download,
+        action: () => triggerCvDownload(),
+      },
+      {
+        id: 'action-view-cv',
+        title: 'Open CV Modal Viewer',
+        subtitle: 'View the complete CV inline without leaving the page',
+        category: 'Actions',
+        badge: 'Viewer',
+        keywords: ['cv', 'resume', 'modal', 'view', 'preview', 'inline', 'pdf'],
+        icon: icons.eye,
+        action: () => openCvModal(),
+      },
+      {
+        id: 'action-download-apk',
+        title: 'Download BookReader APK (v3.4.0)',
+        subtitle: 'Download app-release.apk directly from latest GitHub release',
+        category: 'Actions',
+        badge: 'v3.4.0 • APK',
+        badgeColor: 'emerald',
+        keywords: ['apk', 'download', 'bookreader', 'android', 'install', 'release', 'v3.4.0'],
+        icon: icons.download,
+        action: () => {
+          window.location.href = 'https://github.com/faycalrafa/free-novel-reader-tts-android/releases/download/v3.4.0/app-release.apk';
+        },
+      },
+      {
+        id: 'action-copy-email',
+        title: 'Copy Email Address',
+        subtitle: 'Copy rafafaycal@gmail.com to clipboard',
+        category: 'Actions',
+        keywords: ['copy', 'email', 'clipboard', 'mail', 'rafafaycal'],
+        icon: icons.copy,
+        action: () => {
+          navigator.clipboard?.writeText('rafafaycal@gmail.com');
+          alert('Copied rafafaycal@gmail.com to clipboard!');
+        },
+      },
+
+      // 3. Social & External Links
+      {
+        id: 'link-github',
+        title: 'GitHub Profile (@faycalrafa)',
+        subtitle: 'View open-source repositories and contributions on GitHub',
+        category: 'Social & Links',
+        keywords: ['github', 'profile', 'git', 'repo', 'open source', 'faycalrafa'],
+        icon: icons.external,
+        action: () => window.open('https://github.com/faycalrafa', '_blank', 'noopener,noreferrer'),
+      },
+      {
+        id: 'link-linkedin',
+        title: 'LinkedIn Profile',
+        subtitle: 'Connect with Faycal Rafa on LinkedIn',
+        category: 'Social & Links',
+        keywords: ['linkedin', 'profile', 'connect', 'social', 'network'],
+        icon: icons.external,
+        action: () => window.open('https://www.linkedin.com/in/faycal-rafa-89a366249', '_blank', 'noopener,noreferrer'),
+      },
+      {
+        id: 'link-bookreader-repo',
+        title: 'BookReader GitHub Repository',
+        subtitle: 'Source code: Kotlin, Jetpack Compose, ExoPlayer Media3, TTS',
+        category: 'Social & Links',
+        badge: 'GitHub',
+        keywords: ['bookreader', 'repo', 'source', 'code', 'github', 'novel', 'reader'],
+        icon: icons.external,
+        action: () => window.open('https://github.com/faycalrafa/free-novel-reader-tts-android', '_blank', 'noopener,noreferrer'),
+      },
+    ];
+  }
+
+  function navigateTo(url: string) {
+    window.location.href = url;
+  }
+
+  // Theme toggle action: toggles class="dark", persists to localStorage, dispatches custom event
+  function toggleTheme() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    const theme = isDark ? 'dark' : 'light';
+    try {
+      localStorage.setItem('theme', theme);
+    } catch (e) {}
+
+    const meta = document.querySelector('meta[name="color-scheme"]');
+    if (meta) meta.setAttribute('content', theme);
+
+    // Dispatch theme-changed event for all components listening
+    window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme } }));
+  }
+
+  function triggerCvDownload() {
+    const link = document.createElement('a');
+    link.href = '/Faycal_Rafa_CV_2026.pdf';
+    link.download = 'Faycal_Rafa_CV_2026.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function openCvModal() {
+    window.dispatchEvent(new CustomEvent('open-cv-modal'));
+  }
+
+  // Init palette function executed on initial load & astro:page-load
+  function initCommandPalette() {
+    const modalEl = document.getElementById('command-palette-modal');
+    const backdropEl = document.getElementById('command-palette-backdrop');
+    const inputEl = document.getElementById('command-palette-input') as HTMLInputElement | null;
+    const resultsEl = document.getElementById('command-palette-results');
+    const emptyEl = document.getElementById('command-palette-empty');
+    const emptyQueryEl = document.getElementById('command-palette-empty-query');
+    const closeBtn = document.getElementById('command-palette-close-btn');
+
+    if (!modalEl || !backdropEl || !inputEl || !resultsEl || !emptyEl) return;
+
+    const allCommands = createCommandDefinitions();
+    filteredCommands = [...allCommands];
+    selectedIndex = 0;
+    isPaletteOpen = false;
+
+    function openPalette() {
+      isPaletteOpen = true;
+      modalEl?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      if (inputEl) {
+        inputEl.value = '';
+        filterCommands('');
+        setTimeout(() => inputEl.focus(), 50);
+      }
+    }
+
+    function closePalette() {
+      isPaletteOpen = false;
+      modalEl?.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (inputEl) inputEl.value = '';
+    }
+
+    function togglePalette() {
+      if (isPaletteOpen) {
+        closePalette();
+      } else {
+        openPalette();
+      }
+    }
+
+    // Safe query matching: immune to regex syntax errors
+    function filterCommands(query: string) {
+      const cleanQuery = query.toLowerCase().trim();
+
+      if (!cleanQuery) {
+        filteredCommands = [...allCommands];
+      } else {
+        filteredCommands = allCommands.filter((cmd) => {
+          const matchTitle = cmd.title.toLowerCase().includes(cleanQuery);
+          const matchSub = cmd.subtitle.toLowerCase().includes(cleanQuery);
+          const matchCat = cmd.category.toLowerCase().includes(cleanQuery);
+          const matchBadge = cmd.badge ? cmd.badge.toLowerCase().includes(cleanQuery) : false;
+          const matchKeywords = cmd.keywords.some((kw) => kw.toLowerCase().includes(cleanQuery));
+          return matchTitle || matchSub || matchCat || matchBadge || matchKeywords;
+        });
+      }
+
+      selectedIndex = 0;
+      renderCommands(cleanQuery);
+    }
+
+    function renderCommands(query: string) {
+      if (!resultsEl || !emptyEl || !emptyQueryEl) return;
+
+      if (filteredCommands.length === 0) {
+        resultsEl.innerHTML = '';
+        resultsEl.classList.add('hidden');
+        emptyQueryEl.textContent = `"${query}"`;
+        emptyEl.classList.remove('hidden');
+        return;
+      }
+
+      emptyEl.classList.add('hidden');
+      resultsEl.classList.remove('hidden');
+
+      // Group commands by Category
+      const categories: { [cat: string]: CommandItem[] } = {};
+      filteredCommands.forEach((cmd) => {
+        if (!categories[cmd.category]) categories[cmd.category] = [];
+        categories[cmd.category].push(cmd);
+      });
+
+      let html = '';
+      let globalIdx = 0;
+
+      for (const [category, items] of Object.entries(categories)) {
+        html += `
+          <div class="px-3 pt-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+            ${category}
+          </div>
+        `;
+
+        items.forEach((item) => {
+          const isSelected = globalIdx === selectedIndex;
+          const badgeHtml = item.badge
+            ? `<span class="shrink-0 inline-flex items-center rounded-md px-1.5 py-0.5 text-[10px] font-semibold border ${
+                item.badgeColor === 'amber'
+                  ? 'bg-amber-500/10 text-amber-600 border-amber-500/20 dark:bg-amber-400/10 dark:text-amber-400'
+                  : item.badgeColor === 'emerald'
+                  ? 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:bg-emerald-400/10 dark:text-emerald-400'
+                  : 'bg-blue-500/10 text-blue-600 border-blue-500/20 dark:bg-blue-400/10 dark:text-blue-400'
+              }">${item.badge}</span>`
+            : '';
+
+          html += `
+            <div
+              class="command-item group flex cursor-pointer items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors ${
+                isSelected
+                  ? 'bg-blue-600 text-white dark:bg-blue-600'
+                  : 'text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800/70'
+              }"
+              role="option"
+              aria-selected="${isSelected ? 'true' : 'false'}"
+              data-index="${globalIdx}"
+            >
+              <div class="flex items-center gap-3 overflow-hidden">
+                <div class="shrink-0 ${isSelected ? 'text-white' : 'text-zinc-400 group-hover:text-zinc-600 dark:text-zinc-500 dark:group-hover:text-zinc-300'}">
+                  ${item.icon}
+                </div>
+                <div class="flex flex-col truncate">
+                  <span class="font-medium truncate ${isSelected ? 'text-white' : 'text-zinc-900 dark:text-zinc-100'}">
+                    ${item.title}
+                  </span>
+                  <span class="text-xs truncate ${isSelected ? 'text-blue-100' : 'text-zinc-500 dark:text-zinc-400'}">
+                    ${item.subtitle}
+                  </span>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                ${badgeHtml}
+                <svg class="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity ${isSelected ? 'opacity-100 text-white' : 'text-zinc-400'}" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+              </div>
+            </div>
+          `;
+          globalIdx++;
+        });
+      }
+
+      resultsEl.innerHTML = html;
+
+      // Attach click & hover events to rendered items
+      const itemEls = resultsEl.querySelectorAll<HTMLElement>('.command-item');
+      itemEls.forEach((el) => {
+        const idx = parseInt(el.getAttribute('data-index') || '0', 10);
+        el.addEventListener('click', () => {
+          executeCommand(idx);
+        });
+        el.addEventListener('mouseenter', () => {
+          selectedIndex = idx;
+          updateItemHighlight();
+        });
+      });
+    }
+
+    function updateItemHighlight() {
+      if (!resultsEl) return;
+      const itemEls = resultsEl.querySelectorAll<HTMLElement>('.command-item');
+      itemEls.forEach((el, idx) => {
+        const isSelected = idx === selectedIndex;
+        el.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        if (isSelected) {
+          el.className = 'command-item group flex cursor-pointer items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors bg-blue-600 text-white dark:bg-blue-600';
+          el.scrollIntoView({ block: 'nearest' });
+        } else {
+          el.className = 'command-item group flex cursor-pointer items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800/70';
+        }
+      });
+    }
+
+    function executeCommand(index: number) {
+      if (index >= 0 && index < filteredCommands.length) {
+        const cmd = filteredCommands[index];
+        closePalette();
+        cmd.action();
+      }
+    }
+
+    // Input event listener for search query typing
+    inputEl.addEventListener('input', (e) => {
+      const target = e.target as HTMLInputElement;
+      filterCommands(target.value);
+    });
+
+    // Backdrop & Close Button Dismiss
+    backdropEl.addEventListener('click', closePalette);
+    closeBtn?.addEventListener('click', closePalette);
+
+    // Global Keyboard Listeners Setup
+    if (globalKeydownHandler) {
+      document.removeEventListener('keydown', globalKeydownHandler);
+    }
+
+    globalKeydownHandler = (e: KeyboardEvent) => {
+      // 1. Shortcut: e.metaKey || e.ctrlKey && e.key === 'k'
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        togglePalette();
+        return;
+      }
+
+      // 2. Shortcut: '/' key (ignored when focused in inputs, textareas, or contenteditables)
+      if (e.key === '/') {
+        const active = document.activeElement;
+        const isInput = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || (active as HTMLElement).isContentEditable);
+        if (!isInput) {
+          e.preventDefault();
+          openPalette();
+          return;
+        }
+      }
+
+      // 3. Handlers when palette is open
+      if (isPaletteOpen) {
+        // Escape key dismisses palette
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closePalette();
+          return;
+        }
+
+        // Arrow down navigation
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (filteredCommands.length > 0) {
+            selectedIndex = (selectedIndex + 1) % filteredCommands.length;
+            updateItemHighlight();
+          }
+          return;
+        }
+
+        // Arrow up navigation
+        if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (filteredCommands.length > 0) {
+            selectedIndex = (selectedIndex - 1 + filteredCommands.length) % filteredCommands.length;
+            updateItemHighlight();
+          }
+          return;
+        }
+
+        // Enter key executes selected item
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          executeCommand(selectedIndex);
+          return;
+        }
+      }
+    };
+
+    document.addEventListener('keydown', globalKeydownHandler);
+
+    // Listen for custom trigger event (dispatched by Navbar search buttons)
+    if (customOpenHandler) {
+      window.removeEventListener('open-command-palette', customOpenHandler);
+    }
+    customOpenHandler = () => {
+      openPalette();
+    };
+    window.addEventListener('open-command-palette', customOpenHandler);
+  }
+
+  // Teardown before ClientRouter document swaps
+  document.addEventListener('astro:before-swap', () => {
+    if (globalKeydownHandler) {
+      document.removeEventListener('keydown', globalKeydownHandler);
+      globalKeydownHandler = null;
+    }
+    if (customOpenHandler) {
+      window.removeEventListener('open-command-palette', customOpenHandler);
+      customOpenHandler = null;
+    }
+    document.body.style.overflow = '';
+  });
+
+  // Re-bind listeners on initial page load and on subsequent Astro view transitions
+  document.addEventListener('astro:page-load', initCommandPalette);
+</script>

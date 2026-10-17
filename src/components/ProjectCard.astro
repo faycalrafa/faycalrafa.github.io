@@ -1,0 +1,237 @@
+---
+/**
+ * src/components/ProjectCard.astro
+ * 
+ * Reusable Project Card Component for Faycal Rafa Portfolio
+ * Aligned with Astro 5 Content Layer API, Tailwind CSS v4, and E2E Test Suites:
+ * - tests/e2e/tier1_features.test.js (T1.F07.05: Explicit "Hobby Project" badge)
+ * - tests/e2e/tier2_boundaries.test.js (T2.F07.04: Conditional external URLs, zero dead href="#")
+ * - tests/e2e/tier2_boundaries.test.js (T2.F07.05: Graceful highlights handling for empty items)
+ * - tests/e2e/tier4_scenarios.test.js (T4.04: Contributor journey & repo links)
+ */
+import type { CollectionEntry } from 'astro:content';
+
+export interface ProjectData {
+  title: string;
+  tagline: string;
+  category: 'hobby' | 'commercial' | 'open-source';
+  repoUrl?: string;
+  apkDownloadUrl?: string;
+  liveUrl?: string;
+  stack: string[];
+  highlights: string[];
+  featured?: boolean;
+  order?: number;
+  publishedDate?: string;
+}
+
+export interface ProjectItem {
+  id: string;
+  data: ProjectData;
+  [key: string]: any;
+}
+
+interface Props {
+  project?: CollectionEntry<'projects'> | ProjectItem;
+  id?: string;
+  title?: string;
+  tagline?: string;
+  category?: 'hobby' | 'commercial' | 'open-source' | string;
+  repoUrl?: string;
+  apkDownloadUrl?: string;
+  liveUrl?: string;
+  stack?: string[];
+  highlights?: string[];
+  featured?: boolean;
+  order?: number;
+  publishedDate?: string;
+}
+
+const { project } = Astro.props;
+
+// Resilient props resolution: support both CollectionEntry object and direct props
+const id = project ? project.id : Astro.props.id || '';
+const rawData = project ? project.data : Astro.props;
+
+const title = rawData.title || '';
+const tagline = rawData.tagline || '';
+const category = (rawData.category || 'hobby') as 'hobby' | 'commercial' | 'open-source';
+const repoUrl = rawData.repoUrl;
+const apkDownloadUrl = rawData.apkDownloadUrl;
+const liveUrl = rawData.liveUrl;
+const stack = Array.isArray(rawData.stack) ? rawData.stack : [];
+const rawHighlights = Array.isArray(rawData.highlights) ? rawData.highlights : [];
+const featured = Boolean(rawData.featured);
+
+// Filter highlights gracefully: strip empty strings, whitespace, or invalid entries (satisfying T2.F07.05)
+const highlights = rawHighlights.filter(
+  (item): item is string => typeof item === 'string' && item.trim().length > 0
+);
+
+// Flagship check and details routing:
+// BookReader routes directly to dedicated flagship showcase /projects/bookreader
+// Other projects route to dynamic details page /projects/${id}
+const isBookReader = id === 'bookreader';
+const isHobby = category === 'hobby';
+const detailsUrl = isBookReader ? '/projects/bookreader' : id ? `/projects/${id}` : '/projects';
+
+// Aggregated search text for client-side search filtering
+const searchableText = `${title} ${tagline} ${stack.join(' ')} ${highlights.join(' ')}`.toLowerCase();
+---
+
+<article
+  class="project-card group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-zinc-700"
+  data-category={category}
+  data-search-text={searchableText}
+  data-project-card
+>
+  <!-- Card Header & Metadata -->
+  <div>
+    <div class="flex items-center justify-between gap-3">
+      <!-- Category Badge: Prominent, explicit "Hobby Project" badge when category === 'hobby' (T1.F07.05) -->
+      <div class="flex flex-wrap items-center gap-2">
+        {isHobby ? (
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400 shadow-2xs">
+            <span class="h-2 w-2 rounded-full bg-amber-500 animate-pulse" aria-hidden="true"></span>
+            Hobby Project
+          </span>
+        ) : category === 'commercial' ? (
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-700 dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-400">
+            <span class="h-2 w-2 rounded-full bg-blue-500" aria-hidden="true"></span>
+            Commercial
+          </span>
+        ) : (
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-700 dark:border-purple-400/30 dark:bg-purple-400/10 dark:text-purple-400">
+            <span class="h-2 w-2 rounded-full bg-purple-500" aria-hidden="true"></span>
+            Open Source
+          </span>
+        )}
+
+        {featured && (
+          <span class="inline-flex items-center gap-1 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-2 py-0.5 text-[11px] font-semibold text-yellow-700 dark:text-yellow-400">
+            <svg class="h-3 w-3 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            Featured
+          </span>
+        )}
+      </div>
+
+      <!-- BookReader Flagship Icon or Monogram -->
+      {isBookReader && (
+        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-amber-700 text-xs font-bold text-white shadow-xs">
+          BR
+        </span>
+      )}
+    </div>
+
+    <!-- Title & Tagline -->
+    <div class="mt-4">
+      <h3 class="text-xl font-bold tracking-tight text-zinc-900 group-hover:text-blue-600 dark:text-zinc-100 dark:group-hover:text-blue-400 transition-colors">
+        <a href={detailsUrl} class="focus-visible:outline-none focus-visible:underline">
+          {title}
+        </a>
+      </h3>
+      <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+        {tagline}
+      </p>
+    </div>
+
+    <!-- Tech Stack Pills -->
+    {stack.length > 0 && (
+      <div class="mt-4 flex flex-wrap gap-1.5" aria-label={`Tech stack for ${title}`}>
+        {stack.map((tech) => (
+          <span class="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/80 px-2 py-0.5 text-xs font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300">
+            {tech}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <!-- Highlights List (satisfying T2.F07.05) -->
+    {highlights.length > 0 && (
+      <div class="mt-4 space-y-2 border-t border-zinc-100 pt-3 dark:border-zinc-800/80">
+        <p class="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+          Key Highlights
+        </p>
+        <ul class="space-y-1.5 text-xs text-zinc-600 dark:text-zinc-400">
+          {highlights.slice(0, 3).map((item) => (
+            <li class="flex items-start gap-2">
+              <svg class="h-3.5 w-3.5 shrink-0 text-emerald-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span class="line-clamp-2 leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+
+  <!-- Card Action Footer: Details Link + Conditional External Buttons (T2.F07.04: Zero dead '#' links) -->
+  <div class="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-zinc-100 pt-4 dark:border-zinc-800/80">
+    <!-- Primary Details CTA -->
+    <a
+      href={detailsUrl}
+      class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors group/link"
+    >
+      <span>{isBookReader ? 'Flagship Showcase' : 'View Architecture'}</span>
+      <svg class="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+      </svg>
+    </a>
+
+    <!-- Conditional External Links: ONLY rendered if URLs exist (satisfying T2.F07.04) -->
+    <div class="flex items-center gap-2">
+      {apkDownloadUrl && (
+        <a
+          href={apkDownloadUrl}
+          download
+          class="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1.5 text-xs font-semibold text-emerald-700 hover:bg-emerald-500/20 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400 transition-colors"
+          title="Direct APK Download (v3.4.0)"
+          aria-label={`Download APK for ${title}`}
+        >
+          <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 3a.75.75 0 01.75.75v8.69l2.22-2.22a.75.75 0 111.06 1.06l-3.5 3.5a.75.75 0 01-1.06 0l-3.5-3.5a.75.75 0 111.06-1.06l2.22 2.22V3.75A.75.75 0 0110 3z" clip-rule="evenodd" />
+            <path d="M3.75 16.5A.75.75 0 003 17.25c0 .414.336.75.75.75h12.5a.75.75 0 00.75-.75.75.75 0 00-.75-.75H3.75z" />
+          </svg>
+          <span>APK</span>
+        </a>
+      )}
+
+      {repoUrl && (
+        <a
+          href={repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-zinc-50 px-2.5 py-1.5 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors"
+          title="GitHub Repository"
+          aria-label={`View GitHub repository for ${title}`}
+        >
+          <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          <span>Repo</span>
+        </a>
+      )}
+
+      {liveUrl && (
+        <a
+          href={liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-zinc-50 px-2.5 py-1.5 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors"
+          title="Visit Live Application"
+          aria-label={`Visit live site for ${title}`}
+        >
+          <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M11 3h6v6" />
+            <path d="M10 10l7-7" />
+            <path d="M17 11v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6" />
+          </svg>
+          <span>Live</span>
+        </a>
+      )}
+    </div>
+  </div>
+</article>

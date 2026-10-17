@@ -1,0 +1,710 @@
+---
+// src/pages/projects/bookreader.astro
+// Dedicated flagship showcase page for BookReader Android hobby project.
+// Features: 3D app icon, direct APK download, interactive TTS simulator, architecture deep-dive.
+
+import Layout from '../../layouts/Layout.astro';
+
+const APK_URL = 'https://github.com/faycalrafa/free-novel-reader-tts-android/releases/download/v3.4.0/app-release.apk';
+const UPDATE_APK_URL = 'https://github.com/faycalrafa/free-novel-reader-tts-android/releases/download/v3.4.0/update-latest.apk';
+const REPO_URL = 'https://github.com/faycalrafa/free-novel-reader-tts-android';
+const RELEASE_URL = 'https://github.com/faycalrafa/free-novel-reader-tts-android/releases/tag/v3.4.0';
+const APP_ICON_URL = 'https://raw.githubusercontent.com/faycalrafa/free-novel-reader-tts-android/main/android-app/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp';
+---
+
+<Layout
+  title="BookReader — Android Novel Reader | Faycal Rafa"
+  description="BookReader is Faycal Rafa's flagship Android hobby project: a high-performance novel reader with smart TTS, quote-aware sentence chunking, AndroidX Media3, and Jetpack Compose M3."
+>
+  <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
+        <li>
+          <a href="/" class="flex items-center gap-1.5 rounded transition-colors hover:text-zinc-900 dark:hover:text-zinc-100">
+            <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9.5L10 3l7 6.5" /><path d="M19 13v6a1 1 0 01-1 1H2a1 1 0 01-1-1v-6" />
+            </svg>
+            <span>Home</span>
+          </a>
+        </li>
+        <li class="text-zinc-400 dark:text-zinc-600" aria-hidden="true">
+          <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" /></svg>
+        </li>
+        <li>
+          <a href="/projects" class="rounded transition-colors hover:text-zinc-900 dark:hover:text-zinc-100">Projects</a>
+        </li>
+        <li class="text-zinc-400 dark:text-zinc-600" aria-hidden="true">
+          <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" /></svg>
+        </li>
+        <li class="font-medium text-zinc-900 dark:text-zinc-100" aria-current="page">BookReader</li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <header class="mb-12">
+      <div class="flex flex-col gap-8 sm:flex-row sm:items-start">
+        <!-- App Icon -->
+        <div class="shrink-0">
+          <div class="relative h-28 w-28 sm:h-36 sm:w-36">
+            <div class="absolute inset-0 rounded-[32%] bg-gradient-to-br from-amber-400 via-orange-500 to-red-600 opacity-20 blur-2xl scale-110"></div>
+            <img
+              src={APP_ICON_URL}
+              alt="BookReader app launcher icon"
+              width="144"
+              height="144"
+              class="relative h-full w-full rounded-[32%] object-cover shadow-2xl shadow-amber-600/30 ring-4 ring-amber-500/20"
+              loading="eager"
+              fetchpriority="high"
+              onerror="this.style.display='none';document.getElementById('icon-fallback').style.display='flex'"
+            />
+            <div id="icon-fallback" class="relative hidden h-full w-full rounded-[32%] bg-gradient-to-br from-amber-500 to-orange-600 items-center justify-center shadow-2xl">
+              <svg class="h-16 w-16 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19 2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.988 5 19.806 5 19s.55-.988 1.012-1H21V4c0-1.103-.897-2-2-2zm0 14H5V5c0-.806.55-.988 1-1h13v12z"/>
+                <path d="M9 7h6v2H9zm0 4h6v2H9z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="flex-1 min-w-0">
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/15 dark:text-amber-300 ring-1 ring-amber-500/20">
+              <span class="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" aria-hidden="true"></span>
+              Hobby Project
+            </span>
+            <span class="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/15 dark:text-emerald-300">
+              v3.4.0 · Latest
+            </span>
+            <span class="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">
+              Android · Kotlin
+            </span>
+          </div>
+
+          <h1 class="text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl md:text-5xl dark:text-zinc-50">
+            BookReader
+          </h1>
+          <p class="mt-3 text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 max-w-2xl">
+            My ongoing Android hobby project — a high-performance native novel reader with smart TTS audio streaming, quote-aware sentence chunking, and a built-in web scraper for light novels and web fiction.
+          </p>
+
+          <!-- Download CTAs -->
+          <div class="mt-6 flex flex-wrap items-center gap-3">
+            <a
+              href={APK_URL}
+              class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-600/25 hover:from-amber-500 hover:to-orange-500 dark:from-amber-500 dark:to-orange-500 dark:hover:from-amber-400 dark:hover:to-orange-400 transition-all hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+              download="BookReader-v3.4.0.apk"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span>Download APK</span>
+              <span class="text-amber-200 font-normal text-xs">~20 MB</span>
+            </a>
+
+            <a
+              href={UPDATE_APK_URL}
+              class="inline-flex items-center gap-2 rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-700 shadow-xs hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+              download="BookReader-update-latest.apk"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+              </svg>
+              <span>Update APK</span>
+            </a>
+
+            <a
+              href={REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-700 shadow-xs hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            >
+              <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+              <span>GitHub Repo</span>
+            </a>
+
+            <a
+              href={RELEASE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs text-zinc-500 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors underline underline-offset-2"
+            >
+              Release Notes →
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══════════════════ INTERACTIVE TTS SIMULATOR ═══════════════════ -->
+    <section class="mb-14" aria-labelledby="simulator-heading">
+      <div class="rounded-2xl border-2 border-amber-500/30 bg-gradient-to-br from-amber-50 via-orange-50/50 to-zinc-50 dark:from-amber-950/30 dark:via-orange-950/20 dark:to-zinc-900 dark:border-amber-400/25 overflow-hidden shadow-lg">
+        <!-- Simulator Header -->
+        <div class="px-6 py-5 border-b border-amber-500/20 dark:border-amber-400/15 bg-amber-500/5 dark:bg-amber-900/10">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="inline-flex items-center rounded-md bg-amber-500/20 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300">Live Demo</span>
+                <span class="text-xs text-zinc-500 dark:text-zinc-400">No install required</span>
+              </div>
+              <h2 id="simulator-heading" class="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+                Quote-Aware TTS Sentence Chunker
+              </h2>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-0.5">
+                The exact algorithm BookReader uses to split text into natural audio segments — demo it live in your browser.
+              </p>
+            </div>
+            <div id="sim-status-badge" class="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">
+              <span class="h-2 w-2 rounded-full bg-zinc-400" id="sim-status-dot"></span>
+              <span id="sim-status-text">Ready</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sample Presets -->
+        <div class="px-6 pt-5">
+          <p class="text-xs font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mb-2.5">Sample Presets</p>
+          <div class="flex flex-wrap gap-2" id="presets-container">
+            <button data-preset="english" class="preset-btn rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-amber-400 hover:bg-amber-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:border-amber-500 dark:hover:bg-amber-900/20 transition-colors">🇬🇧 English Novel</button>
+            <button data-preset="arabic" class="preset-btn rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-amber-400 hover:bg-amber-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:border-amber-500 dark:hover:bg-amber-900/20 transition-colors">🇩🇿 Arabic Sample</button>
+            <button data-preset="french" class="preset-btn rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-amber-400 hover:bg-amber-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:border-amber-500 dark:hover:bg-amber-900/20 transition-colors">🇫🇷 French Excerpt</button>
+            <button data-preset="cjk" class="preset-btn rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-amber-400 hover:bg-amber-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:border-amber-500 dark:hover:bg-amber-900/20 transition-colors">🇯🇵 CJK Punctuation</button>
+          </div>
+        </div>
+
+        <!-- Text Input -->
+        <div class="px-6 pt-4">
+          <label for="tts-input" class="block text-xs font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mb-2">Input Text</label>
+          <textarea
+            id="tts-input"
+            rows="4"
+            class="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800/80 dark:text-zinc-100 dark:placeholder-zinc-500 dark:focus:border-amber-400 transition-colors resize-none font-mono leading-relaxed"
+            placeholder='Paste novel text here, or click a sample preset above...'
+          ></textarea>
+        </div>
+
+        <!-- Controls Row -->
+        <div class="px-6 pt-3 pb-2">
+          <div class="flex flex-wrap items-center gap-3">
+            <!-- Speed -->
+            <div class="flex items-center gap-2">
+              <label for="tts-speed" class="text-xs font-medium text-zinc-600 dark:text-zinc-400 whitespace-nowrap">Speed</label>
+              <select id="tts-speed" class="rounded-lg border border-zinc-200 bg-white px-2.5 py-1.5 text-xs font-semibold text-zinc-800 focus:border-amber-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 transition-colors">
+                <option value="0.75">0.75×</option>
+                <option value="1.0" selected>1.0×</option>
+                <option value="1.25">1.25×</option>
+                <option value="1.5">1.5×</option>
+                <option value="1.75">1.75×</option>
+                <option value="2.0">2.0×</option>
+              </select>
+            </div>
+
+            <!-- Voice -->
+            <div class="flex items-center gap-2 flex-1 min-w-0">
+              <label for="tts-voice" class="text-xs font-medium text-zinc-600 dark:text-zinc-400 whitespace-nowrap">Voice</label>
+              <select id="tts-voice" class="rounded-lg border border-zinc-200 bg-white px-2.5 py-1.5 text-xs font-semibold text-zinc-800 focus:border-amber-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 transition-colors flex-1 min-w-0 truncate">
+                <option value="">Default Voice</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="px-6 pt-3 pb-6">
+          <div class="flex flex-wrap items-center gap-3">
+            <button id="btn-chunk" class="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+              </svg>
+              Chunk & Preview
+            </button>
+            <button id="btn-play" disabled class="inline-flex items-center gap-2 rounded-xl bg-amber-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-amber-600/25 hover:bg-amber-500 dark:bg-amber-500 dark:hover:bg-amber-400 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600 disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" id="play-icon">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <span id="play-btn-label">Play All</span>
+            </button>
+            <button id="btn-stop" disabled class="inline-flex items-center gap-2 rounded-xl border border-zinc-200 bg-white px-4 py-2.5 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-500 disabled:opacity-40 disabled:cursor-not-allowed">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <rect x="6" y="6" width="12" height="12" rx="1"/>
+              </svg>
+              Stop
+            </button>
+          </div>
+        </div>
+
+        <!-- Chunked Sentences Visualizer -->
+        <div id="chunks-panel" class="hidden border-t border-amber-500/20 dark:border-amber-400/15 px-6 py-5">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-xs font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+              Sentence Chunks
+              <span id="chunk-count" class="ml-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-500/20 px-1.5 text-xs font-bold text-amber-800 dark:text-amber-300">0</span>
+            </p>
+            <p class="text-xs text-zinc-400 dark:text-zinc-500">Click any sentence to read from there</p>
+          </div>
+          <div id="chunks-list" class="flex flex-col gap-2 max-h-72 overflow-y-auto pr-1" role="list" aria-label="Chunked sentences"></div>
+        </div>
+
+        <!-- No Speech API Warning -->
+        <div id="no-speech-warning" class="hidden border-t border-red-500/20 px-6 py-4 bg-red-50/50 dark:bg-red-950/20">
+          <p class="text-sm text-red-700 dark:text-red-400">
+            ⚠️ Your browser doesn't support the Web Speech API. Chunking works, but audio playback isn't available. Try Chrome or Edge.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ FEATURES GRID ═══════════════════ -->
+    <section class="mb-14" aria-labelledby="features-heading">
+      <h2 id="features-heading" class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6">Key Features</h2>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          { emoji: '🎙️', title: 'Smart TTS Engine', desc: 'Quote-aware sentence chunking with CJK, Arabic, and Western punctuation support. No robotic mid-dialogue splits.' },
+          { emoji: '⏱️', title: 'Sleep Timer', desc: 'Built-in presets (15m, 20m, 30m, 45m, 1h) with intelligent auto-reset when you resume playback from earbuds.' },
+          { emoji: '📥', title: 'Batch Chapter Downloader', desc: 'Automatically paginates, extracts clean chapter text, and downloads entire web novels for offline reading.' },
+          { emoji: '🌐', title: 'Built-in Browser', desc: 'Multi-tab browsing with history, bookmarks, and one-tap chapter scraping from any web novel site.' },
+          { emoji: '🔊', title: 'Background Playback', desc: 'AndroidX Media3 MediaSessionService with full lock screen controls, notification controls, and audio focus management.' },
+          { emoji: '🎨', title: 'Responsive UI', desc: 'Jetpack Compose Material 3 with Sepia, Dark, and Light themes. Speed control from 0.5× to 2.5×, custom TTS voices.' },
+          { emoji: '🧹', title: 'Content Filters', desc: 'Header/footer skip keywords, HTML CSS selectors, word skip rules, and pronunciation replacements for clean reading.' },
+          { emoji: '💾', title: 'Crash-Proof Storage', desc: 'AtomicFile writes for zero corruption on sudden kills. All state survives aggressive Android battery managers.' },
+          { emoji: '🔧', title: 'Userscript Engine', desc: 'Modular script injection with wildcard URL pattern matching, custom DOM manipulation, and site-specific overrides.' },
+        ].map(({ emoji, title, desc }) => (
+          <div class="rounded-xl border border-zinc-200/80 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900/60 hover:border-amber-300/60 dark:hover:border-amber-600/40 transition-colors">
+            <div class="text-2xl mb-3">{emoji}</div>
+            <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-1.5">{title}</h3>
+            <p class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ═══════════════════ ARCHITECTURE ═══════════════════ -->
+    <section class="mb-14" aria-labelledby="arch-heading">
+      <h2 id="arch-heading" class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6">Architecture & Technology</h2>
+      <div class="overflow-hidden rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-xs">
+        {[
+          {
+            layer: 'UI Layer',
+            color: 'blue',
+            tech: 'Jetpack Compose M3',
+            desc: 'Fully declarative Kotlin UI with Material Design 3 theming. Dynamic sepia/dark/light themes, bottom dock media controls, and full-width adaptive dialogs for settings.',
+          },
+          {
+            layer: 'Audio Engine',
+            color: 'amber',
+            tech: 'AndroidX Media3 + ExoPlayer',
+            desc: 'Decoupled MediaSessionService operating in an independent Android Service lifecycle. Survives orientation changes, app minimization, and handles audio focus for calls and navigation prompts.',
+          },
+          {
+            layer: 'TTS Processing',
+            color: 'green',
+            tech: 'Native TextToSpeech + Kotlin Chunker',
+            desc: 'Regex-based tokenizer with quote protection (", «», ""), abbreviation shielding (Mr., Dr., Ch.), and CJK terminal character (。！？) detection for natural-paced narration.',
+          },
+          {
+            layer: 'Web Scraping',
+            color: 'purple',
+            tech: 'Jsoup + WebView',
+            desc: 'Jsoup DOM pipeline for chapter extraction using user-configurable CSS selectors. JavascriptInterface bridge for userscript injection with wildcard URL matching.',
+          },
+          {
+            layer: 'Storage',
+            color: 'orange',
+            tech: 'AtomicFile + Kotlin Coroutines',
+            desc: 'Crash-resistant persistence via Android AtomicFile (write → staging file → atomic rename). Thread-safe access with Coroutine Mutexes. Zero special permissions required.',
+          },
+          {
+            layer: 'Architecture Pattern',
+            color: 'zinc',
+            tech: 'Clean Architecture + MVVM',
+            desc: 'Decoupled domain, data, and presentation layers. StateFlow-driven reactive UI state, centralized AudioPlaybackCoordinator service, and Coroutine-based async operations.',
+          },
+        ].map(({ layer, color, tech, desc }, i) => (
+          <div class:list={['flex items-start gap-4 p-5', i > 0 && 'border-t border-zinc-100 dark:border-zinc-800']}>
+            <div class:list={[
+              'flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xs font-bold mt-0.5',
+              color === 'blue' && 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
+              color === 'amber' && 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+              color === 'green' && 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300',
+              color === 'purple' && 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300',
+              color === 'orange' && 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300',
+              color === 'zinc' && 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300',
+            ]}>{String(i + 1).padStart(2, '0')}</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-baseline gap-2 mb-1">
+                <span class="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">{layer}</span>
+                <code class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{tech}</code>
+              </div>
+              <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ═══════════════════ TECH STACK PILLS ═══════════════════ -->
+    <section class="mb-12" aria-label="Technology stack">
+      <h2 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-4">Tech Stack</h2>
+      <div class="flex flex-wrap gap-2">
+        {['Android Kotlin', 'Jetpack Compose M3', 'AndroidX Media3', 'ExoPlayer', 'TextToSpeech', 'Jsoup', 'AtomicFile', 'Kotlin Coroutines', 'MVVM', 'Clean Architecture', 'WebKit WebView', 'Material Design 3'].map(tech => (
+          <span class="inline-flex items-center rounded-lg border border-zinc-200/90 bg-zinc-100/80 px-2.5 py-1 font-mono text-xs font-medium text-zinc-800 dark:border-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-200">
+            {tech}
+          </span>
+        ))}
+      </div>
+    </section>
+
+    <!-- ═══════════════════ FOOTER LINKS ═══════════════════ -->
+    <footer class="flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200/80 pt-8 dark:border-zinc-800/80">
+      <a href="/projects" class="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors">
+        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" /></svg>
+        All Projects
+      </a>
+      <a href={REPO_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-500 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-100 transition-colors">
+        View Source on GitHub →
+      </a>
+    </footer>
+  </div>
+
+  <!-- ═══════════════════ TTS SIMULATOR SCRIPT ═══════════════════ -->
+  <script>
+    // ─── TypeScript Quote-Aware Sentence Chunker ───────────────────────────────
+    // Mirrors BookReader's production Kotlin chunker algorithm.
+
+    const PRESETS: Record<string, string> = {
+      english: `"Stop!" she cried, rushing toward the door. "You can't leave now, not when we're so close to the truth!"
+He paused, one hand on the doorknob. The rain hammered the windows like Mr. Harrison's old typewriter — relentless, rhythmic, unforgiving.
+"Perhaps," he said quietly, "that's exactly why I must." He stepped out into the storm. Chapter 1 had just ended.`,
+      arabic: `قالت المرأة العجوز: "لا تذهب بعيداً يا بني، فالطريق وعرة!" لكنه لم يسمع كلامها.
+كان القمر يضيء الطريق المظلم. توقف الشاب وأخذ نفساً عميقاً ثم قرر المضي قدماً.
+"أنا لست خائفاً." تمتم لنفسه. "سأعود بالكنز أو لن أعود أبداً!"`,
+      french: `« Impossible ! » s'écria-t-elle. « Vous ne pouvez pas faire ça — pas maintenant ! »
+Le Docteur Bernard posa son stylo. Il avait passé vingt ans à étudier ce phénomène, à publier des articles dans des revues scientifiques réputées. Et pourtant…
+« Les données ne mentent pas, Professeure Morel. » Il se leva lentement. « La réponse était là depuis le début. »`,
+      cjk: `「待って！」彼女は叫んだ。「まだ終わっていないのに、どこへ行くの？」
+彼は振り返らなかった。雨が窓ガラスを叩いていた。静かな夜だった。
+「もう決めたんだ。」彼は囁いた。「後悔はしない。絶対に！」`,
+    };
+
+    // Regex-based sentence chunker (quote-aware, multilingual)
+    function chunkText(text: string): string[] {
+      if (!text.trim()) return [];
+
+      const chunks: string[] = [];
+      let i = 0;
+      const s = text.trim();
+
+      // Tokenize by sentence boundaries while respecting quoted speech
+      const OPEN_QUOTES = new Set(['"', '«', '\u201C', '\u300C', '\u300E']);
+      const CLOSE_QUOTES: Record<string, string> = {
+        '"': '"', '«': '»', '\u201C': '\u201D', '\u300C': '\u300D', '\u300E': '\u300F',
+      };
+      const SENTENCE_TERMINATORS = /[.!?。！？؟]/;
+      const ABBREVIATIONS = /\b(Mr|Mrs|Ms|Dr|Prof|Sr|Jr|Inc|Ltd|Ch|vol|vs|etc|e\.g|i\.e|Fig|St|Blvd|Ave)\s*$/i;
+
+      let current = '';
+      let quoteOpen = false;
+      let openQuoteChar = '';
+
+      while (i < s.length) {
+        const ch = s[i];
+
+        // Track open quotes
+        if (!quoteOpen && OPEN_QUOTES.has(ch)) {
+          quoteOpen = true;
+          openQuoteChar = ch;
+          current += ch;
+          i++;
+          continue;
+        }
+
+        // Close quote
+        if (quoteOpen && ch === CLOSE_QUOTES[openQuoteChar]) {
+          quoteOpen = false;
+          openQuoteChar = '';
+          current += ch;
+          i++;
+
+          // After closing quote, check if sentence ends here
+          const peek = s[i] || '';
+          if (!peek.trim() || SENTENCE_TERMINATORS.test(peek)) {
+            if (current.trim()) {
+              // consume any trailing terminator after the closing quote
+              if (SENTENCE_TERMINATORS.test(peek)) {
+                current += peek;
+                i++;
+              }
+              chunks.push(current.trim());
+              current = '';
+            }
+          }
+          continue;
+        }
+
+        // Inside a quote — consume without splitting
+        if (quoteOpen) {
+          current += ch;
+          i++;
+          continue;
+        }
+
+        // Check for sentence terminator
+        if (SENTENCE_TERMINATORS.test(ch)) {
+          current += ch;
+
+          // Check for abbreviation — don't split
+          if (ch === '.' && ABBREVIATIONS.test(current.slice(0, -1))) {
+            i++;
+            continue;
+          }
+
+          // Check for decimal number like 3.4 — don't split
+          const prevChar = current[current.length - 2] || '';
+          const nextChar = s[i + 1] || '';
+          if (ch === '.' && /\d/.test(prevChar) && /\d/.test(nextChar)) {
+            i++;
+            continue;
+          }
+
+          // Consume trailing whitespace
+          while (i + 1 < s.length && s[i + 1] === ' ') i++;
+
+          if (current.trim()) {
+            chunks.push(current.trim());
+            current = '';
+          }
+          i++;
+          continue;
+        }
+
+        // Newline = soft sentence break if current has content
+        if (ch === '\n' && current.trim().length > 0) {
+          // Only break if there's substantial content
+          if (current.trim().length > 20) {
+            chunks.push(current.trim());
+            current = '';
+          } else {
+            current += ' ';
+          }
+          i++;
+          continue;
+        }
+
+        current += ch;
+        i++;
+      }
+
+      if (current.trim()) chunks.push(current.trim());
+      return chunks.filter(c => c.length > 0);
+    }
+
+    // ─── DOM Elements ──────────────────────────────────────────────────────────
+    const textarea = document.getElementById('tts-input') as HTMLTextAreaElement;
+    const speedSelect = document.getElementById('tts-speed') as HTMLSelectElement;
+    const voiceSelect = document.getElementById('tts-voice') as HTMLSelectElement;
+    const btnChunk = document.getElementById('btn-chunk') as HTMLButtonElement;
+    const btnPlay = document.getElementById('btn-play') as HTMLButtonElement;
+    const btnStop = document.getElementById('btn-stop') as HTMLButtonElement;
+    const chunksPanel = document.getElementById('chunks-panel') as HTMLDivElement;
+    const chunksList = document.getElementById('chunks-list') as HTMLDivElement;
+    const chunkCount = document.getElementById('chunk-count') as HTMLSpanElement;
+    const statusDot = document.getElementById('sim-status-dot') as HTMLSpanElement;
+    const statusText = document.getElementById('sim-status-text') as HTMLSpanElement;
+    const statusBadge = document.getElementById('sim-status-badge') as HTMLDivElement;
+    const noSpeechWarning = document.getElementById('no-speech-warning') as HTMLDivElement;
+    const playIcon = document.getElementById('play-icon') as unknown as SVGElement;
+    const playLabel = document.getElementById('play-btn-label') as HTMLSpanElement;
+
+    // ─── State ─────────────────────────────────────────────────────────────────
+    let chunks: string[] = [];
+    let currentChunkIndex = 0;
+    let isPlaying = false;
+    const hasSpeech = 'speechSynthesis' in window;
+
+    // ─── Speech API Setup ──────────────────────────────────────────────────────
+    if (!hasSpeech) {
+      noSpeechWarning.classList.remove('hidden');
+    } else {
+      // Populate voices
+      function populateVoices() {
+        const voices = window.speechSynthesis.getVoices();
+        voiceSelect.innerHTML = '<option value="">Default Voice</option>';
+        const filtered = voices.filter(v =>
+          /en|ar|fr/i.test(v.lang)
+        );
+        filtered.forEach(v => {
+          const opt = document.createElement('option');
+          opt.value = v.name;
+          opt.textContent = `${v.name} (${v.lang})`;
+          voiceSelect.appendChild(opt);
+        });
+      }
+      populateVoices();
+      window.speechSynthesis.onvoiceschanged = populateVoices;
+    }
+
+    // ─── Status Helpers ────────────────────────────────────────────────────────
+    function setStatus(label: string, color: 'idle' | 'playing' | 'ready' | 'error') {
+      statusBadge.classList.remove('hidden');
+      statusText.textContent = label;
+      statusDot.className = 'h-2 w-2 rounded-full';
+      if (color === 'playing') statusDot.classList.add('bg-amber-500', 'animate-pulse');
+      else if (color === 'ready') statusDot.classList.add('bg-emerald-500');
+      else if (color === 'error') statusDot.classList.add('bg-red-500');
+      else statusDot.classList.add('bg-zinc-400');
+    }
+
+    // ─── Chunk Preview ─────────────────────────────────────────────────────────
+    function renderChunks(highlightIndex = -1) {
+      chunksList.innerHTML = '';
+      chunks.forEach((chunk, i) => {
+        const el = document.createElement('div');
+        el.className = [
+          'flex items-start gap-3 cursor-pointer rounded-lg px-3 py-2.5 text-sm leading-relaxed transition-colors',
+          i === highlightIndex
+            ? 'bg-amber-500/15 border border-amber-400/50 text-zinc-900 dark:text-zinc-100 dark:border-amber-500/40'
+            : 'border border-transparent text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800/60',
+        ].join(' ');
+        el.setAttribute('role', 'listitem');
+        el.setAttribute('aria-label', `Sentence ${i + 1}: ${chunk}`);
+        el.innerHTML = `
+          <span class="shrink-0 mt-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full text-xs font-bold ${
+            i === highlightIndex
+              ? 'bg-amber-500 text-white'
+              : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400'
+          }">${i + 1}</span>
+          <span>${chunk}</span>
+        `;
+        el.addEventListener('click', () => {
+          if (hasSpeech) {
+            currentChunkIndex = i;
+            startPlayback();
+          }
+        });
+        chunksList.appendChild(el);
+      });
+    }
+
+    btnChunk.addEventListener('click', () => {
+      const text = textarea.value.trim();
+      if (!text) return;
+      chunks = chunkText(text);
+      chunkCount.textContent = String(chunks.length);
+      renderChunks();
+      chunksPanel.classList.remove('hidden');
+      btnPlay.disabled = chunks.length === 0 || !hasSpeech;
+      setStatus(`${chunks.length} chunks ready`, 'ready');
+      // Scroll to chunks panel
+      chunksPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    // ─── Playback ──────────────────────────────────────────────────────────────
+    function speakChunk(index: number) {
+      if (!hasSpeech || index >= chunks.length) {
+        stopPlayback();
+        return;
+      }
+      currentChunkIndex = index;
+      renderChunks(index);
+      // Auto-scroll to active chunk
+      const items = chunksList.querySelectorAll('[role="listitem"]');
+      items[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      const utterance = new SpeechSynthesisUtterance(chunks[index]);
+      utterance.rate = parseFloat(speedSelect.value);
+
+      const voices = window.speechSynthesis.getVoices();
+      const selectedVoice = voices.find(v => v.name === voiceSelect.value);
+      if (selectedVoice) utterance.voice = selectedVoice;
+
+      setStatus(`Speaking chunk ${index + 1} of ${chunks.length}`, 'playing');
+
+      utterance.onend = () => {
+        if (isPlaying && index + 1 < chunks.length) {
+          setTimeout(() => speakChunk(index + 1), 120);
+        } else if (index + 1 >= chunks.length) {
+          stopPlayback();
+          setStatus('Done ✓', 'ready');
+        }
+      };
+      utterance.onerror = () => {
+        stopPlayback();
+        setStatus('Error', 'error');
+      };
+
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function startPlayback() {
+      if (!hasSpeech || chunks.length === 0) return;
+      isPlaying = true;
+      btnPlay.disabled = false;
+      btnStop.disabled = false;
+      playLabel.textContent = 'Pause';
+      playIcon.innerHTML = '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>';
+      speakChunk(currentChunkIndex);
+    }
+
+    function pausePlayback() {
+      if (!hasSpeech) return;
+      isPlaying = false;
+      window.speechSynthesis.pause();
+      playLabel.textContent = 'Resume';
+      playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+      setStatus('Paused', 'idle');
+    }
+
+    function stopPlayback() {
+      if (!hasSpeech) return;
+      isPlaying = false;
+      currentChunkIndex = 0;
+      window.speechSynthesis.cancel();
+      btnStop.disabled = true;
+      playLabel.textContent = 'Play All';
+      playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+      renderChunks();
+      setStatus('Stopped', 'idle');
+    }
+
+    btnPlay.addEventListener('click', () => {
+      if (isPlaying) pausePlayback();
+      else {
+        // If we just paused, resume; else start fresh
+        if (window.speechSynthesis.paused) {
+          isPlaying = true;
+          window.speechSynthesis.resume();
+          playLabel.textContent = 'Pause';
+          playIcon.innerHTML = '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>';
+          setStatus(`Speaking chunk ${currentChunkIndex + 1} of ${chunks.length}`, 'playing');
+        } else {
+          currentChunkIndex = 0;
+          startPlayback();
+        }
+      }
+    });
+
+    btnStop.addEventListener('click', stopPlayback);
+
+    // ─── Preset Buttons ────────────────────────────────────────────────────────
+    document.querySelectorAll<HTMLButtonElement>('.preset-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.preset ?? '';
+        if (PRESETS[key]) {
+          textarea.value = PRESETS[key];
+          // Auto-chunk
+          btnChunk.click();
+        }
+      });
+    });
+
+    // Stop on page navigation (View Transitions)
+    document.addEventListener('astro:before-swap', () => {
+      if (hasSpeech) window.speechSynthesis.cancel();
+    });
+  </script>
+</Layout>

@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+/* 
+ * Tailwind CSS v4 Selector-based Dark Variant
+ * Matches both .dark class on html element and child elements
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design Tokens & Semantic Color Palette
+ */
+@layer base {
+  :root {
+    color-scheme: light dark;
+
+    /* Core UI Tokens - Light Mode */
+    --background: #fafafa;
+    --foreground: #09090b;
+    --card: #ffffff;
+    --card-foreground: #09090b;
+    --card-border: #e4e4e7;
+    --border: #e4e4e7;
+    --primary: #2563eb;
+    --primary-foreground: #ffffff;
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
+    --accent: #f4f4f5;
+    --accent-foreground: #18181b;
+
+    /* BookReader Signature Sepia Reading Theme Tokens */
+    --sepia-bg: #F4ECD8;
+    --sepia-surface: #EADBBE;
+    --sepia-text: #3B2F1E;
+    --sepia-muted: #78654D;
+    --sepia-accent: #B45309;
+    --sepia-border: #D8C8A8;
+
+    /* BookReader 3D Terracotta Brand Gradients */
+    --brand-terracotta-from: #D97706; /* Amber 600 */
+    --brand-terracotta-to: #B45309;   /* Amber 700 / Terracotta */
+    --brand-shadow-base: #78350F;      /* Amber 900 */
+    --brand-shadow-deep: #451A03;      /* Warm Umber */
+  }
+
+  .dark {
+    /* Core UI Tokens - Dark Mode */
+    --background: #09090b;
+    --foreground: #fafafa;
+    --card: #18181b;
+    --card-foreground: #fafafa;
+    --card-border: #27272a;
+    --border: #27272a;
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa;
+    --accent: #27272a;
+    --accent-foreground: #fafafa;
+
+    /* BookReader Dark/AMOLED Reading Theme Tokens */
+    --sepia-bg: #14120e;
+    --sepia-surface: #24201a;
+    --sepia-text: #f5f2eb;
+    --sepia-muted: #a89f91;
+    --sepia-accent: #f59e0b;
+    --sepia-border: #383228;
+  }
+
+  /*
+   * Modern Web Guidance Compliance: Map <meta name="color-scheme"> back to CSS color-scheme
+   * Prevents author CSS from silently overriding meta hints
+   */
+  :root:has(> head > meta[name="color-scheme"][content="dark"]) {
+    color-scheme: dark;
+  }
+  :root:has(> head > meta[name="color-scheme"][content="light"]) {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Focus ring standardization for keyboard accessibility */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+/*
+ * Custom Scrollbar Styling (Minimal, subtle, non-intrusive)
+ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d4d4d8;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #3f3f46;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a1a1aa;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #52525b;
+}
+
+/*
+ * Astro 5 View Transitions Animation Customization
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prevent text aspect-ratio stretching during transitions */
+.vt-name-heading,
+.vt-name-hero {
+  width: fit-content;
+}
+
+/*
+ * Accessibility: Respect OS Reduced-Motion Preference
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

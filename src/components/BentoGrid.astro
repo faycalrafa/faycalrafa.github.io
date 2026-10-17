@@ -1,0 +1,387 @@
+---
+/**
+ * BentoGrid.astro — Feature F04: Bento Grid Skills Matrix
+ * 
+ * Showcases Faycal Rafa's technical expertise across 4 high-impact clusters:
+ * 1. TypeScript & Modern Frontend (Next.js, Svelte 5, Tailwind CSS, Modern Web APIs)
+ * 2. Mobile Engineering (Android Kotlin/Java, Jetpack Compose M3, Media3, Native TTS, Flutter)
+ * 3. Backend Architecture & Microservices (NestJS, Node.js, Laravel, Microservices, Python, Bash)
+ * 4. Databases, DevOps & Cloud (PostgreSQL, MySQL, MongoDB, Docker, GitHub Actions CI/CD)
+ * 
+ * Aligned with E2E test suites:
+ * - tests/e2e/tier1_features.test.js (T1.F04.01 - T1.F04.06)
+ * - tests/e2e/tier2_boundaries.test.js (T2.F04.01 - T2.F04.06)
+ * - tests/e2e/tier3_interactions.test.js (T3.10)
+ * - tests/e2e/tier4_scenarios.test.js (T4.02, T4.06)
+ */
+
+interface SkillItem {
+  name: string;
+  note?: string;
+  featured?: boolean;
+}
+
+interface ProjectProof {
+  name: string;
+  tag: string;
+  description: string;
+  url: string;
+  badge: string;
+}
+
+interface SkillCluster {
+  id: string;
+  title: string;
+  category: string;
+  subtitle: string;
+  colSpan: string;
+  theme: {
+    accentColor: string;
+    glowBg: string;
+    border: string;
+    hoverBorder: string;
+    badgeBg: string;
+    badgeText: string;
+  };
+  skills: SkillItem[];
+  architecturalHighlights: string[];
+  projectProofs: ProjectProof[];
+}
+
+const clusters: SkillCluster[] = [
+  {
+    id: "frontend",
+    title: "TypeScript & Modern Frontend",
+    category: "Frontend Architecture",
+    subtitle: "Enterprise web platforms, reactive component architectures, and modern browser APIs.",
+    colSpan: "lg:col-span-7",
+    theme: {
+      accentColor: "text-blue-600 dark:text-blue-400",
+      glowBg: "from-blue-500/10 via-indigo-500/5 to-transparent",
+      border: "border-blue-500/20 dark:border-blue-400/20",
+      hoverBorder: "hover:border-blue-500/40 dark:hover:border-blue-400/40",
+      badgeBg: "bg-blue-50 dark:bg-blue-950/40",
+      badgeText: "text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800",
+    },
+    skills: [
+      { name: "TypeScript", note: "Strict Mode, Generics, AST & Zod Validation", featured: true },
+      { name: "Next.js", note: "App Router, Server Components, SSR/SSG", featured: true },
+      { name: "Svelte 5", note: "Runes ($state, $derived), Reactive Micro-apps", featured: true },
+      { name: "Tailwind CSS", note: "Utility-first v4, Design Tokens, Dark Mode", featured: true },
+      { name: "Modern Web APIs", note: "Web Speech API, AudioContext, View Transitions", featured: true },
+      { name: "React & Hooks", note: "Concurrent Rendering, State Optimization", featured: false },
+      { name: "Astro 5", note: "Static Site Generation, Content Layer", featured: false },
+    ],
+    architecturalHighlights: [
+      "Zero-FOUC theme rendering and fluid Astro View Transitions.",
+      "In-browser interactive simulators built with Web Speech API and quote chunking regex.",
+      "Strict compile-time type validation enforcing domain models across full-stack applications.",
+    ],
+    projectProofs: [
+      {
+        name: "StartingPack",
+        tag: "Open Source",
+        description: "Modern Svelte 5 & TypeScript production-ready boilerplate.",
+        url: "/projects#startingpack",
+        badge: "Svelte 5 / TS",
+      },
+      {
+        name: "InvestMarket Frontend",
+        tag: "Fintech",
+        description: "Real-time stock portfolio and live candlestick chart interface.",
+        url: "/projects#investmarket",
+        badge: "Next.js / TS",
+      },
+    ],
+  },
+  {
+    id: "mobile",
+    title: "Mobile Engineering",
+    category: "Native & Cross-Platform",
+    subtitle: "Flagship native Android applications, Jetpack Compose Material 3, and Flutter cross-platform.",
+    colSpan: "lg:col-span-5",
+    theme: {
+      accentColor: "text-amber-600 dark:text-amber-400",
+      glowBg: "from-amber-500/10 via-orange-500/5 to-transparent",
+      border: "border-amber-500/20 dark:border-amber-400/20",
+      hoverBorder: "hover:border-amber-500/40 dark:hover:border-amber-400/40",
+      badgeBg: "bg-amber-50 dark:bg-amber-950/40",
+      badgeText: "text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800",
+    },
+    skills: [
+      { name: "Android Native (Kotlin & Java)", note: "Coroutines, StateFlow, TargetSDK 36", featured: true },
+      { name: "Jetpack Compose", note: "Material 3, Custom Claymorphic UI", featured: true },
+      { name: "AndroidX Media3", note: "MediaSessionService, ExoPlayer, Lockscreen Audio", featured: true },
+      { name: "Native TextToSpeech", note: "Multi-engine, CJK & Quote-Aware Segmentation", featured: true },
+      { name: "Flutter & Dart", note: "60fps Reactive Cross-Platform Interfaces", featured: true },
+      { name: "Scoped Storage & Jsoup", note: "AtomicFile Mutex Sync, HTML Scraping", featured: false },
+    ],
+    architecturalHighlights: [
+      "Author of BookReader: Offline novel reader with background audio services (v3.4.0).",
+      "MediaSessionService lockscreen controls with zero-thread-collision ExoPlayer coordination.",
+      "Real-time dispatching mobile application with live GPS location tracking (InstaClean).",
+    ],
+    projectProofs: [
+      {
+        name: "BookReader",
+        tag: "Flagship Hobby",
+        description: "Flagship Android reader app with native TTS & Scoped Storage.",
+        url: "/projects/bookreader",
+        badge: "v3.4.0 APK",
+      },
+      {
+        name: "InstaClean",
+        tag: "Mobile SaaS",
+        description: "On-demand mobile car wash ordering with real-time tracking.",
+        url: "/projects#instaclean",
+        badge: "Flutter / Dart",
+      },
+    ],
+  },
+  {
+    id: "backend",
+    title: "Backend Architecture & Microservices",
+    category: "Distributed Systems",
+    subtitle: "High-throughput microservices, event-driven backends, and fault-tolerant transaction processing.",
+    colSpan: "lg:col-span-5",
+    theme: {
+      accentColor: "text-emerald-600 dark:text-emerald-400",
+      glowBg: "from-emerald-500/10 via-teal-500/5 to-transparent",
+      border: "border-emerald-500/20 dark:border-emerald-400/20",
+      hoverBorder: "hover:border-emerald-500/40 dark:hover:border-emerald-400/40",
+      badgeBg: "bg-emerald-50 dark:bg-emerald-950/40",
+      badgeText: "text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800",
+    },
+    skills: [
+      { name: "NestJS", note: "Enterprise DI, Microservices Transports, Interceptors", featured: true },
+      { name: "Node.js", note: "Async I/O Optimization, WebSockets, Worker Threads", featured: true },
+      { name: "Microservices", note: "Decoupled Architecture, Event-Driven, High Availability", featured: true },
+      { name: "Laravel & PHP", note: "Modern PHP 8+, Eloquent ORM, Queued Workers", featured: true },
+      { name: "Python", note: "Automation, Document Extraction (docling, bs4)", featured: false },
+      { name: "Linux Bash", note: "System Administration & Deployment Automation", featured: false },
+      { name: "REST & GraphQL", note: "High-Throughput Contracts & Resilient APIs", featured: true },
+    ],
+    architecturalHighlights: [
+      "Deconstructed monolithic fintech legacy into elastic microservices as Technical Lead at Finnetude.",
+      "Engineered resilient multi-channel payment transaction flows for SABIL digital wallet platform.",
+      "Real-time WebSocket streaming feeds with low-latency event propagation.",
+    ],
+    projectProofs: [
+      {
+        name: "InvestMarket Backend",
+        tag: "Fintech",
+        description: "NestJS, TypeScript, and Docker microservices trading platform.",
+        url: "/projects#investmarket",
+        badge: "NestJS / Docker",
+      },
+      {
+        name: "SABIL Mega-App",
+        tag: "Enterprise",
+        description: "Distributed microservices handling high-concurrency payment transactions.",
+        url: "/projects#sabil",
+        badge: "Microservices",
+      },
+    ],
+  },
+  {
+    id: "devops",
+    title: "Databases, DevOps & Cloud",
+    category: "Infrastructure & Data",
+    subtitle: "High-concurrency database modeling, multi-stage containerization, and automated CI/CD pipelines.",
+    colSpan: "lg:col-span-7",
+    theme: {
+      accentColor: "text-purple-600 dark:text-purple-400",
+      glowBg: "from-purple-500/10 via-cyan-500/5 to-transparent",
+      border: "border-purple-500/20 dark:border-purple-400/20",
+      hoverBorder: "hover:border-purple-500/40 dark:hover:border-purple-400/40",
+      badgeBg: "bg-purple-50 dark:bg-purple-950/40",
+      badgeText: "text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800",
+    },
+    skills: [
+      { name: "PostgreSQL", note: "Partitioning, JSONB Storage, Complex Queries, Index Tuning", featured: true },
+      { name: "MySQL", note: "Relational Modeling, Transactions, ERD Design", featured: true },
+      { name: "MongoDB", note: "Document Modeling, Aggregation Pipelines", featured: false },
+      { name: "Docker", note: "Multi-stage Production Builds, Docker Compose", featured: true },
+      { name: "GitHub Actions", note: "Automated CI/CD Workflows, GitHub Pages Deploy", featured: true },
+      { name: "Git & Trunk-Based", note: "Semantic Releases, Branch Protection, Version Control", featured: false },
+      { name: "Linux Administration", note: "System Hardening, Process Monitoring, Nginx", featured: false },
+    ],
+    architecturalHighlights: [
+      "Zero-downtime automated static build and deployment pipeline via GitHub Actions to GitHub Pages.",
+      "Database schema normalization and high-throughput real-time synchronization APIs (PIASSA DZ).",
+      "Production containerization with multi-stage Dockerfiles optimizing image size and security.",
+    ],
+    projectProofs: [
+      {
+        name: "GitHub Pages CI/CD",
+        tag: "DevOps",
+        description: "Automated workflow building and verifying static Astro distributions.",
+        url: "https://github.com/faycalrafa/faycalrafa.github.io",
+        badge: "GitHub Actions",
+      },
+      {
+        name: "PIASSA SaaS CRM",
+        tag: "Automotive B2B",
+        description: "Centralized relational database with high-concurrency client sync.",
+        url: "/projects#piassa",
+        badge: "MySQL / Docker",
+      },
+    ],
+  },
+];
+---
+
+<section
+  id="skills"
+  class="relative py-20 border-t border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-950/40"
+  aria-labelledby="skills-heading"
+>
+  <!-- Background Glow & Grid Accents -->
+  <div class="absolute inset-0 bg-[radial-gradient(#e4e4e7_1px,transparent_1px)] [background-size:24px_24px] opacity-40 dark:bg-[radial-gradient(#27272a_1px,transparent_1px)] dark:opacity-30 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="max-w-3xl">
+      <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-400">
+        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m18 16 4-4-4-4" />
+          <path d="m6 8-4 4 4 4" />
+          <path d="m14.5 4-5 16" />
+        </svg>
+        <span>Technical Architecture &amp; Capabilities</span>
+      </div>
+
+      <h2 id="skills-heading" class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50">
+        Skills &amp; Architecture Matrix
+      </h2>
+      <p class="mt-3 text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+        A categorized overview of core engineering proficiencies, frameworks, and tools proven through 6+ years of technical leadership, enterprise microservices, and flagship mobile applications.
+      </p>
+    </div>
+
+    <!-- Responsive Bento Grid Layout -->
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
+      {clusters.map((cluster) => (
+        <article
+          id={`skill-cluster-${cluster.id}`}
+          class={`relative flex flex-col justify-between overflow-hidden rounded-2xl border bg-white p-6 sm:p-8 shadow-xs dark:bg-zinc-900/90 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${cluster.colSpan} ${cluster.theme.border} ${cluster.theme.hoverBorder}`}
+        >
+          <!-- Subtle Glowing Corner Accent -->
+          <div
+            class={`absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-to-br ${cluster.theme.glowBg} blur-2xl pointer-events-none`}
+            aria-hidden="true"
+          />
+
+          <!-- Card Header & Metadata -->
+          <div>
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                {cluster.category}
+              </span>
+              <div class="flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-semibold border-zinc-200 bg-zinc-100/80 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                <span>Production Verified</span>
+              </div>
+            </div>
+
+            <!-- Cluster Semantic Heading (H3) -->
+            <h3 class="mt-3 text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+              {cluster.title}
+            </h3>
+
+            <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+              {cluster.subtitle}
+            </p>
+
+            <!-- Skill Badges Pill Cloud -->
+            <div class="mt-6">
+              <h4 class="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+                Core Technologies &amp; Tools
+              </h4>
+              <div class="mt-3 flex flex-wrap gap-2">
+                {cluster.skills.map((skill) => (
+                  <span
+                    class={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
+                      skill.featured
+                        ? `${cluster.theme.badgeBg} ${cluster.theme.badgeText} font-semibold shadow-2xs`
+                        : "border-zinc-200/80 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                    }`}
+                    title={skill.note ? `${skill.name}: ${skill.note}` : skill.name}
+                  >
+                    <span>{skill.name}</span>
+                    {skill.note && (
+                      <span class="hidden sm:inline text-[10px] opacity-75 font-normal">
+                        • {skill.note.split(',')[0]}
+                      </span>
+                    )}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Architectural Highlights -->
+            <div class="mt-6 border-t border-zinc-100 dark:border-zinc-800/80 pt-4">
+              <h4 class="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+                Architectural Highlights
+              </h4>
+              <ul class="mt-2.5 space-y-2 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
+                {cluster.architecturalHighlights.map((highlight) => (
+                  <li class="flex items-start gap-2">
+                    <svg
+                      class={`mt-0.5 h-4 w-4 shrink-0 ${cluster.theme.accentColor}`}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Bottom: Verified Real-World Projects & Proof Links -->
+          <div class="mt-6 border-t border-zinc-100 dark:border-zinc-800/80 pt-4">
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+              Verified Project Proofs
+            </h4>
+            <div class="mt-2.5 flex flex-wrap gap-2">
+              {cluster.projectProofs.map((project) => (
+                <a
+                  href={project.url}
+                  class="group inline-flex items-center gap-2 rounded-xl border border-zinc-200/90 bg-zinc-50/80 px-3 py-2 text-xs text-zinc-700 hover:border-zinc-400 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-800/40 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 transition-all"
+                >
+                  <span class="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:underline">
+                    {project.name}
+                  </span>
+                  <span class={`rounded px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider ${cluster.theme.badgeBg} ${cluster.theme.badgeText}`}>
+                    {project.badge}
+                  </span>
+                  <svg
+                    class="h-3 w-3 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-200 transition-transform group-hover:translate-x-0.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

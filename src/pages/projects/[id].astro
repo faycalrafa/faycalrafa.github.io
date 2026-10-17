@@ -1,0 +1,464 @@
+---
+// src/pages/projects/[id].astro
+// Dynamic Astro 5 Content Layer route for project details.
+// Compliant with Astro 5 static site generation, Tailwind CSS v4, and WCAG AA standards.
+
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+
+// Defensive redirection for edge cases (satisfying T2.F07.03)
+if (!project) {
+  return Astro.redirect('/404');
+}
+
+const { Content } = await render(project);
+const { data } = project;
+
+const isBookReader = project.id === 'bookreader';
+const isHobby = data.category === 'hobby';
+const isOss = data.category === 'open-source';
+const isCommercial = data.category === 'commercial';
+
+// Formatted publication date
+const formattedDate = data.publishedDate
+  ? new Date(data.publishedDate).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    })
+  : null;
+---
+
+<Layout
+  title={`${data.title} — Projects | Faycal Rafa`}
+  description={data.tagline}
+  articleDate={data.publishedDate}
+>
+  <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8 sm:py-12">
+    <!-- Breadcrumb Navigation (Home > Projects > [Title]) -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
+        <li>
+          <a
+            href="/"
+            class="flex items-center gap-1.5 rounded transition-colors hover:text-zinc-900 dark:hover:text-zinc-100 focus-visible:outline-2 focus-visible:outline-blue-600"
+          >
+            <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9.5L10 3l7 6.5" />
+              <path d="M19 13v6a1 1 0 01-1 1H2a1 1 0 01-1-1v-6" />
+            </svg>
+            <span>Home</span>
+          </a>
+        </li>
+        <li class="text-zinc-400 dark:text-zinc-600" aria-hidden="true">
+          <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+          </svg>
+        </li>
+        <li>
+          <a
+            href="/projects"
+            class="rounded transition-colors hover:text-zinc-900 dark:hover:text-zinc-100 focus-visible:outline-2 focus-visible:outline-blue-600"
+          >
+            Projects
+          </a>
+        </li>
+        <li class="text-zinc-400 dark:text-zinc-600" aria-hidden="true">
+          <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+          </svg>
+        </li>
+        <li class="font-medium text-zinc-900 dark:text-zinc-100 truncate max-w-[200px] sm:max-w-xs md:max-w-md" aria-current="page">
+          {data.title}
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Main Project Header -->
+    <header class="border-b border-zinc-200/80 pb-8 dark:border-zinc-800/80">
+      <div class="flex flex-wrap items-center gap-3">
+        <!-- Prominent Category Badge (satisfying T1.F07.05) -->
+        {isHobby ? (
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/15 dark:text-amber-300 ring-1 ring-amber-500/20 shadow-xs">
+            <span class="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" aria-hidden="true" />
+            Hobby Project
+          </span>
+        ) : isOss ? (
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/15 dark:text-emerald-300 shadow-xs">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
+            Open Source
+          </span>
+        ) : isCommercial ? (
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-700 dark:border-blue-400/30 dark:bg-blue-400/15 dark:text-blue-300 shadow-xs">
+            <span class="h-1.5 w-1.5 rounded-full bg-blue-500" aria-hidden="true" />
+            Commercial Solution
+          </span>
+        ) : null}
+
+        {data.featured && (
+          <span class="inline-flex items-center gap-1 rounded-full border border-purple-500/30 bg-purple-500/10 px-2.5 py-1 text-xs font-semibold text-purple-700 dark:border-purple-400/30 dark:bg-purple-400/15 dark:text-purple-300 shadow-xs">
+            <svg class="h-3 w-3 text-purple-600 dark:text-purple-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+            </svg>
+            Featured
+          </span>
+        )}
+
+        {formattedDate && (
+          <span class="text-xs text-zinc-500 dark:text-zinc-400">
+            {formattedDate}
+          </span>
+        )}
+      </div>
+
+      <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl md:text-5xl dark:text-zinc-50">
+        {data.title}
+      </h1>
+
+      <p class="mt-4 text-lg sm:text-xl leading-relaxed text-zinc-600 dark:text-zinc-300">
+        {data.tagline}
+      </p>
+
+      <!-- Tech Stack Pills -->
+      {data.stack && data.stack.length > 0 && (
+        <div class="mt-6">
+          <h2 class="sr-only">Technologies Used</h2>
+          <div class="flex flex-wrap items-center gap-2">
+            {data.stack.map((tech) => (
+              <span class="inline-flex items-center rounded-lg border border-zinc-200/90 bg-zinc-100/80 px-2.5 py-1 font-mono text-xs font-medium text-zinc-800 dark:border-zinc-800 dark:bg-zinc-800/60 dark:text-zinc-200">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- External Action Links (Conditionally rendered, zero dead links, satisfying T2.F07.04) -->
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        {data.apkDownloadUrl && (
+          <a
+            href={data.apkDownloadUrl}
+            class="inline-flex items-center gap-2 rounded-xl bg-amber-600 px-4 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-md shadow-amber-600/20 hover:bg-amber-500 dark:bg-amber-500 dark:hover:bg-amber-400 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+            download
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span>Download APK</span>
+          </a>
+        )}
+
+        {data.repoUrl && (
+          <a
+            href={data.repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-xs sm:text-sm font-semibold text-zinc-800 shadow-xs hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+            <span>GitHub Repository</span>
+          </a>
+        )}
+
+        {data.liveUrl && (
+          <a
+            href={data.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-xl border border-blue-600/30 bg-blue-50/50 px-4 py-2.5 text-xs sm:text-sm font-semibold text-blue-700 hover:bg-blue-100/60 dark:border-blue-400/30 dark:bg-blue-950/40 dark:text-blue-300 dark:hover:bg-blue-900/60 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            <span>Live Website</span>
+          </a>
+        )}
+
+        <a
+          href="/projects"
+          class="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3.5 py-2.5 text-xs sm:text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 ml-auto"
+        >
+          <span>← All Projects</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- BookReader Dedicated Showcase Banner CTA -->
+    {isBookReader && (
+      <aside class="my-8 overflow-hidden rounded-2xl border-2 border-amber-500/30 bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-amber-900/10 p-6 sm:p-8 dark:border-amber-400/30 dark:from-amber-950/40 dark:via-orange-950/20 dark:to-zinc-900 shadow-md">
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div class="max-w-xl">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center rounded-md bg-amber-500/20 px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300">
+                Flagship Showcase
+              </span>
+              <span class="text-xs font-medium text-amber-700 dark:text-amber-400">
+                v3.4.0 • Android App
+              </span>
+            </div>
+            <h2 class="mt-2 text-xl font-bold tracking-tight text-zinc-900 sm:text-2xl dark:text-zinc-100">
+              Interactive In-Browser TTS Simulator & App Showcase
+            </h2>
+            <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+              Explore the dedicated flagship showcase with the live Web Speech sentence chunker (EN, AR, FR), 3D cushion squircle icon, direct APK v3.4.0 downloads, and deep-dive into AndroidX Media3 & Jetpack Compose architecture.
+            </p>
+          </div>
+          <div class="shrink-0">
+            <a
+              href="/projects/bookreader"
+              class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-600/25 hover:from-amber-500 hover:to-amber-600 dark:from-amber-500 dark:to-amber-600 dark:hover:from-amber-400 dark:hover:to-amber-500 transition-all hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+            >
+              <span>View Flagship Showcase</span>
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </aside>
+    )}
+
+    <!-- Highlights Card List (satisfying T2.F07.05) -->
+    {data.highlights && data.highlights.filter(Boolean).length > 0 && (
+      <section class="my-10" aria-labelledby="highlights-heading">
+        <h2 id="highlights-heading" class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+          Technical Highlights & Architectural Focus
+        </h2>
+        <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {data.highlights.filter(Boolean).map((highlight) => (
+            <div class="flex items-start gap-3 rounded-xl border border-zinc-200/80 bg-white p-4 shadow-xs dark:border-zinc-800 dark:bg-zinc-900/60 transition-colors">
+              <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-600 dark:bg-blue-400/15 dark:text-blue-400 font-bold text-xs mt-0.5">
+                <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <p class="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+                {highlight}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Markdown Content Deep-Dive -->
+    <section class="my-10 border-t border-zinc-200/80 pt-8 dark:border-zinc-800/80" aria-labelledby="overview-heading">
+      <h2 id="overview-heading" class="sr-only">Detailed Overview</h2>
+      <article class="project-prose prose prose-zinc dark:prose-invert max-w-none">
+        <Content />
+      </article>
+    </section>
+
+    <!-- Post-Content Navigation & Back Link -->
+    <footer class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200/80 pt-8 dark:border-zinc-800/80">
+      <a
+        href="/projects"
+        class="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-2 focus-visible:outline-blue-600"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" />
+        </svg>
+        <span>Back to All Projects</span>
+      </a>
+
+      {isBookReader && (
+        <a
+          href="/projects/bookreader"
+          class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-amber-600 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300 transition-colors"
+        >
+          <span>Open BookReader Interactive Showcase →</span>
+        </a>
+      )}
+    </footer>
+  </div>
+</Layout>
+
+<style>
+  /*
+   * Scoped Markdown Prose Styling
+   * Guarantees high-contrast typography, spacing, and borders across themes.
+   */
+  .project-prose :global(h2) {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--foreground);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+
+  .project-prose :global(h3) {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--foreground);
+  }
+
+  .project-prose :global(h4) {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--foreground);
+  }
+
+  .project-prose :global(p) {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.75;
+    color: #52525b;
+  }
+
+  :global(.dark) .project-prose :global(p) {
+    color: #d4d4d8;
+  }
+
+  .project-prose :global(ul) {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-prose :global(ol) {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-prose :global(li) {
+    line-height: 1.7;
+    color: #52525b;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  :global(.dark) .project-prose :global(li) {
+    color: #d4d4d8;
+  }
+
+  .project-prose :global(a) {
+    color: #2563eb;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.15s ease;
+  }
+
+  .project-prose :global(a:hover) {
+    color: #1d4ed8;
+  }
+
+  :global(.dark) .project-prose :global(a) {
+    color: #60a5fa;
+  }
+
+  :global(.dark) .project-prose :global(a:hover) {
+    color: #93c5fd;
+  }
+
+  .project-prose :global(blockquote) {
+    border-left: 4px solid #3b82f6;
+    padding-left: 1rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    font-style: italic;
+    color: #71717a;
+    background: rgba(59, 130, 246, 0.04);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+
+  :global(.dark) .project-prose :global(blockquote) {
+    color: #a1a1aa;
+    background: rgba(59, 130, 246, 0.08);
+  }
+
+  .project-prose :global(code:not(pre code)) {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.85em;
+    padding: 0.15rem 0.35rem;
+    border-radius: 0.375rem;
+    background-color: #f4f4f5;
+    color: #18181b;
+    border: 1px solid #e4e4e7;
+  }
+
+  :global(.dark) .project-prose :global(code:not(pre code)) {
+    background-color: #27272a;
+    color: #fafafa;
+    border-color: #3f3f46;
+  }
+
+  .project-prose :global(pre) {
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    border: 1px solid #27272a;
+    background-color: #09090b;
+    color: #fafafa;
+  }
+
+  .project-prose :global(hr) {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .project-prose :global(table) {
+    width: 100%;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .project-prose :global(th) {
+    text-align: left;
+    padding: 0.75rem;
+    border-bottom: 2px solid var(--border);
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .project-prose :global(td) {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    color: #52525b;
+  }
+
+  :global(.dark) .project-prose :global(td) {
+    color: #d4d4d8;
+  }
+</style>

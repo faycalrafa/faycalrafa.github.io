@@ -1,0 +1,460 @@
+---
+// src/components/Navbar.astro
+// Production Blueprint for Faycal Rafa Portfolio
+// Compliant with Astro 5 ClientRouter, Tailwind CSS v4, and modern accessibility standards.
+
+const currentPath = Astro.url.pathname;
+
+interface NavItem {
+  name: string;
+  href: string;
+  badge?: string;
+  badgeType?: 'hobby' | 'default';
+}
+
+const navItems: NavItem[] = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/#career' },
+  { name: 'Skills', href: '/#skills' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'BookReader', href: '/projects/bookreader', badge: 'Hobby', badgeType: 'hobby' },
+  { name: 'Contact', href: '/#contact' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') {
+    return currentPath === '/' || currentPath === '';
+  }
+  if (href === '/projects') {
+    return currentPath.startsWith('/projects') && currentPath !== '/projects/bookreader';
+  }
+  if (href === '/projects/bookreader') {
+    return currentPath === '/projects/bookreader' || currentPath === '/projects/bookreader/';
+  }
+  return false;
+}
+---
+
+<header class="sticky top-0 z-40 w-full border-b border-zinc-200/80 bg-white/80 backdrop-blur-md transition-colors duration-200 dark:border-zinc-800/80 dark:bg-zinc-950/80">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    
+    <!-- Brand Monogram & Name -->
+    <a
+      href="/"
+      class="group flex items-center gap-3 rounded-lg py-1 transition-opacity hover:opacity-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+      aria-label="Faycal Rafa — Home"
+    >
+      <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 font-mono text-sm font-bold text-white shadow-xs ring-1 ring-white/20 transition-transform duration-200 group-hover:scale-105">
+        FR
+      </div>
+      <div class="flex flex-col">
+        <span class="text-sm font-bold tracking-tight text-zinc-900 transition-colors group-hover:text-blue-600 dark:text-zinc-100 dark:group-hover:text-blue-400">
+          Faycal Rafa
+        </span>
+        <span class="hidden text-[11px] font-medium text-zinc-500 sm:inline-block dark:text-zinc-400">
+          Senior Software Engineer & Tech Lead
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-1 text-sm font-medium" aria-label="Main navigation">
+      {navItems.map((item) => {
+        const active = isActive(item.href);
+        return (
+          <a
+            href={item.href}
+            class:list={[
+              'relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-colors',
+              active
+                ? 'font-semibold text-blue-600 bg-blue-50/80 dark:bg-blue-950/40 dark:text-blue-400'
+                : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800/60'
+            ]}
+            aria-current={active ? 'page' : undefined}
+          >
+            {item.name}
+            {item.badge && (
+              <span class="inline-flex items-center rounded-md bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-amber-600 border border-amber-500/20 dark:bg-amber-400/10 dark:text-amber-400">
+                {item.badge}
+              </span>
+            )}
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Desktop Action Buttons -->
+    <div class="hidden md:flex items-center gap-2">
+      <!-- Command Palette Trigger -->
+      <button
+        type="button"
+        id="nav-search-btn"
+        class="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-medium text-zinc-500 hover:text-zinc-900 bg-zinc-100/80 hover:bg-zinc-200/80 border border-zinc-200/80 dark:text-zinc-400 dark:hover:text-zinc-100 dark:bg-zinc-800/60 dark:hover:bg-zinc-800 dark:border-zinc-700/60 transition-colors focus-visible:outline-2 focus-visible:outline-blue-600"
+        aria-label="Open command palette (⌘K)"
+      >
+        <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="8.5" cy="8.5" r="5.5" />
+          <path d="M17.5 17.5L12.5 12.5" />
+        </svg>
+        <span class="hidden lg:inline">Search...</span>
+        <kbd class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded shadow-2xs">
+          ⌘K
+        </kbd>
+      </button>
+
+      <!-- Theme Toggle Button -->
+      <button
+        type="button"
+        id="theme-toggle-btn"
+        data-theme-toggle
+        role="switch"
+        aria-checked="false"
+        class="inline-flex items-center justify-center p-2 rounded-lg text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800/60 transition-colors focus-visible:outline-2 focus-visible:outline-blue-600"
+        aria-label="Toggle dark and light theme"
+      >
+        <!-- Sun Icon (shown in dark mode) -->
+        <svg data-theme-icon="sun" class="hidden dark:block h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2" />
+          <path d="M12 20v2" />
+          <path d="M4.93 4.93l1.41 1.41" />
+          <path d="M17.66 17.66l1.41 1.41" />
+          <path d="M2 12h2" />
+          <path d="M20 12h2" />
+          <path d="M6.34 17.66l-1.41 1.41" />
+          <path d="M19.07 4.93l-1.41 1.41" />
+        </svg>
+        <!-- Moon Icon (shown in light mode) -->
+        <svg data-theme-icon="moon" class="block dark:hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </svg>
+      </button>
+
+      <!-- Download CV CTA Button -->
+      <a
+        href="/Faycal_Rafa_CV_2026.pdf"
+        download="Faycal_Rafa_CV_2026.pdf"
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400 shadow-xs transition-all focus-visible:outline-2 focus-visible:outline-blue-600"
+        aria-label="Download Faycal Rafa CV (PDF)"
+      >
+        <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M10 3v10" />
+          <path d="M6 9l4 4 4-4" />
+          <path d="M3 15v1a2 2 0 002 2h10a2 2 0 002-2v-1" />
+        </svg>
+        <span>Download CV</span>
+      </a>
+    </div>
+
+    <!-- Mobile Header Controls -->
+    <div class="flex items-center gap-1.5 md:hidden">
+      <!-- Mobile Search Button -->
+      <button
+        type="button"
+        id="mobile-search-btn"
+        class="p-2 rounded-lg text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800/60"
+        aria-label="Open command palette"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="8.5" cy="8.5" r="5.5" />
+          <path d="M17.5 17.5L12.5 12.5" />
+        </svg>
+      </button>
+
+      <!-- Mobile Theme Toggle -->
+      <button
+        type="button"
+        id="mobile-theme-toggle-btn"
+        data-theme-toggle
+        role="switch"
+        aria-checked="false"
+        class="p-2 rounded-lg text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800/60"
+        aria-label="Toggle dark and light theme"
+      >
+        <svg data-theme-icon="sun" class="hidden dark:block h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2" />
+          <path d="M12 20v2" />
+          <path d="M4.93 4.93l1.41 1.41" />
+          <path d="M17.66 17.66l1.41 1.41" />
+          <path d="M2 12h2" />
+          <path d="M20 12h2" />
+          <path d="M6.34 17.66l-1.41 1.41" />
+          <path d="M19.07 4.93l-1.41 1.41" />
+        </svg>
+        <svg data-theme-icon="moon" class="block dark:hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </svg>
+      </button>
+
+      <!-- Mobile Hamburger / Close Button -->
+      <button
+        type="button"
+        id="mobile-menu-toggle"
+        class="p-2 rounded-lg text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-zinc-100 dark:hover:bg-zinc-800/60 focus-visible:outline-2 focus-visible:outline-blue-600"
+        aria-expanded="false"
+        aria-controls="mobile-menu-drawer"
+        aria-label="Toggle navigation menu"
+      >
+        <!-- Hamburger Icon -->
+        <svg id="icon-hamburger" class="block h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+        <!-- Close (X) Icon -->
+        <svg id="icon-close" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu Backdrop -->
+  <div
+    id="mobile-menu-backdrop"
+    class="hidden fixed inset-0 top-16 z-30 bg-zinc-950/40 backdrop-blur-xs transition-opacity duration-200 md:hidden"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Mobile Menu Drawer -->
+  <div
+    id="mobile-menu-drawer"
+    class="hidden fixed inset-x-0 top-16 z-40 border-b border-zinc-200/80 bg-white/95 px-6 py-6 shadow-2xl backdrop-blur-xl transition-all duration-200 dark:border-zinc-800/80 dark:bg-zinc-950/95 md:hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Mobile Navigation Drawer"
+  >
+    <div class="flex flex-col gap-1">
+      {navItems.map((item) => {
+        const active = isActive(item.href);
+        return (
+          <a
+            href={item.href}
+            class:list={[
+              'mobile-nav-link flex items-center justify-between rounded-lg px-3 py-2.5 text-base font-medium transition-colors',
+              active
+                ? 'bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400 font-semibold'
+                : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800/60 dark:hover:text-zinc-100'
+            ]}
+          >
+            <span>{item.name}</span>
+            {item.badge && (
+              <span class="inline-flex items-center rounded-md bg-amber-500/10 px-2 py-0.5 text-xs font-semibold text-amber-600 border border-amber-500/20 dark:bg-amber-400/10 dark:text-amber-400">
+                {item.badge}
+              </span>
+            )}
+          </a>
+        );
+      })}
+    </div>
+
+    <!-- Mobile Drawer Footer Actions -->
+    <div class="mt-6 border-t border-zinc-200/80 pt-6 dark:border-zinc-800/80">
+      <!-- Availability Indicator -->
+      <div class="mb-4 flex items-center gap-2 px-1">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+        </span>
+        <span class="text-xs font-medium text-zinc-600 dark:text-zinc-400">
+          Available for Senior / Tech Lead Roles
+        </span>
+      </div>
+
+      <!-- Full-Width Download CV Button -->
+      <a
+        href="/Faycal_Rafa_CV_2026.pdf"
+        download="Faycal_Rafa_CV_2026.pdf"
+        class="mobile-nav-link flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400 transition-colors"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M10 3v10" />
+          <path d="M6 9l4 4 4-4" />
+          <path d="M3 15v1a2 2 0 002 2h10a2 2 0 002-2v-1" />
+        </svg>
+        <span>Download Faycal Rafa CV (PDF)</span>
+      </a>
+
+      <!-- Quick Social Links in Mobile Drawer -->
+      <div class="mt-4 flex items-center justify-around border-t border-zinc-100 pt-4 dark:border-zinc-800/50">
+        <a
+          href="https://github.com/faycalrafa"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+          aria-label="GitHub Profile"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/in/faycal-rafa-89a366249"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+          aria-label="LinkedIn Profile"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="mailto:rafafaycal@gmail.com"
+          class="text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+          aria-label="Send Email"
+        >
+          Email
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Setup interactive handlers resilient to Astro 5 ClientRouter view transitions
+
+  // Module-scoped state references for Astro ClientRouter lifecycle management
+  let activeKeydownHandler: ((e: KeyboardEvent) => void) | null = null;
+  let activeCloseMenu: (() => void) | null = null;
+  let isMobileMenuOpen = false;
+
+  function initNavbar() {
+    // Note: Theme toggle logic is centrally managed in Layout.astro (dispatches 'theme-changed' event)
+
+    // 1. Command Palette trigger
+    const searchBtns = [
+      document.getElementById('nav-search-btn'),
+      document.getElementById('mobile-search-btn'),
+    ].filter(Boolean);
+
+    searchBtns.forEach((btn) => {
+      btn?.addEventListener('click', () => {
+        window.dispatchEvent(new CustomEvent('open-command-palette'));
+      });
+    });
+
+    // 2. Mobile Menu Toggle logic
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const drawer = document.getElementById('mobile-menu-drawer');
+    const backdrop = document.getElementById('mobile-menu-backdrop');
+    const iconHamburger = document.getElementById('icon-hamburger');
+    const iconClose = document.getElementById('icon-close');
+    const mainEl = document.querySelector('main');
+    const footerEl = document.querySelector('footer');
+
+    let isOpen = false;
+    isMobileMenuOpen = false;
+
+    // Defensive reset of any leftover locks on page transition
+    if (document.body.style.overflow === 'hidden') {
+      document.body.style.overflow = '';
+    }
+    if (mainEl?.hasAttribute('inert')) {
+      mainEl.removeAttribute('inert');
+    }
+    if (footerEl?.hasAttribute('inert')) {
+      footerEl.removeAttribute('inert');
+    }
+
+    function openMenu() {
+      isOpen = true;
+      isMobileMenuOpen = true;
+      menuToggle?.setAttribute('aria-expanded', 'true');
+      drawer?.classList.remove('hidden');
+      backdrop?.classList.remove('hidden');
+      iconHamburger?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+      if (mainEl) mainEl.setAttribute('inert', '');
+      if (footerEl) footerEl.setAttribute('inert', '');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      isMobileMenuOpen = false;
+      menuToggle?.setAttribute('aria-expanded', 'false');
+      drawer?.classList.add('hidden');
+      backdrop?.classList.add('hidden');
+      iconHamburger?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+      if (mainEl) mainEl.removeAttribute('inert');
+      if (footerEl) footerEl.removeAttribute('inert');
+      document.body.style.overflow = '';
+    }
+
+    activeCloseMenu = closeMenu;
+
+    menuToggle?.addEventListener('click', () => {
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    backdrop?.addEventListener('click', closeMenu);
+
+    // Close on navigation link clicks inside mobile menu
+    const mobileLinks = drawer?.querySelectorAll('.mobile-nav-link');
+    mobileLinks?.forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Dismiss on Escape key: Clean up previous keydown listener to prevent accumulation
+    if (activeKeydownHandler) {
+      document.removeEventListener('keydown', activeKeydownHandler);
+    }
+
+    activeKeydownHandler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        closeMenu();
+        menuToggle?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', activeKeydownHandler);
+  }
+
+  // Viewport breakpoint resize listener (min-width: 768px):
+  // Automatically closes drawer, restores body overflow, and removes inert when resized to desktop.
+  if (typeof window !== 'undefined' && window.matchMedia) {
+    const desktopMedia = window.matchMedia('(min-width: 768px)');
+    const handleBreakpointChange = (e: MediaQueryListEvent | MediaQueryList) => {
+      if (e.matches && isMobileMenuOpen && activeCloseMenu) {
+        activeCloseMenu();
+      }
+    };
+
+    if (desktopMedia.addEventListener) {
+      desktopMedia.addEventListener('change', handleBreakpointChange);
+    } else if ('addListener' in desktopMedia) {
+      (desktopMedia as any).addListener(handleBreakpointChange);
+    }
+
+    window.addEventListener('resize', () => {
+      if (desktopMedia.matches && isMobileMenuOpen && activeCloseMenu) {
+        activeCloseMenu();
+      }
+    });
+  }
+
+  // Teardown and reset on Astro View Transitions before document swap
+  document.addEventListener('astro:before-swap', () => {
+    // 1. Reset mobile drawer state before DOM swap
+    if (activeCloseMenu) {
+      activeCloseMenu();
+      activeCloseMenu = null;
+    }
+    isMobileMenuOpen = false;
+    document.body.style.overflow = '';
+
+    // 2. Remove keydown listener from document to prevent listener accumulation
+    if (activeKeydownHandler) {
+      document.removeEventListener('keydown', activeKeydownHandler);
+      activeKeydownHandler = null;
+    }
+  });
+
+  // Initialize on initial page load and on subsequent Astro view transitions
+  document.addEventListener('astro:page-load', initNavbar);
+</script>
