@@ -1,7 +1,8 @@
 ---
-title: "InvestMarket & ALFA+"
-tagline: "Portfolio management, performance analytics & immersive digital multi-asset trading simulator"
+title: "InvestMarket"
+tagline: "Outil de gestion de portefeuille et d'analyse de performance pour les investisseurs institutionnels et particuliers"
 category: "commercial"
+liveUrl: "https://investmarket-dz.com/"
 repoUrl: "https://github.com/faycalrafa/InvestMarket-Backend"
 stack:
   - "NestJS"
@@ -12,58 +13,45 @@ stack:
   - "Redis"
   - "Microservices"
 highlights:
-  - "Architected decoupled fintech microservices for real-time market data streaming and portfolio execution"
-  - "High-frequency WebSocket gateways broadcasting low-latency order book and price updates"
-  - "Engineered ALFA+: 100% digital multi-asset trading simulator and market academy"
-  - "Transactional outbox pattern ensuring resilient message delivery and data consistency with PostgreSQL"
-  - "Redis pub/sub caching layer reducing database read load by over 65% during peak trading sessions"
+  - "Plateforme institutionnelle de gestion de portefeuille et d'analyse de performance agréée par la COSOB en Algérie"
+  - "Passerelles WebSockets haute fréquence pour la diffusion en direct du carnet d'ordres et des flux de cotation"
+  - "Pattern Transactional Outbox garantissant la cohérence stricte des transactions et l'intégrité comptable"
+  - "Couche de cache Redis en mémoire réduisant la charge de lecture en base de plus de 65 % en pic de marché"
 featured: true
-order: 3
+order: 4
 publishedDate: "2025-04-01"
 ---
 
-# InvestMarket & ALFA+: Real-Time Trading & Market Simulator
+# InvestMarket: Plateforme Boursière & Gestion de Portefeuille
 
-**InvestMarket** and **ALFA+** represent dual flagship financial software platforms engineered during Faycal Rafa's tenure as **Technical Lead** at Finnetude (08/2024 - 04/2025).
+**InvestMarket** est un Intermédiaire en Opérations de Bourse (IOB) agréé par la **COSOB** en Algérie, offrant des services avancés en matière de gestion de portefeuille, d'analyse de performance et d'accompagnement sur les marchés financiers.
 
-- **InvestMarket**: Outil de gestion de portefeuille et d'analyse de performance pour les investisseurs institutionnels et particuliers. Handles high-concurrency order placement, live market tick ingestion, and real-time portfolio valuation updates.
-- **ALFA+**: Plateforme de formation révolutionnaire, entièrement numérique, dédiée à l'apprentissage du trading et aux activités des marchés. Conçue pour les apprenants professionnels des marchés, les entreprises, les étudiants et les particuliers souhaitant maîtriser l'activité du trading multi-actifs. Notre simulateur 100 % digital permet aux utilisateurs de développer leurs compétences de trading en temps réel dans des conditions de marché authentiques.
-
----
-
-## 1. Business Context & Engineering Leadership
-
-As Technical Lead, Faycal directed a cross-functional squad of 6 engineers across the complete Software Development Life Cycle (SDLC):
-- **Challenge**: The existing architecture suffered from coupling bottlenecks during market open volatility, causing intermittent latency spikes on WebSocket quote streams and order execution queues.
-- **Solution**: Faycal orchestrated a complete architectural refactoring from a legacy monolithic core into an event-driven, decoupled microservices topology, dramatically increasing throughput capacity, service isolation, and achieving 99.9% uptime.
+Développée en collaboration avec l'équipe de Finnetude où **Faycal Rafa** exerçait en tant que **Technical Lead** (08/2024 – 04/2025), la plateforme répond aux exigences strictes des institutions financières et des investisseurs particuliers algériens.
 
 ---
 
-## 2. Distributed Architecture & Core Innovations
+## 1. Contexte Métier & Enjeux Techniques
 
-### 2.1 High-Frequency WebSocket Gateway
-- Engineered specialized WebSocket gateways in NestJS with socket clustering, enabling thousands of concurrent client connections to receive tick-by-tick bid/ask prices with sub-5ms internal routing delays.
-- Implemented client channel subscription filters to ensure traders receive real-time updates only for the securities currently in their active watchlists, preventing bandwidth saturation on mobile clients.
-
-### 2.2 ALFA+ Digital Trading Simulator
-- Interactive multi-asset trading simulator mimicking live market liquidity, dynamic order books, and real-time execution slip.
-- Provides immersive feedback for corporate trainees and university finance students, allowing live strategy simulation with realistic risk telemetry.
-
-### 2.3 Transactional Integrity & The Outbox Pattern
-- In stock trading systems, ledger discrepancies are intolerable. Faycal implemented the **Transactional Outbox Pattern** on top of PostgreSQL:
-  - Financial order insertions and domain events are committed within the same database transaction block.
-  - An asynchronous polling publisher picks up queued outbox events and pushes them to Redis pub/sub topics, guaranteeing *at-least-once* event delivery to accounting and portfolio ledger services even across transient network partitions.
-
-### 2.4 Redis Caching & In-Memory Market State
-- Deployed in-memory Redis data structures to cache the latest top-of-book market prices and user balance snapshots.
-- Mitigated hot-key contention during sudden market surges, reducing transactional database reads by over 65% during peak trading windows.
+- **Agréé COSOB**: Conformité rigoureuse aux normes de régulation financière, traçabilité immuable des ordres et zéro tolérance pour les écarts de réconciliation.
+- **Volatilité et Concurrence**: Lors de l'ouverture des séances de cotation, le volume d'appels et les flux de ticks nécessitent une infrastructure élastique capable d'absorber des pics soudains sans dégradation de latence.
 
 ---
 
-## 3. Technology Stack & Source Reference
+## 2. Innovations & Architecture Distribuée
 
-- **Backend Core**: NestJS, Node.js, TypeScript strict mode
-- **Real-Time Layer**: Socket.io / Native WebSockets, Redis Pub/Sub
-- **Database & Storage**: PostgreSQL (with ACID isolation levels), Redis Cache
-- **Infrastructure**: Docker, Docker Compose, automated CI/CD pipeline
-- **Repository Reference**: [github.com/faycalrafa/InvestMarket-Backend](https://github.com/faycalrafa/InvestMarket-Backend)
+### 2.1 Passerelle WebSockets Temps Réel
+- Passerelles WebSockets dédiées sous NestJS avec clustering de sockets, permettant à des milliers d'utilisateurs simultanés de recevoir les variations de cours tick-par-tick avec une latence interne inférieure à 5 ms.
+- Filtrage des souscriptions par carnet de valeurs pour économiser la bande passante sur les terminaux mobiles.
+
+### 2.2 Intégrité Transactionnelle & Pattern Outbox
+- Implémentation du pattern **Transactional Outbox** au-dessus de PostgreSQL pour garantir une livraison *at-least-once* des événements d'ordre vers les services de comptabilité et de reporting financier, même en cas de rupture réseau temporaire.
+
+### 2.3 Mise en Cache en Mémoire Redis
+- Cache chaud des meilleures limites du carnet d'ordres et des instantanés de valorisation de portefeuille, diminuant les requêtes en base de plus de 65 % en pleine séance.
+
+---
+
+## 3. Références & Liens
+
+- **Site Officiel InvestMarket**: [investmarket-dz.com](https://investmarket-dz.com/)
+- **Dépôt Backend GitHub**: [github.com/faycalrafa/InvestMarket-Backend](https://github.com/faycalrafa/InvestMarket-Backend)
