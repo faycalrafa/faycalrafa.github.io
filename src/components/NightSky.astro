@@ -1,6 +1,6 @@
 ---
 // src/components/NightSky.astro
-// Atmospheric Dark Night Sky with Glowing Moon and Cosmic Animations
+// Atmospheric Dark Night Sky with Pulsing Heartbeat Moon and Multi-Track Cosmic Meteors
 ---
 
 <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden select-none" aria-hidden="true">
@@ -8,10 +8,10 @@
   <div class="absolute inset-0 bg-[#060812] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(30,41,89,0.35),rgba(6,8,18,0))]"></div>
 
   <!-- Cosmic Radial Light Source (Centered around the Moon) -->
-  <div class="absolute -top-24 right-0 sm:right-12 md:right-28 w-[44rem] h-[44rem] rounded-full bg-radial from-blue-700/28 via-indigo-900/18 to-transparent blur-3xl opacity-85"></div>
+  <div class="absolute -top-24 right-0 sm:right-12 md:right-28 w-[48rem] h-[48rem] rounded-full bg-radial from-blue-700/30 via-indigo-900/20 to-transparent blur-3xl opacity-90"></div>
 
   <!-- Starfield Container -->
-  <svg class="absolute inset-0 h-full w-full opacity-60" xmlns="http://www.w3.org/2000/svg">
+  <svg class="absolute inset-0 h-full w-full opacity-65" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <radialGradient id="star-glow" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
@@ -36,50 +36,76 @@
     <circle cx="5%" cy="65%" r="1" fill="#ffffff" class="twinkle-star" style="animation-delay: 3.3s;" />
     <circle cx="18%" cy="80%" r="1.2" fill="#e0e7ff" class="twinkle-star" style="animation-delay: 0.7s;" />
     <circle cx="34%" cy="72%" r="0.9" fill="#ffffff" class="twinkle-star" style="animation-delay: 2.8s;" />
+    <circle cx="48%" cy="58%" r="1.1" fill="#ffffff" class="twinkle-star" style="animation-delay: 1.4s;" />
+    <circle cx="67%" cy="84%" r="0.8" fill="#e0e7ff" class="twinkle-star" style="animation-delay: 2.2s;" />
     <circle cx="82%" cy="75%" r="1.1" fill="#ffffff" class="twinkle-star" style="animation-delay: 1.9s;" />
     <circle cx="92%" cy="85%" r="1.4" fill="#e0e7ff" class="twinkle-star" style="animation-delay: 3.9s;" />
   </svg>
 
-  <!-- Shooting Stars / Meteor Streaks (Dual tracks with staggered frequencies) -->
+  <!-- Shooting Stars / Meteor Streaks (5 staggered tracks covering the sky) -->
   <div class="shooting-star-track shooting-star-track-1">
     <div class="shooting-star shooting-star-1"></div>
   </div>
   <div class="shooting-star-track shooting-star-track-2">
     <div class="shooting-star shooting-star-2"></div>
   </div>
+  <div class="shooting-star-track shooting-star-track-3">
+    <div class="shooting-star shooting-star-3"></div>
+  </div>
+  <div class="shooting-star-track shooting-star-track-4">
+    <div class="shooting-star shooting-star-4"></div>
+  </div>
+  <div class="shooting-star-track shooting-star-track-5">
+    <div class="shooting-star shooting-star-5"></div>
+  </div>
 
   <!-- The Celestial Glowing Moon -->
   <div class="absolute top-6 right-5 sm:top-10 sm:right-16 md:top-12 md:right-28 lg:right-36">
     <div class="relative flex items-center justify-center">
-      <!-- Distant Ethereal Moon Aura Halo (Noticeably Brighter) -->
-      <div class="absolute -inset-14 sm:-inset-20 md:-inset-24 rounded-full bg-radial from-blue-300/32 via-indigo-400/18 to-transparent blur-3xl moon-halo-pulse"></div>
+      <!-- Distant Ethereal Moon Aura Halo with Heartbeat Pulse -->
+      <div class="absolute -inset-16 sm:-inset-24 md:-inset-28 rounded-full bg-radial from-blue-300/40 via-indigo-400/22 to-transparent blur-3xl moon-heartbeat-glow"></div>
+
+      <!-- Secondary Soft Violet Halo -->
+      <div class="absolute -inset-10 sm:-inset-16 md:-inset-20 rounded-full bg-radial from-sky-200/30 via-indigo-500/15 to-transparent blur-2xl moon-heartbeat-glow-secondary"></div>
 
       <!-- Main Glowing Moon Orb with Celestial Float Animation -->
-      <div class="moon-sphere relative h-24 w-24 sm:h-36 sm:w-36 md:h-44 md:w-44 lg:h-48 lg:w-48 rounded-full overflow-hidden shadow-[0_0_65px_22px_rgba(200,225,255,0.38),0_0_120px_45px_rgba(129,140,248,0.24)]">
+      <div class="moon-sphere relative h-24 w-24 sm:h-36 sm:w-36 md:h-44 md:w-44 lg:h-48 lg:w-48 rounded-full overflow-hidden shadow-[0_0_70px_25px_rgba(200,230,255,0.45),0_0_130px_50px_rgba(129,140,248,0.30)]">
         
-        <!-- Surface Gradient (Spherical Light & Shadow) -->
-        <div class="absolute inset-0 bg-radial-[at_30%_30%] from-[#ffffff] via-[#e8eef6] to-[#64748b]"></div>
+        <!-- Surface Gradient (Spherical Light & 3D Shadow with depth) -->
+        <div class="absolute inset-0 bg-radial-[at_28%_28%] from-[#ffffff] via-[#e2e8f0] to-[#334155]"></div>
 
-        <!-- Realistic Lunar Craters Overlay -->
-        <div class="absolute inset-0 opacity-40 mix-blend-multiply">
-          <!-- Crater 1 (Mare Imbrium) -->
-          <div class="absolute top-[22%] left-[28%] h-5 w-7 rounded-[50%] bg-[#475569] blur-[0.8px] -rotate-12"></div>
-          <!-- Crater 2 (Mare Serenitatis) -->
-          <div class="absolute top-[34%] left-[54%] h-7 w-8 rounded-[45%] bg-[#475569] blur-[1px]"></div>
-          <!-- Crater 3 (Mare Tranquillitatis) -->
-          <div class="absolute top-[48%] left-[45%] h-6 w-9 rounded-[40%] bg-[#334155] blur-[1px] rotate-6"></div>
-          <!-- Crater 4 (Oceanus Procellarum edge) -->
-          <div class="absolute top-[38%] left-[12%] h-9 w-6 rounded-[55%] bg-[#475569] blur-[1.2px] -rotate-25"></div>
-          <!-- Crater 5 (Tycho bright impact & rays) -->
-          <div class="absolute bottom-[18%] left-[42%] h-3.5 w-3.5 rounded-full bg-[#334155] shadow-[0_0_8px_3px_rgba(255,255,255,0.6)]"></div>
-          <!-- Small minor craters -->
-          <div class="absolute top-[16%] left-[48%] h-2 w-2 rounded-full bg-[#475569] blur-[0.4px]"></div>
-          <div class="absolute bottom-[32%] left-[24%] h-3 w-4 rounded-full bg-[#334155] blur-[0.6px]"></div>
-          <div class="absolute bottom-[22%] right-[22%] h-4 w-4 rounded-full bg-[#475569] blur-[0.8px]"></div>
+        <!-- Realistic Lunar Basaltic Seas & Craters (Rich Multi-Layer Topography) -->
+        <div class="absolute inset-0 opacity-45 mix-blend-multiply pointer-events-none">
+          <!-- Mare Imbrium (Large circular sea upper-left) -->
+          <div class="absolute top-[20%] left-[24%] h-7 w-9 rounded-[50%] bg-[#334155] blur-[1px] -rotate-12"></div>
+          <!-- Mare Serenitatis (Center-right dark basin) -->
+          <div class="absolute top-[30%] left-[52%] h-8 w-10 rounded-[46%] bg-[#334155] blur-[1.2px]"></div>
+          <!-- Mare Tranquillitatis (Historic Apollo sea) -->
+          <div class="absolute top-[46%] left-[46%] h-7 w-11 rounded-[42%] bg-[#1e293b] blur-[1.2px] rotate-8"></div>
+          <!-- Oceanus Procellarum edge (Far left mare expanse) -->
+          <div class="absolute top-[32%] left-[8%] h-11 w-8 rounded-[55%] bg-[#334155] blur-[1.4px] -rotate-25"></div>
+          <!-- Mare Crisium (Isolated eastern dark oval) -->
+          <div class="absolute top-[36%] right-[12%] h-5 w-6 rounded-[48%] bg-[#1e293b] blur-[0.8px]"></div>
+          <!-- Mare Nubium (Lower central depression) -->
+          <div class="absolute bottom-[28%] left-[32%] h-7 w-8 rounded-[52%] bg-[#334155] blur-[1px] rotate-15"></div>
+
+          <!-- Tycho Impact Crater & Brilliant Ray System (Southern hemisphere) -->
+          <div class="absolute bottom-[16%] left-[44%] h-4 w-4 rounded-full bg-[#1e293b] shadow-[0_0_12px_5px_rgba(255,255,255,0.85)]"></div>
+          <div class="absolute bottom-[14%] left-[22%] w-16 h-0.5 bg-gradient-to-r from-transparent via-white/40 to-transparent rotate-25 blur-[0.3px]"></div>
+          <div class="absolute bottom-[10%] left-[46%] w-14 h-0.5 bg-gradient-to-r from-transparent via-white/40 to-transparent -rotate-45 blur-[0.3px]"></div>
+
+          <!-- Copernicus Crater (Bright central impact) -->
+          <div class="absolute top-[44%] left-[26%] h-3.5 w-3.5 rounded-full bg-[#334155] shadow-[0_0_8px_3px_rgba(255,255,255,0.65)]"></div>
+
+          <!-- Micro-crater details & lunar highland relief -->
+          <div class="absolute top-[14%] left-[44%] h-2.5 w-2.5 rounded-full bg-[#475569] blur-[0.5px]"></div>
+          <div class="absolute bottom-[36%] right-[24%] h-3.5 w-4.5 rounded-full bg-[#334155] blur-[0.8px]"></div>
+          <div class="absolute bottom-[22%] right-[18%] h-4.5 w-4.5 rounded-full bg-[#475569] blur-[0.8px]"></div>
+          <div class="absolute top-[60%] left-[18%] h-3 w-4 rounded-full bg-[#334155] blur-[0.6px]"></div>
         </div>
 
-        <!-- Lunar Limb Brightening Rim Light -->
-        <div class="absolute inset-0 rounded-full border border-white/70 shadow-[inset_0_0_22px_rgba(255,255,255,0.65)]"></div>
+        <!-- Lunar Limb Brightening Rim Light (3D Backlight Edge) -->
+        <div class="absolute inset-0 rounded-full border border-white/80 shadow-[inset_0_0_24px_rgba(255,255,255,0.75)]"></div>
 
         <!-- Drifting Atmospheric Cloud Wisps Across Moon -->
         <div class="moon-cloud moon-cloud-1 absolute -inset-x-8 top-2 h-8 bg-gradient-to-r from-transparent via-indigo-950/45 to-transparent blur-md"></div>
@@ -127,23 +153,40 @@
     }
   }
 
-  /* Lunar Aura Breathing Animation */
-  .moon-halo-pulse {
-    animation: moon-glow 8s ease-in-out infinite alternate;
+  /* Organic Heartbeat Pulsing Moon Aura Animation (Lub-Dub rhythm) */
+  .moon-heartbeat-glow {
+    animation: moon-heartbeat 3.6s ease-in-out infinite;
   }
 
-  @keyframes moon-glow {
-    0% {
-      opacity: 0.65;
+  .moon-heartbeat-glow-secondary {
+    animation: moon-heartbeat 3.6s ease-in-out infinite 0.15s;
+  }
+
+  @keyframes moon-heartbeat {
+    0%, 100% {
       transform: scale(0.96);
+      opacity: 0.55;
+      filter: blur(28px);
     }
-    50% {
+    14% {
+      transform: scale(1.09);
+      opacity: 0.95;
+      filter: blur(36px);
+    }
+    28% {
+      transform: scale(1.01);
+      opacity: 0.68;
+      filter: blur(30px);
+    }
+    42% {
+      transform: scale(1.16);
       opacity: 1;
-      transform: scale(1.05);
+      filter: blur(42px);
     }
-    100% {
-      opacity: 0.75;
-      transform: scale(0.98);
+    70% {
+      transform: scale(0.96);
+      opacity: 0.55;
+      filter: blur(28px);
     }
   }
 
@@ -165,96 +208,142 @@
     100% { transform: translateX(-20%); }
   }
 
-  /* Shooting stars animation - Track 1 */
+  /* Common shooting star styling */
+  .shooting-star {
+    position: absolute;
+    top: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.45), #ffffff);
+    filter: drop-shadow(0 0 5px #93c5fd);
+  }
+
+  /* Shooting Star Track 1 */
   .shooting-star-track-1 {
     position: absolute;
     top: 7%;
-    left: 18%;
-    width: 260px;
+    left: 15%;
+    width: 280px;
     height: 1px;
     transform: rotate(-35deg);
     overflow: hidden;
     pointer-events: none;
   }
-
   .shooting-star-1 {
-    position: absolute;
-    top: 0;
     left: -120px;
     width: 110px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.45), #ffffff);
-    filter: drop-shadow(0 0 5px #93c5fd);
-    animation: shoot-1 9s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+    animation: shoot-1 7.5s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
   }
-
   @keyframes shoot-1 {
-    0%, 75% {
-      left: -120px;
-      opacity: 0;
-    }
-    76% {
-      opacity: 1;
-    }
-    82% {
-      left: 270px;
-      opacity: 0;
-    }
-    100% {
-      left: 270px;
-      opacity: 0;
-    }
+    0%, 75% { left: -120px; opacity: 0; }
+    76% { opacity: 1; }
+    83% { left: 290px; opacity: 0; }
+    100% { left: 290px; opacity: 0; }
   }
 
-  /* Shooting stars animation - Track 2 (Staggered offset) */
+  /* Shooting Star Track 2 */
   .shooting-star-track-2 {
     position: absolute;
-    top: 19%;
+    top: 22%;
     left: 42%;
-    width: 220px;
+    width: 240px;
     height: 1px;
     transform: rotate(-38deg);
     overflow: hidden;
     pointer-events: none;
   }
-
   .shooting-star-2 {
-    position: absolute;
-    top: 0;
     left: -100px;
-    width: 90px;
-    height: 1.5px;
-    background: linear-gradient(90deg, transparent, rgba(165, 180, 252, 0.4), #ffffff);
-    filter: drop-shadow(0 0 4px #a5b4fc);
-    animation: shoot-2 11s cubic-bezier(0.25, 0.1, 0.25, 1) 4.5s infinite;
+    width: 95px;
+    animation: shoot-2 9s cubic-bezier(0.25, 0.1, 0.25, 1) 2.5s infinite;
+  }
+  @keyframes shoot-2 {
+    0%, 75% { left: -100px; opacity: 0; }
+    76% { opacity: 0.9; }
+    83% { left: 250px; opacity: 0; }
+    100% { left: 250px; opacity: 0; }
   }
 
-  @keyframes shoot-2 {
-    0%, 75% {
-      left: -100px;
-      opacity: 0;
-    }
-    76% {
-      opacity: 0.9;
-    }
-    82% {
-      left: 230px;
-      opacity: 0;
-    }
-    100% {
-      left: 230px;
-      opacity: 0;
-    }
+  /* Shooting Star Track 3 (High altitude fast streak) */
+  .shooting-star-track-3 {
+    position: absolute;
+    top: 12%;
+    left: 68%;
+    width: 260px;
+    height: 1px;
+    transform: rotate(-32deg);
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .shooting-star-3 {
+    left: -110px;
+    width: 100px;
+    animation: shoot-3 8.5s cubic-bezier(0.25, 0.1, 0.25, 1) 4.8s infinite;
+  }
+  @keyframes shoot-3 {
+    0%, 75% { left: -110px; opacity: 0; }
+    76% { opacity: 1; }
+    82% { left: 270px; opacity: 0; }
+    100% { left: 270px; opacity: 0; }
+  }
+
+  /* Shooting Star Track 4 (Mid-sky trajectory) */
+  .shooting-star-track-4 {
+    position: absolute;
+    top: 36%;
+    left: 22%;
+    width: 250px;
+    height: 1px;
+    transform: rotate(-42deg);
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .shooting-star-4 {
+    left: -100px;
+    width: 90px;
+    animation: shoot-4 11s cubic-bezier(0.25, 0.1, 0.25, 1) 1.2s infinite;
+  }
+  @keyframes shoot-4 {
+    0%, 78% { left: -100px; opacity: 0; }
+    79% { opacity: 0.85; }
+    85% { left: 260px; opacity: 0; }
+    100% { left: 260px; opacity: 0; }
+  }
+
+  /* Shooting Star Track 5 (Deep diagonal cross) */
+  .shooting-star-track-5 {
+    position: absolute;
+    top: 48%;
+    left: 58%;
+    width: 270px;
+    height: 1px;
+    transform: rotate(-36deg);
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .shooting-star-5 {
+    left: -120px;
+    width: 110px;
+    animation: shoot-5 10.5s cubic-bezier(0.25, 0.1, 0.25, 1) 6.2s infinite;
+  }
+  @keyframes shoot-5 {
+    0%, 76% { left: -120px; opacity: 0; }
+    77% { opacity: 0.95; }
+    84% { left: 280px; opacity: 0; }
+    100% { left: 280px; opacity: 0; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .twinkle-star,
     .moon-sphere,
-    .moon-halo-pulse,
+    .moon-heartbeat-glow,
+    .moon-heartbeat-glow-secondary,
     .moon-cloud-1,
     .moon-cloud-2,
     .shooting-star-1,
-    .shooting-star-2 {
+    .shooting-star-2,
+    .shooting-star-3,
+    .shooting-star-4,
+    .shooting-star-5 {
       animation: none !important;
     }
   }

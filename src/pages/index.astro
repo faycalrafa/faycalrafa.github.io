@@ -1,66 +1,74 @@
 ---
+// src/pages/index.astro
+// Production Homepage for Faycal Rafa | Fullstack Engineer
+// Aligned with the updated portfolio architecture:
+// 1. Hero Section (Fullstack Engineer, Outcome Metrics, Heartbeat Moon)
+// 2. Teams & Companies I've Worked With (Logo Showcase)
+// 3. Projects I Participated In (4 Flagship Cards with Mobile-Optimized Screens)
+// 4. Get in Touch & Opportunities (Contact Info + GitHub Activity Heatmap + Find me on GitHub CTA)
+// 5. Skills & Architecture Matrix (Bento Grid comes last)
+
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import TeamsStrip from '../components/TeamsStrip.astro';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
+import GithubActivityMap from '../components/GithubActivityMap.astro';
 import BentoGrid from '../components/BentoGrid.astro';
-import CareerTimeline from '../components/CareerTimeline.astro';
-import ConsultingCapabilities from '../components/ConsultingCapabilities.astro';
 ---
 
 <Layout
-  title="Faycal Rafa | Senior Software Engineer & Technical Lead"
-  description="Personal developer portfolio, software architecture leadership, and BookReader Android flagship hobby project of Faycal Rafa."
+  title="Faycal Rafa | Fullstack Engineer"
+  description="Personal developer portfolio, distributed systems architecture, and flagship software platforms built by Faycal Rafa, Fullstack Engineer."
 >
-  <!-- Hero Section & Inline CV Modal Viewer (F03) -->
+  <!-- 1. Hero Section & Inline CV Modal Viewer (F03) -->
   <Hero />
 
-  <!-- Skills Matrix Bento Grid Section (F04) -->
-  <BentoGrid />
+  <!-- 2. Teams & Companies I've Worked With Section -->
+  <TeamsStrip />
 
-  <!-- Interactive Career Journey Timeline (F05) -->
-  <CareerTimeline />
+  <!-- 3. Flagship Projects Showcase (BookReader, StoresDZ, SABIL, InvestMarket & ALFA+) -->
+  <FeaturedProjects />
 
-  <!-- B2B Consulting & Engineering Leadership Capabilities Conversion Strip -->
-  <ConsultingCapabilities />
-
-  <!-- Contact & Opportunities Section -->
-  <section id="contact" class="border-t border-zinc-800/80 bg-zinc-900/20 py-16">
+  <!-- 4. Get in Touch & Opportunities Section (with GitHub Activity Contributions Map) -->
+  <section id="contact" class="border-t border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/20 py-16 sm:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
-        <div class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-300">
-          <span class="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true"></span>
+        <div class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-300">
+          <span class="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
           <span>Open to Opportunities</span>
         </div>
 
-        <h2 class="mt-4 text-2xl font-bold tracking-tight text-zinc-100 sm:text-3xl">
+        <h2 class="mt-4 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl lg:text-4xl dark:text-zinc-100">
           Get in Touch &amp; Opportunities
         </h2>
-        <p class="mt-3 text-sm leading-relaxed text-zinc-400">
-          Available for <strong class="text-zinc-100">Senior Software Engineer</strong>, <strong class="text-zinc-100">Technical Lead</strong>, and <strong class="text-zinc-100">Consulting &amp; Systems Architecture</strong> opportunities worldwide. Whether you have an immediate opening, a high-impact consulting project, or a greenfield build, feel free to reach out directly.
+        <p class="mt-3 text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+          Available for <strong class="text-zinc-900 dark:text-zinc-100">Fullstack Engineer</strong>, <strong class="text-zinc-900 dark:text-zinc-100">Senior Software Engineer</strong>, and <strong class="text-zinc-900 dark:text-zinc-100">Technical Lead</strong> positions worldwide. Whether you have an immediate full-time opening, high-impact contract, or greenfield build, reach out directly across any of the channels below.
         </p>
 
+        <!-- Direct Contact Grid: Placed neatly above the GitHub contributions map -->
         <div class="mt-8 flex flex-wrap items-center gap-3">
           <!-- WhatsApp Direct CTA -->
           <a
             href="https://wa.me/213540980238"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-semibold text-white shadow-xs hover:bg-emerald-500 transition-colors"
+            class="inline-flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-4 py-2.5 text-xs font-semibold text-white shadow-xs transition-colors"
             aria-label="Direct WhatsApp Chat with Faycal Rafa"
           >
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
             </svg>
-            <span>Let's Talk on WhatsApp</span>
+            <span>WhatsApp (+213 540 98 02 38)</span>
           </a>
 
           <!-- Download CV (PDF) -->
           <a
             href="/Faycal_Rafa_CV_2026.pdf"
             download="Faycal_Rafa_CV_2026.pdf"
-            class="inline-flex items-center gap-2 rounded-xl border border-zinc-700 bg-zinc-800/90 px-4 py-2.5 text-xs font-semibold text-zinc-100 shadow-xs hover:bg-zinc-700 transition-colors"
+            class="inline-flex items-center gap-2 rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-xs font-semibold text-zinc-700 shadow-xs hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800/90 dark:text-zinc-100 dark:hover:bg-zinc-700 transition-colors"
             aria-label="Download Faycal Rafa CV (PDF)"
           >
-            <svg class="h-4 w-4 text-zinc-300" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <svg class="h-4 w-4 text-zinc-500 dark:text-zinc-300" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
             </svg>
             <span>Download CV (PDF)</span>
@@ -69,7 +77,7 @@ import ConsultingCapabilities from '../components/ConsultingCapabilities.astro';
           <!-- Email -->
           <a
             href="mailto:rafafaycal@gmail.com"
-            class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-semibold text-white shadow-xs hover:bg-blue-500 transition-colors"
+            class="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-500 px-4 py-2.5 text-xs font-semibold text-white shadow-xs transition-colors"
           >
             <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 4h14a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z" />
@@ -81,12 +89,12 @@ import ConsultingCapabilities from '../components/ConsultingCapabilities.astro';
           <!-- Direct Phone -->
           <a
             href="tel:+213540980238"
-            class="inline-flex items-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-xs font-semibold text-zinc-200 hover:bg-zinc-800 transition-colors"
+            class="inline-flex items-center gap-2 rounded-xl border border-zinc-200 bg-zinc-100/80 px-4 py-2.5 text-xs font-semibold text-zinc-800 hover:bg-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors"
           >
             <svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
             </svg>
-            <span>Call Direct</span>
+            <span>+213 540 98 02 38</span>
           </a>
 
           <!-- LinkedIn -->
@@ -94,7 +102,7 @@ import ConsultingCapabilities from '../components/ConsultingCapabilities.astro';
             href="https://www.linkedin.com/in/faycal-rafa-89a366249"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 rounded-xl border border-blue-500/20 bg-blue-950/30 px-4 py-2.5 text-xs font-semibold text-blue-400 hover:bg-blue-900/40 transition-colors"
+            class="inline-flex items-center gap-2 rounded-xl border border-blue-500/20 bg-blue-50 px-4 py-2.5 text-xs font-semibold text-blue-700 hover:bg-blue-100 dark:bg-blue-950/30 dark:text-blue-400 dark:hover:bg-blue-900/40 transition-colors"
           >
             <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24">
               <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -103,6 +111,14 @@ import ConsultingCapabilities from '../components/ConsultingCapabilities.astro';
           </a>
         </div>
       </div>
+
+      <!-- Interactive GitHub Activity Contributions Map (with Find me on GitHub button) -->
+      <GithubActivityMap />
     </div>
+  </section>
+
+  <!-- 5. Skills & Architecture Matrix (Bento Grid Section comes last) -->
+  <section id="skills" class="py-16 sm:py-24 border-t border-zinc-200/80 dark:border-zinc-800/80">
+    <BentoGrid />
   </section>
 </Layout>

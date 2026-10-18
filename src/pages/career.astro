@@ -1,0 +1,69 @@
+---
+// src/pages/career.astro
+// Dedicated Career Journey & Track Record Page for Faycal Rafa
+import Layout from '../layouts/Layout.astro';
+import CareerTimeline from '../components/CareerTimeline.astro';
+---
+
+<Layout
+  title="Career Journey & Professional Track Record | Faycal Rafa"
+  description="Chronological engineering career milestones, technical leadership achievements, and systems architecture shipped across 7 companies by Faycal Rafa."
+>
+  <div class="relative min-h-[80vh] py-10 md:py-16">
+    <!-- Ambient decorative background gradient -->
+    <div class="pointer-events-none absolute inset-x-0 -top-32 -z-10 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
+      <div class="relative left-[calc(50%-15rem)] aspect-1155/678 w-[36rem] -translate-x-1/2 rotate-[25deg] bg-gradient-to-tr from-blue-600 to-indigo-500 opacity-15 sm:left-[calc(50%-25rem)] sm:w-[60rem] dark:opacity-10"></div>
+    </div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb navigation -->
+      <nav aria-label="Breadcrumb" class="mb-6 flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+        <a href="/" class="hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">Home</a>
+        <span>/</span>
+        <span class="font-medium text-zinc-800 dark:text-zinc-200" aria-current="page">Career Journey</span>
+      </nav>
+
+      <!-- Page Header -->
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-8 border-b border-zinc-200/80 dark:border-zinc-800/80">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-700 dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-400">
+            <span>Professional Progression</span>
+            <span class="text-zinc-400 dark:text-zinc-600">•</span>
+            <span>6+ Years Track Record</span>
+          </div>
+
+          <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl dark:text-zinc-50">
+            Career Journey &amp; Milestones
+          </h1>
+
+          <p class="mt-4 text-base leading-relaxed text-zinc-600 sm:text-lg dark:text-zinc-400">
+            A chronological timeline of roles, companies, and platforms shipped: from full-stack engineering to technical leadership across fintech, enterprise logistics, automotive SaaS, and high-traffic consumer mobile apps.
+          </p>
+        </div>
+
+        <!-- Download CV CTA -->
+        <div class="shrink-0">
+          <a
+            href="/Faycal_Rafa_CV_2026.pdf"
+            download="Faycal_Rafa_CV_2026.pdf"
+            class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-xs font-semibold text-white shadow-xs hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400 transition-colors"
+            aria-label="Download Faycal Rafa CV (PDF)"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10 3v10" />
+              <path d="M6 9l4 4 4-4" />
+              <path d="M3 15v1a2 2 0 002 2h10a2 2 0 002-2v-1" />
+            </svg>
+            <span>Download Official CV (PDF)</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Career Timeline Component with all 7 company entries and authentic logos -->
+    <CareerTimeline />
+
+  </div>
+</Layout>

@@ -14,16 +14,19 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: 'Home', href: '/' },
-  { name: 'About', href: '/#career' },
-  { name: 'Skills', href: '/#skills' },
+  { name: 'Career', href: '/career' },
   { name: 'Projects', href: '/projects' },
   { name: 'BookReader', href: '/projects/bookreader' },
+  { name: 'Skills', href: '/#skills' },
   { name: 'Contact', href: '/#contact' },
 ];
 
 function isActive(href: string): boolean {
   if (href === '/') {
     return currentPath === '/' || currentPath === '';
+  }
+  if (href === '/career') {
+    return currentPath === '/career' || currentPath.startsWith('/career');
   }
   if (href === '/projects') {
     return currentPath.startsWith('/projects') && currentPath !== '/projects/bookreader';
@@ -52,7 +55,7 @@ function isActive(href: string): boolean {
           Faycal Rafa
         </span>
         <span class="hidden text-[11px] font-medium text-zinc-500 sm:inline-block dark:text-zinc-400">
-          Senior Software Engineer & Tech Lead
+          Fullstack Engineer
         </span>
       </div>
     </a>

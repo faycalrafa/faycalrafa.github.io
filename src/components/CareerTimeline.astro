@@ -1,12 +1,13 @@
 ---
 // src/components/CareerTimeline.astro
-// Production Drop-In Blueprint for Faycal Rafa Career Timeline (F05)
-// Chronological journey covering all 7 companies from authentic CV data.
+// Production Blueprint for Faycal Rafa Career Timeline (F05)
+// Chronological journey covering all 7 companies from authentic CV data with official company logos.
 // Compliant with Tailwind CSS v4, Astro 5 ClientRouter, and full a11y standards.
 
 export interface ExperienceItem {
   id: string;
   company: string;
+  logo: string;
   role: string;
   period: string;
   startDate: string;
@@ -24,44 +25,28 @@ export interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
-    id: 'freelance',
-    company: 'Freelance',
-    role: 'Independent Software Architect & Technical Consultant',
-    period: '10/2026 – Present',
-    startDate: '2026-10',
-    endDate: 'Present',
-    isCurrent: true,
-    location: 'Remote / Algiers, Algeria',
-    type: 'Consulting',
-    summary: 'Partnering with startups and enterprises to architect distributed backend systems, lead legacy-to-microservice migrations, and ship production-grade native Android and web platforms.',
-    achievements: [
-      'Architecting end-to-end distributed backend systems with NestJS and Node.js, achieving sub-50ms response times and horizontal auto-scaling.',
-      'Engineered high-concurrency database schemas with partitioned PostgreSQL, Redis caching layers, and zero-loss event queues.',
-      'Designing and delivering flagship native Android applications utilizing Jetpack Compose Material 3, AndroidX Media3, and custom offline-first synchronization engines.',
-    ],
-    skills: ['System Architecture', 'NestJS', 'PostgreSQL', 'Docker', 'Android Kotlin', 'Jetpack Compose', 'Microservices'],
-  },
-  {
     id: 'autoqual',
     company: 'AUTOQUAL',
+    logo: '/images/logos/autoqual-logo.png',
     role: 'Technical Lead & Senior Software Engineer',
-    period: '04/2026 – 10/2026',
+    period: '04/2026 – Present',
     startDate: '2026-04',
-    endDate: '2026-10',
-    isCurrent: false,
+    endDate: 'Present',
+    isCurrent: true,
     location: 'Algiers, Algeria',
     type: 'Full-time',
-    summary: 'Spearheaded technical operations and end-to-end system architecture for enterprise automotive service, vehicle tracking, and multi-warehouse inventory platforms.',
+    summary: 'Spearheaded technical operations and end-to-end system architecture, shipping enterprise automotive service workflow platforms, automated vehicle tracking, and multi-warehouse parts inventory management across service centers.',
     achievements: [
-      'Spearheaded technical operations and end-to-end system architecture for enterprise automotive service, vehicle tracking, and multi-warehouse inventory platforms.',
-      'Designed normalized relational schemas (ERDs) and real-time operational workflows, eliminating manual tracking bottlenecks across service centers.',
-      'Established team-wide engineering standards, modular API blueprints, and automated deployment pipelines.',
+      'Architected and shipped real-time vehicle diagnostics and service tracking portals, eliminating manual dispatch bottlenecks across regional service hubs.',
+      'Designed normalized relational schemas in PostgreSQL and automated multi-warehouse parts replenishment workflows.',
+      'Established team-wide engineering standards, modular API blueprints, and automated continuous deployment pipelines.',
     ],
     skills: ['TypeScript', 'Node.js', 'Next.js', 'PostgreSQL', 'Docker', 'Microservices', 'System Design'],
   },
   {
     id: 'sabil',
     company: 'SABIL Company',
+    logo: '/images/logos/sabil-logo.png',
     role: 'Senior Software Engineer',
     period: '04/2025 – 02/2026',
     startDate: '2025-04',
@@ -81,23 +66,25 @@ const experiences: ExperienceItem[] = [
   {
     id: 'finnetude',
     company: 'Finnetude',
+    logo: '/images/logos/finnetude-logo.png',
     role: 'Technical Lead',
     period: '08/2024 – 04/2025',
     startDate: '2024-08',
     endDate: '2025-04',
     location: 'Hydra, Algiers, Algeria',
     type: 'Technical Lead',
-    summary: 'Directed technical strategy and engineering squads across the SDLC for real-time stock trading (InvestMarket) and portfolio management fintech platforms.',
+    summary: 'Directed engineering squads across the SDLC to architect and ship real-time electronic stock trading and interactive multi-asset market simulation platforms.',
     achievements: [
-      'Led and mentored a cross-functional squad of 6 engineers across the entire SDLC, instituting strict TypeScript contracts and automated CI/CD quality gates.',
-      'Decomposed monolithic fintech legacy into elastic microservices, achieving superior fault isolation, high availability, and 99.9% uptime.',
-      'Architected bidirectional WebSocket streaming infrastructure for real-time order-book execution and live candlestick streaming feeds.',
+      'Led a cross-functional squad of 6 engineers to architect and ship InvestMarket (real-time stock trading & portfolio platform) and ALFA+ (immersive multi-asset digital trading academy and market simulator).',
+      'Decomposed monolithic legacy systems into elastic event-driven microservices, achieving fault isolation and 99.9% production uptime.',
+      'Architected bidirectional WebSocket streaming infrastructure delivering sub-5ms latency for tick-by-tick order-book execution and live candlestick market feeds.',
     ],
     skills: ['TypeScript', 'NestJS', 'Node.js', 'WebSockets', 'Docker', 'PostgreSQL', 'Microservices'],
   },
   {
     id: 'instaclean',
     company: 'InstaClean',
+    logo: '/images/logos/instaclean-logo.webp',
     role: 'Mobile Developer',
     period: '01/2024 – 07/2024',
     startDate: '2024-01',
@@ -116,6 +103,7 @@ const experiences: ExperienceItem[] = [
   {
     id: 'kabri-auto',
     company: 'Kabri Auto',
+    logo: '/images/logos/kabri-auto-logo.png',
     role: 'Full-stack Developer',
     period: '01/2024 – 04/2024',
     startDate: '2024-01',
@@ -133,6 +121,7 @@ const experiences: ExperienceItem[] = [
   {
     id: 'piassa-dz',
     company: 'PIASSA DZ',
+    logo: '/images/logos/piassa-logo.png',
     role: 'Full-stack Developer',
     period: '10/2022 – 12/2023',
     startDate: '2022-10',
@@ -152,6 +141,7 @@ const experiences: ExperienceItem[] = [
   {
     id: 'bfln-technologies',
     company: 'SARL BFLN Technologies',
+    logo: '/images/logos/BFLN-TECHNOLOGIES-.png',
     role: 'Full-stack Developer',
     period: '07/2019 – 09/2022',
     startDate: '2019-07',
@@ -169,7 +159,7 @@ const experiences: ExperienceItem[] = [
 ];
 ---
 
-<section id="career" class="relative py-20 border-t border-zinc-200/80 dark:border-zinc-800/80 bg-white/40 dark:bg-zinc-950/40">
+<section id="career" class="relative py-12 md:py-20 border-t border-zinc-200/80 dark:border-zinc-800/80 bg-white/40 dark:bg-zinc-950/40">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     
     <!-- Section Header -->
@@ -181,7 +171,7 @@ const experiences: ExperienceItem[] = [
         Career Journey
       </h2>
       <p class="mt-3 text-base text-zinc-600 sm:text-lg dark:text-zinc-400">
-        6+ years of engineering progression: from full-stack systems engineering to technical leadership across fintech, enterprise logistics, automotive SaaS, and high-scale consumer applications.
+        6+ years of engineering progression: architecting microservices, leading cross-functional squads, and shipping production platforms across fintech, enterprise logistics, automotive SaaS, and consumer applications.
       </p>
     </div>
 
@@ -225,41 +215,54 @@ const experiences: ExperienceItem[] = [
             <!-- Card Content Wrapper -->
             <div class="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-xs transition-all duration-200 hover:border-zinc-300 hover:shadow-md dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-zinc-700">
               
-              <!-- Card Header: Role, Company, Date Badge -->
-              <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <div class="flex flex-wrap items-center gap-2">
-                    <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">
-                      {exp.role}
-                    </h3>
-                    
-                    {exp.isCurrent && (
-                      <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 border border-emerald-500/20 dark:bg-emerald-400/10 dark:text-emerald-400">
-                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        Current Role • Present
-                      </span>
-                    )}
-
-                    {exp.type && !exp.isCurrent && (
-                      <span class="inline-flex items-center rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
-                        {exp.type}
-                      </span>
-                    )}
+              <!-- Card Header: Role, Company Logo, Date Badge -->
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div class="flex items-start gap-4">
+                  <!-- Company Logo Box -->
+                  <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-zinc-200/80 bg-zinc-50 p-1.5 shadow-2xs dark:border-zinc-700/80 dark:bg-zinc-800">
+                    <img
+                      src={exp.logo}
+                      alt={`${exp.company} Logo`}
+                      loading="lazy"
+                      decoding="async"
+                      class="max-h-9 w-auto max-w-full object-contain"
+                    />
                   </div>
 
-                  <!-- Company & Location Header -->
-                  <div class="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                    <span class="text-blue-600 dark:text-blue-400 font-semibold text-base">
-                      {exp.company}
-                    </span>
-                    <span class="text-zinc-300 dark:text-zinc-600" aria-hidden="true">•</span>
-                    <span class="text-zinc-500 dark:text-zinc-400 flex items-center gap-1 text-xs sm:text-sm">
-                      <svg class="h-3.5 w-3.5 text-zinc-400" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M10 2a6 6 0 0 0-6 6c0 4.5 6 10 6 10s6-5.5 6-10a6 6 0 0 0-6-6Z" />
-                        <circle cx="10" cy="8" r="2" />
-                      </svg>
-                      {exp.location}
-                    </span>
+                  <div>
+                    <div class="flex flex-wrap items-center gap-2">
+                      <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+                        {exp.role}
+                      </h3>
+                      
+                      {exp.isCurrent && (
+                        <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 border border-emerald-500/20 dark:bg-emerald-400/10 dark:text-emerald-400">
+                          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                          Current Role • Present
+                        </span>
+                      )}
+
+                      {exp.type && !exp.isCurrent && (
+                        <span class="inline-flex items-center rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+                          {exp.type}
+                        </span>
+                      )}
+                    </div>
+
+                    <!-- Company & Location Header -->
+                    <div class="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                      <span class="text-blue-600 dark:text-blue-400 font-semibold text-base">
+                        {exp.company}
+                      </span>
+                      <span class="text-zinc-300 dark:text-zinc-600" aria-hidden="true">•</span>
+                      <span class="text-zinc-500 dark:text-zinc-400 flex items-center gap-1 text-xs sm:text-sm">
+                        <svg class="h-3.5 w-3.5 text-zinc-400" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M10 2a6 6 0 0 0-6 6c0 4.5 6 10 6 10s6-5.5 6-10a6 6 0 0 0-6-6Z" />
+                          <circle cx="10" cy="8" r="2" />
+                        </svg>
+                        {exp.location}
+                      </span>
+                    </div>
                   </div>
                 </div>
 
