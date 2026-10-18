@@ -9,88 +9,71 @@ interface TeamItem {
   logo: string;
   label: string;
   href: string;
-  hasWhiteBg?: boolean;
-  scaleClass?: string;
   animationDelay?: string;
 }
 
 const teams: TeamItem[] = [
   {
     name: 'SABIL',
-    logo: '/images/logos/sabil-logo.png',
+    logo: '/images/logos/icons/sabil.png',
     label: 'Sabil',
     href: 'https://sabil.dz/en/getapp/',
-    hasWhiteBg: false,
     animationDelay: '0s',
   },
   {
     name: 'Finnetude',
-    logo: '/images/logos/finnetude-logo.png',
+    logo: '/images/logos/icons/finnetude.png',
     label: 'Finnetude',
     href: '/career',
-    hasWhiteBg: true,
-    scaleClass: 'max-h-11 w-auto',
     animationDelay: '0.8s',
   },
   {
     name: 'Invest Market',
-    logo: '/images/logos/logo-invest-market.png',
+    logo: '/images/logos/icons/investmarket.png',
     label: 'Invest Market',
     href: 'https://investmarket-dz.com/',
-    hasWhiteBg: true,
-    scaleClass: 'max-h-12 w-auto',
     animationDelay: '1.6s',
   },
   {
     name: 'PIASSA DZ',
-    logo: '/images/logos/piassa-logo.png',
+    logo: '/images/logos/icons/piassa.png',
     label: 'Piassa',
     href: 'https://piassa.shop/',
-    hasWhiteBg: false,
     animationDelay: '2.4s',
   },
   {
     name: 'AUTOQUAL',
-    logo: '/images/logos/autoqual-logo.png',
+    logo: '/images/logos/icons/autoqual.png',
     label: 'Autoqual',
     href: '/career',
-    hasWhiteBg: true,
-    scaleClass: 'max-h-9 w-auto',
     animationDelay: '0.4s',
   },
   {
     name: 'Kabri Auto',
-    logo: '/images/logos/kabri-auto-logo.png',
+    logo: '/images/logos/icons/kabri.png',
     label: 'Kabri Auto',
     href: '/career',
-    hasWhiteBg: true,
-    scaleClass: 'max-h-12 w-auto',
     animationDelay: '1.2s',
   },
   {
     name: 'BFLN Technologies',
-    logo: '/images/logos/BFLN-TECHNOLOGIES-.png',
+    logo: '/images/logos/icons/bfln.png',
     label: 'BFLN Tech',
     href: '/career',
-    hasWhiteBg: true,
-    scaleClass: 'max-h-11 w-auto',
     animationDelay: '2.0s',
   },
   {
     name: 'Tassouik',
-    logo: '/images/logos/tassouik-logo.png',
+    logo: '/images/logos/icons/tassouik.png',
     label: 'Tassouik',
     href: '/career',
-    hasWhiteBg: true,
-    scaleClass: 'max-h-11 w-auto',
     animationDelay: '2.8s',
   },
   {
     name: 'InstaClean',
-    logo: '/images/logos/instaclean-logo.webp',
+    logo: '/images/logos/icons/instaclean.png',
     label: 'InstaClean',
     href: '/career',
-    hasWhiteBg: false,
     animationDelay: '1.0s',
   },
 ];
@@ -117,7 +100,7 @@ const teams: TeamItem[] = [
       </p>
     </div>
 
-    <!-- Organic Floating Logos Cluster (No rigid dark boxes, pure breathing space) -->
+    <!-- Organic Floating Logos Cluster (100% Uniform Squircle App Icons) -->
     <div class="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-12 max-w-5xl mx-auto">
       {teams.map((team) => (
         <a
@@ -129,34 +112,18 @@ const teams: TeamItem[] = [
           title={`${team.name} - View Trajectory`}
           aria-label={team.name}
         >
-          {/* Logo Mark Container */}
-          <div class="relative flex items-center justify-center">
-            {team.hasWhiteBg ? (
-              /* Custom White Pill/Squircle with Soft Rounded Corners for low-contrast/dark logos */
-              <div class="flex h-16 w-28 sm:h-18 sm:w-32 items-center justify-center rounded-2xl bg-white px-3 py-2 shadow-md shadow-zinc-950/20 ring-1 ring-zinc-200 transition-all duration-300 group-hover:shadow-xl group-hover:ring-blue-400">
-                <img
-                  src={team.logo}
-                  alt={`${team.name} Logo`}
-                  loading="lazy"
-                  decoding="async"
-                  class={`${team.scaleClass || 'max-h-10 w-auto'} max-w-full object-contain filter transition-transform duration-300 group-hover:scale-105`}
-                />
-              </div>
-            ) : (
-              /* Native High-Contrast Brand Marks */
-              <div class="flex h-16 w-16 sm:h-18 sm:w-18 items-center justify-center rounded-2xl bg-zinc-900/40 p-2 transition-all duration-300 group-hover:bg-zinc-800/60 group-hover:shadow-lg">
-                <img
-                  src={team.logo}
-                  alt={`${team.name} Logo`}
-                  loading="lazy"
-                  decoding="async"
-                  class="h-12 w-12 sm:h-14 sm:w-14 object-contain filter drop-shadow-md transition-transform duration-300 group-hover:scale-110"
-                />
-              </div>
-            )}
+          {/* Uniform Squircle Icon Container */}
+          <div class="relative flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-2xl overflow-hidden shadow-md shadow-zinc-950/30 ring-1 ring-zinc-700/60 dark:ring-zinc-800 transition-all duration-300 group-hover:shadow-2xl group-hover:scale-105 group-hover:ring-blue-400">
+            <img
+              src={team.logo}
+              alt={`${team.name} Logo`}
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-102"
+            />
           </div>
 
-          {/* Clean Company Label Underneath (Matching reference styling) */}
+          {/* Clean Company Label Underneath */}
           <span class="text-xs font-semibold text-zinc-700 transition-colors group-hover:text-blue-600 dark:text-zinc-300 dark:group-hover:text-blue-400">
             {team.label}
           </span>
