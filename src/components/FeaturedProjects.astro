@@ -20,11 +20,32 @@
       </p>
     </div>
 
-    <!-- Flagship Projects Showcase: Clean, Compact & Screen-Forward -->
-    <div class="mt-12 space-y-10 sm:space-y-12">
+    <!-- Flagship Projects Showcase with Animated Progress Laser -->
+    <div class="relative mt-12 projects-timeline-container pl-6 sm:pl-10 md:pl-14">
+      
+      <!-- Vertical Continuous Line Connector Base -->
+      <div
+        class="absolute left-2 sm:left-4 md:left-5 top-6 bottom-6 w-0.5 bg-zinc-200 dark:bg-zinc-800"
+        aria-hidden="true"
+      ></div>
+
+      <!-- Vertical Glowing Laser Progress Line -->
+      <div
+        id="projects-progress-laser"
+        class="absolute left-2 sm:left-4 md:left-5 top-6 w-0.5 bg-gradient-to-b from-blue-500 via-indigo-500 to-emerald-400 shadow-[0_0_8px_rgba(59,130,246,0.6)] transition-all duration-150"
+        style="height: 0%;"
+        aria-hidden="true"
+      ></div>
+
+      <div class="space-y-10 sm:space-y-12">
       
       <!-- Project 1: BookReader Pro (Current Free-to-Use Flagship Android App) -->
-      <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-amber-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-amber-500/30">
+      <article class="project-timeline-item group relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-amber-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-amber-500/30">
+        <!-- Timeline Node Beacon -->
+        <div
+          class="project-beacon absolute -left-6 sm:-left-10 md:-left-14 top-8 -translate-x-1/2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 h-5 w-5 bg-amber-500 ring-4 ring-amber-500/20 shadow-md shadow-amber-500/30"
+          aria-hidden="true"
+        ></div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           
           <!-- Text Meta Column -->
@@ -124,7 +145,13 @@
       </article>
 
       <!-- Project 2: StoresDZ (Shopify, but open and built for Algeria) -->
-      <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-blue-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-blue-500/30">
+      <article class="project-timeline-item group relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-blue-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-blue-500/30">
+        <!-- Timeline Node Beacon -->
+        <div
+          class="project-beacon absolute -left-6 sm:-left-10 md:-left-14 top-8 -translate-x-1/2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 h-4 w-4 bg-zinc-300 dark:bg-zinc-700 border-2 border-white dark:border-zinc-900"
+          data-active-class="bg-blue-500 ring-4 ring-blue-500/20 shadow-md shadow-blue-500/30"
+          aria-hidden="true"
+        ></div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           
           <!-- Text Meta Column -->
@@ -214,7 +241,13 @@
       </article>
 
       <!-- Project 3: SABIL Mega-App -->
-      <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-emerald-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-emerald-500/30">
+      <article class="project-timeline-item group relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-emerald-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-emerald-500/30">
+        <!-- Timeline Node Beacon -->
+        <div
+          class="project-beacon absolute -left-6 sm:-left-10 md:-left-14 top-8 -translate-x-1/2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 h-4 w-4 bg-zinc-300 dark:bg-zinc-700 border-2 border-white dark:border-zinc-900"
+          data-active-class="bg-emerald-500 ring-4 ring-emerald-500/20 shadow-md shadow-emerald-500/30"
+          aria-hidden="true"
+        ></div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           
           <!-- Text Meta Column -->
@@ -304,7 +337,13 @@
       </article>
 
       <!-- Project 4: InvestMarket (Standalone Project at Finnetude) -->
-      <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-indigo-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-indigo-500/30">
+      <article class="project-timeline-item group relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-indigo-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-indigo-500/30">
+        <!-- Timeline Node Beacon -->
+        <div
+          class="project-beacon absolute -left-6 sm:-left-10 md:-left-14 top-8 -translate-x-1/2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 h-4 w-4 bg-zinc-300 dark:bg-zinc-700 border-2 border-white dark:border-zinc-900"
+          data-active-class="bg-indigo-500 ring-4 ring-indigo-500/20 shadow-md shadow-indigo-500/30"
+          aria-hidden="true"
+        ></div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           
           <!-- Text Meta Column -->
@@ -376,15 +415,6 @@
                   <path d="M11 3h6v6" /><path d="M10 10l7-7" /><path d="M17 11v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6" />
                 </svg>
               </a>
-
-              <a
-                href="https://github.com/faycalrafa/InvestMarket-Backend"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors"
-              >
-                <span>GitHub Backend</span>
-              </a>
             </div>
           </div>
 
@@ -403,7 +433,13 @@
       </article>
 
       <!-- Project 5: ALFA+ (Standalone Trading Simulator Platform at Finnetude) -->
-      <article class="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-cyan-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-cyan-500/30">
+      <article class="project-timeline-item group relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-cyan-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-cyan-500/30">
+        <!-- Timeline Node Beacon -->
+        <div
+          class="project-beacon absolute -left-6 sm:-left-10 md:-left-14 top-8 -translate-x-1/2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 h-4 w-4 bg-zinc-300 dark:bg-zinc-700 border-2 border-white dark:border-zinc-900"
+          data-active-class="bg-cyan-500 ring-4 ring-cyan-500/20 shadow-md shadow-cyan-500/30"
+          aria-hidden="true"
+        ></div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           
           <!-- Text Meta Column -->
@@ -463,6 +499,18 @@
                   <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
                 </svg>
               </a>
+
+              <a
+                href="https://finnetude.dz/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors"
+              >
+                <span>finnetude.dz</span>
+                <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 3h6v6" /><path d="M10 10l7-7" /><path d="M17 11v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6" />
+                </svg>
+              </a>
             </div>
           </div>
 
@@ -480,6 +528,7 @@
         </div>
       </article>
 
+      </div>
     </div>
 
     <!-- Go to See All Projects CTA Button -->
@@ -497,3 +546,54 @@
 
   </div>
 </section>
+
+<script>
+  function initProjectsLaser() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const laser = document.getElementById('projects-progress-laser');
+      if (laser) laser.style.height = '100%';
+      return;
+    }
+    const container = document.querySelector<HTMLElement>('.projects-timeline-container');
+    const laser = document.getElementById('projects-progress-laser');
+    const items = document.querySelectorAll<HTMLElement>('.project-timeline-item');
+    if (!container || !laser) return;
+
+    function onScroll() {
+      if (!container || !laser) return;
+      const rect = container.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const startY = windowHeight * 0.75;
+      const totalDist = rect.height;
+      const scrolled = startY - rect.top;
+      const progress = Math.max(0, Math.min(1, scrolled / totalDist));
+      laser.style.height = `${(progress * 100).toFixed(1)}%`;
+
+      items.forEach((item) => {
+        const itemRect = item.getBoundingClientRect();
+        const beacon = item.querySelector<HTMLElement>('.project-beacon');
+        if (!beacon) return;
+        const activeClass = beacon.getAttribute('data-active-class');
+        if (!activeClass) return; // Project 1 BookReader has permanent amber beacon
+        const classes = activeClass.split(' ');
+        if (itemRect.top < windowHeight * 0.65) {
+          beacon.classList.add(...classes);
+          beacon.classList.remove('bg-zinc-300', 'dark:bg-zinc-700');
+        } else {
+          beacon.classList.remove(...classes);
+          beacon.classList.add('bg-zinc-300', 'dark:bg-zinc-700');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  document.addEventListener('astro:page-load', initProjectsLaser);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initProjectsLaser();
+  } else {
+    document.addEventListener('DOMContentLoaded', initProjectsLaser);
+  }
+</script>

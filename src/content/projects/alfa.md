@@ -2,6 +2,7 @@
 title: "ALFA+"
 tagline: "Plateforme de formation révolutionnaire et simulateur 100 % digital dédié à l'apprentissage du trading multi-actifs"
 category: "commercial"
+liveUrl: "https://finnetude.dz/"
 stack:
   - "NestJS"
   - "TypeScript"
@@ -41,3 +42,10 @@ Développée sous le leadership technique de **Faycal Rafa** chez Finnetude, la 
 - **Moteur de Simulation en Temps Réel**: Émulation des flux d'ordres (Achat/Vente, Limite, Marché, Stop) avec calcul instantané des marges et des résultats non réalisés (P&L).
 - **Streaming WebSockets Basse Latence**: Diffusion des graphiques interactifs en chandeliers japonais et mise à jour en continu de la profondeur de marché.
 - **Résilience Microservices**: Décomposition des modules pédagogiques, du moteur de matching simulé et de l'authentification en microservices conteneurisés Docker offrant 99,9 % de disponibilité.
+
+---
+
+## 3. Références & Liens
+
+- **Finnetude Finance & Tech**: [finnetude.dz](https://finnetude.dz/)
+

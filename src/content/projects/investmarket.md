@@ -3,7 +3,6 @@ title: "InvestMarket"
 tagline: "Outil de gestion de portefeuille et d'analyse de performance pour les investisseurs institutionnels et particuliers"
 category: "commercial"
 liveUrl: "https://investmarket-dz.com/"
-repoUrl: "https://github.com/faycalrafa/InvestMarket-Backend"
 stack:
   - "NestJS"
   - "TypeScript"
@@ -54,4 +53,3 @@ Développée en collaboration avec l'équipe de Finnetude où **Faycal Rafa** ex
 ## 3. Références & Liens
 
 - **Site Officiel InvestMarket**: [investmarket-dz.com](https://investmarket-dz.com/)
-- **Dépôt Backend GitHub**: [github.com/faycalrafa/InvestMarket-Backend](https://github.com/faycalrafa/InvestMarket-Backend)
