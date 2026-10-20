@@ -16,7 +16,7 @@ highlights:
   - "Expérience d'apprentissage immersive conçue pour les apprenants professionnels, les entreprises et les étudiants"
   - "Reproduction dynamique des carnets d'ordres multi-actifs, de la liquidité et de l'exécution de marché"
   - "Architecture microservices robuste garantissant 99,9 % de disponibilité et une faible latence de streaming"
-featured: true
+featured: false
 order: 5
 publishedDate: "2025-03-15"
 ---

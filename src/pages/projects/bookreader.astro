@@ -659,16 +659,10 @@ const APP_SCREENS = [
         if (!mobileSnapCount) return;
         mobileSnapCount.textContent = `Screen ${activeIndex + 1} of ${screens.length}`;
         if (mobileSnapHint) {
-          if (activeIndex === screens.length - 1) {
-            mobileSnapHint.textContent = 'Swipe up to finish';
-          } else {
-            mobileSnapHint.textContent = 'Swipe up / down';
-          }
+          mobileSnapHint.textContent = 'Swipe on phone';
         }
         if (mobileSnapDot) {
-          mobileSnapDot.className = isLocked
-            ? 'h-2 w-2 rounded-full bg-emerald-400 animate-pulse'
-            : 'h-2 w-2 rounded-full bg-amber-400';
+          mobileSnapDot.className = 'h-2 w-2 rounded-full bg-amber-400';
         }
       }
 
@@ -823,309 +817,72 @@ const APP_SCREENS = [
         if (e.target === lightbox) lightbox.close();
       });
 
-      // ═══════════════════ MOBILE-ONLY SOLID CENTER SNAP & SCROLL LOCK ═══════════════════
-      let isLocked = false;
-      let hasCompleted = false;
-      let isCentering = false;
-      let lockedCenterY = null;
+      // ═══════════════════ BUTTERY-SMOOTH TOUCH & GESTURE CAROUSEL CONTROLLER ═══════════════════
+      // Completely eliminates high-frequency scroll hijacking and "bowstring" oscillation.
+      // Swipe gestures are cleanly scoped to the interactive phone container without blocking window scroll.
+      
+      const phoneContainer = phoneTrigger || document.getElementById('mockup-screen-container');
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchStartTime = 0;
+      const SWIPE_MIN_DIST = 40;
 
-      function isMobileUser() {
-        return window.innerWidth < 768 || window.matchMedia('(max-width: 767px)').matches;
-      }
-
-      function getPhoneCenterScrollY() {
-        if (!phoneTrigger) return window.scrollY;
-        const rect = phoneTrigger.getBoundingClientRect();
-        const currentY = window.scrollY || window.pageYOffset;
-        const targetY = currentY + rect.top + (rect.height / 2) - (window.innerHeight / 2);
-        return Math.max(0, Math.round(targetY));
-      }
-
-      function lockShowcase() {
-        if (isLocked || !isMobileUser() || hasCompleted || isCentering) return;
-        if (lightbox && lightbox.open) return;
-
-        isCentering = true;
-        isLocked = true;
-        lockedCenterY = getPhoneCenterScrollY();
-
-        // Smoothly lock phone dead-center in the mobile viewport
-        window.scrollTo({ top: lockedCenterY, behavior: 'smooth' });
-        updateMobileIndicator();
-
-        setTimeout(() => {
-          lockedCenterY = getPhoneCenterScrollY();
-          isCentering = false;
-        }, 360);
-      }
-
-      function unlockShowcase(direction) {
-        isLocked = false;
-        lockedCenterY = null;
-        if (direction === 'down') {
-          hasCompleted = true;
-          window.scrollBy({ top: 120, behavior: 'smooth' });
-        } else if (direction === 'up') {
-          window.scrollBy({ top: -120, behavior: 'smooth' });
+      function onPhoneTouchStart(e) {
+        if (e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          touchStartTime = Date.now();
         }
-        updateMobileIndicator();
+      }
+
+      function onPhoneTouchEnd(e) {
+        if (e.changedTouches.length === 1) {
+          const deltaX = e.changedTouches[0].clientX - touchStartX;
+          const deltaY = e.changedTouches[0].clientY - touchStartY;
+          const timeElapsed = Date.now() - touchStartTime;
+
+          // Detect swipe gesture within 500ms
+          if (timeElapsed < 500) {
+            // Horizontal swipe takes precedence
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) >= SWIPE_MIN_DIST) {
+              if (deltaX < 0) {
+                // Swipe Left -> Next Screen
+                setScreen(activeIndex + 1, 'forward');
+              } else {
+                // Swipe Right -> Prev Screen
+                setScreen(activeIndex - 1, 'backward');
+              }
+            } else if (Math.abs(deltaY) >= SWIPE_MIN_DIST * 1.5) {
+              if (deltaY < 0) {
+                // Swipe Up on phone -> Next Screen
+                setScreen(activeIndex + 1, 'forward');
+              } else {
+                // Swipe Down on phone -> Prev Screen
+                setScreen(activeIndex - 1, 'backward');
+              }
+            }
+          }
+        }
+      }
+
+      if (phoneContainer) {
+        phoneContainer.addEventListener('touchstart', onPhoneTouchStart, { passive: true });
+        phoneContainer.addEventListener('touchend', onPhoneTouchEnd, { passive: true });
       }
 
       mobileSnapUnlockBtn?.addEventListener('click', () => {
-        unlockShowcase('down');
+        setScreen(activeIndex + 1, 'forward');
       });
-
-      // ═══════════════════ MID-TO-BIG SWIPE TRACKING CONTROLLER ═══════════════════
-      const SWIPE_THRESHOLD_PX = 75; // Mid to big swipe threshold (>= 75px, no tiny nudges!)
-      let touchStartY = 0;
-      let touchStartX = 0;
-      let touchStartTime = 0;
-      let lastTouchY = 0;
-      let isTouching = false;
-      let hasSwipedInCurrentTouch = false;
-
-      function onTouchStart(e) {
-        if (!isLocked || !isMobileUser()) return;
-        if (lightbox && lightbox.open) return;
-
-        if (e.touches.length === 1) {
-          touchStartY = e.touches[0].clientY;
-          touchStartX = e.touches[0].clientX;
-          lastTouchY = touchStartY;
-          touchStartTime = Date.now();
-          isTouching = true;
-          hasSwipedInCurrentTouch = false;
-        }
-      }
-
-      function onTouchMove(e) {
-        if (!isLocked || !isTouching || !isMobileUser()) return;
-        if (lightbox && lightbox.open) return;
-
-        const currentY = e.touches[0].clientY;
-        const currentX = e.touches[0].clientX;
-        const diffY = currentY - touchStartY;
-        const diffX = currentX - touchStartX;
-        lastTouchY = currentY;
-
-        // While locked on mobile, strictly prevent page scrolling
-        if (Math.abs(diffY) > Math.abs(diffX)) {
-          e.preventDefault();
-
-          // Only trigger on mid-to-big swipe (>= 75px) and only once per touch gesture
-          if (!hasSwipedInCurrentTouch && !isImageTransitioning) {
-            // Swipe UP (finger dragged UP >= 75px -> user intends to scroll DOWN to next screen)
-            if (diffY <= -SWIPE_THRESHOLD_PX) {
-              hasSwipedInCurrentTouch = true;
-              if (activeIndex < screens.length - 1) {
-                setScreen(activeIndex + 1, 'forward');
-              } else {
-                unlockShowcase('down');
-              }
-            }
-            // Swipe DOWN (finger dragged DOWN >= 75px -> user intends to scroll UP to previous screen)
-            else if (diffY >= SWIPE_THRESHOLD_PX) {
-              hasSwipedInCurrentTouch = true;
-              if (activeIndex > 0) {
-                setScreen(activeIndex - 1, 'backward');
-              } else {
-                unlockShowcase('up');
-              }
-            }
-          }
-        }
-      }
-
-      function onTouchEnd() {
-        if (!isLocked || !isTouching || !isMobileUser()) {
-          isTouching = false;
-          return;
-        }
-
-        // Also support quick intentional flick on release (>= 55px in < 260ms) if not triggered during move
-        if (!hasSwipedInCurrentTouch && !isImageTransitioning) {
-          const diffY = lastTouchY - touchStartY;
-          const elapsed = Date.now() - touchStartTime;
-
-          if (elapsed < 260 && Math.abs(diffY) >= 55) {
-            if (diffY < 0) {
-              hasSwipedInCurrentTouch = true;
-              if (activeIndex < screens.length - 1) {
-                setScreen(activeIndex + 1, 'forward');
-              } else {
-                unlockShowcase('down');
-              }
-            } else if (diffY > 0) {
-              hasSwipedInCurrentTouch = true;
-              if (activeIndex > 0) {
-                setScreen(activeIndex - 1, 'backward');
-              } else {
-                unlockShowcase('up');
-              }
-            }
-          }
-        }
-
-        isTouching = false;
-        hasSwipedInCurrentTouch = false;
-      }
-
-      // Wheel interaction for desktop mobile emulation / trackpad
-      let lastWheelTime = 0;
-      function onWheel(e) {
-        if (!isLocked || !isMobileUser()) return;
-        if (lightbox && lightbox.open) return;
-
-        e.preventDefault();
-        const now = Date.now();
-        if (now - lastWheelTime < 380 || isImageTransitioning) return;
-
-        // Require intentional wheel stroke (magnitude >= 45)
-        if (e.deltaY >= 45) {
-          lastWheelTime = now;
-          if (activeIndex < screens.length - 1) {
-            setScreen(activeIndex + 1, 'forward');
-          } else {
-            unlockShowcase('down');
-          }
-        } else if (e.deltaY <= -45) {
-          lastWheelTime = now;
-          if (activeIndex > 0) {
-            setScreen(activeIndex - 1, 'backward');
-          } else {
-            unlockShowcase('up');
-          }
-        }
-      }
-
-      // ═══════════════════ UPWARD SNAP LOCK & SCROLL CONTROLLER ═══════════════════
-      let hasPassedBelowShowcase = false;
-      let lastScrollY = typeof window !== 'undefined' ? (window.scrollY || window.pageYOffset) : 0;
-      const showcaseSection = document.querySelector('section[aria-labelledby="showcase-heading"]');
-
-      function activateSnapLock() {
-        if (isCentering || (lightbox && lightbox.open)) return;
-
-        // Visual snap feedback: brief subtle amber ring pulse on the showcase container
-        const showcaseContainer = showcaseSection?.querySelector('.rounded-3xl');
-        if (showcaseContainer) {
-          showcaseContainer.classList.add('ring-4', 'ring-amber-500/60', 'transition-all', 'duration-500');
-          setTimeout(() => {
-            showcaseContainer.classList.remove('ring-4', 'ring-amber-500/60');
-          }, 1200);
-        }
-
-        if (isMobileUser()) {
-          hasCompleted = false;
-          lockShowcase();
-        } else {
-          isCentering = true;
-          showcaseSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          setTimeout(() => {
-            isCentering = false;
-          }, 500);
-        }
-      }
-
-      // Scroll listener tracking showcase passing and upward snap locking
-      function onScroll() {
-        const currentScrollY = window.scrollY || window.pageYOffset;
-        const isScrollingUp = currentScrollY < lastScrollY;
-
-        if (showcaseSection) {
-          const showcaseRect = showcaseSection.getBoundingClientRect();
-
-          // 1. Detect when user has scrolled completely past the screenshot area downwards
-          if (showcaseRect.bottom < -20) {
-            hasPassedBelowShowcase = true;
-            hasCompleted = false; // Reset completed flag so snap lock can reactivate
-          }
-
-          // 2. When user was below screenshot area and now scrolls back up into view:
-          // Activate the snapping lock effect
-          if (hasPassedBelowShowcase && isScrollingUp) {
-            if (showcaseRect.bottom >= 40 && showcaseRect.top <= window.innerHeight * 0.85) {
-              hasPassedBelowShowcase = false;
-              activateSnapLock();
-            }
-          }
-        }
-
-        lastScrollY = currentScrollY;
-
-        // Mobile-specific viewport pinning & scroll locking
-        if (!isMobileUser()) return;
-
-        // Auto-lock when phone reaches center of mobile viewport during user scroll
-        if (!isLocked && !hasCompleted && !isCentering && phoneTrigger) {
-          const rect = phoneTrigger.getBoundingClientRect();
-          const phoneCenter = rect.top + rect.height / 2;
-          const viewportCenter = window.innerHeight / 2;
-          if (Math.abs(phoneCenter - viewportCenter) < 70) {
-            lockShowcase();
-            return;
-          }
-        }
-
-        // Maintain strict center lock while locked
-        if (isLocked && !isCentering && lockedCenterY !== null) {
-          if (Math.abs(window.scrollY - lockedCenterY) > 3) {
-            window.scrollTo({ top: lockedCenterY, behavior: 'instant' });
-          }
-        }
-      }
 
       // Clear any prior listeners if re-initializing on astro:page-load
       if (window._bookreaderShowcaseCleanup) {
         window._bookreaderShowcaseCleanup();
       }
 
-      window.addEventListener('touchstart', onTouchStart, { passive: true });
-      window.addEventListener('touchmove', onTouchMove, { passive: false });
-      window.addEventListener('touchend', onTouchEnd, { passive: true });
-      window.addEventListener('wheel', onWheel, { passive: false });
-      window.addEventListener('scroll', onScroll, { passive: true });
-
-      // Intersection Observer for scroll snapping and reset
-      let snapObserver = null;
-      if (phoneTrigger && 'IntersectionObserver' in window) {
-        snapObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (!isMobileUser()) return;
-
-              // When phone screen reaches center viewport threshold
-              if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
-                if (!hasCompleted && !isLocked) {
-                  lockShowcase();
-                }
-              }
-
-              // Reset completion if user scrolls completely away
-              if (entry.intersectionRatio === 0) {
-                hasCompleted = false;
-                if (isLocked) {
-                  isLocked = false;
-                  lockedCenterY = null;
-                  updateMobileIndicator();
-                }
-              }
-            });
-          },
-          { threshold: [0, 0.45, 0.75] }
-        );
-
-        snapObserver.observe(phoneTrigger);
-      }
-
       window._bookreaderShowcaseCleanup = () => {
-        window.removeEventListener('touchstart', onTouchStart);
-        window.removeEventListener('touchmove', onTouchMove);
-        window.removeEventListener('touchend', onTouchEnd);
-        window.removeEventListener('wheel', onWheel);
-        window.removeEventListener('scroll', onScroll);
-        if (snapObserver) {
-          snapObserver.disconnect();
+        if (phoneContainer) {
+          phoneContainer.removeEventListener('touchstart', onPhoneTouchStart);
+          phoneContainer.removeEventListener('touchend', onPhoneTouchEnd);
         }
       };
 

@@ -17,7 +17,7 @@ highlights:
   - "Engineered fluid 60fps Flutter UI with reactive scheduling calendar and multi-step service configuration"
   - "Implemented offline-first mobile architecture with local SQLite state caching and optimistic background syncing"
 featured: false
-order: 6
+order: 9
 publishedDate: "2024-03-10"
 ---
 

@@ -1,599 +1,428 @@
 ---
 // src/components/FeaturedProjects.astro
 // Flagship Projects Showcase for Faycal Rafa Portfolio
-// 5 authoritative projects with compact layout, edge-to-edge clean screenshots, and zero ugly nested cards
+// 4 authoritative projects with full-screen snap locking and clean edge-to-edge layouts
 ---
 
-<section id="projects" class="relative py-16 sm:py-24 border-t border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-950/30">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    
-    <!-- Section Header -->
-    <div class="max-w-3xl">
-      <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-400">
-        <span>Featured Engineering Work</span>
-      </div>
-      <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50">
-        Projects I Participated In
-      </h2>
-      <p class="mt-3 text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-        Flagship software systems spanning native Android applications, multi-tenant e-commerce architectures, mission-critical fintech payments, and real-time electronic trading simulators.
-      </p>
-    </div>
-
-    <!-- Flagship Projects Showcase with Animated Progress Laser -->
-    <div class="relative mt-12 projects-timeline-container pl-6 sm:pl-10 md:pl-14">
+<section id="projects" class="relative">
+  <!-- Slide 1: BookReader Pro (Current Free-to-Use Flagship Android App) -->
+  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative">
+    <article class="project-timeline-item w-full max-w-6xl max-h-[92dvh] overflow-y-auto sm:overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-5 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-amber-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-amber-500/30 flex flex-col justify-center">
       
-      <!-- Vertical Continuous Line Connector Base -->
-      <div
-        class="absolute left-2 sm:left-4 md:left-5 top-6 bottom-6 w-0.5 bg-zinc-200 dark:bg-zinc-800"
-        aria-hidden="true"
-      ></div>
-
-      <!-- Vertical Glowing Laser Progress Line -->
-      <div
-        id="projects-progress-laser"
-        class="absolute left-2 sm:left-4 md:left-5 top-6 w-0.5 bg-gradient-to-b from-blue-500 via-indigo-500 to-emerald-400 shadow-[0_0_8px_rgba(59,130,246,0.6)] transition-all duration-150"
-        style="height: 0%;"
-        aria-hidden="true"
-      ></div>
-
-      <div class="space-y-10 sm:space-y-12">
-      
-      <!-- Project 1: BookReader Pro (Current Free-to-Use Flagship Android App) -->
-      <article class="project-timeline-item group relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-amber-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-amber-500/30">
-        <!-- Timeline Node Beacon -->
-        <div
-          class="project-beacon absolute -left-6 sm:-left-10 md:-left-14 top-8 -translate-x-1/2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 h-5 w-5 bg-amber-500 ring-4 ring-amber-500/20 shadow-md shadow-amber-500/30"
-          aria-hidden="true"
-        ></div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-          
-          <!-- Text Meta Column -->
-          <div class="lg:col-span-7 flex flex-col justify-between">
-            <div>
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-semibold text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400">
-                  <span class="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" aria-hidden="true"></span>
-                  Flagship App • Free to Use
-                </span>
-                <span class="rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-mono font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
-                  Android Native
-                </span>
-              </div>
-
-              <h3 class="mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-amber-500 transition-colors">
-                BookReader Pro
-              </h3>
-              <p class="mt-1 text-sm font-medium text-amber-600 dark:text-amber-400">
-                On-Device AI Neural Audio &amp; Offline Novel Reader
-              </p>
-
-              <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                A private, 100% free offline reader pairing on-device neural TTS with uninterrupted background audio playback and zero cloud dependency.
-              </p>
-
-              <!-- Role & Impact Bullets (Concise & Punchy) -->
-              <ul class="mt-4 space-y-2 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
-                <li class="flex items-start gap-2">
-                  <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
-                  <span>Solo Creator &amp; Lead Android Engineer. Built complete Kotlin M3 UI, C++ neural model runtime, and AndroidX Media3 background service.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0">Impact:</span>
-                  <span>Shipped Kokoro 82M &amp; Piper on-device TTS with zero telemetry, surviving aggressive Android background battery killers.</span>
-                </li>
-              </ul>
-
-              <!-- Tech Stack Tags -->
-              <div class="mt-4 flex flex-wrap gap-1.5" aria-label="BookReader tech stack">
-                {['Kotlin', 'Jetpack Compose', 'AndroidX Media3', 'Kokoro TTS', 'Piper C++', 'Scoped Storage'].map(tech => (
-                  <span class="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/90 px-2 py-0.5 text-[11px] font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <!-- Action CTAs -->
-            <div class="mt-5 flex flex-wrap items-center gap-2.5 pt-4 border-t border-zinc-100 dark:border-zinc-800/60">
-              <a
-                href="/projects/bookreader"
-                class="inline-flex items-center gap-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 px-3.5 py-2 text-xs font-semibold text-white shadow-xs transition-colors"
-              >
-                <span>Flagship Showcase</span>
-                <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                </svg>
-              </a>
-
-              <a
-                href="https://github.com/faycalrafa/free-novel-reader-tts-android/releases/tag/v3.4.0"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-2 text-xs font-semibold text-emerald-700 dark:text-emerald-300 hover:bg-emerald-500/20 transition-colors"
-              >
-                <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10 3a.75.75 0 01.75.75v8.69l2.22-2.22a.75.75 0 111.06 1.06l-3.5 3.5a.75.75 0 01-1.06 0l-3.5-3.5a.75.75 0 111.06-1.06l2.22 2.22V3.75A.75.75 0 0110 3z" clip-rule="evenodd" />
-                  <path d="M3.75 16.5A.75.75 0 003 17.25c0 .414.336.75.75.75h12.5a.75.75 0 00.75-.75.75.75 0 00-.75-.75H3.75z" />
-                </svg>
-                <span>Download APK (v3.4.0)</span>
-              </a>
-
-              <a
-                href="https://github.com/faycalrafa/free-novel-reader-tts-android"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors"
-              >
-                <span>GitHub Repo</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Clean Edge-to-Edge Screenshot Column (No ugly nested gradient card) -->
-          <div class="lg:col-span-5 flex justify-center order-first lg:order-last">
-            <img
-              src="/images/bookreader/screenshot-01-home.jpg"
-              alt="BookReader Pro Android App Screenshot"
-              loading="lazy"
-              decoding="async"
-              class="w-full max-w-[220px] sm:max-w-[250px] rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-contain transition-transform duration-300 group-hover:scale-102"
-            />
-          </div>
-
-        </div>
-      </article>
-
-      <!-- Project 2: StoresDZ (Shopify, but open and built for Algeria) -->
-      <article class="project-timeline-item group relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-blue-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-blue-500/30">
-        <!-- Timeline Node Beacon -->
-        <div
-          class="project-beacon absolute -left-6 sm:-left-10 md:-left-14 top-8 -translate-x-1/2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 h-4 w-4 bg-zinc-300 dark:bg-zinc-700 border-2 border-white dark:border-zinc-900"
-          data-active-class="bg-blue-500 ring-4 ring-blue-500/20 shadow-md shadow-blue-500/30"
-          aria-hidden="true"
-        ></div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-          
-          <!-- Text Meta Column -->
-          <div class="lg:col-span-7 flex flex-col justify-between">
-            <div>
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-2.5 py-0.5 text-xs font-semibold text-blue-700 dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-400">
-                  <span class="h-1.5 w-1.5 rounded-full bg-blue-500" aria-hidden="true"></span>
-                  Multi-Tenant Platform
-                </span>
-                <span class="rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-mono font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
-                  Shopify for Algeria
-                </span>
-              </div>
-
-              <h3 class="mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-blue-500 transition-colors">
-                StoresDZ
-              </h3>
-              <p class="mt-1 text-sm font-medium text-blue-600 dark:text-blue-400">
-                Full-Stack Multi-Tenant E-Commerce Platform
-              </p>
-
-              <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                Think Shopify, but open and built for Algeria — powering localized custom storefronts, sales funnels, and cash-on-delivery tracking.
-              </p>
-
-              <!-- Role & Impact Bullets -->
-              <ul class="mt-4 space-y-2 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
-                <li class="flex items-start gap-2">
-                  <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
-                  <span>Fullstack Engineer. Connected merchant storefronts to commerce microservices, built reusable theme primitives, and localized checkout workflows.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0">Impact:</span>
-                  <span>Delivered multi-tenant architecture supporting 7 distinct industry themes, shared commerce APIs, and high-velocity order management.</span>
-                </li>
-              </ul>
-
-              <!-- Tech Stack Tags -->
-              <div class="mt-4 flex flex-wrap gap-1.5" aria-label="StoresDZ tech stack">
-                {['TypeScript', 'React', 'Go', 'Rust', 'Redis', 'Docker'].map(tech => (
-                  <span class="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/90 px-2 py-0.5 text-[11px] font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <!-- Action CTAs -->
-            <div class="mt-5 flex flex-wrap items-center gap-2.5 pt-4 border-t border-zinc-100 dark:border-zinc-800/60">
-              <a
-                href="/projects/storesdz"
-                class="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 px-3.5 py-2 text-xs font-semibold text-white shadow-xs transition-colors"
-              >
-                <span>View Architecture</span>
-                <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                </svg>
-              </a>
-
-              <a
-                href="https://saadisidali.github.io/shan-shui-portfolio/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors"
-              >
-                <span>Live Reference</span>
-                <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M11 3h6v6" /><path d="M10 10l7-7" /><path d="M17 11v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Clean Edge-to-Edge Screenshot Column (No ugly nested gradient card) -->
-          <div class="lg:col-span-5 flex justify-center order-first lg:order-last">
-            <img
-              src="/images/projects/storesdz/theme-default.jpg"
-              alt="StoresDZ Multi-Tenant E-Commerce Platform Theme Screenshot"
-              loading="lazy"
-              decoding="async"
-              class="w-full max-w-md lg:max-w-none rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-cover transition-transform duration-300 group-hover:scale-102"
-            />
-          </div>
-
-        </div>
-      </article>
-
-      <!-- Project 3: SABIL Mega-App -->
-      <article class="project-timeline-item group relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-emerald-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-emerald-500/30">
-        <!-- Timeline Node Beacon -->
-        <div
-          class="project-beacon absolute -left-6 sm:-left-10 md:-left-14 top-8 -translate-x-1/2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 h-4 w-4 bg-zinc-300 dark:bg-zinc-700 border-2 border-white dark:border-zinc-900"
-          data-active-class="bg-emerald-500 ring-4 ring-emerald-500/20 shadow-md shadow-emerald-500/30"
-          aria-hidden="true"
-        ></div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-          
-          <!-- Text Meta Column -->
-          <div class="lg:col-span-7 flex flex-col justify-between">
-            <div>
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400">
-                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
-                  Fintech &amp; Payments
-                </span>
-                <span class="rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-mono font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
-                  Consumer Mega-App
-                </span>
-              </div>
-
-              <h3 class="mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-emerald-500 transition-colors">
-                SABIL Mega-App
-              </h3>
-              <p class="mt-1 text-sm font-medium text-emerald-600 dark:text-emerald-400">
-                Multi-Channel Mobile Banking, QR Payments &amp; Financial Microservices
-              </p>
-
-              <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                National financial ecosystem powering instant QR merchant payments, utility bill settlements, and high-frequency digital wallets.
-              </p>
-
-              <!-- Role & Impact Bullets -->
-              <ul class="mt-4 space-y-2 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
-                <li class="flex items-start gap-2">
-                  <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
-                  <span>Senior Software Engineer. Architected high-throughput NestJS microservices, payment orchestration engines, and PostgreSQL partitioning.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0">Impact:</span>
-                  <span>Engineered resilient workflows with sub-45ms P99 latencies, zero reconciliation loss, and automated multi-channel settlement.</span>
-                </li>
-              </ul>
-
-              <!-- Tech Stack Tags -->
-              <div class="mt-4 flex flex-wrap gap-1.5" aria-label="SABIL tech stack">
-                {['NestJS', 'TypeScript', 'PostgreSQL', 'Docker', 'Redis', 'Microservices'].map(tech => (
-                  <span class="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/90 px-2 py-0.5 text-[11px] font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <!-- Action CTAs -->
-            <div class="mt-5 flex flex-wrap items-center gap-2.5 pt-4 border-t border-zinc-100 dark:border-zinc-800/60">
-              <a
-                href="/projects/sabil"
-                class="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-3.5 py-2 text-xs font-semibold text-white shadow-xs transition-colors"
-              >
-                <span>View Architecture</span>
-                <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                </svg>
-              </a>
-
-              <a
-                href="https://sabil.dz/en/getapp/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors"
-              >
-                <span>sabil.dz App</span>
-                <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M11 3h6v6" /><path d="M10 10l7-7" /><path d="M17 11v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Clean Edge-to-Edge Screenshot Column (No ugly nested gradient card) -->
-          <div class="lg:col-span-5 flex justify-center order-first lg:order-last">
-            <img
-              src="/images/projects/sabil/1.webp"
-              alt="SABIL Mega-App Mobile Application Interface"
-              loading="lazy"
-              decoding="async"
-              class="w-full max-w-[220px] sm:max-w-[250px] rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-contain transition-transform duration-300 group-hover:scale-102"
-            />
-          </div>
-
-        </div>
-      </article>
-
-      <!-- Project 4: InvestMarket (Standalone Project at Finnetude) -->
-      <article class="project-timeline-item group relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-indigo-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-indigo-500/30">
-        <!-- Timeline Node Beacon -->
-        <div
-          class="project-beacon absolute -left-6 sm:-left-10 md:-left-14 top-8 -translate-x-1/2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 h-4 w-4 bg-zinc-300 dark:bg-zinc-700 border-2 border-white dark:border-zinc-900"
-          data-active-class="bg-indigo-500 ring-4 ring-indigo-500/20 shadow-md shadow-indigo-500/30"
-          aria-hidden="true"
-        ></div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-          
-          <!-- Text Meta Column -->
-          <div class="lg:col-span-7 flex flex-col justify-between">
-            <div>
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="inline-flex items-center gap-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:border-indigo-400/30 dark:bg-indigo-400/10 dark:text-indigo-400">
-                  <span class="h-1.5 w-1.5 rounded-full bg-indigo-500" aria-hidden="true"></span>
-                  Financial Platform &amp; Brokerage
-                </span>
-                <span class="rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-mono font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
-                  COSOB Accredited
-                </span>
-              </div>
-
-              <h3 class="mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-500 transition-colors">
-                InvestMarket
-              </h3>
-              <p class="mt-1 text-sm font-medium text-indigo-600 dark:text-indigo-400">
-                Outil de gestion de portefeuille et d'analyse de performance boursière
-              </p>
-
-              <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                Plateforme financière institutionnelle développée chez Finnetude pour la négociation de titres, la valorisation de portefeuilles en temps réel et l'analyse de performance boursière.
-              </p>
-
-              <!-- Role & Impact Bullets -->
-              <ul class="mt-4 space-y-2 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
-                <li class="flex items-start gap-2">
-                  <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
-                  <span>Technical Lead (Finnetude &amp; InvestMarket). Co-architected orderbook routing, streaming market feeds, and PostgreSQL database models.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0">Impact:</span>
-                  <span>Passerelles WebSockets temps réel, conformité COSOB, pattern Transactional Outbox, et -65 % de requêtes base grâce à la mise en cache Redis.</span>
-                </li>
-              </ul>
-
-              <!-- Tech Stack Tags -->
-              <div class="mt-4 flex flex-wrap gap-1.5" aria-label="InvestMarket tech stack">
-                {['NestJS', 'TypeScript', 'WebSockets', 'PostgreSQL', 'Redis', 'Docker'].map(tech => (
-                  <span class="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/90 px-2 py-0.5 text-[11px] font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <!-- Action CTAs -->
-            <div class="mt-5 flex flex-wrap items-center gap-2.5 pt-4 border-t border-zinc-100 dark:border-zinc-800/60">
-              <a
-                href="/projects/investmarket"
-                class="inline-flex items-center gap-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 px-3.5 py-2 text-xs font-semibold text-white shadow-xs transition-colors"
-              >
-                <span>View Architecture</span>
-                <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                </svg>
-              </a>
-
-              <a
-                href="https://investmarket-dz.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors"
-              >
-                <span>investmarket-dz.com</span>
-                <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M11 3h6v6" /><path d="M10 10l7-7" /><path d="M17 11v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Clean Edge-to-Edge Screenshot Column (No ugly nested gradient card) -->
-          <div class="lg:col-span-5 flex justify-center order-first lg:order-last">
-            <img
-              src="/images/projects/finnetude/investmarket-shares-wallet-manager-screenshot.png"
-              alt="InvestMarket Stock Trading & Portfolio Management Interface"
-              loading="lazy"
-              decoding="async"
-              class="w-full max-w-md lg:max-w-none rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-cover transition-transform duration-300 group-hover:scale-102"
-            />
-          </div>
-
-        </div>
-      </article>
-
-      <!-- Project 5: ALFA+ (Standalone Trading Simulator Platform at Finnetude) -->
-      <article class="project-timeline-item group relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/90 p-6 sm:p-8 shadow-md transition-all duration-300 hover:border-cyan-500/40 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:hover:border-cyan-500/30">
-        <!-- Timeline Node Beacon -->
-        <div
-          class="project-beacon absolute -left-6 sm:-left-10 md:-left-14 top-8 -translate-x-1/2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 h-4 w-4 bg-zinc-300 dark:bg-zinc-700 border-2 border-white dark:border-zinc-900"
-          data-active-class="bg-cyan-500 ring-4 ring-cyan-500/20 shadow-md shadow-cyan-500/30"
-          aria-hidden="true"
-        ></div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-          
-          <!-- Text Meta Column -->
-          <div class="lg:col-span-7 flex flex-col justify-between">
-            <div>
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="inline-flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-0.5 text-xs font-semibold text-cyan-700 dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-400">
-                  <span class="h-1.5 w-1.5 rounded-full bg-cyan-500" aria-hidden="true"></span>
-                  Trading Simulator &amp; Academy
-                </span>
-                <span class="rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-mono font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
-                  100% Digital Simulator
-                </span>
-              </div>
-
-              <h3 class="mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-500 transition-colors">
-                ALFA+
-              </h3>
-              <p class="mt-1 text-sm font-medium text-cyan-600 dark:text-cyan-400">
-                Plateforme de formation &amp; simulateur immersif de trading multi-actifs
-              </p>
-
-              <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                Plateforme d'apprentissage immersive conçue pour les apprenants professionnels, les entreprises et les étudiants souhaitant maîtriser le trading multi-actifs en conditions réelles sans risque de capital.
-              </p>
-
-              <!-- Role & Impact Bullets -->
-              <ul class="mt-4 space-y-2 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
-                <li class="flex items-start gap-2">
-                  <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
-                  <span>Technical Lead at Finnetude. Directed cross-functional squad of 6 engineers across the SDLC, building the simulation engine and WebSocket feeds.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0">Impact:</span>
-                  <span>Simulateur 100 % digital avec calcul de marges et P&amp;L en temps réel, carnets d'ordres dynamiques et microservices assurant 99,9 % de disponibilité.</span>
-                </li>
-              </ul>
-
-              <!-- Tech Stack Tags -->
-              <div class="mt-4 flex flex-wrap gap-1.5" aria-label="ALFA+ tech stack">
-                {['NestJS', 'TypeScript', 'WebSockets', 'PostgreSQL', 'Docker', 'Redis'].map(tech => (
-                  <span class="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/90 px-2 py-0.5 text-[11px] font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <!-- Action CTAs -->
-            <div class="mt-5 flex flex-wrap items-center gap-2.5 pt-4 border-t border-zinc-100 dark:border-zinc-800/60">
-              <a
-                href="/projects/alfa"
-                class="inline-flex items-center gap-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 px-3.5 py-2 text-xs font-semibold text-white shadow-xs transition-colors"
-              >
-                <span>View Architecture</span>
-                <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                </svg>
-              </a>
-
-              <a
-                href="https://finnetude.dz/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors"
-              >
-                <span>finnetude.dz</span>
-                <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M11 3h6v6" /><path d="M10 10l7-7" /><path d="M17 11v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Clean Edge-to-Edge Screenshot Column (No ugly nested gradient card) -->
-          <div class="lg:col-span-5 flex justify-center order-first lg:order-last">
-            <img
-              src="/images/projects/finnetude/alfa-trading-learning-platform-screenshot.png"
-              alt="ALFA+ Digital Multi-Asset Trading Simulator Platform Screenshot"
-              loading="lazy"
-              decoding="async"
-              class="w-full max-w-md lg:max-w-none rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-cover transition-transform duration-300 group-hover:scale-102"
-            />
-          </div>
-
-        </div>
-      </article>
-
+      <!-- Top Slide Indicator Pill -->
+      <div class="flex items-center justify-between mb-3 border-b border-zinc-100 dark:border-zinc-800/60 pb-2">
+        <span class="text-xs font-mono font-semibold text-amber-600 dark:text-amber-400">
+          Featured Project 01 / 04
+        </span>
+        <span class="text-[11px] text-zinc-400 font-mono">
+          Scroll down ↓ to snap
+        </span>
       </div>
-    </div>
 
-    <!-- Go to See All Projects CTA Button -->
-    <div class="mt-14 text-center">
-      <a
-        href="/projects"
-        class="inline-flex items-center justify-center gap-2 rounded-2xl border border-blue-500/30 bg-blue-600/10 hover:bg-blue-600/20 px-8 py-4 text-sm font-semibold text-blue-400 hover:text-blue-300 shadow-lg hover:shadow-blue-500/10 transition-all duration-200 group"
-      >
-        <span>Explore All Projects &amp; Architecture Archive</span>
-        <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-        </svg>
-      </a>
-    </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
+        <!-- Text Meta Column -->
+        <div class="lg:col-span-7 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-semibold text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400">
+                <span class="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" aria-hidden="true"></span>
+                Flagship App • Free to Use
+              </span>
+              <span class="rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-mono font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+                Android Native
+              </span>
+            </div>
 
+            <h3 class="mt-2.5 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-amber-500 transition-colors">
+              BookReader Pro
+            </h3>
+            <p class="mt-1 text-sm font-medium text-amber-600 dark:text-amber-400">
+              On-Device AI Neural Audio &amp; Offline Novel Reader
+            </p>
+
+            <p class="mt-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              A private, 100% free offline reader pairing on-device neural TTS with uninterrupted background audio playback and zero cloud dependency.
+            </p>
+
+            <!-- Role & Impact Bullets -->
+            <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
+              <li class="flex items-start gap-2">
+                <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
+                <span>Solo Creator &amp; Lead Android Engineer. Built Kotlin M3 UI, C++ neural model runtime, and Media3 background service.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0">Impact:</span>
+                <span>Shipped Kokoro 82M &amp; Piper on-device TTS with zero telemetry, surviving aggressive OS battery killers.</span>
+              </li>
+            </ul>
+
+            <!-- Tech Stack Tags -->
+            <div class="mt-3 flex flex-wrap gap-1.5" aria-label="BookReader tech stack">
+              {['Kotlin', 'Jetpack Compose', 'AndroidX Media3', 'Kokoro TTS', 'Piper C++', 'Scoped Storage'].map(tech => (
+                <span class="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/90 px-2 py-0.5 text-[11px] font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Action CTAs -->
+          <div class="mt-4 flex flex-wrap items-center gap-2.5 pt-3 border-t border-zinc-100 dark:border-zinc-800/60">
+            <a
+              href="/projects/bookreader"
+              class="inline-flex items-center gap-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 px-3.5 py-2 text-xs font-semibold text-white shadow-xs transition-colors"
+            >
+              <span>Flagship Showcase</span>
+              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+              </svg>
+            </a>
+
+            <a
+              href="https://github.com/faycalrafa/free-novel-reader-tts-android/releases/tag/v3.4.0"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-2 text-xs font-semibold text-emerald-700 dark:text-emerald-300 hover:bg-emerald-500/20 transition-colors"
+            >
+              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 3a.75.75 0 01.75.75v8.69l2.22-2.22a.75.75 0 111.06 1.06l-3.5 3.5a.75.75 0 01-1.06 0l-3.5-3.5a.75.75 0 111.06-1.06l2.22 2.22V3.75A.75.75 0 0110 3z" clip-rule="evenodd" />
+                <path d="M3.75 16.5A.75.75 0 003 17.25c0 .414.336.75.75.75h12.5a.75.75 0 00.75-.75.75.75 0 00-.75-.75H3.75z" />
+              </svg>
+              <span>Download APK (v3.4.0)</span>
+            </a>
+
+            <a
+              href="https://github.com/faycalrafa/free-novel-reader-tts-android"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors"
+            >
+              <span>GitHub Repo</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Screenshot Column -->
+        <div class="lg:col-span-5 flex justify-center order-first lg:order-last">
+          <img
+            src="/images/bookreader/screenshot-01-home.jpg"
+            alt="BookReader Pro Android App Screenshot"
+            loading="lazy"
+            decoding="async"
+            class="max-h-[24vh] sm:max-h-[35vh] lg:max-h-[46vh] w-auto rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-contain transition-transform duration-300 group-hover:scale-102"
+          />
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Slide 2: StoresDZ (Shopify, but open and built for Algeria) -->
+  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative">
+    <article class="project-timeline-item w-full max-w-6xl max-h-[92dvh] overflow-y-auto sm:overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-5 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-blue-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-blue-500/30 flex flex-col justify-center">
+      
+      <!-- Top Slide Indicator Pill -->
+      <div class="flex items-center justify-between mb-3 border-b border-zinc-100 dark:border-zinc-800/60 pb-2">
+        <span class="text-xs font-mono font-semibold text-blue-600 dark:text-blue-400">
+          Featured Project 02 / 04
+        </span>
+        <span class="text-[11px] text-zinc-400 font-mono">
+          Scroll down ↓ to snap
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
+        <!-- Text Meta Column -->
+        <div class="lg:col-span-7 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-2.5 py-0.5 text-xs font-semibold text-blue-700 dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-400">
+                <span class="h-1.5 w-1.5 rounded-full bg-blue-500" aria-hidden="true"></span>
+                Multi-Tenant Platform
+              </span>
+              <span class="rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-mono font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+                Shopify for Algeria
+              </span>
+            </div>
+
+            <h3 class="mt-2.5 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-blue-500 transition-colors">
+              StoresDZ
+            </h3>
+            <p class="mt-1 text-sm font-medium text-blue-600 dark:text-blue-400">
+              Full-Stack Multi-Tenant E-Commerce Platform
+            </p>
+
+            <p class="mt-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              Think Shopify, but open and built for Algeria — powering localized custom storefronts, sales funnels, and cash-on-delivery tracking.
+            </p>
+
+            <!-- Role & Impact Bullets -->
+            <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
+              <li class="flex items-start gap-2">
+                <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
+                <span>Fullstack Engineer. Connected merchant storefronts to commerce microservices, built reusable theme primitives, and localized checkout workflows.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0">Impact:</span>
+                <span>Delivered multi-tenant architecture supporting 7 distinct industry themes, shared commerce APIs, and high-velocity order management.</span>
+              </li>
+            </ul>
+
+            <!-- Tech Stack Tags -->
+            <div class="mt-3 flex flex-wrap gap-1.5" aria-label="StoresDZ tech stack">
+              {['TypeScript', 'React', 'Go', 'Rust', 'Redis', 'Docker'].map(tech => (
+                <span class="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/90 px-2 py-0.5 text-[11px] font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Action CTAs -->
+          <div class="mt-4 flex flex-wrap items-center gap-2.5 pt-3 border-t border-zinc-100 dark:border-zinc-800/60">
+            <a
+              href="/projects/storesdz"
+              class="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 px-3.5 py-2 text-xs font-semibold text-white shadow-xs transition-colors"
+            >
+              <span>View Architecture</span>
+              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+              </svg>
+            </a>
+
+            <a
+              href="https://app.storesdz.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors"
+            >
+              <span>app.storesdz.com</span>
+              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 3h6v6" /><path d="M10 10l7-7" /><path d="M17 11v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Screenshot Column -->
+        <div class="lg:col-span-5 flex justify-center order-first lg:order-last">
+          <img
+            src="/images/projects/storesdz/theme-default.jpg"
+            alt="StoresDZ Multi-Tenant E-Commerce Platform Theme Screenshot"
+            loading="lazy"
+            decoding="async"
+            class="max-h-[24vh] sm:max-h-[35vh] lg:max-h-[46vh] w-auto rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-cover transition-transform duration-300 group-hover:scale-102"
+          />
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Slide 3: SABIL Mega-App -->
+  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative">
+    <article class="project-timeline-item w-full max-w-6xl max-h-[92dvh] overflow-y-auto sm:overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-5 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-emerald-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-emerald-500/30 flex flex-col justify-center">
+      
+      <!-- Top Slide Indicator Pill -->
+      <div class="flex items-center justify-between mb-3 border-b border-zinc-100 dark:border-zinc-800/60 pb-2">
+        <span class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400">
+          Featured Project 03 / 04
+        </span>
+        <span class="text-[11px] text-zinc-400 font-mono">
+          Scroll down ↓ to snap
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
+        <!-- Text Meta Column -->
+        <div class="lg:col-span-7 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
+                Fintech &amp; Payments
+              </span>
+              <span class="rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-mono font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+                Consumer Mega-App
+              </span>
+            </div>
+
+            <h3 class="mt-2.5 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-emerald-500 transition-colors">
+              SABIL Mega-App
+            </h3>
+            <p class="mt-1 text-sm font-medium text-emerald-600 dark:text-emerald-400">
+              Multi-Channel Mobile Banking, QR Payments &amp; Financial Microservices
+            </p>
+
+            <p class="mt-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              National financial ecosystem powering instant QR merchant payments, utility bill settlements, and high-frequency digital wallets.
+            </p>
+
+            <!-- Role & Impact Bullets -->
+            <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
+              <li class="flex items-start gap-2">
+                <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
+                <span>Senior Software Engineer. Architected high-throughput NestJS microservices, payment orchestration engines, and PostgreSQL partitioning.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0">Impact:</span>
+                <span>Engineered resilient workflows with sub-45ms P99 latencies, zero reconciliation loss, and automated multi-channel settlement.</span>
+              </li>
+            </ul>
+
+            <!-- Tech Stack Tags -->
+            <div class="mt-3 flex flex-wrap gap-1.5" aria-label="SABIL tech stack">
+              {['NestJS', 'TypeScript', 'PostgreSQL', 'Docker', 'Redis', 'Microservices'].map(tech => (
+                <span class="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/90 px-2 py-0.5 text-[11px] font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Action CTAs -->
+          <div class="mt-4 flex flex-wrap items-center gap-2.5 pt-3 border-t border-zinc-100 dark:border-zinc-800/60">
+            <a
+              href="/projects/sabil"
+              class="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-3.5 py-2 text-xs font-semibold text-white shadow-xs transition-colors"
+            >
+              <span>View Architecture</span>
+              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+              </svg>
+            </a>
+
+            <a
+              href="https://sabil.dz/en/getapp/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors"
+            >
+              <span>sabil.dz App</span>
+              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 3h6v6" /><path d="M10 10l7-7" /><path d="M17 11v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Screenshot Column -->
+        <div class="lg:col-span-5 flex justify-center order-first lg:order-last">
+          <img
+            src="/images/projects/sabil/1.webp"
+            alt="SABIL Mega-App Mobile Application Interface"
+            loading="lazy"
+            decoding="async"
+            class="max-h-[24vh] sm:max-h-[35vh] lg:max-h-[46vh] w-auto rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-contain transition-transform duration-300 group-hover:scale-102"
+          />
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Slide 4: InvestMarket (Standalone Project at Finnetude) -->
+  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative">
+    <article class="project-timeline-item w-full max-w-6xl max-h-[92dvh] overflow-y-auto sm:overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-5 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-indigo-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-indigo-500/30 flex flex-col justify-center">
+      
+      <!-- Top Slide Indicator Pill -->
+      <div class="flex items-center justify-between mb-3 border-b border-zinc-100 dark:border-zinc-800/60 pb-2">
+        <span class="text-xs font-mono font-semibold text-indigo-600 dark:text-indigo-400">
+          Featured Project 04 / 04
+        </span>
+        <span class="text-[11px] text-zinc-400 font-mono">
+          Scroll down ↓ to snap to Contact
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
+        <!-- Text Meta Column -->
+        <div class="lg:col-span-7 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:border-indigo-400/30 dark:bg-indigo-400/10 dark:text-indigo-400">
+                <span class="h-1.5 w-1.5 rounded-full bg-indigo-500" aria-hidden="true"></span>
+                Financial Platform &amp; Brokerage
+              </span>
+              <span class="rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-mono font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+                COSOB Accredited
+              </span>
+            </div>
+
+            <h3 class="mt-2.5 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-500 transition-colors">
+              InvestMarket
+            </h3>
+            <p class="mt-1 text-sm font-medium text-indigo-600 dark:text-indigo-400">
+              Outil de gestion de portefeuille et d'analyse de performance boursière
+            </p>
+
+            <p class="mt-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              Plateforme financière institutionnelle développée chez Finnetude pour la négociation de titres, la valorisation de portefeuilles en temps réel et l'analyse de performance.
+            </p>
+
+            <!-- Role & Impact Bullets -->
+            <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
+              <li class="flex items-start gap-2">
+                <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
+                <span>Technical Lead. Co-architected orderbook routing, streaming market feeds, and PostgreSQL database models.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0">Impact:</span>
+                <span>Passerelles WebSockets temps réel, conformité COSOB, Transactional Outbox, et -65 % de requêtes base via Redis.</span>
+              </li>
+            </ul>
+
+            <!-- Tech Stack Tags -->
+            <div class="mt-3 flex flex-wrap gap-1.5" aria-label="InvestMarket tech stack">
+              {['NestJS', 'TypeScript', 'WebSockets', 'PostgreSQL', 'Redis', 'Docker'].map(tech => (
+                <span class="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/90 px-2 py-0.5 text-[11px] font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Action CTAs -->
+          <div class="mt-4 flex flex-wrap items-center gap-2.5 pt-3 border-t border-zinc-100 dark:border-zinc-800/60">
+            <a
+              href="/projects/investmarket"
+              class="inline-flex items-center gap-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 px-3.5 py-2 text-xs font-semibold text-white shadow-xs transition-colors"
+            >
+              <span>View Architecture</span>
+              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+              </svg>
+            </a>
+
+            <a
+              href="https://investmarket-dz.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors"
+            >
+              <span>investmarket-dz.com</span>
+              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 3h6v6" /><path d="M10 10l7-7" /><path d="M17 11v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6" />
+              </svg>
+            </a>
+
+            <a
+              href="/projects"
+              class="inline-flex items-center gap-1.5 rounded-xl border border-blue-500/30 bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-700 hover:bg-blue-100 dark:border-blue-400/30 dark:bg-blue-950/40 dark:text-blue-300 dark:hover:bg-blue-900/60 transition-colors ml-auto"
+            >
+              <span>All 10 Projects Archive →</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Screenshot Column -->
+        <div class="lg:col-span-5 flex justify-center order-first lg:order-last">
+          <img
+            src="/images/projects/finnetude/investmarket-shares-wallet-manager-screenshot.png"
+            alt="InvestMarket Stock Trading & Portfolio Management Interface"
+            loading="lazy"
+            decoding="async"
+            class="max-h-[24vh] sm:max-h-[35vh] lg:max-h-[46vh] w-auto rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-cover transition-transform duration-300 group-hover:scale-102"
+          />
+        </div>
+      </div>
+    </article>
   </div>
 </section>
-
-<script>
-  function initProjectsLaser() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const laser = document.getElementById('projects-progress-laser');
-      if (laser) laser.style.height = '100%';
-      return;
-    }
-    const container = document.querySelector<HTMLElement>('.projects-timeline-container');
-    const laser = document.getElementById('projects-progress-laser');
-    const items = document.querySelectorAll<HTMLElement>('.project-timeline-item');
-    if (!container || !laser) return;
-
-    function onScroll() {
-      if (!container || !laser) return;
-      const rect = container.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const startY = windowHeight * 0.75;
-      const totalDist = rect.height;
-      const scrolled = startY - rect.top;
-      const progress = Math.max(0, Math.min(1, scrolled / totalDist));
-      laser.style.height = `${(progress * 100).toFixed(1)}%`;
-
-      items.forEach((item) => {
-        const itemRect = item.getBoundingClientRect();
-        const beacon = item.querySelector<HTMLElement>('.project-beacon');
-        if (!beacon) return;
-        const activeClass = beacon.getAttribute('data-active-class');
-        if (!activeClass) return; // Project 1 BookReader has permanent amber beacon
-        const classes = activeClass.split(' ');
-        if (itemRect.top < windowHeight * 0.65) {
-          beacon.classList.add(...classes);
-          beacon.classList.remove('bg-zinc-300', 'dark:bg-zinc-700');
-        } else {
-          beacon.classList.remove(...classes);
-          beacon.classList.add('bg-zinc-300', 'dark:bg-zinc-700');
-        }
-      });
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
-
-  document.addEventListener('astro:page-load', initProjectsLaser);
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    initProjectsLaser();
-  } else {
-    document.addEventListener('DOMContentLoaded', initProjectsLaser);
-  }
-</script>

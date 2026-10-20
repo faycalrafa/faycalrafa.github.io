@@ -2,36 +2,33 @@
 // src/pages/index.astro
 // Production Homepage for Faycal Rafa | Fullstack Engineer
 // Aligned with the updated portfolio architecture:
-// 1. Hero Section (Fullstack Engineer, Outcome Metrics, Heartbeat Moon)
-// 2. Teams & Companies I've Worked With (Logo Showcase)
-// 3. Projects I Participated In (4 Flagship Cards with Mobile-Optimized Screens)
-// 4. Get in Touch & Opportunities (Contact Info + GitHub Activity Heatmap + Find me on GitHub CTA)
-// 5. Skills & Architecture Matrix (Bento Grid comes last)
+// 1. Hero Section & Teams Showcase (Snap Screen 1)
+// 2. 4 Flagship Projects with Full-Screen Snapping (Snap Screens 2–5)
+// 3. Get in Touch & Opportunities Lock Screen (Snap Screen 6)
 
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import TeamsStrip from '../components/TeamsStrip.astro';
 import FeaturedProjects from '../components/FeaturedProjects.astro';
 import GithubActivityMap from '../components/GithubActivityMap.astro';
-import BentoGrid from '../components/BentoGrid.astro';
 ---
 
 <Layout
   title="Faycal Rafa | Fullstack Engineer"
   description="Personal developer portfolio, distributed systems architecture, and flagship software platforms built by Faycal Rafa, Fullstack Engineer."
 >
-  <!-- 1. Hero Section & Inline CV Modal Viewer (F03) -->
-  <Hero />
+  <!-- 1. Hero Section & Teams Showcase (Screen 1) -->
+  <div class="snap-start snap-always min-h-screen flex flex-col justify-between">
+    <Hero />
+    <TeamsStrip />
+  </div>
 
-  <!-- 2. Teams & Companies I've Worked With Section -->
-  <TeamsStrip />
-
-  <!-- 3. Flagship Projects Showcase (BookReader, StoresDZ, SABIL, InvestMarket & ALFA+) -->
+  <!-- 2. Flagship Projects Showcase: 4 Full-Screen Snap Slides (Screens 2–5: BookReader, StoresDZ, SABIL, InvestMarket) -->
   <FeaturedProjects />
 
-  <!-- 4. Get in Touch & Opportunities Section (with GitHub Activity Contributions Map) -->
-  <section id="contact" class="border-t border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/20 py-16 sm:py-24">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <!-- 3. Get in Touch & Opportunities Section (Screen 6: Locks the Screen Here) -->
+  <section id="contact" class="snap-start snap-always min-h-screen flex flex-col justify-center border-t border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/20 py-16 sm:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-300">
           <span class="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
@@ -45,9 +42,9 @@ import BentoGrid from '../components/BentoGrid.astro';
           Available for <strong class="text-zinc-900 dark:text-zinc-100">Fullstack Engineer</strong>, <strong class="text-zinc-900 dark:text-zinc-100">Senior Software Engineer</strong>, and <strong class="text-zinc-900 dark:text-zinc-100">Technical Lead</strong> positions worldwide. Whether you have an immediate full-time opening, high-impact contract, or greenfield build, reach out directly across any of the channels below.
         </p>
 
-        <!-- Direct Contact Grid: Placed neatly above the GitHub contributions map -->
+        <!-- Direct Contact Grid: Download CV is explicitly placed LAST -->
         <div class="mt-8 flex flex-wrap items-center gap-3">
-          <!-- WhatsApp Direct CTA -->
+          <!-- 1. WhatsApp Direct CTA -->
           <a
             href="https://wa.me/213540980238"
             target="_blank"
@@ -61,20 +58,7 @@ import BentoGrid from '../components/BentoGrid.astro';
             <span>WhatsApp (+213 540 98 02 38)</span>
           </a>
 
-          <!-- Download CV (PDF) -->
-          <a
-            href="/Faycal_Rafa_CV_2026.pdf"
-            download="Faycal_Rafa_CV_2026.pdf"
-            class="inline-flex items-center gap-2 rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-xs font-semibold text-zinc-700 shadow-xs hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800/90 dark:text-zinc-100 dark:hover:bg-zinc-700 transition-colors"
-            aria-label="Download Faycal Rafa CV (PDF)"
-          >
-            <svg class="h-4 w-4 text-zinc-500 dark:text-zinc-300" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
-            <span>Download CV (PDF)</span>
-          </a>
-
-          <!-- Email -->
+          <!-- 2. Email -->
           <a
             href="mailto:rafafaycal@gmail.com"
             class="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-500 px-4 py-2.5 text-xs font-semibold text-white shadow-xs transition-colors"
@@ -86,7 +70,7 @@ import BentoGrid from '../components/BentoGrid.astro';
             <span>rafafaycal@gmail.com</span>
           </a>
 
-          <!-- Direct Phone -->
+          <!-- 3. Direct Phone -->
           <a
             href="tel:+213540980238"
             class="inline-flex items-center gap-2 rounded-xl border border-zinc-200 bg-zinc-100/80 px-4 py-2.5 text-xs font-semibold text-zinc-800 hover:bg-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors"
@@ -97,7 +81,7 @@ import BentoGrid from '../components/BentoGrid.astro';
             <span>+213 540 98 02 38</span>
           </a>
 
-          <!-- LinkedIn -->
+          <!-- 4. LinkedIn -->
           <a
             href="https://www.linkedin.com/in/faycal-rafa-89a366249"
             target="_blank"
@@ -109,6 +93,19 @@ import BentoGrid from '../components/BentoGrid.astro';
             </svg>
             <span>LinkedIn Profile</span>
           </a>
+
+          <!-- 5. Download CV (PDF) - Placed LAST among contact buttons -->
+          <a
+            href="/Faycal_Rafa_CV_2026.pdf"
+            download="Faycal_Rafa_CV_2026.pdf"
+            class="inline-flex items-center gap-2 rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-xs font-semibold text-zinc-700 shadow-xs hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800/90 dark:text-zinc-100 dark:hover:bg-zinc-700 transition-colors"
+            aria-label="Download Faycal Rafa CV (PDF)"
+          >
+            <svg class="h-4 w-4 text-zinc-500 dark:text-zinc-300" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+            <span>Download CV (PDF)</span>
+          </a>
         </div>
       </div>
 
@@ -116,9 +113,37 @@ import BentoGrid from '../components/BentoGrid.astro';
       <GithubActivityMap />
     </div>
   </section>
-
-  <!-- 5. Skills & Architecture Matrix (Bento Grid Section comes last) -->
-  <section id="skills" class="py-16 sm:py-24 border-t border-zinc-200/80 dark:border-zinc-800/80">
-    <BentoGrid />
-  </section>
 </Layout>
+
+<style is:global>
+  html.home-snap-active {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  .snap-always {
+    scroll-snap-stop: always;
+  }
+</style>
+
+<script>
+  function enableHomeScrollSnap() {
+    const isHome = window.location.pathname === '/' || window.location.pathname === '';
+    if (isHome) {
+      document.documentElement.classList.add('home-snap-active');
+    } else {
+      document.documentElement.classList.remove('home-snap-active');
+    }
+  }
+
+  function disableHomeScrollSnap() {
+    document.documentElement.classList.remove('home-snap-active');
+  }
+
+  document.addEventListener('astro:page-load', enableHomeScrollSnap);
+  document.addEventListener('astro:before-preparation', disableHomeScrollSnap);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    enableHomeScrollSnap();
+  } else {
+    document.addEventListener('DOMContentLoaded', enableHomeScrollSnap);
+  }
+</script>

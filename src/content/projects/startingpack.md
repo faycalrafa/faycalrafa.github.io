@@ -15,8 +15,8 @@ highlights:
   - "Strict TypeScript type system with strict null checks and zero any-types across components"
   - "Pre-configured Tailwind CSS design system with automated linting and formatting workflows"
   - "Ultra-lean Vite build pipeline achieving sub-second HMR and 100/100 Lighthouse performance"
-featured: true
-order: 2
+featured: false
+order: 10
 publishedDate: "2025-11-10"
 ---
 

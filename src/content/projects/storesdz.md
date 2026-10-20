@@ -2,7 +2,7 @@
 title: "StoresDZ"
 tagline: "Full-stack, multi-tenant e-commerce platform — think Shopify, but open and built for Algeria"
 category: "commercial"
-liveUrl: "https://saadisidali.github.io/shan-shui-portfolio/"
+liveUrl: "https://app.storesdz.com/"
 stack:
   - "TypeScript"
   - "React"

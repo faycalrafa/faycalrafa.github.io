@@ -17,7 +17,7 @@ highlights:
   - "Real-time inventory synchronization APIs linking central warehouse databases with distributed merchant POS systems"
   - "Cross-platform mobile application in Flutter with offline catalog caching and push notifications"
 featured: false
-order: 5
+order: 7
 publishedDate: "2023-10-20"
 ---
 

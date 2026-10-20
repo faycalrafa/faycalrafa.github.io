@@ -16,8 +16,8 @@ highlights:
   - "Engineered resilient payment orchestration workflows supporting multiple digital financial payment gateways"
   - "Database partitioning and index optimization yielding sub-50ms API response times under high concurrency"
   - "Containerized multi-service deployment with Docker, health probes, and automated failover recovery"
-featured: false
-order: 4
+featured: true
+order: 3
 publishedDate: "2025-08-15"
 ---
 
