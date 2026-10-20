@@ -17,17 +17,21 @@ import GithubActivityMap from '../components/GithubActivityMap.astro';
   title="Faycal Rafa | Fullstack Engineer"
   description="Personal developer portfolio, distributed systems architecture, and flagship software platforms built by Faycal Rafa, Fullstack Engineer."
 >
-  <!-- 1. Hero Section & Teams Showcase (Screen 1) -->
-  <div class="snap-start snap-always min-h-screen flex flex-col justify-between">
+  <!-- 1. Intro Hero Section (Screen 1) -->
+  <div class="snap-start snap-always h-[100dvh] min-h-[100dvh] flex flex-col justify-center">
     <Hero />
+  </div>
+
+  <!-- 2. Teams & Companies Section (Screen 2) -->
+  <div class="snap-start snap-always h-[100dvh] min-h-[100dvh] flex flex-col justify-center">
     <TeamsStrip />
   </div>
 
-  <!-- 2. Flagship Projects Showcase: 4 Full-Screen Snap Slides (Screens 2–5: BookReader, StoresDZ, SABIL, InvestMarket) -->
+  <!-- 3–6. Flagship Projects Showcase: 4 Full-Screen Snap Slides (Screens 3–6: BookReader, StoresDZ, SABIL, InvestMarket) -->
   <FeaturedProjects />
 
-  <!-- 3. Get in Touch & Opportunities Section (Screen 6: Locks the Screen Here) -->
-  <section id="contact" class="snap-start snap-always min-h-screen flex flex-col justify-center border-t border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/20 py-16 sm:py-24">
+  <!-- 7. Get in Touch & Opportunities Section (Screen 7) -->
+  <section id="contact" class="snap-start snap-always h-[100dvh] min-h-[100dvh] flex flex-col justify-center border-t border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/20 py-8 sm:py-12">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-300">
@@ -126,17 +130,57 @@ import GithubActivityMap from '../components/GithubActivityMap.astro';
 </style>
 
 <script>
+  let footerObserver: IntersectionObserver | null = null;
+
+  function setupFooterRelease() {
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+
+    if (footerObserver) {
+      footerObserver.disconnect();
+    }
+
+    footerObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        // When footer is visible in the viewport, release snap lock so user scrolls freely
+        if (entry.isIntersecting && entry.intersectionRatio > 0) {
+          document.documentElement.classList.remove('home-snap-active');
+        } else {
+          // When footer is out of viewport (user scrolled back up), restore snap lock
+          const isHome = window.location.pathname === '/' || window.location.pathname === '';
+          if (isHome) {
+            document.documentElement.classList.add('home-snap-active');
+          }
+        }
+      });
+    }, {
+      root: null,
+      threshold: [0, 0.05, 0.1]
+    });
+
+    footerObserver.observe(footer);
+  }
+
   function enableHomeScrollSnap() {
     const isHome = window.location.pathname === '/' || window.location.pathname === '';
     if (isHome) {
       document.documentElement.classList.add('home-snap-active');
+      setupFooterRelease();
     } else {
       document.documentElement.classList.remove('home-snap-active');
+      if (footerObserver) {
+        footerObserver.disconnect();
+        footerObserver = null;
+      }
     }
   }
 
   function disableHomeScrollSnap() {
     document.documentElement.classList.remove('home-snap-active');
+    if (footerObserver) {
+      footerObserver.disconnect();
+      footerObserver = null;
+    }
   }
 
   document.addEventListener('astro:page-load', enableHomeScrollSnap);
