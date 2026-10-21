@@ -448,19 +448,19 @@
   <!-- Side Popup CTA Button: Pops in with spring animation on reaching the last project (InvestMarket) -->
   <aside
     id="continue-projects-cta"
-    class="fixed right-4 sm:right-8 bottom-8 sm:bottom-12 z-40 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform translate-x-48 opacity-0 pointer-events-none"
+    class="fixed right-5 sm:right-6 bottom-[5.25rem] sm:bottom-[5.5rem] z-40 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform translate-x-72 opacity-0 pointer-events-none"
     aria-label="Continue to all projects"
   >
     <a
       href="/projects"
-      class="group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 px-5 py-3 sm:px-6 sm:py-3.5 text-xs sm:text-sm font-bold text-white shadow-2xl shadow-blue-600/40 border border-blue-400/40 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:shadow-blue-500/60 active:scale-95 cursor-pointer"
+      class="group relative inline-flex items-center gap-1.5 sm:gap-3 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 px-3 py-1.5 sm:px-6 sm:py-3.5 text-[11px] sm:text-sm font-semibold sm:font-bold text-white shadow-lg sm:shadow-2xl shadow-blue-600/40 border border-blue-400/40 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:shadow-blue-500/60 active:scale-95 cursor-pointer"
     >
-      <span class="relative flex h-2.5 w-2.5">
+      <span class="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5 shrink-0">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-white"></span>
       </span>
-      <span class="tracking-wide">Continue to the rest of projects</span>
-      <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+      <span class="tracking-normal sm:tracking-wide whitespace-nowrap">Continue to the rest of projects</span>
+      <svg class="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
         <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
       </svg>
     </a>
@@ -506,11 +506,11 @@
 
         // Last project (Slide 4 / index 3: InvestMarket) -> Pop out side button
         if (index === 3 && continueCta) {
-          continueCta.classList.remove('translate-x-48', 'opacity-0', 'pointer-events-none');
+          continueCta.classList.remove('translate-x-72', 'opacity-0', 'pointer-events-none');
           continueCta.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
         } else if (continueCta) {
           continueCta.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
-          continueCta.classList.add('translate-x-48', 'opacity-0', 'pointer-events-none');
+          continueCta.classList.add('translate-x-72', 'opacity-0', 'pointer-events-none');
         }
       } else {
         // Outside projects section -> Hide both
@@ -518,7 +518,7 @@
         barEl.classList.add('opacity-0', '-translate-x-6', 'pointer-events-none');
         if (continueCta) {
           continueCta.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
-          continueCta.classList.add('translate-x-48', 'opacity-0', 'pointer-events-none');
+          continueCta.classList.add('translate-x-72', 'opacity-0', 'pointer-events-none');
         }
       }
     }
