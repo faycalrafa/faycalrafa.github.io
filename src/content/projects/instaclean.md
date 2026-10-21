@@ -19,6 +19,7 @@ highlights:
 featured: false
 order: 9
 publishedDate: "2024-03-10"
+logo: "/images/logos/instaclean-logo.webp"
 ---
 
 # InstaClean: On-Demand Mobile Service Platform

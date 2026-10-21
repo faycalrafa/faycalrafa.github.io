@@ -17,6 +17,7 @@ highlights:
 featured: false
 order: 6
 publishedDate: "2024-04-15"
+logo: "/images/logos/kabri-auto-logo.png"
 ---
 
 # Kbari Auto: Cross-Border Automotive Parts E-Commerce Platform

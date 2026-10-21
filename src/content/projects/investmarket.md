@@ -19,6 +19,10 @@ highlights:
 featured: true
 order: 4
 publishedDate: "2025-04-01"
+logo: "/images/logos/logo-invest-market.png"
+screenshots:
+  - url: "/images/projects/finnetude/investmarket-shares-wallet-manager-screenshot.png"
+    caption: "InvestMarket Portfolio Management & Real-Time Stock Performance Interface"
 ---
 
 # InvestMarket: Plateforme Boursière & Gestion de Portefeuille

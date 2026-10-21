@@ -16,6 +16,15 @@ export const collections = {
       featured: z.boolean().default(false),
       order: z.number().default(0),
       publishedDate: z.string().optional(),
+      screenshots: z
+        .array(
+          z.object({
+            url: z.string(),
+            caption: z.string().optional(),
+          })
+        )
+        .optional(),
+      logo: z.string().optional(),
     }),
   }),
 };

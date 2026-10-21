@@ -19,6 +19,7 @@ highlights:
 featured: false
 order: 8
 publishedDate: "2022-09-01"
+logo: "/images/logos/tassouik-logo.png"
 ---
 
 # Tassouik: All-in-One E-Commerce Operations & Backoffice ERP

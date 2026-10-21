@@ -19,6 +19,10 @@ highlights:
 featured: false
 order: 7
 publishedDate: "2023-10-20"
+logo: "/images/logos/piassa-logo.png"
+screenshots:
+  - url: "/images/projects/piassa/1.jpg"
+    caption: "PIASSA Automotive Marketplace & Spare Parts Mobile Interface"
 ---
 
 # PIASSA DZ: Automotive Parts B2B Marketplace & Supplier CRM

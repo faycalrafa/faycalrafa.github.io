@@ -89,9 +89,18 @@ const formattedDate = data.publishedDate
         )}
       </div>
 
-      <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl md:text-5xl dark:text-zinc-50">
-        {data.title}
-      </h1>
+      <div class="mt-4 flex items-center gap-3 sm:gap-4">
+        {data.logo && (
+          <img
+            src={data.logo}
+            alt={`${data.title} Logo`}
+            class="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl border border-zinc-200/80 bg-white p-2 shadow-xs dark:border-zinc-800 dark:bg-zinc-900/80 object-contain shrink-0"
+          />
+        )}
+        <h1 class="text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl md:text-5xl dark:text-zinc-50">
+          {data.title}
+        </h1>
+      </div>
 
       <p class="mt-4 text-lg sm:text-xl leading-relaxed text-zinc-600 dark:text-zinc-300">
         {data.tagline}
@@ -220,6 +229,44 @@ const formattedDate = data.publishedDate
                 {highlight}
               </p>
             </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Project Screenshots & Visual Showcase -->
+    {data.screenshots && data.screenshots.length > 0 && (
+      <section class="my-10" aria-labelledby="screenshots-heading">
+        <div class="flex items-center justify-between mb-4">
+          <h2 id="screenshots-heading" class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+            <svg class="h-5 w-5 text-blue-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+            </svg>
+            <span>Interface Screenshots &amp; Platform Architecture</span>
+          </h2>
+          <span class="text-xs text-zinc-400 font-mono">
+            {data.screenshots.length} {data.screenshots.length === 1 ? 'screen' : 'screens'}
+          </span>
+        </div>
+
+        <div class={`grid gap-4 ${data.screenshots.length === 1 ? 'grid-cols-1' : data.screenshots.length === 2 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'}`}>
+          {data.screenshots.map((screen) => (
+            <figure class="group relative overflow-hidden rounded-2xl border border-zinc-200/80 bg-zinc-100/50 p-2 dark:border-zinc-800 dark:bg-zinc-900/50 shadow-sm transition-all duration-300 hover:border-blue-500/40 hover:shadow-lg flex flex-col justify-between">
+              <div class="overflow-hidden rounded-xl bg-zinc-950/20 flex items-center justify-center">
+                <img
+                  src={screen.url}
+                  alt={screen.caption || `${data.title} platform screenshot`}
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-auto object-contain max-h-[380px] transition-transform duration-300 group-hover:scale-[1.02]"
+                />
+              </div>
+              {screen.caption && (
+                <figcaption class="mt-2 text-center text-xs text-zinc-600 dark:text-zinc-400 font-medium px-2 pb-1">
+                  {screen.caption}
+                </figcaption>
+              )}
+            </figure>
           ))}
         </div>
       </section>

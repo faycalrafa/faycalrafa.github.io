@@ -19,6 +19,19 @@ highlights:
 featured: true
 order: 2
 publishedDate: "2024-11-01"
+screenshots:
+  - url: "/images/projects/storesdz/storesdz-site-screenshot.webp"
+    caption: "StoresDZ Platform Interface — Multi-Store Management & Visual Storefront Builder"
+  - url: "/images/projects/storesdz/theme-default.jpg"
+    caption: "Theme Default — Multi-Category Catalog & Responsive Storefront"
+  - url: "/images/projects/storesdz/theme-circuit.jpg"
+    caption: "Theme Circuit — Electronics, Computer Hardware & Tech Specs"
+  - url: "/images/projects/storesdz/theme-couture.jpg"
+    caption: "Theme Couture — High-End Apparel, Fashion & Lookbook Funnel"
+  - url: "/images/projects/storesdz/theme-forge.jpg"
+    caption: "Theme Forge — Automotive Parts, Industrial Tools & High-Density Catalog"
+  - url: "/images/projects/storesdz/theme-nature.jpg"
+    caption: "Theme Nature — Organic Food, Artisanal Products & Wellness Commerce"
 ---
 
 # StoresDZ: Scalable Multi-Tenant E-Commerce Platform

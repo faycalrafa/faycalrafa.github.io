@@ -22,6 +22,17 @@ highlights:
 featured: true
 order: 1
 publishedDate: "2026-03-15"
+screenshots:
+  - url: "/images/bookreader/screenshot-01-home.jpg"
+    caption: "BookReader Reading Dashboard — EPUB/TXT Parsing & Clean Material 3 Layout"
+  - url: "/images/bookreader/screenshot-02-voice-engines.jpg"
+    caption: "On-Device Neural Voice Engines — Kokoro 82M & Piper Neural TTS Selectors"
+  - url: "/images/bookreader/screenshot-03-toolbar-settings.jpg"
+    caption: "Floating In-Reading Controls — Speech Pitch, Speed & Sentence Highlighting"
+  - url: "/images/bookreader/screenshot-04-audio-studio.jpg"
+    caption: "AndroidX Media3 Background Service — Seamless Lockscreen & Notification Audio"
+  - url: "/images/bookreader/screenshot-05-live-web-tts.jpg"
+    caption: "In-Browser Web Chapter Extraction & Offline Reading Cache"
 ---
 
 # BookReader: Android Novel Reader & Audio Streaming Engine

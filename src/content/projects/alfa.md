@@ -19,6 +19,10 @@ highlights:
 featured: false
 order: 5
 publishedDate: "2025-03-15"
+logo: "/images/logos/finnetude-logo.png"
+screenshots:
+  - url: "/images/projects/finnetude/alfa-trading-learning-platform-screenshot.png"
+    caption: "ALFA+ Trading Simulation & Financial Learning Platform Interface"
 ---
 
 # ALFA+: Simulateur 100 % Digital & Académie de Trading Multi-Actifs

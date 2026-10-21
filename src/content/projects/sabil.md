@@ -19,6 +19,16 @@ highlights:
 featured: true
 order: 3
 publishedDate: "2025-08-15"
+logo: "/images/logos/sabil-logo.png"
+screenshots:
+  - url: "/images/projects/sabil/1.webp"
+    caption: "SABIL Consumer Home — Real-time Account Balances, Fast Actions & Mini-App Grid"
+  - url: "/images/projects/sabil/2.webp"
+    caption: "Instant QR Payment Engine — Fast Merchant Checkout & Transaction Authorization"
+  - url: "/images/projects/sabil/3.webp"
+    caption: "Digital Wallet Management — Card Controls, Security Settings & Daily Limits"
+  - url: "/images/projects/sabil/4.webp"
+    caption: "Multi-Channel Utilities & Bill Payments — Fast Settlements & Digital Receipts"
 ---
 
 # SABIL Mega-App: Digital Payment & Financial Microservices
