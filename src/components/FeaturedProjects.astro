@@ -8,7 +8,7 @@
   <!-- Fixed Left Animated Laser Progress Bar (Career Journey style) -->
   <div
     id="projects-laser-bar"
-    class="fixed left-3 sm:left-6 md:left-8 top-1/2 -translate-y-1/2 z-30 transition-all duration-500 pointer-events-none opacity-0 -translate-x-6"
+    class="fixed left-2 sm:left-6 md:left-8 top-1/2 -translate-y-1/2 z-30 transition-all duration-500 pointer-events-none opacity-0 -translate-x-6"
     aria-hidden="true"
   >
     <!-- Base track matching Career Journey w-0.5 bg-zinc-200 dark:bg-zinc-800 -->
@@ -31,8 +31,8 @@
   </div>
 
   <!-- Slide 1: BookReader Pro (Current Free-to-Use Flagship Android App) -->
-  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative" data-slide-index="0">
-    <article class="project-timeline-item w-full max-w-6xl max-h-[92dvh] overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-3.5 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-amber-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-amber-500/30 flex flex-col justify-between sm:justify-center">
+  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center pl-10 pr-3.5 py-4 sm:px-6 sm:py-6 lg:p-8 relative" data-slide-index="0">
+    <article class="project-timeline-item w-full max-w-6xl h-[80dvh] sm:h-auto max-h-[84dvh] sm:max-h-[92dvh] overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-4 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-amber-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-amber-500/30 flex flex-col justify-between sm:justify-center">
       
       <!-- Top Slide Indicator Pill (Desktop/tablet only, hidden on mobile to reclaim vertical space) -->
       <div class="hidden sm:flex items-center justify-between mb-3 border-b border-zinc-100 dark:border-zinc-800/60 pb-2">
@@ -44,10 +44,10 @@
         </span>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center">
+      <div class="h-full flex flex-col justify-between lg:h-auto lg:grid lg:grid-cols-12 gap-2 sm:gap-5 lg:gap-8 lg:items-center">
         <!-- Text Meta Column -->
-        <div class="lg:col-span-7 flex flex-col justify-between">
-          <div>
+        <div class="lg:col-span-7 flex flex-col justify-between flex-1 min-h-0">
+          <div class="space-y-1.5 sm:space-y-2">
             <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2 sm:px-2.5 py-0.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400">
                 <span class="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" aria-hidden="true"></span>
@@ -58,19 +58,19 @@
               </span>
             </div>
 
-            <h3 class="mt-1.5 sm:mt-2.5 text-xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-amber-500 transition-colors">
+            <h3 class="text-xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-amber-500 transition-colors">
               BookReader Pro
             </h3>
-            <p class="mt-0.5 sm:mt-1 text-xs sm:text-sm font-medium text-amber-600 dark:text-amber-400 line-clamp-1 sm:line-clamp-none">
+            <p class="text-xs sm:text-sm font-medium text-amber-600 dark:text-amber-400 line-clamp-1 sm:line-clamp-none">
               On-Device AI Neural Audio &amp; Offline Novel Reader
             </p>
 
-            <p class="mt-1.5 sm:mt-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
+            <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
               A private, 100% free offline reader pairing on-device neural TTS with uninterrupted background audio playback and zero cloud dependency.
             </p>
 
             <!-- Role & Impact Bullets -->
-            <ul class="mt-2 sm:mt-3 space-y-1 sm:space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
+            <ul class="space-y-1 sm:space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
               <li class="flex items-start gap-1.5 sm:gap-2">
                 <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
                 <span class="line-clamp-1 sm:line-clamp-none">Solo Creator &amp; Lead Android Engineer. Built Kotlin M3 UI, C++ neural model runtime, and Media3 background service.</span>
@@ -82,7 +82,7 @@
             </ul>
 
             <!-- Tech Stack Tags -->
-            <div class="mt-2 sm:mt-3 flex flex-wrap gap-1 sm:gap-1.5" aria-label="BookReader tech stack">
+            <div class="flex flex-wrap gap-1 sm:gap-1.5" aria-label="BookReader tech stack">
               {['Kotlin', 'Jetpack Compose', 'AndroidX Media3', 'Kokoro TTS', 'Piper C++', 'Scoped Storage'].map((tech, i) => (
                 <span class:list={['inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/90 px-1.5 py-0.5 sm:px-2 text-[10px] sm:text-[11px] font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300', i >= 4 && 'hidden sm:inline-flex']}>
                   {tech}
@@ -128,13 +128,13 @@
         </div>
 
         <!-- Screenshot Column -->
-        <div class="lg:col-span-5 flex justify-center order-first lg:order-last">
+        <div class="lg:col-span-5 flex justify-center order-first lg:order-last shrink-0 py-1 sm:py-0">
           <img
             src="/images/bookreader/screenshot-01-home.jpg"
             alt="BookReader Pro Android App Screenshot"
             loading="lazy"
             decoding="async"
-            class="max-h-[14vh] sm:max-h-[35vh] lg:max-h-[46vh] w-auto rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-contain transition-transform duration-300 group-hover:scale-102"
+            class="max-h-[20vh] sm:max-h-[35vh] lg:max-h-[46vh] w-auto rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-contain transition-transform duration-300 group-hover:scale-102"
           />
         </div>
       </div>
@@ -142,8 +142,8 @@
   </div>
 
   <!-- Slide 2: StoresDZ (Shopify, but open and built for Algeria) -->
-  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative" data-slide-index="1">
-    <article class="project-timeline-item w-full max-w-6xl max-h-[92dvh] overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-3.5 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-blue-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-blue-500/30 flex flex-col justify-between sm:justify-center">
+  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center pl-10 pr-3.5 py-4 sm:px-6 sm:py-6 lg:p-8 relative" data-slide-index="1">
+    <article class="project-timeline-item w-full max-w-6xl h-[80dvh] sm:h-auto max-h-[84dvh] sm:max-h-[92dvh] overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-4 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-blue-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-blue-500/30 flex flex-col justify-between sm:justify-center">
       
       <!-- Top Slide Indicator Pill (Desktop/tablet only, hidden on mobile to reclaim vertical space) -->
       <div class="hidden sm:flex items-center justify-between mb-3 border-b border-zinc-100 dark:border-zinc-800/60 pb-2">
@@ -155,10 +155,10 @@
         </span>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center">
+      <div class="h-full flex flex-col justify-between lg:h-auto lg:grid lg:grid-cols-12 gap-2 sm:gap-5 lg:gap-8 lg:items-center">
         <!-- Text Meta Column -->
-        <div class="lg:col-span-7 flex flex-col justify-between">
-          <div>
+        <div class="lg:col-span-7 flex flex-col justify-between flex-1 min-h-0">
+          <div class="space-y-1.5 sm:space-y-2">
             <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <span class="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-2 sm:px-2.5 py-0.5 text-[11px] sm:text-xs font-semibold text-blue-700 dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-400">
                 <span class="h-1.5 w-1.5 rounded-full bg-blue-500" aria-hidden="true"></span>
@@ -169,19 +169,19 @@
               </span>
             </div>
 
-            <h3 class="mt-1.5 sm:mt-2.5 text-xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-blue-500 transition-colors">
+            <h3 class="text-xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-blue-500 transition-colors">
               StoresDZ
             </h3>
-            <p class="mt-0.5 sm:mt-1 text-xs sm:text-sm font-medium text-blue-600 dark:text-blue-400 line-clamp-1 sm:line-clamp-none">
+            <p class="text-xs sm:text-sm font-medium text-blue-600 dark:text-blue-400 line-clamp-1 sm:line-clamp-none">
               Full-Stack Multi-Tenant E-Commerce Platform
             </p>
 
-            <p class="mt-1.5 sm:mt-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
+            <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
               Think Shopify, but open and built for Algeria — powering localized custom storefronts, sales funnels, and cash-on-delivery tracking.
             </p>
 
             <!-- Role & Impact Bullets -->
-            <ul class="mt-2 sm:mt-3 space-y-1 sm:space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
+            <ul class="space-y-1 sm:space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
               <li class="flex items-start gap-1.5 sm:gap-2">
                 <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
                 <span class="line-clamp-1 sm:line-clamp-none">Fullstack Engineer. Connected merchant storefronts to commerce microservices, built reusable themes.</span>
@@ -193,7 +193,7 @@
             </ul>
 
             <!-- Tech Stack Tags -->
-            <div class="mt-2 sm:mt-3 flex flex-wrap gap-1 sm:gap-1.5" aria-label="StoresDZ tech stack">
+            <div class="flex flex-wrap gap-1 sm:gap-1.5" aria-label="StoresDZ tech stack">
               {['TypeScript', 'React', 'Go', 'Rust', 'Redis', 'Docker'].map((tech, i) => (
                 <span class:list={['inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/90 px-1.5 py-0.5 sm:px-2 text-[10px] sm:text-[11px] font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300', i >= 4 && 'hidden sm:inline-flex']}>
                   {tech}
@@ -229,13 +229,13 @@
         </div>
 
         <!-- Screenshot Column -->
-        <div class="lg:col-span-5 flex justify-center order-first lg:order-last">
+        <div class="lg:col-span-5 flex justify-center order-first lg:order-last shrink-0 py-1 sm:py-0">
           <img
             src="/images/projects/storesdz/storesdz-site-screenshot.webp"
             alt="StoresDZ Multi-Tenant E-Commerce Platform Screenshot"
             loading="lazy"
             decoding="async"
-            class="max-h-[14vh] sm:max-h-[35vh] lg:max-h-[46vh] w-auto rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-contain transition-transform duration-300 group-hover:scale-102"
+            class="max-h-[17vh] sm:max-h-[35vh] lg:max-h-[46vh] w-auto rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-contain transition-transform duration-300 group-hover:scale-102"
           />
         </div>
       </div>
@@ -243,8 +243,8 @@
   </div>
 
   <!-- Slide 3: SABIL Mega-App -->
-  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative" data-slide-index="2">
-    <article class="project-timeline-item w-full max-w-6xl max-h-[92dvh] overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-3.5 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-emerald-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-emerald-500/30 flex flex-col justify-between sm:justify-center">
+  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center pl-10 pr-3.5 py-4 sm:px-6 sm:py-6 lg:p-8 relative" data-slide-index="2">
+    <article class="project-timeline-item w-full max-w-6xl h-[80dvh] sm:h-auto max-h-[84dvh] sm:max-h-[92dvh] overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-4 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-emerald-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-emerald-500/30 flex flex-col justify-between sm:justify-center">
       
       <!-- Top Slide Indicator Pill (Desktop/tablet only, hidden on mobile to reclaim vertical space) -->
       <div class="hidden sm:flex items-center justify-between mb-3 border-b border-zinc-100 dark:border-zinc-800/60 pb-2">
@@ -256,10 +256,10 @@
         </span>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center">
+      <div class="h-full flex flex-col justify-between lg:h-auto lg:grid lg:grid-cols-12 gap-2 sm:gap-5 lg:gap-8 lg:items-center">
         <!-- Text Meta Column -->
-        <div class="lg:col-span-7 flex flex-col justify-between">
-          <div>
+        <div class="lg:col-span-7 flex flex-col justify-between flex-1 min-h-0">
+          <div class="space-y-1.5 sm:space-y-2">
             <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 sm:px-2.5 py-0.5 text-[11px] sm:text-xs font-semibold text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400">
                 <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
@@ -270,19 +270,19 @@
               </span>
             </div>
 
-            <h3 class="mt-1.5 sm:mt-2.5 text-xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-emerald-500 transition-colors">
+            <h3 class="text-xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-emerald-500 transition-colors">
               SABIL Mega-App
             </h3>
-            <p class="mt-0.5 sm:mt-1 text-xs sm:text-sm font-medium text-emerald-600 dark:text-emerald-400 line-clamp-1 sm:line-clamp-none">
+            <p class="text-xs sm:text-sm font-medium text-emerald-600 dark:text-emerald-400 line-clamp-1 sm:line-clamp-none">
               Multi-Channel Mobile Banking, QR Payments &amp; Financial Microservices
             </p>
 
-            <p class="mt-1.5 sm:mt-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
+            <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
               National financial ecosystem powering instant QR merchant payments, utility bill settlements, and high-frequency digital wallets.
             </p>
 
             <!-- Role & Impact Bullets -->
-            <ul class="mt-2 sm:mt-3 space-y-1 sm:space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
+            <ul class="space-y-1 sm:space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
               <li class="flex items-start gap-1.5 sm:gap-2">
                 <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
                 <span class="line-clamp-1 sm:line-clamp-none">Senior Software Engineer. Architected high-throughput NestJS microservices and PostgreSQL partitioning.</span>
@@ -294,7 +294,7 @@
             </ul>
 
             <!-- Tech Stack Tags -->
-            <div class="mt-2 sm:mt-3 flex flex-wrap gap-1 sm:gap-1.5" aria-label="SABIL tech stack">
+            <div class="flex flex-wrap gap-1 sm:gap-1.5" aria-label="SABIL tech stack">
               {['NestJS', 'TypeScript', 'PostgreSQL', 'Docker', 'Redis', 'Microservices'].map((tech, i) => (
                 <span class:list={['inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/90 px-1.5 py-0.5 sm:px-2 text-[10px] sm:text-[11px] font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300', i >= 4 && 'hidden sm:inline-flex']}>
                   {tech}
@@ -330,13 +330,13 @@
         </div>
 
         <!-- Screenshot Column -->
-        <div class="lg:col-span-5 flex justify-center order-first lg:order-last">
+        <div class="lg:col-span-5 flex justify-center order-first lg:order-last shrink-0 py-1 sm:py-0">
           <img
             src="/images/projects/sabil/1.webp"
             alt="SABIL Mega-App Mobile Application Interface"
             loading="lazy"
             decoding="async"
-            class="max-h-[14vh] sm:max-h-[35vh] lg:max-h-[46vh] w-auto rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-contain transition-transform duration-300 group-hover:scale-102"
+            class="max-h-[20vh] sm:max-h-[35vh] lg:max-h-[46vh] w-auto rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-contain transition-transform duration-300 group-hover:scale-102"
           />
         </div>
       </div>
@@ -344,8 +344,8 @@
   </div>
 
   <!-- Slide 4: InvestMarket (Standalone Project at Finnetude) -->
-  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative" data-slide-index="3">
-    <article class="project-timeline-item w-full max-w-6xl max-h-[92dvh] overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-3.5 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-indigo-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-indigo-500/30 flex flex-col justify-between sm:justify-center">
+  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center pl-10 pr-3.5 py-4 sm:px-6 sm:py-6 lg:p-8 relative" data-slide-index="3">
+    <article class="project-timeline-item w-full max-w-6xl h-[80dvh] sm:h-auto max-h-[84dvh] sm:max-h-[92dvh] overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-4 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-indigo-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-indigo-500/30 flex flex-col justify-between sm:justify-center">
       
       <!-- Top Slide Indicator Pill (Desktop/tablet only, hidden on mobile to reclaim vertical space) -->
       <div class="hidden sm:flex items-center justify-between mb-3 border-b border-zinc-100 dark:border-zinc-800/60 pb-2">
@@ -357,10 +357,10 @@
         </span>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-5 lg:gap-8 items-center">
+      <div class="h-full flex flex-col justify-between lg:h-auto lg:grid lg:grid-cols-12 gap-2 sm:gap-5 lg:gap-8 lg:items-center">
         <!-- Text Meta Column -->
-        <div class="lg:col-span-7 flex flex-col justify-between">
-          <div>
+        <div class="lg:col-span-7 flex flex-col justify-between flex-1 min-h-0">
+          <div class="space-y-1.5 sm:space-y-2">
             <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <span class="inline-flex items-center gap-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-2 sm:px-2.5 py-0.5 text-[11px] sm:text-xs font-semibold text-indigo-700 dark:border-indigo-400/30 dark:bg-indigo-400/10 dark:text-indigo-400">
                 <span class="h-1.5 w-1.5 rounded-full bg-indigo-500" aria-hidden="true"></span>
@@ -371,19 +371,19 @@
               </span>
             </div>
 
-            <h3 class="mt-1.5 sm:mt-2.5 text-xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-500 transition-colors">
+            <h3 class="text-xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-500 transition-colors">
               InvestMarket
             </h3>
-            <p class="mt-0.5 sm:mt-1 text-xs sm:text-sm font-medium text-indigo-600 dark:text-indigo-400 line-clamp-1 sm:line-clamp-none">
+            <p class="text-xs sm:text-sm font-medium text-indigo-600 dark:text-indigo-400 line-clamp-1 sm:line-clamp-none">
               Outil de gestion de portefeuille et d'analyse de performance boursière
             </p>
 
-            <p class="mt-1.5 sm:mt-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
+            <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
               Plateforme financière institutionnelle développée chez Finnetude pour la négociation de titres, la valorisation de portefeuilles en temps réel et l'analyse de performance.
             </p>
 
             <!-- Role & Impact Bullets -->
-            <ul class="mt-2 sm:mt-3 space-y-1 sm:space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
+            <ul class="space-y-1 sm:space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
               <li class="flex items-start gap-1.5 sm:gap-2">
                 <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
                 <span class="line-clamp-1 sm:line-clamp-none">Technical Lead. Co-architected orderbook routing, streaming market feeds, and PostgreSQL models.</span>
@@ -395,7 +395,7 @@
             </ul>
 
             <!-- Tech Stack Tags -->
-            <div class="mt-2 sm:mt-3 flex flex-wrap gap-1 sm:gap-1.5" aria-label="InvestMarket tech stack">
+            <div class="flex flex-wrap gap-1 sm:gap-1.5" aria-label="InvestMarket tech stack">
               {['NestJS', 'TypeScript', 'WebSockets', 'PostgreSQL', 'Redis', 'Docker'].map((tech, i) => (
                 <span class:list={['inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100/90 px-1.5 py-0.5 sm:px-2 text-[10px] sm:text-[11px] font-mono font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300', i >= 4 && 'hidden sm:inline-flex']}>
                   {tech}
@@ -431,13 +431,13 @@
         </div>
 
         <!-- Screenshot Column -->
-        <div class="lg:col-span-5 flex justify-center order-first lg:order-last">
+        <div class="lg:col-span-5 flex justify-center order-first lg:order-last shrink-0 py-1 sm:py-0">
           <img
             src="/images/projects/finnetude/investmarket-shares-wallet-manager-screenshot.png"
             alt="InvestMarket Stock Trading & Portfolio Management Interface"
             loading="lazy"
             decoding="async"
-            class="max-h-[14vh] sm:max-h-[35vh] lg:max-h-[46vh] w-auto rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-contain transition-transform duration-300 group-hover:scale-102"
+            class="max-h-[17vh] sm:max-h-[35vh] lg:max-h-[46vh] w-auto rounded-2xl shadow-xl ring-1 ring-zinc-800/80 object-contain transition-transform duration-300 group-hover:scale-102"
           />
         </div>
       </div>
