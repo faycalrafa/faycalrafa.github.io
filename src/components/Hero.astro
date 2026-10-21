@@ -6,10 +6,10 @@
 import CvModal from './CvModal.astro';
 ---
 
-<section class="relative overflow-hidden pt-12 pb-16 md:pt-20 md:pb-24">
-  <!-- Subtle ambient decorative gradients -->
-  <div class="pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-    <div class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-blue-600 to-indigo-400 opacity-15 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
+<section class="relative pt-12 pb-16 md:pt-20 md:pb-24">
+  <!-- Subtle ambient decorative glow that fades smoothly without hard boundary lines -->
+  <div class="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center" aria-hidden="true">
+    <div class="h-96 w-[48rem] max-w-full rounded-full bg-radial from-blue-600/15 via-indigo-600/5 to-transparent blur-3xl"></div>
   </div>
 
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
