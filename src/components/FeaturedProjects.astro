@@ -5,8 +5,33 @@
 ---
 
 <section id="projects" class="relative">
+  <!-- Fixed Left Animated Laser Progress Bar (Career Journey style) -->
+  <div
+    id="projects-laser-bar"
+    class="fixed left-3 sm:left-6 md:left-8 top-1/2 -translate-y-1/2 z-30 transition-all duration-500 pointer-events-none opacity-0 -translate-x-6"
+    aria-hidden="true"
+  >
+    <!-- Base track matching Career Journey w-0.5 bg-zinc-200 dark:bg-zinc-800 -->
+    <div class="relative h-48 sm:h-60 md:h-72 w-0.5 bg-zinc-200/80 dark:bg-zinc-800 rounded-full">
+      <!-- Vertical Glowing Laser Progress Line matching Career Journey -->
+      <div
+        id="projects-laser-fill"
+        class="absolute top-0 left-0 w-full bg-gradient-to-b from-blue-500 via-indigo-500 to-emerald-400 shadow-[0_0_8px_rgba(59,130,246,0.8),0_0_5px_rgba(99,102,241,0.6)] rounded-full transition-all duration-300"
+        style="height: 25%;"
+      ></div>
+
+      <!-- 4 Timeline Node Beacons corresponding to the 4 projects -->
+      <div class="absolute inset-y-0 -left-[5px] flex flex-col justify-between py-0.5">
+        <div class="project-laser-beacon h-3 w-3 rounded-full border-2 border-blue-500 bg-blue-500 ring-4 ring-blue-500/20 shadow-md shadow-blue-500/30 transition-all duration-300" data-slide-index="0"></div>
+        <div class="project-laser-beacon h-2.5 w-2.5 rounded-full border-2 border-zinc-400 dark:border-zinc-700 bg-white dark:bg-zinc-900 transition-all duration-300" data-slide-index="1"></div>
+        <div class="project-laser-beacon h-2.5 w-2.5 rounded-full border-2 border-zinc-400 dark:border-zinc-700 bg-white dark:bg-zinc-900 transition-all duration-300" data-slide-index="2"></div>
+        <div class="project-laser-beacon h-2.5 w-2.5 rounded-full border-2 border-zinc-400 dark:border-zinc-700 bg-white dark:bg-zinc-900 transition-all duration-300" data-slide-index="3"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Slide 1: BookReader Pro (Current Free-to-Use Flagship Android App) -->
-  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative">
+  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative" data-slide-index="0">
     <article class="project-timeline-item w-full max-w-6xl max-h-[92dvh] overflow-y-auto sm:overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-5 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-amber-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-amber-500/30 flex flex-col justify-center">
       
       <!-- Top Slide Indicator Pill -->
@@ -117,7 +142,7 @@
   </div>
 
   <!-- Slide 2: StoresDZ (Shopify, but open and built for Algeria) -->
-  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative">
+  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative" data-slide-index="1">
     <article class="project-timeline-item w-full max-w-6xl max-h-[92dvh] overflow-y-auto sm:overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-5 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-blue-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-blue-500/30 flex flex-col justify-center">
       
       <!-- Top Slide Indicator Pill -->
@@ -218,7 +243,7 @@
   </div>
 
   <!-- Slide 3: SABIL Mega-App -->
-  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative">
+  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative" data-slide-index="2">
     <article class="project-timeline-item w-full max-w-6xl max-h-[92dvh] overflow-y-auto sm:overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-5 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-emerald-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-emerald-500/30 flex flex-col justify-center">
       
       <!-- Top Slide Indicator Pill -->
@@ -319,7 +344,7 @@
   </div>
 
   <!-- Slide 4: InvestMarket (Standalone Project at Finnetude) -->
-  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative">
+  <div class="project-snap-slide min-h-screen h-[100dvh] snap-start snap-always flex items-center justify-center p-3 sm:p-6 lg:p-8 relative" data-slide-index="3">
     <article class="project-timeline-item w-full max-w-6xl max-h-[92dvh] overflow-y-auto sm:overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/95 p-5 sm:p-8 md:p-10 shadow-xl transition-all duration-300 hover:border-indigo-500/40 hover:shadow-2xl dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-indigo-500/30 flex flex-col justify-center">
       
       <!-- Top Slide Indicator Pill -->
@@ -403,12 +428,6 @@
               </svg>
             </a>
 
-            <a
-              href="/projects"
-              class="inline-flex items-center gap-1.5 rounded-xl border border-blue-500/30 bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-700 hover:bg-blue-100 dark:border-blue-400/30 dark:bg-blue-950/40 dark:text-blue-300 dark:hover:bg-blue-900/60 transition-colors ml-auto"
-            >
-              <span>All 10 Projects Archive →</span>
-            </a>
           </div>
         </div>
 
@@ -425,4 +444,138 @@
       </div>
     </article>
   </div>
+
+  <!-- Side Popup CTA Button: Pops in with spring animation on reaching the last project (InvestMarket) -->
+  <aside
+    id="continue-projects-cta"
+    class="fixed right-4 sm:right-8 bottom-8 sm:bottom-12 z-40 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform translate-x-48 opacity-0 pointer-events-none"
+    aria-label="Continue to all projects"
+  >
+    <a
+      href="/projects"
+      class="group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 px-5 py-3 sm:px-6 sm:py-3.5 text-xs sm:text-sm font-bold text-white shadow-2xl shadow-blue-600/40 border border-blue-400/40 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:shadow-blue-500/60 active:scale-95 cursor-pointer"
+    >
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+      </span>
+      <span class="tracking-wide">Continue to the rest of projects</span>
+      <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg>
+    </a>
+  </aside>
 </section>
+
+<script>
+  function initProjectsTracker() {
+    const projectsSection = document.getElementById('projects');
+    const laserBar = document.getElementById('projects-laser-bar') as HTMLElement | null;
+    const laserFill = document.getElementById('projects-laser-fill') as HTMLElement | null;
+    const beacons = document.querySelectorAll<HTMLElement>('.project-laser-beacon');
+    const continueCta = document.getElementById('continue-projects-cta');
+    const slides = document.querySelectorAll<HTMLElement>('.project-snap-slide');
+
+    if (!projectsSection || !laserBar || !laserFill || slides.length === 0) return;
+
+    const barEl = laserBar;
+    const fillEl = laserFill;
+    let activeSlideIndex = -1;
+
+    function updateTracker(index: number) {
+      if (index === activeSlideIndex) return;
+      activeSlideIndex = index;
+
+      if (index >= 0 && index < slides.length) {
+        // Show left animated bar (same as Career Journey)
+        barEl.classList.remove('opacity-0', '-translate-x-6', 'pointer-events-none');
+        barEl.classList.add('opacity-100', 'translate-x-0');
+
+        // Progress heights: 25%, 50%, 75%, 100%
+        const progressPercentages = ['25%', '50%', '75%', '100%'];
+        fillEl.style.height = progressPercentages[index];
+
+        // Highlight beacons up to active index
+        beacons.forEach((beacon, i) => {
+          if (i <= index) {
+            beacon.className = 'project-laser-beacon h-3 w-3 rounded-full border-2 border-blue-500 bg-blue-500 ring-4 ring-blue-500/20 shadow-md shadow-blue-500/30 transition-all duration-300';
+          } else {
+            beacon.className = 'project-laser-beacon h-2.5 w-2.5 rounded-full border-2 border-zinc-400 dark:border-zinc-700 bg-white dark:bg-zinc-900 transition-all duration-300';
+          }
+        });
+
+        // Last project (Slide 4 / index 3: InvestMarket) -> Pop out side button
+        if (index === 3 && continueCta) {
+          continueCta.classList.remove('translate-x-48', 'opacity-0', 'pointer-events-none');
+          continueCta.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
+        } else if (continueCta) {
+          continueCta.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+          continueCta.classList.add('translate-x-48', 'opacity-0', 'pointer-events-none');
+        }
+      } else {
+        // Outside projects section -> Hide both
+        barEl.classList.remove('opacity-100', 'translate-x-0');
+        barEl.classList.add('opacity-0', '-translate-x-6', 'pointer-events-none');
+        if (continueCta) {
+          continueCta.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+          continueCta.classList.add('translate-x-48', 'opacity-0', 'pointer-events-none');
+        }
+      }
+    }
+
+    const slideObserver = new IntersectionObserver((entries) => {
+      let maxRatio = 0;
+      let mostVisibleIndex = -1;
+
+      entries.forEach((entry) => {
+        const slide = entry.target as HTMLElement;
+        const idx = parseInt(slide.dataset.slideIndex || '-1', 10);
+        if (entry.isIntersecting && entry.intersectionRatio > 0.45) {
+          if (entry.intersectionRatio > maxRatio) {
+            maxRatio = entry.intersectionRatio;
+            mostVisibleIndex = idx;
+          }
+        }
+      });
+
+      if (mostVisibleIndex !== -1) {
+        updateTracker(mostVisibleIndex);
+      } else {
+        const anyVisible = Array.from(slides).some(s => {
+          const r = s.getBoundingClientRect();
+          return r.top < window.innerHeight && r.bottom > 0;
+        });
+        if (!anyVisible) {
+          updateTracker(-1);
+        }
+      }
+    }, {
+      root: null,
+      threshold: [0.1, 0.45, 0.7, 0.9]
+    });
+
+    slides.forEach(slide => slideObserver.observe(slide));
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          updateTracker(-1);
+        }
+      });
+    }, { threshold: 0 });
+
+    sectionObserver.observe(projectsSection);
+
+    document.addEventListener('astro:before-swap', () => {
+      slideObserver.disconnect();
+      sectionObserver.disconnect();
+    }, { once: true });
+  }
+
+  document.addEventListener('astro:page-load', initProjectsTracker);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initProjectsTracker();
+  } else {
+    document.addEventListener('DOMContentLoaded', initProjectsTracker);
+  }
+</script>

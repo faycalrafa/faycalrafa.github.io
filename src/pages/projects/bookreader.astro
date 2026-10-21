@@ -245,7 +245,7 @@ const APP_SCREENS = [
     </header>
 
     <!-- ═══════════════════ ANDROID APP SCREENSHOTS SHOWCASE ═══════════════════ -->
-    <section class="mb-16" aria-labelledby="showcase-heading">
+    <section id="app-showcase-section" class="mb-16" aria-labelledby="showcase-heading">
       <div id="app-showcase-card" class="rounded-3xl border-2 border-amber-500/25 bg-gradient-to-br from-amber-50/70 via-orange-50/40 to-zinc-50 dark:from-amber-950/25 dark:via-orange-950/15 dark:to-zinc-900 dark:border-amber-400/20 overflow-hidden shadow-xl p-6 sm:p-8">
         
         <!-- Showcase Header -->
@@ -843,23 +843,45 @@ const APP_SCREENS = [
         if (e.target === lightbox) lightbox.close();
       });
 
-      // ═══════════════════ BUTTERY-SMOOTH IN-PLACE SHOWCASE SNAPPING (DESKTOP & MOBILE) ═══════════════════
-      // Provides the exact same snappy feel as the homepage slides, but with in-place content transitions.
-      // - Wheel Down / Swipe Up advances one screen forward (Screen 1 → 5) with snappy directional animation.
-      // - Wheel Up / Swipe Down steps backward (Screen 5 → 1).
-      // - At boundaries (Screen 5 scrolling down, or Screen 1 scrolling up), scroll pass-through is released so page scrolling continues naturally.
+      // ═══════════════════ CENTER-STOP & UNIVERSAL IN-PLACE SHOWCASE SNAPPING ═══════════════════
+      // When the smartphone showcase aligns with the center of the viewport, scrolling stops there
+      // until the user cycles through the 5 screens one-by-one in the same snapping manner as the homepage,
+      // no matter which side of the screen they scroll from (left margin, right margin, phone, or center).
+      // At boundaries (Screen 5 scrolling down, or Screen 1 scrolling up), scroll is released so page scroll resumes naturally.
       
-      const showcaseCard = document.getElementById('app-showcase-card') || phoneTrigger;
-      const phoneContainer = phoneTrigger || document.getElementById('mockup-screen-container');
+      const showcaseSection = document.getElementById('app-showcase-section') || document.getElementById('app-showcase-card') || phoneTrigger;
 
       let isWheelCooldown = false;
       const WHEEL_COOLDOWN_MS = 400;
 
-      function onShowcaseWheel(e) {
+      function isShowcaseCentered() {
+        if (!showcaseSection) return false;
+        const rect = showcaseSection.getBoundingClientRect();
+        const sectionCenter = rect.top + rect.height / 2;
+        const viewportCenter = window.innerHeight / 2;
+        // Active when section center is within 180px of vertical viewport center
+        return Math.abs(sectionCenter - viewportCenter) < 180;
+      }
+
+      function snapCenterIfNeeded() {
+        if (!showcaseSection) return;
+        const rect = showcaseSection.getBoundingClientRect();
+        const sectionCenter = rect.top + rect.height / 2;
+        const viewportCenter = window.innerHeight / 2;
+        const diff = sectionCenter - viewportCenter;
+        if (Math.abs(diff) > 15 && Math.abs(diff) < 220) {
+          window.scrollBy({ top: diff, behavior: 'smooth' });
+        }
+      }
+
+      function onWindowWheel(e) {
+        if (!isShowcaseCentered()) return;
+
         if (e.deltaY > 15) {
-          // Wheel Down -> Scroll forward in place
+          // Scroll Down: advance screen in place if not on last screen
           if (activeIndex < screens.length - 1) {
             e.preventDefault();
+            snapCenterIfNeeded();
             if (!isWheelCooldown) {
               isWheelCooldown = true;
               setScreen(activeIndex + 1, 'forward');
@@ -868,11 +890,13 @@ const APP_SCREENS = [
               }, WHEEL_COOLDOWN_MS);
             }
           }
-          // At screen 5, do NOT preventDefault: page scrolls down naturally
+          // If activeIndex === screens.length - 1 (Screen 5), do NOT preventDefault:
+          // User is released from snapping and scrolls down naturally to next section
         } else if (e.deltaY < -15) {
-          // Wheel Up -> Scroll backward in place
+          // Scroll Up: step backward in place if not on first screen
           if (activeIndex > 0) {
             e.preventDefault();
+            snapCenterIfNeeded();
             if (!isWheelCooldown) {
               isWheelCooldown = true;
               setScreen(activeIndex - 1, 'backward');
@@ -881,86 +905,87 @@ const APP_SCREENS = [
               }, WHEEL_COOLDOWN_MS);
             }
           }
-          // At screen 1, do NOT preventDefault: page scrolls up naturally
+          // If activeIndex === 0 (Screen 1), do NOT preventDefault:
+          // User is released from snapping and scrolls up naturally to Hero
         }
       }
 
-      if (showcaseCard) {
-        showcaseCard.addEventListener('wheel', onShowcaseWheel, { passive: false });
-      }
+      window.addEventListener('wheel', onWindowWheel, { passive: false });
 
-      // Mobile Touch Swiping Controller
+      // Mobile Touch Swiping Controller (Universal: anywhere on window when centered)
       let touchStartX = 0;
       let touchStartY = 0;
       let isTouchCooldown = false;
       const TOUCH_COOLDOWN_MS = 380;
 
-      function onPhoneTouchStart(e) {
+      function onWindowTouchStart(e) {
         if (e.touches.length === 1) {
           touchStartX = e.touches[0].clientX;
           touchStartY = e.touches[0].clientY;
         }
       }
 
-      function onPhoneTouchMove(e) {
-        if (e.touches.length === 1) {
-          const deltaX = e.touches[0].clientX - touchStartX;
-          const deltaY = e.touches[0].clientY - touchStartY;
+      function onWindowTouchMove(e) {
+        if (!isShowcaseCentered() || e.touches.length !== 1) return;
 
-          // Vertical gesture takes precedence
-          if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 25) {
-            if (deltaY < 0) {
-              // Swipe Up -> Intent to scroll down
-              if (activeIndex < screens.length - 1) {
-                e.preventDefault(); // Lock window scroll while cycling screens
-                if (!isTouchCooldown) {
-                  isTouchCooldown = true;
-                  setScreen(activeIndex + 1, 'forward');
-                  touchStartY = e.touches[0].clientY;
-                  setTimeout(() => {
-                    isTouchCooldown = false;
-                  }, TOUCH_COOLDOWN_MS);
-                }
-              }
-            } else if (deltaY > 0) {
-              // Swipe Down -> Intent to scroll up
-              if (activeIndex > 0) {
-                e.preventDefault(); // Lock window scroll while cycling screens
-                if (!isTouchCooldown) {
-                  isTouchCooldown = true;
-                  setScreen(activeIndex - 1, 'backward');
-                  touchStartY = e.touches[0].clientY;
-                  setTimeout(() => {
-                    isTouchCooldown = false;
-                  }, TOUCH_COOLDOWN_MS);
-                }
+        const deltaX = e.touches[0].clientX - touchStartX;
+        const deltaY = e.touches[0].clientY - touchStartY;
+
+        // Vertical gesture intent
+        if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 20) {
+          if (deltaY < 0) {
+            // Swipe Up -> Intent to scroll down
+            if (activeIndex < screens.length - 1) {
+              e.preventDefault(); // Stop window from scrolling while cycling
+              snapCenterIfNeeded();
+              if (!isTouchCooldown) {
+                isTouchCooldown = true;
+                setScreen(activeIndex + 1, 'forward');
+                touchStartY = e.touches[0].clientY;
+                setTimeout(() => {
+                  isTouchCooldown = false;
+                }, TOUCH_COOLDOWN_MS);
               }
             }
+            // At screen 5, do NOT preventDefault: native scroll continues down!
+          } else if (deltaY > 0) {
+            // Swipe Down -> Intent to scroll up
+            if (activeIndex > 0) {
+              e.preventDefault(); // Stop window from scrolling while cycling
+              snapCenterIfNeeded();
+              if (!isTouchCooldown) {
+                isTouchCooldown = true;
+                setScreen(activeIndex - 1, 'backward');
+                touchStartY = e.touches[0].clientY;
+                setTimeout(() => {
+                  isTouchCooldown = false;
+                }, TOUCH_COOLDOWN_MS);
+              }
+            }
+            // At screen 1, do NOT preventDefault: native scroll continues up!
           }
         }
       }
 
-      function onPhoneTouchEnd(e) {
-        if (e.changedTouches.length === 1) {
-          const deltaX = e.changedTouches[0].clientX - touchStartX;
-          const deltaY = e.changedTouches[0].clientY - touchStartY;
+      function onWindowTouchEnd(e) {
+        if (!isShowcaseCentered() || e.changedTouches.length !== 1) return;
 
-          // Horizontal swipe detection
-          if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
-            if (deltaX < 0) {
-              setScreen(activeIndex + 1, 'forward');
-            } else {
-              setScreen(activeIndex - 1, 'backward');
-            }
+        const deltaX = e.changedTouches[0].clientX - touchStartX;
+        const deltaY = e.changedTouches[0].clientY - touchStartY;
+
+        // Horizontal swipe fallback
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
+          if (deltaX < 0) {
+            setScreen(activeIndex + 1, 'forward');
+          } else {
+            setScreen(activeIndex - 1, 'backward');
           }
         }
       }
 
-      if (phoneContainer) {
-        phoneContainer.addEventListener('touchstart', onPhoneTouchStart, { passive: true });
-        phoneContainer.addEventListener('touchmove', onPhoneTouchMove, { passive: false });
-        phoneContainer.addEventListener('touchend', onPhoneTouchEnd, { passive: true });
-      }
+      window.addEventListener('touchstart', onWindowTouchStart, { passive: true });
+      window.addEventListener('touchmove', onWindowTouchMove, { passive: false });
+      window.addEventListener('touchend', onWindowTouchEnd, { passive: true });
 
       mobileSnapUnlockBtn?.addEventListener('click', () => {
         setScreen(activeIndex + 1, 'forward');
@@ -972,14 +997,10 @@ const APP_SCREENS = [
       }
 
       window._bookreaderShowcaseCleanup = () => {
-        if (showcaseCard) {
-          showcaseCard.removeEventListener('wheel', onShowcaseWheel);
-        }
-        if (phoneContainer) {
-          phoneContainer.removeEventListener('touchstart', onPhoneTouchStart);
-          phoneContainer.removeEventListener('touchmove', onPhoneTouchMove);
-          phoneContainer.removeEventListener('touchend', onPhoneTouchEnd);
-        }
+        window.removeEventListener('wheel', onWindowWheel);
+        window.removeEventListener('touchstart', onWindowTouchStart);
+        window.removeEventListener('touchmove', onWindowTouchMove);
+        window.removeEventListener('touchend', onWindowTouchEnd);
       };
 
       document.addEventListener('astro:before-swap', window._bookreaderShowcaseCleanup, { once: true });
