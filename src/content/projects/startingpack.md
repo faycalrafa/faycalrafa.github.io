@@ -16,7 +16,7 @@ highlights:
   - "Pre-configured Tailwind CSS design system with automated linting and formatting workflows"
   - "Ultra-lean Vite build pipeline achieving sub-second HMR and 100/100 Lighthouse performance"
 featured: false
-order: 10
+order: 11
 publishedDate: "2025-11-10"
 ---
 

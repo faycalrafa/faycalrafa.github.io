@@ -17,7 +17,7 @@ highlights:
   - "Pattern Transactional Outbox garantissant la cohérence stricte des transactions et l'intégrité comptable"
   - "Couche de cache Redis en mémoire réduisant la charge de lecture en base de plus de 65 % en pic de marché"
 featured: true
-order: 4
+order: 5
 publishedDate: "2025-04-01"
 logo: "/images/logos/logo-invest-market.png"
 screenshots:

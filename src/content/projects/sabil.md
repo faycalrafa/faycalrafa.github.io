@@ -17,7 +17,7 @@ highlights:
   - "Database partitioning and index optimization yielding sub-50ms API response times under high concurrency"
   - "Containerized multi-service deployment with Docker, health probes, and automated failover recovery"
 featured: true
-order: 3
+order: 4
 publishedDate: "2025-08-15"
 logo: "/images/logos/sabil-logo.png"
 screenshots:

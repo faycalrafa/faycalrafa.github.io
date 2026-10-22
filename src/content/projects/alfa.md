@@ -17,7 +17,7 @@ highlights:
   - "Reproduction dynamique des carnets d'ordres multi-actifs, de la liquidité et de l'exécution de marché"
   - "Architecture microservices robuste garantissant 99,9 % de disponibilité et une faible latence de streaming"
 featured: false
-order: 5
+order: 6
 publishedDate: "2025-03-15"
 logo: "/images/logos/finnetude-logo.png"
 screenshots:

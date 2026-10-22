@@ -17,7 +17,7 @@ highlights:
   - "Integrated Meta Ads Manager sync for automated campaign tracking, attribution metrics, and conversion analysis"
   - "Developed multi-warehouse inventory management module with stock replenishment alerts and batch tracking for BFLN Technologies"
 featured: false
-order: 8
+order: 9
 publishedDate: "2022-09-01"
 logo: "/images/logos/tassouik-logo.png"
 ---

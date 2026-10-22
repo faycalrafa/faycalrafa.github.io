@@ -15,7 +15,7 @@ highlights:
   - "Architected parts compatibility search engine mapping complex OEM and aftermarket parts for Dubai's import market"
   - "Integrated localized shipping and delivery workflows with multi-currency checkout and automated status webhooks"
 featured: false
-order: 6
+order: 7
 publishedDate: "2024-04-15"
 logo: "/images/logos/kabri-auto-logo.png"
 ---
