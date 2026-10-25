@@ -23,16 +23,16 @@ order: 3
 publishedDate: "2026-10-20"
 logo: "/images/logos/icons/textmorph.png"
 screenshots:
-  - url: "/images/textmorph/screenshot-01-floating-toolbar.jpg"
-    caption: "01 System-Wide Floating AI Toolbar — AccessibilityService overlay above active keyboard"
-  - url: "/images/textmorph/screenshot-02-model-hub.jpg"
-    caption: "02 Hardware-Accelerated Model Hub — Zero-copy Linux mmap loader for Gemma 4"
-  - url: "/images/textmorph/screenshot-03-slash-commands.jpg"
-    caption: "03 Slash Commands Architecture — Universal /command triggers in any text field"
-  - url: "/images/textmorph/screenshot-04-custom-prompts.jpg"
-    caption: "04 Custom Prompts & Multimodal Vision — Direct companion actions & Screen Assist"
-  - url: "/images/textmorph/screenshot-05-settings-server.jpg"
-    caption: "05 Localhost OpenAI Server — Embedded Ktor CIO 127.0.0.1:8080 HTTP server"
+  - url: "/images/textmorph/playstore-01-floating-toolbar.jpg"
+    caption: "01 System-Wide Floating AI Toolbar — Works inside any chat, email, or text field"
+  - url: "/images/textmorph/playstore-02-model-hub.jpg"
+    caption: "02 Hardware-Accelerated Model Hub — Instant zero-copy mmap loading for Gemma 4 & LiteRT-LM"
+  - url: "/images/textmorph/playstore-03-slash-commands.jpg"
+    caption: "03 Slash Commands Architecture — Type /command anywhere for instant AI transformations"
+  - url: "/images/textmorph/playstore-04-custom-prompts.jpg"
+    caption: "04 Custom Prompts & Multimodal Vision — Multimodal vision reasoning & one-tap clipboard summaries"
+  - url: "/images/textmorph/playstore-05-settings-server.jpg"
+    caption: "05 Localhost OpenAI Server — Embedded Ktor HTTP server on 127.0.0.1:8080 for external apps"
 ---
 
 # TextMorph: System-Wide On-Device Multimodal AI Assistant
