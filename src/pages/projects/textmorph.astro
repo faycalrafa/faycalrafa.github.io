@@ -1,0 +1,963 @@
+---
+// src/pages/projects/textmorph.astro
+// Dedicated flagship showcase page for TextMorph Android project.
+// Features: 3D Forest Clay app icon, direct APK download, authentic Android app screenshots showcase, Play Store graphics toggle, architecture deep-dive.
+
+import Layout from '../../layouts/Layout.astro';
+
+// Authoritative repository endpoints & release info
+const REPO_URL = 'https://github.com/faycalrafa/TextMorph';
+const APP_ICON_URL = '/images/logos/icons/textmorph.png';
+
+// Baseline fallback constants
+const FALLBACK_VERSION = 'v1.0.0';
+const FALLBACK_APK_URL = 'https://github.com/faycalrafa/TextMorph/releases';
+const FALLBACK_RELEASE_URL = 'https://github.com/faycalrafa/TextMorph/releases';
+
+// Dynamic build-time release info fetched from GitHub API
+let releaseInfo = {
+  version: FALLBACK_VERSION,
+  apkUrl: FALLBACK_APK_URL,
+  releaseUrl: FALLBACK_RELEASE_URL,
+  sizeMb: '~45.2 MB',
+  publishedDate: 'Oct 20, 2026',
+  releaseName: 'TextMorph v1.0.0 (Stable)'
+};
+
+try {
+  const res = await fetch('https://api.github.com/repos/faycalrafa/TextMorph/releases/latest', {
+    headers: { 'Accept': 'application/vnd.github.v3+json', 'User-Agent': 'FaycalRafa-Portfolio' },
+    signal: AbortSignal.timeout(3500)
+  });
+  if (res.ok) {
+    const data = await res.json();
+    const apkAsset = data.assets?.find((a: any) => a.name.endsWith('.apk'));
+    if (apkAsset && data.tag_name) {
+      const sizeInMb = (apkAsset.size / (1024 * 1024)).toFixed(1);
+      const pubDate = new Date(data.published_at).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      });
+      releaseInfo = {
+        version: data.tag_name,
+        apkUrl: apkAsset.browser_download_url,
+        releaseUrl: data.html_url || `https://github.com/faycalrafa/TextMorph/releases/tag/${data.tag_name}`,
+        sizeMb: `~${sizeInMb} MB`,
+        publishedDate: pubDate,
+        releaseName: data.name || `TextMorph ${data.tag_name} (Stable)`
+      };
+    }
+  }
+} catch {
+  // Graceful fallback to verified release
+}
+
+const APP_SCREENS = [
+  {
+    id: 'floating-toolbar',
+    num: '01',
+    title: 'System-Wide Floating AI Toolbar',
+    subtitle: 'Non-Intrusive AccessibilityService & Keyboard Overlay',
+    tag: 'Accessibility & Overlay',
+    image: '/images/textmorph/screenshot-01-floating-toolbar.jpg',
+    playstoreImage: '/images/textmorph/playstore-01-floating-toolbar.jpg',
+    description: 'Anchored intelligently above your active software keyboard in any application—WhatsApp, Telegram, Gmail, or Notes. Delivers one-tap text polish, smart grammar fixes, and vision actions without ever stealing keyboard focus.',
+    highlights: [
+      'AccessibilityService + WindowManager overlay anchored directly above active text fields',
+      'Configured with FLAG_NOT_FOCUSABLE to allow seamless keyboard typing while active',
+      'Quick Fix toggle for automatic in-place grammar & spelling correction upon typing pauses',
+      'Zero-permission ACTION_PROCESS_TEXT native Android text selection context menu'
+    ],
+    tech: 'AccessibilityService · WindowManager · FLAG_NOT_FOCUSABLE · ACTION_PROCESS_TEXT'
+  },
+  {
+    id: 'model-hub',
+    num: '02',
+    title: 'Hardware-Accelerated Model Hub',
+    subtitle: 'Zero-Copy Linux mmap & LiteRT-LM GPU Inference',
+    tag: 'On-Device AI Engine',
+    image: '/images/textmorph/screenshot-02-model-hub.jpg',
+    playstoreImage: '/images/textmorph/playstore-02-model-hub.jpg',
+    description: 'Load multi-gigabyte foundation models (Gemma 4 E2B & E4B) directly from your Downloads folder with zero file copying and instant mmap. Harness mobile GPU acceleration via Google LiteRT-LM runtime for ultra-low latency inference.',
+    highlights: [
+      'Zero-copy memory mapping via ParcelFileDescriptor mmap directly into native buffers',
+      'Google LiteRT-LM runtime with GPU acceleration (OpenCL/Vulkan) & CPU XNNPACK fallbacks',
+      'Live model state management: instant Stop/Offload, dynamic quantization, and memory tracking',
+      'Strict 100% on-device execution with zero cloud telemetry or data leakage'
+    ],
+    tech: 'Google LiteRT-LM · Gemma 4 · Linux mmap · ParcelFileDescriptor · GPU Acceleration'
+  },
+  {
+    id: 'slash-commands',
+    num: '03',
+    title: 'Custom Slash Commands Architecture',
+    subtitle: 'Universal In-Field Macros (/fix, /summarize, /fr, /ar)',
+    tag: 'Productivity & Macros',
+    image: '/images/textmorph/screenshot-03-slash-commands.jpg',
+    playstoreImage: '/images/textmorph/playstore-03-slash-commands.jpg',
+    description: 'Type /command directly inside any text field on your phone to trigger automated on-device AI pipelines. Translate to French (/fr), Arabic (/ar), English (/en), or execute bespoke multi-step prompt chains with the Quick Execute button.',
+    highlights: [
+      'Real-time text field watcher detecting leading slash trigger sequences',
+      'Pre-configured high-accuracy translation prompts for Arabic, French, and English',
+      'Custom slash command creator with dynamic prompt templating & variable injection',
+      'Instant text replacement directly in the active editable buffer'
+    ],
+    tech: 'AccessibilityNodeInfo · TextWatcher · Coroutine Reactive Pipeline'
+  },
+  {
+    id: 'custom-prompts',
+    num: '04',
+    title: 'Custom Prompts & Multimodal Vision',
+    subtitle: 'Screen Assist, Creative Polish & Clipboard Actions',
+    tag: 'Multimodal & Prompts',
+    image: '/images/textmorph/screenshot-04-custom-prompts.jpg',
+    playstoreImage: '/images/textmorph/playstore-04-custom-prompts.jpg',
+    description: 'Tailor your AI assistant with personalized prompt chains. Pin your top 5 companion actions directly into the floating bar for single-tap execution. Use Screen Assist to take instant on-device screenshots and ask multimodal questions.',
+    highlights: [
+      'Top 5 companion slots directly accessible in the floating overlay bar',
+      'Screen Assist vision action analyzing active screen context with multimodal Gemma',
+      'One-tap Clipboard Summarizer condensing copied documents into concise bullet points',
+      'Intuitive drag-and-drop reordering with persistent room database storage'
+    ],
+    tech: 'MediaProjection · Multimodal Gemma 4 · Android Room · StateFlow'
+  },
+  {
+    id: 'settings-server',
+    num: '05',
+    title: 'Localhost OpenAI-Compatible HTTP Server',
+    subtitle: 'Embedded Ktor CIO Server on 127.0.0.1:8080',
+    tag: 'Local Server & API',
+    image: '/images/textmorph/screenshot-05-settings-server.jpg',
+    playstoreImage: '/images/textmorph/playstore-05-settings-server.jpg',
+    description: 'Turns your Android smartphone into a private edge LLM API server. Exposes standard OpenAI-compatible endpoints (/v1/chat/completions and /v1/models) over localhost for Termux automations, local scripts, and mobile companion tools.',
+    highlights: [
+      'Non-blocking Ktor CIO HTTP server bound exclusively to 127.0.0.1 for maximum privacy',
+      'Streaming SSE chat completions compliant with standard OpenAI API specifications',
+      'Configurable port (default 8080) and optional Bearer token authentication',
+      'Full overlay controls: Always Show Floating Button, Compact Icons Mode, Auto-Open with Keyboard'
+    ],
+    tech: 'Ktor CIO Server · Kotlinx Serialization · Server-Sent Events (SSE) · Localhost Only'
+  }
+];
+---
+
+<Layout
+  title="TextMorph | System-Wide On-Device AI Writing Assistant | Faycal Rafa"
+  description="TextMorph is Faycal Rafa's privacy-first on-device multimodal AI writing assistant & floating toolbar for Android powered by LiteRT-LM and Gemma 4."
+>
+  <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <header class="mb-12">
+      <div class="flex flex-col gap-8 sm:flex-row sm:items-start">
+        <!-- App Icon -->
+        <div class="shrink-0">
+          <div class="relative h-28 w-28 sm:h-36 sm:w-36">
+            <div class="absolute inset-0 rounded-[32%] bg-gradient-to-br from-emerald-400 via-teal-500 to-emerald-700 opacity-25 blur-2xl scale-110"></div>
+            <img
+              src={APP_ICON_URL}
+              alt="TextMorph app launcher icon"
+              width="144"
+              height="144"
+              class="relative h-full w-full rounded-[32%] object-cover shadow-2xl shadow-emerald-600/30 ring-4 ring-emerald-500/20 bg-zinc-900 p-2"
+              loading="eager"
+              fetchpriority="high"
+              onerror="this.style.display='none';document.getElementById('icon-fallback').style.display='flex'"
+            />
+            <div id="icon-fallback" class="relative hidden h-full w-full rounded-[32%] bg-gradient-to-br from-emerald-600 to-teal-700 items-center justify-center shadow-2xl">
+              <span class="text-3xl font-black text-white font-mono">TM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="flex-1 min-w-0">
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/15 dark:text-emerald-300 ring-1 ring-emerald-500/20">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true"></span>
+              Open Source
+              <span class="sr-only">Flagship Project</span>
+            </span>
+            <span
+              id="textmorph-version-badge"
+              class="inline-flex items-center gap-1.5 rounded-full border border-teal-500/30 bg-teal-500/10 px-2.5 py-1 text-xs font-semibold text-teal-700 dark:border-teal-400/30 dark:bg-teal-400/15 dark:text-teal-300"
+            >
+              <span class="h-1.5 w-1.5 rounded-full bg-teal-500" aria-hidden="true"></span>
+              <span id="textmorph-version-text">{releaseInfo.version} · Latest</span>
+            </span>
+            <span class="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">
+              Android · Kotlin · LiteRT-LM · Gemma 4
+            </span>
+          </div>
+
+          <h1 class="text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl md:text-5xl dark:text-zinc-50">
+            TextMorph
+          </h1>
+          <p class="mt-3 text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 max-w-2xl">
+            A system-wide, privacy-first multimodal AI writing assistant & floating toolbar for Android. Powered by on-device LiteRT-LM and Gemma 4 foundation models with zero-copy memory mapping, slash commands, and an embedded OpenAI server.
+          </p>
+
+          <!-- Download CTAs -->
+          <div class="mt-6 flex flex-wrap items-center gap-3">
+            <a
+              id="textmorph-download-apk"
+              href={releaseInfo.apkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/25 hover:from-emerald-500 hover:to-teal-500 dark:from-emerald-500 dark:to-teal-600 dark:hover:from-emerald-400 dark:hover:to-teal-400 transition-all hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span>Download Releases / APK</span>
+              <span id="textmorph-apk-size" class="text-emerald-200 font-normal text-xs">{releaseInfo.sizeMb}</span>
+            </a>
+
+            <a
+              href={REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-700 shadow-xs hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+            >
+              <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+              <span>GitHub Repo</span>
+            </a>
+
+            <a
+              id="textmorph-release-notes"
+              href={releaseInfo.releaseUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs text-zinc-500 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors underline underline-offset-2"
+            >
+              {releaseInfo.version} Release Notes →
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══════════════════ ANDROID APP SCREENSHOTS SHOWCASE ═══════════════════ -->
+    <section id="app-showcase-section" class="mb-16" aria-labelledby="showcase-heading">
+      <div id="app-showcase-card" class="rounded-3xl border-2 border-emerald-500/25 bg-gradient-to-br from-emerald-50/70 via-teal-50/40 to-zinc-50 dark:from-emerald-950/25 dark:via-teal-950/15 dark:to-zinc-900 dark:border-emerald-400/20 overflow-hidden shadow-xl p-6 sm:p-8">
+        
+        <!-- Showcase Header -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-emerald-500/20 dark:border-emerald-400/15">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="inline-flex items-center gap-1.5 rounded-md bg-emerald-500/15 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300 ring-1 ring-emerald-500/20">
+                <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                Live Android Showcase
+              </span>
+              <span class="text-xs text-zinc-500 dark:text-zinc-400">5 Authentic Screens</span>
+            </div>
+            <h2 id="showcase-heading" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50">
+              Native Android Experience
+            </h2>
+            <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 mt-1 max-w-2xl">
+              Explore TextMorph's bespoke Forest Clay interface, on-device LiteRT-LM hardware acceleration, floating accessibility overlay bar, and embedded localhost OpenAI server.
+            </p>
+          </div>
+          
+          <!-- View Switcher (In-Phone Screen vs Play Store Card) -->
+          <div class="flex items-center gap-1.5 bg-zinc-200/70 dark:bg-zinc-800/80 p-1 rounded-xl text-xs font-semibold">
+            <button
+              type="button"
+              id="view-mode-screen"
+              class="view-mode-btn px-2.5 py-1.5 rounded-lg transition-all cursor-pointer bg-white text-emerald-800 shadow-xs dark:bg-emerald-600 dark:text-white"
+            >
+              📱 Phone Screen
+            </button>
+            <button
+              type="button"
+              id="view-mode-playstore"
+              class="view-mode-btn px-2.5 py-1.5 rounded-lg transition-all cursor-pointer text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
+            >
+              🎨 Play Store Card
+            </button>
+          </div>
+        </div>
+
+        <!-- Screen Selector Tabs -->
+        <div class="pt-6 pb-8">
+          <div class="flex flex-wrap gap-2 sm:gap-2.5" role="tablist" aria-label="TextMorph App Screens">
+            {APP_SCREENS.map((screen, idx) => (
+              <button
+                type="button"
+                role="tab"
+                id={`tab-btn-${idx}`}
+                aria-selected={idx === 0 ? "true" : "false"}
+                aria-controls={`panel-screen-${idx}`}
+                data-index={idx}
+                class:list={[
+                  'screen-tab-btn inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer select-none',
+                  idx === 0
+                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30 ring-2 ring-emerald-500/50'
+                    : 'bg-white text-zinc-700 hover:bg-emerald-50/80 border border-zinc-200 dark:bg-zinc-800/80 dark:text-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800'
+                ]}
+              >
+                <span class="text-[11px] font-mono opacity-80">{screen.num}</span>
+                <span>{screen.title}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Featured Showcase Stage (Phone Mockup + Feature Deep-Dive) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          
+          <!-- Left: Realistic Android Smartphone Mockup Frame -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative w-[280px] sm:w-[310px]">
+              <!-- Phone Chassis Silhouette -->
+              <div class="relative rounded-[2.8rem] p-3 bg-gradient-to-b from-zinc-800 via-zinc-900 to-black shadow-2xl ring-1 ring-white/10 shadow-emerald-950/30">
+                <!-- Top Ear Speaker & Ambient Sensor -->
+                <div class="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
+                  <div class="h-1 w-10 rounded-full bg-zinc-700/80"></div>
+                  <div class="h-2 w-2 rounded-full bg-zinc-800 ring-1 ring-zinc-700"></div>
+                </div>
+
+                <!-- Screen Viewport with Click-to-Enlarge Action -->
+                <div
+                  id="phone-screen-trigger"
+                  class="relative aspect-[472/1024] w-full overflow-hidden rounded-[2.1rem] bg-zinc-950 shadow-inner cursor-zoom-in group select-none"
+                  title="Click to view high-resolution screenshot"
+                >
+                  <!-- Active Screenshot Layer -->
+                  <img
+                    id="mockup-screen-img"
+                    src={APP_SCREENS[0].image}
+                    alt={APP_SCREENS[0].title}
+                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="eager"
+                  />
+                  <!-- Incoming Transition Screenshot Layer (Eliminates Flashing) -->
+                  <img
+                    id="mockup-screen-incoming"
+                    src={APP_SCREENS[0].image}
+                    alt=""
+                    class="absolute inset-0 h-full w-full object-cover opacity-0 pointer-events-none"
+                    loading="eager"
+                  />
+                  <!-- Hover Hint Pill -->
+                  <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-black/75 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-xs shadow-lg">
+                      <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        <line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line>
+                      </svg>
+                      View Fullscreen
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Bottom Android Home Indicator Line -->
+                <div class="mt-2 flex justify-center">
+                  <div class="h-1 w-24 rounded-full bg-zinc-700/60"></div>
+                </div>
+              </div>
+
+              <!-- Mobile Interactive Snapping & Locking Navigation Bar -->
+              <div
+                id="mobile-snap-nav"
+                class="mt-3 flex items-center justify-between gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-emerald-500/40 text-[11px] font-medium text-zinc-300 shadow-md backdrop-blur-md transition-all duration-300 md:hidden"
+                aria-live="polite"
+              >
+                <span class="flex items-center gap-1.5 text-emerald-400 font-semibold">
+                  <span id="mobile-snap-dot" class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                  <span id="mobile-snap-count">Screen 1 of 5</span>
+                </span>
+                <span id="mobile-snap-hint" class="text-zinc-400 text-[10px]">Swipe to change</span>
+                <button
+                  id="mobile-snap-unlock-btn"
+                  type="button"
+                  class="font-semibold text-emerald-400 hover:text-emerald-300 underline cursor-pointer text-[11px]"
+                >
+                  Next ↓
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Contextual Screen Description & Technical Architecture -->
+          <div id="screen-details-container" class="lg:col-span-7 flex flex-col justify-center transition-all duration-200">
+            <div class="flex items-center gap-2 mb-2">
+              <span id="detail-tag" class="inline-flex items-center rounded-full bg-emerald-500/15 border border-emerald-500/25 px-2.5 py-0.5 text-xs font-semibold text-emerald-800 dark:text-emerald-300">
+                {APP_SCREENS[0].tag}
+              </span>
+              <span id="detail-num" class="text-xs font-mono text-zinc-400">
+                Screen {APP_SCREENS[0].num} / 05
+              </span>
+            </div>
+
+            <h3 id="detail-title" class="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-50">
+              {APP_SCREENS[0].title}
+            </h3>
+            <p id="detail-subtitle" class="text-sm font-semibold text-emerald-700 dark:text-emerald-400 mt-1">
+              {APP_SCREENS[0].subtitle}
+            </p>
+
+            <p id="detail-desc" class="mt-4 text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+              {APP_SCREENS[0].description}
+            </p>
+
+            <!-- Highlights Checklist -->
+            <div class="mt-6 space-y-2.5">
+              <p class="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Key Capabilities</p>
+              <ul id="detail-highlights" class="space-y-2 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
+                {APP_SCREENS[0].highlights.map(h => (
+                  <li class="flex items-start gap-2.5">
+                    <svg class="h-4 w-4 shrink-0 text-emerald-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                    </svg>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Tech Badge -->
+            <div class="mt-6 pt-5 border-t border-emerald-500/20 dark:border-emerald-400/15 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-zinc-500 dark:text-zinc-400">Architecture:</span>
+                <code id="detail-tech" class="rounded bg-emerald-500/10 px-2 py-0.5 font-mono text-xs font-bold text-emerald-800 dark:text-emerald-300">
+                  {APP_SCREENS[0].tech}
+                </code>
+              </div>
+
+              <!-- Previous / Next screen buttons -->
+              <div class="flex items-center gap-2">
+                <button
+                  type="button"
+                  id="btn-prev-screen"
+                  class="inline-flex items-center justify-center h-8 w-8 rounded-lg border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 cursor-pointer transition-colors"
+                  aria-label="Previous screenshot"
+                >
+                  <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" /></svg>
+                </button>
+                <button
+                  type="button"
+                  id="btn-next-screen"
+                  class="inline-flex items-center justify-center h-8 w-8 rounded-lg border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 cursor-pointer transition-colors"
+                  aria-label="Next screenshot"
+                >
+                  <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" /></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thumbnail Strip Preview -->
+        <div class="mt-12 pt-6 border-t border-emerald-500/20 dark:border-emerald-400/15">
+          <p class="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3">All Screen Captures</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            {APP_SCREENS.map((screen, idx) => (
+              <button
+                type="button"
+                data-thumbnail-index={idx}
+                class:list={[
+                  'thumbnail-card group relative rounded-xl border p-2 text-left transition-all cursor-pointer',
+                  idx === 0
+                    ? 'border-emerald-500 bg-emerald-500/10 ring-2 ring-emerald-500/30'
+                    : 'border-zinc-200/90 bg-white dark:border-zinc-800 dark:bg-zinc-900/60 hover:border-emerald-400/60'
+                ]}
+              >
+                <div class="aspect-[472/1024] w-full rounded-lg overflow-hidden bg-black mb-2 shadow-xs">
+                  <img
+                    src={screen.image}
+                    alt={screen.title}
+                    class="thumbnail-card-img h-full w-full object-cover transition-transform group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="text-[11px] font-bold text-zinc-900 dark:text-zinc-100 truncate">{screen.title}</div>
+                <div class="text-[10px] text-zinc-500 dark:text-zinc-400 truncate">{screen.tag}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ LIGHTBOX DIALOG ═══════════════════ -->
+    <dialog
+      id="screenshot-lightbox"
+      closedby="any"
+      aria-label="Screenshot Fullscreen View"
+      class="m-auto rounded-3xl border border-zinc-700 bg-zinc-950/95 p-4 shadow-2xl backdrop:bg-black/85 backdrop:backdrop-blur-md max-w-lg open:flex open:flex-col items-center transition-all"
+    >
+      <div class="w-full flex items-center justify-between pb-3 border-b border-zinc-800 text-white">
+        <h3 id="lightbox-title" class="text-sm font-bold truncate">Screenshot View</h3>
+        <button
+          type="button"
+          id="lightbox-close-btn"
+          class="rounded-lg p-1.5 text-zinc-400 hover:text-white hover:bg-zinc-800 cursor-pointer"
+          aria-label="Close fullscreen view"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="p-2 max-h-[82vh] overflow-auto flex justify-center">
+        <img
+          id="lightbox-img"
+          src={APP_SCREENS[0].image}
+          alt="Full screen preview"
+          class="max-h-[78vh] w-auto rounded-xl shadow-2xl object-contain"
+        />
+      </div>
+    </dialog>
+
+    <!-- ═══════════════════ FEATURES GRID ═══════════════════ -->
+    <section class="mb-14" aria-labelledby="features-heading">
+      <h2 id="features-heading" class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6">Key Features</h2>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          { emoji: '🤖', title: 'On-Device Hardware-Accelerated AI', desc: 'LiteRT-LM GPU inference running compact foundation models (Gemma 4 E2B & E4B) directly on mobile silicon with zero cloud latency and total privacy.' },
+          { emoji: '🎯', title: 'System-Wide Floating AI Pill', desc: 'Non-intrusive AccessibilityService overlay that anchors above active input fields without stealing keyboard focus (FLAG_NOT_FOCUSABLE).' },
+          { emoji: '⚡', title: 'Zero-Copy Downloads Loader', desc: 'Directly memory-maps multi-gigabyte .litertlm model files via Linux mmap and ParcelFileDescriptor with zero duplicate flash storage overhead.' },
+          { emoji: '⌨️', title: 'Universal Slash Commands', desc: 'Trigger AI transformations in any text box by typing /fix, /summarize, /fr (French), or /ar (Arabic) with instant in-place buffer replacement.' },
+          { emoji: '🌐', title: 'Embedded Localhost OpenAI Server', desc: 'Lightweight Ktor CIO HTTP server on 127.0.0.1:8080 exposing standard OpenAI-compatible streaming chat completions for Termux and local tools.' },
+          { emoji: '👁️', title: 'Multimodal Vision Screen Assist', desc: 'MediaProjection integration captures active screen context and provides instant on-device multimodal reasoning and answers without cloud exposure.' },
+          { emoji: '📋', title: 'Direct Companion Actions', desc: 'Top 5 customizable prompt actions accessible with a single tap in the floating companion bar. Drag-and-drop reordering with persistent Room DB.' },
+          { emoji: '✂️', title: 'Zero-Permission Action Menu', desc: 'Registers directly as an Android ACTION_PROCESS_TEXT context menu provider for highlight-and-transform operations in any browser or app.' },
+          { emoji: '🌿', title: 'Forest Clay Material 3 Design', desc: 'Bespoke claymorphic aesthetic balancing deep forest emerald tones with warm clay accents and adaptive full-width dialog properties.' },
+        ].map(({ emoji, title, desc }) => (
+          <div class="rounded-xl border border-zinc-200/80 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900/60 hover:border-emerald-300/60 dark:hover:border-emerald-600/40 transition-colors">
+            <div class="text-2xl mb-3">{emoji}</div>
+            <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-1.5">{title}</h3>
+            <p class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ═══════════════════ ARCHITECTURE ═══════════════════ -->
+    <section class="mb-14" aria-labelledby="arch-heading">
+      <h2 id="arch-heading" class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6">Architecture & Technology</h2>
+      <div class="overflow-hidden rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-xs">
+        {[
+          {
+            layer: 'UI & Design System',
+            color: 'emerald',
+            tech: 'Jetpack Compose M3 + Forest Clay',
+            desc: 'Fully declarative Kotlin UI with bespoke Forest Clay palette, responsive full-width dialogs (DialogProperties(usePlatformDefaultWidth = false)), and tactile claymorphic cards.',
+          },
+          {
+            layer: 'System Integration',
+            color: 'teal',
+            tech: 'AccessibilityService + WindowManager',
+            desc: 'High-performance accessibility event loop monitoring focused text nodes with FLAG_NOT_FOCUSABLE overlay window, allowing simultaneous physical/software keyboard typing.',
+          },
+          {
+            layer: 'AI Runtime & Inference',
+            color: 'blue',
+            tech: 'Google LiteRT-LM + Gemma 4',
+            desc: 'Hardware-accelerated edge inference executing Gemma 4 E2B & E4B models. Dynamic GPU acceleration fallback to multi-threaded CPU XNNPACK with zero network dependence.',
+          },
+          {
+            layer: 'Local Server Engine',
+            color: 'purple',
+            tech: 'Ktor CIO + Server-Sent Events',
+            desc: 'Asynchronous non-blocking HTTP server listening on 127.0.0.1:8080. Implements standard OpenAI /v1/models and streaming /v1/chat/completions for local edge automations.',
+          },
+          {
+            layer: 'Storage & Zero-Copy mmap',
+            color: 'orange',
+            tech: 'Linux mmap + ParcelFileDescriptor',
+            desc: 'Direct memory mapping of model weights residing in Downloads folder via Scoped Storage and ParcelFileDescriptor, eliminating multi-gigabyte file duplication.',
+          },
+          {
+            layer: 'Architecture Pattern',
+            color: 'zinc',
+            tech: 'Clean Architecture + MVVM + StateFlow',
+            desc: 'Decoupled domain, data, and presentation layers. Reactive StateFlow UI streams, Room persistence for custom prompt recipes, and Coroutine Mutex concurrency control.',
+          },
+        ].map(({ layer, color, tech, desc }, i) => (
+          <div class:list={['flex items-start gap-4 p-5', i > 0 && 'border-t border-zinc-100 dark:border-zinc-800']}>
+            <div class:list={[
+              'flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xs font-bold mt-0.5',
+              color === 'emerald' && 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300',
+              color === 'teal' && 'bg-teal-100 text-teal-700 dark:bg-teal-900/40 dark:text-teal-300',
+              color === 'blue' && 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
+              color === 'purple' && 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300',
+              color === 'orange' && 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300',
+              color === 'zinc' && 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300',
+            ]}>{String(i + 1).padStart(2, '0')}</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-baseline gap-2 mb-1">
+                <span class="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">{layer}</span>
+                <code class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{tech}</code>
+              </div>
+              <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ═══════════════════ TECH STACK PILLS ═══════════════════ -->
+    <section class="mb-12" aria-label="Technology stack">
+      <h2 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-4">Tech Stack</h2>
+      <div class="flex flex-wrap gap-2">
+        {['Android Kotlin', 'Jetpack Compose M3', 'Google LiteRT-LM', 'Gemma 4', 'AccessibilityService', 'Ktor CIO Server', 'Linux mmap', 'ParcelFileDescriptor', 'WindowManager Overlay', 'Kotlin Coroutines', 'StateFlow', 'Room DB', 'OpenAI API Compatibility'].map(tech => (
+          <span class="inline-flex items-center rounded-lg border border-zinc-200/90 bg-zinc-100/80 px-2.5 py-1 font-mono text-xs font-medium text-zinc-800 dark:border-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-200">
+            {tech}
+          </span>
+        ))}
+      </div>
+    </section>
+
+    <!-- ═══════════════════ FOOTER LINKS ═══════════════════ -->
+    <footer class="flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200/80 pt-8 dark:border-zinc-800/80">
+      <a href="/projects" class="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors">
+        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" /></svg>
+        All Projects
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="/projects/bookreader" class="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-600 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300 transition-colors">
+          <span>BookReader Showcase →</span>
+        </a>
+        <a href={REPO_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-500 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-100 transition-colors">
+          View Source on GitHub →
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ═══════════════════ SHOWCASE CLIENT CONTROLLER ═══════════════════ -->
+  <script define:vars={{ screens: APP_SCREENS }}>
+    function initAppShowcase() {
+      let activeIndex = 0;
+      let activeViewMode = 'screen'; // 'screen' | 'playstore'
+
+      const screenImg = document.getElementById('mockup-screen-img');
+      const incomingImg = document.getElementById('mockup-screen-incoming');
+      const detailTag = document.getElementById('detail-tag');
+      const detailNum = document.getElementById('detail-num');
+      const detailTitle = document.getElementById('detail-title');
+      const detailSubtitle = document.getElementById('detail-subtitle');
+      const detailDesc = document.getElementById('detail-desc');
+      const detailHighlights = document.getElementById('detail-highlights');
+      const detailTech = document.getElementById('detail-tech');
+
+      const tabButtons = document.querySelectorAll('.screen-tab-btn');
+      const thumbnailCards = document.querySelectorAll('.thumbnail-card');
+      const prevBtn = document.getElementById('btn-prev-screen');
+      const nextBtn = document.getElementById('btn-next-screen');
+
+      const phoneTrigger = document.getElementById('phone-screen-trigger');
+      const lightbox = document.getElementById('screenshot-lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxTitle = document.getElementById('lightbox-title');
+      const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
+
+      const viewModeScreenBtn = document.getElementById('view-mode-screen');
+      const viewModePlaystoreBtn = document.getElementById('view-mode-playstore');
+
+      // Preload all screenshot & playstore images into browser memory to eliminate image decoding lag
+      screens.forEach((s) => {
+        const img1 = new Image();
+        img1.src = s.image;
+        if (s.playstoreImage) {
+          const img2 = new Image();
+          img2.src = s.playstoreImage;
+        }
+      });
+
+      let isImageTransitioning = false;
+      let transitionTimer = null;
+
+      // Mobile lock indicator elements
+      const mobileSnapCount = document.getElementById('mobile-snap-count');
+      const mobileSnapHint = document.getElementById('mobile-snap-hint');
+      const mobileSnapDot = document.getElementById('mobile-snap-dot');
+      const mobileSnapUnlockBtn = document.getElementById('mobile-snap-unlock-btn');
+
+      function getActiveImageUrl(idx) {
+        const data = screens[idx];
+        if (!data) return '';
+        return activeViewMode === 'playstore' && data.playstoreImage ? data.playstoreImage : data.image;
+      }
+
+      function updateMobileIndicator() {
+        if (!mobileSnapCount) return;
+        mobileSnapCount.textContent = `Screen ${activeIndex + 1} of ${screens.length}`;
+        if (mobileSnapHint) {
+          mobileSnapHint.textContent = activeIndex === screens.length - 1 ? 'Scroll down for architecture' : 'Swipe to change';
+        }
+        if (mobileSnapDot) {
+          mobileSnapDot.className = activeIndex === screens.length - 1 ? 'h-2 w-2 rounded-full bg-emerald-400' : 'h-2 w-2 rounded-full bg-emerald-400 animate-pulse';
+        }
+        if (mobileSnapUnlockBtn) {
+          if (activeIndex === screens.length - 1) {
+            mobileSnapUnlockBtn.textContent = 'Continue ↓';
+            mobileSnapUnlockBtn.onclick = () => {
+              const nextSec = document.getElementById('features-heading');
+              if (nextSec) nextSec.scrollIntoView({ behavior: 'smooth' });
+            };
+          } else {
+            mobileSnapUnlockBtn.textContent = 'Next ↓';
+            mobileSnapUnlockBtn.onclick = () => {
+              setScreen(activeIndex + 1, 'forward');
+            };
+          }
+        }
+      }
+
+      function setScreen(index, direction) {
+        if (index < 0) index = screens.length - 1;
+        if (index >= screens.length) index = 0;
+        if (index === activeIndex && !isImageTransitioning) return;
+
+        const prevIndex = activeIndex;
+        activeIndex = index;
+
+        const data = screens[activeIndex];
+        if (!data) return;
+
+        const effectiveDirection = direction || (index >= prevIndex ? 'forward' : 'backward');
+        const targetImage = getActiveImageUrl(activeIndex);
+
+        // Smooth image transition without any black screen or flash
+        if (screenImg && incomingImg) {
+          if (transitionTimer) clearTimeout(transitionTimer);
+
+          const isForward = effectiveDirection === 'forward';
+          const slideInFrom = isForward ? '48px' : '-48px';
+          const slideOutTo = isForward ? '-48px' : '48px';
+
+          incomingImg.src = targetImage;
+          incomingImg.alt = data.title;
+
+          incomingImg.style.transition = 'none';
+          incomingImg.style.opacity = '0';
+          incomingImg.style.transform = `translateY(${slideInFrom}) scale(0.97)`;
+
+          screenImg.style.transition = 'none';
+          screenImg.style.opacity = '1';
+          screenImg.style.transform = 'translateY(0) scale(1)';
+
+          void incomingImg.offsetHeight;
+
+          isImageTransitioning = true;
+          const animCurve = 'cubic-bezier(0.16, 1, 0.3, 1)';
+          incomingImg.style.transition = `opacity 340ms ${animCurve}, transform 340ms ${animCurve}`;
+          incomingImg.style.opacity = '1';
+          incomingImg.style.transform = 'translateY(0) scale(1)';
+
+          screenImg.style.transition = `opacity 340ms ${animCurve}, transform 340ms ${animCurve}`;
+          screenImg.style.opacity = '0';
+          screenImg.style.transform = `translateY(${slideOutTo}) scale(0.97)`;
+
+          transitionTimer = setTimeout(() => {
+            screenImg.src = targetImage;
+            screenImg.alt = data.title;
+            screenImg.style.transition = 'none';
+            screenImg.style.opacity = '1';
+            screenImg.style.transform = 'none';
+
+            incomingImg.style.transition = 'none';
+            incomingImg.style.opacity = '0';
+            incomingImg.style.transform = 'none';
+            isImageTransitioning = false;
+          }, 350);
+        } else if (screenImg) {
+          screenImg.src = targetImage;
+          screenImg.alt = data.title;
+        }
+
+        // Subtly transition details container in sync
+        const detailsContainer = document.getElementById('screen-details-container');
+        if (detailsContainer) {
+          detailsContainer.style.opacity = '0.5';
+          detailsContainer.style.transform = effectiveDirection === 'forward' ? 'translateY(4px)' : 'translateY(-4px)';
+          setTimeout(() => {
+            detailsContainer.style.opacity = '1';
+            detailsContainer.style.transform = 'translateY(0)';
+          }, 80);
+        }
+
+        // Update Details text
+        if (detailTag) detailTag.textContent = data.tag;
+        if (detailNum) detailNum.textContent = `Screen ${data.num} / 05`;
+        if (detailTitle) detailTitle.textContent = data.title;
+        if (detailSubtitle) detailSubtitle.textContent = data.subtitle;
+        if (detailDesc) detailDesc.textContent = data.description;
+        if (detailTech) detailTech.textContent = data.tech;
+
+        if (detailHighlights && data.highlights) {
+          detailHighlights.innerHTML = data.highlights
+            .map(
+              (h) => `
+              <li class="flex items-start gap-2.5">
+                <svg class="h-4 w-4 shrink-0 text-emerald-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>${h}</span>
+              </li>`
+            )
+            .join('');
+        }
+
+        // Update tabs active state
+        tabButtons.forEach((btn, idx) => {
+          const isSelected = idx === activeIndex;
+          btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+          if (isSelected) {
+            btn.className = 'screen-tab-btn inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer select-none bg-emerald-600 text-white shadow-md shadow-emerald-600/30 ring-2 ring-emerald-500/50';
+          } else {
+            btn.className = 'screen-tab-btn inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer select-none bg-white text-zinc-700 hover:bg-emerald-50/80 border border-zinc-200 dark:bg-zinc-800/80 dark:text-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800';
+          }
+        });
+
+        // Update thumbnails active state
+        thumbnailCards.forEach((thumb, idx) => {
+          const isSelected = idx === activeIndex;
+          if (isSelected) {
+            thumb.className = 'thumbnail-card group relative rounded-xl border p-2 text-left transition-all cursor-pointer border-emerald-500 bg-emerald-500/10 ring-2 ring-emerald-500/30';
+          } else {
+            thumb.className = 'thumbnail-card group relative rounded-xl border p-2 text-left transition-all cursor-pointer border-zinc-200/90 bg-white dark:border-zinc-800 dark:bg-zinc-900/60 hover:border-emerald-400/60';
+          }
+        });
+
+        updateMobileIndicator();
+      }
+
+      function updateViewMode(mode) {
+        activeViewMode = mode;
+        if (viewModeScreenBtn && viewModePlaystoreBtn) {
+          if (mode === 'screen') {
+            viewModeScreenBtn.className = 'view-mode-btn px-2.5 py-1.5 rounded-lg transition-all cursor-pointer bg-white text-emerald-800 shadow-xs dark:bg-emerald-600 dark:text-white';
+            viewModePlaystoreBtn.className = 'view-mode-btn px-2.5 py-1.5 rounded-lg transition-all cursor-pointer text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200';
+          } else {
+            viewModePlaystoreBtn.className = 'view-mode-btn px-2.5 py-1.5 rounded-lg transition-all cursor-pointer bg-white text-emerald-800 shadow-xs dark:bg-emerald-600 dark:text-white';
+            viewModeScreenBtn.className = 'view-mode-btn px-2.5 py-1.5 rounded-lg transition-all cursor-pointer text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200';
+          }
+        }
+
+        // Update thumbnail images
+        document.querySelectorAll('.thumbnail-card-img').forEach((img, idx) => {
+          img.src = getActiveImageUrl(idx);
+        });
+
+        // Refresh active screen with new view mode image
+        if (screenImg) {
+          screenImg.src = getActiveImageUrl(activeIndex);
+        }
+      }
+
+      if (viewModeScreenBtn) viewModeScreenBtn.addEventListener('click', () => updateViewMode('screen'));
+      if (viewModePlaystoreBtn) viewModePlaystoreBtn.addEventListener('click', () => updateViewMode('playstore'));
+
+      // Tab button events
+      tabButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const index = parseInt(btn.getAttribute('data-index') || '0', 10);
+          setScreen(index);
+        });
+      });
+
+      // Thumbnail events
+      thumbnailCards.forEach((thumb) => {
+        thumb.addEventListener('click', () => {
+          const index = parseInt(thumb.getAttribute('data-thumbnail-index') || '0', 10);
+          setScreen(index);
+        });
+      });
+
+      // Arrow navigation
+      if (prevBtn) prevBtn.addEventListener('click', () => setScreen(activeIndex - 1, 'backward'));
+      if (nextBtn) nextBtn.addEventListener('click', () => setScreen(activeIndex + 1, 'forward'));
+
+      // Keyboard arrow navigation
+      document.addEventListener('keydown', (e) => {
+        if (lightbox && lightbox.open) return;
+        if (e.key === 'ArrowLeft') {
+          setScreen(activeIndex - 1, 'backward');
+        } else if (e.key === 'ArrowRight') {
+          setScreen(activeIndex + 1, 'forward');
+        }
+      });
+
+      // Touch swipe gestures on phone trigger
+      if (phoneTrigger) {
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+
+        phoneTrigger.addEventListener(
+          'touchstart',
+          (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+          },
+          { passive: true }
+        );
+
+        phoneTrigger.addEventListener(
+          'touchend',
+          (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            const diffX = touchEndX - touchStartX;
+            const diffY = touchEndY - touchStartY;
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+              if (diffX < 0) {
+                setScreen(activeIndex + 1, 'forward');
+              } else {
+                setScreen(activeIndex - 1, 'backward');
+              }
+            }
+          },
+          { passive: true }
+        );
+      }
+
+      // Lightbox functionality
+      if (phoneTrigger && lightbox && lightboxImg) {
+        phoneTrigger.addEventListener('click', () => {
+          const currentData = screens[activeIndex];
+          lightboxImg.src = getActiveImageUrl(activeIndex);
+          lightboxImg.alt = currentData ? currentData.title : 'TextMorph Screenshot';
+          if (lightboxTitle && currentData) {
+            lightboxTitle.textContent = `${currentData.num} · ${currentData.title}`;
+          }
+          lightbox.showModal();
+        });
+      }
+
+      if (lightboxCloseBtn && lightbox) {
+        lightboxCloseBtn.addEventListener('click', () => lightbox.close());
+      }
+
+      if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+          const rect = lightbox.getBoundingClientRect();
+          const isInDialog =
+            rect.top <= e.clientY &&
+            e.clientY <= rect.top + rect.height &&
+            rect.left <= e.clientX &&
+            e.clientX <= rect.left + rect.width;
+          if (!isInDialog) {
+            lightbox.close();
+          }
+        });
+      }
+
+      updateMobileIndicator();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAppShowcase);
+    } else {
+      initAppShowcase();
+    }
+  </script>
+</Layout>
