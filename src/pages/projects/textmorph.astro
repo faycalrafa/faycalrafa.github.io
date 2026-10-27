@@ -77,14 +77,14 @@ const APP_SCREENS = [
     subtitle: 'Zero-Copy Linux mmap & LiteRT-LM GPU Inference',
     tag: 'On-Device AI Engine',
     image: '/images/textmorph/playstore-02-model-hub.jpg',
-    description: 'Load multi-gigabyte foundation models (Gemma 4 E2B & E4B) directly from your Downloads folder with zero file copying and instant mmap. Harness mobile GPU acceleration via Google LiteRT-LM runtime for ultra-low latency inference.',
+    description: 'Load multi-gigabyte foundation models directly from your Downloads folder with zero file copying and instant mmap. Features a modular multi-engine architecture (Google LiteRT-LM and native backends) capable of executing any open foundation LLM locally with mobile GPU/NPU acceleration.',
     highlights: [
       'Zero-copy memory mapping via ParcelFileDescriptor mmap directly into native buffers',
-      'Google LiteRT-LM runtime with GPU acceleration (OpenCL/Vulkan) & CPU XNNPACK fallbacks',
+      'Multi-engine inference runtime with GPU acceleration (OpenCL/Vulkan) & CPU XNNPACK fallbacks',
       'Live model state management: instant Stop/Offload, dynamic quantization, and memory tracking',
       'Strict 100% on-device execution with zero cloud telemetry or data leakage'
     ],
-    tech: 'Google LiteRT-LM · Gemma 4 · Linux mmap · ParcelFileDescriptor · GPU Acceleration'
+    tech: 'Multi-Engine Runtime · LiteRT-LM · Linux mmap · ParcelFileDescriptor · GPU/NPU Acceleration'
   },
   {
     id: 'slash-commands',
@@ -112,11 +112,11 @@ const APP_SCREENS = [
     description: 'Tailor your AI assistant with personalized prompt chains. Pin your top 5 companion actions directly into the floating bar for single-tap execution. Use Screen Assist to take instant on-device screenshots and ask multimodal questions.',
     highlights: [
       'Top 5 companion slots directly accessible in the floating overlay bar',
-      'Screen Assist vision action analyzing active screen context with multimodal Gemma',
+      'Screen Assist vision action analyzing active screen context with on-device multimodal vision LLMs',
       'One-tap Clipboard Summarizer condensing copied documents into concise bullet points',
       'Intuitive drag-and-drop reordering with persistent room database storage'
     ],
-    tech: 'MediaProjection · Multimodal Gemma 4 · Android Room · StateFlow'
+    tech: 'MediaProjection · Multimodal Vision LLMs · Android Room · StateFlow'
   },
   {
     id: 'settings-server',
@@ -139,7 +139,7 @@ const APP_SCREENS = [
 
 <Layout
   title="TextMorph | System-Wide On-Device AI Writing Assistant | Faycal Rafa"
-  description="TextMorph is Faycal Rafa's privacy-first on-device multimodal AI writing assistant & floating toolbar for Android powered by LiteRT-LM and Gemma 4."
+  description="TextMorph is Faycal Rafa's privacy-first on-device multimodal AI writing assistant & floating toolbar for Android powered by a modular multi-engine local LLM architecture."
 >
   <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
 
@@ -182,7 +182,7 @@ const APP_SCREENS = [
               <span id="textmorph-version-text">{releaseInfo.version} · Latest</span>
             </span>
             <span class="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">
-              Android · Kotlin · LiteRT-LM · Gemma 4
+              Android · Kotlin · Multi-Engine LLM · LiteRT-LM
             </span>
           </div>
 
@@ -190,7 +190,7 @@ const APP_SCREENS = [
             TextMorph
           </h1>
           <p class="mt-3 text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 max-w-2xl">
-            A system-wide, privacy-first multimodal AI writing assistant & floating toolbar for Android. Powered by on-device LiteRT-LM and Gemma 4 foundation models with zero-copy memory mapping, slash commands, and an embedded OpenAI server.
+            A system-wide, privacy-first multimodal AI writing assistant & floating toolbar for Android. Powered by a modular multi-engine architecture capable of executing any open foundation LLM locally with zero-copy memory mapping, slash commands, and an embedded OpenAI server.
           </p>
 
           <!-- Download CTAs -->
@@ -487,7 +487,7 @@ const APP_SCREENS = [
       <h2 id="features-heading" class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6">Key Features</h2>
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {[
-          { emoji: '🤖', title: 'On-Device Hardware-Accelerated AI', desc: 'LiteRT-LM GPU inference running compact foundation models (Gemma 4 E2B & E4B) directly on mobile silicon with zero cloud latency and total privacy.' },
+          { emoji: '🤖', title: 'Multi-Engine On-Device AI', desc: 'Modular multi-engine inference runtime (Google LiteRT-LM and native engines) capable of executing any open foundation LLM directly on mobile silicon with hardware GPU/NPU acceleration and total privacy.' },
           { emoji: '🎯', title: 'System-Wide Floating AI Pill', desc: 'Non-intrusive AccessibilityService overlay that anchors above active input fields without stealing keyboard focus (FLAG_NOT_FOCUSABLE).' },
           { emoji: '⚡', title: 'Zero-Copy Downloads Loader', desc: 'Directly memory-maps multi-gigabyte .litertlm model files via Linux mmap and ParcelFileDescriptor with zero duplicate flash storage overhead.' },
           { emoji: '⌨️', title: 'Universal Slash Commands', desc: 'Trigger AI transformations in any text box by typing /fix, /summarize, /fr (French), or /ar (Arabic) with instant in-place buffer replacement.' },
@@ -526,8 +526,8 @@ const APP_SCREENS = [
           {
             layer: 'AI Runtime & Inference',
             color: 'blue',
-            tech: 'Google LiteRT-LM + Gemma 4',
-            desc: 'Hardware-accelerated edge inference executing Gemma 4 E2B & E4B models. Dynamic GPU acceleration fallback to multi-threaded CPU XNNPACK with zero network dependence.',
+            tech: 'Multi-Engine Runtime (LiteRT-LM & Native Backends)',
+            desc: 'Hardware-accelerated edge inference capable of running any open-weights LLM locally. Modular engine abstraction supports Google LiteRT-LM and native backends with dynamic GPU/NPU acceleration and multi-threaded CPU XNNPACK fallback.',
           },
           {
             layer: 'Local Server Engine',
@@ -573,7 +573,7 @@ const APP_SCREENS = [
     <section class="mb-12" aria-label="Technology stack">
       <h2 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-4">Tech Stack</h2>
       <div class="flex flex-wrap gap-2">
-        {['Android Kotlin', 'Jetpack Compose M3', 'Google LiteRT-LM', 'Gemma 4', 'AccessibilityService', 'Ktor CIO Server', 'Linux mmap', 'ParcelFileDescriptor', 'WindowManager Overlay', 'Kotlin Coroutines', 'StateFlow', 'Room DB', 'OpenAI API Compatibility'].map(tech => (
+        {['Android Kotlin', 'Jetpack Compose M3', 'Multi-Engine LLM', 'Google LiteRT-LM', 'AccessibilityService', 'Ktor CIO Server', 'Linux mmap', 'ParcelFileDescriptor', 'WindowManager Overlay', 'Kotlin Coroutines', 'StateFlow', 'Room DB', 'OpenAI API Compatibility'].map(tech => (
           <span class="inline-flex items-center rounded-lg border border-zinc-200/90 bg-zinc-100/80 px-2.5 py-1 font-mono text-xs font-medium text-zinc-800 dark:border-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-200">
             {tech}
           </span>

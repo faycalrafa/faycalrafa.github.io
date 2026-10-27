@@ -232,7 +232,7 @@ export const cvData: CvData = {
     },
     {
       name: 'TextMorph',
-      description: 'System-wide on-device multimodal AI assistant powered by LiteRT-LM & Gemma'
+      description: 'System-wide on-device AI assistant with multi-engine local LLM inference & embedded server'
     }
   ],
   experiences
