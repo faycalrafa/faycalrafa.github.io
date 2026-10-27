@@ -1,0 +1,13 @@
+{
+  "badge": "Portfolio & Systèmes",
+  "title": "Projets Sélectionnés",
+  "subtitle": "Une sélection de systèmes de production, d'outils pour développeurs, d'applications mobiles natives et de bibliothèques open source.",
+  "filter_all": "Tous les projets",
+  "filter_featured": "Projets Phares",
+  "filter_open_source": "Open Source",
+  "filter_mobile": "Mobile (Android)",
+  "filter_enterprise": "Entreprise & SaaS",
+  "view_all": "Voir l'Archive Complète des Projets",
+  "interactive_showcase": "Démonstration Interactive Disponible",
+  "production_ready": "Prêt pour la Production"
+}

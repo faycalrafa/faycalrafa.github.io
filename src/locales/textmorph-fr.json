@@ -1,0 +1,23 @@
+{
+  "title": "TextMorph",
+  "tagline": "Assistant d'écriture IA multimodal sous Android, respectueux de la vie privée, propulsé par une inférence LLM locale multi-moteurs",
+  "hero_description": "Un assistant d'écriture IA multimodal pour Android, entièrement axé sur la confidentialité. Propulsé par une architecture multi-moteurs modulaire prenant en charge Google LiteRT-LM, llama.cpp et les API compatibles OpenAI pour exécuter tout modèle de fondation en local avec cartographie mémoire sans copie, commandes slash et serveur embarqué.",
+  "engines": {
+    "title": "Moteurs d'Inférence Locaux et API Pris en Charge",
+    "litert": "Google LiteRT-LM (Accélération GPU/NPU mobile, mmap sans copie)",
+    "llamacpp": "Moteur llama.cpp (Modèles quantifiés GGUF universels sur CPU/GPU)",
+    "openai": "API compatibles OpenAI (Serveur Ktor embarqué sur 127.0.0.1:8080 et points d'accès externes)"
+  },
+  "features": {
+    "multi_engine": "IA On-Device Multi-Moteurs : Exécutez des modèles via LiteRT-LM, llama.cpp ou des points d'accès compatibles OpenAI directement sur votre puce mobile, sans latence cloud et en toute confidentialité.",
+    "floating_bar": "Pilule IA Flottante à l'Échelle du Système : Superposition AccessibilityService non intrusive qui s'ancre au-dessus des champs de saisie sans voler le focus du clavier (FLAG_NOT_FOCUSABLE).",
+    "zero_copy": "Chargeur Zero-Copy Universel : Mappe directement les modèles multi-gigaoctets depuis le dossier Téléchargements via Linux mmap et ParcelFileDescriptor sans doubler l'espace de stockage.",
+    "slash_commands": "Commandes Slash Universelles : Déclenchez des transformations IA dans n'importe quelle zone de texte en tapant /fix, /summarize, /fr (français) ou /ar (arabe) avec remplacement instantané.",
+    "server": "Serveur OpenAI Localhost Embarqué : Serveur HTTP Ktor CIO léger sur 127.0.0.1:8080 exposant des complétions de chat en streaming compatibles OpenAI pour Termux et outils locaux.",
+    "vision": "Assistance Visuelle Multimodale : Capture l'écran actif via MediaProjection pour fournir un raisonnement visuel immédiat en local sans transmission vers le cloud."
+  },
+  "architecture": {
+    "layer_runtime": "Runtime Multi-Moteurs (LiteRT-LM, llama.cpp & API OpenAI)",
+    "layer_runtime_desc": "Inférence matérielle accélérée exécutant tout LLM open-source en local. L'abstraction modulaire supporte Google LiteRT-LM, llama.cpp et les backends compatibles OpenAI."
+  }
+}

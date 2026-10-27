@@ -1,0 +1,23 @@
+{
+  "title": "TextMorph",
+  "tagline": "System-wide, privacy-first multimodal AI writing assistant & floating toolbar for Android powered by multi-engine local LLM inference",
+  "hero_description": "A system-wide, privacy-first multimodal AI writing assistant & floating toolbar for Android. Powered by a modular multi-engine architecture supporting Google LiteRT-LM, llama.cpp, and OpenAI-compatible APIs to run any open foundation model locally with zero-copy memory mapping, slash commands, and an embedded server.",
+  "engines": {
+    "title": "Supported Local & API Inference Engines",
+    "litert": "Google LiteRT-LM (Mobile GPU/NPU acceleration, zero-copy mmap)",
+    "llamacpp": "llama.cpp Runtime (Universal GGUF quantized models on CPU/GPU)",
+    "openai": "OpenAI-Compatible APIs (Embedded Ktor server on 127.0.0.1:8080 and external endpoints)"
+  },
+  "features": {
+    "multi_engine": "Multi-Engine On-Device AI: Run models via LiteRT-LM, llama.cpp, or connect via OpenAI-compatible endpoints directly on mobile silicon with zero cloud latency and total privacy.",
+    "floating_bar": "System-Wide Floating AI Pill: Non-intrusive AccessibilityService overlay that anchors above active input fields without stealing keyboard focus (FLAG_NOT_FOCUSABLE).",
+    "zero_copy": "Universal Zero-Copy Downloads Loader: Memory-maps multi-gigabyte models directly via Linux mmap and ParcelFileDescriptor without duplicate flash storage overhead.",
+    "slash_commands": "Universal Slash Commands: Trigger AI transformations in any text box by typing /fix, /summarize, /fr (French), or /ar (Arabic) with instant in-place buffer replacement.",
+    "server": "Embedded Localhost OpenAI Server: Lightweight Ktor CIO HTTP server on 127.0.0.1:8080 exposing standard OpenAI-compatible streaming chat completions for Termux and local tools.",
+    "vision": "Multimodal Vision Screen Assist: MediaProjection integration captures active screen context and provides instant on-device multimodal reasoning without cloud exposure."
+  },
+  "architecture": {
+    "layer_runtime": "Multi-Engine Runtime (LiteRT-LM, llama.cpp & OpenAI APIs)",
+    "layer_runtime_desc": "Hardware-accelerated edge inference executing any open-weights LLM locally. Modular engine abstraction supports Google LiteRT-LM, llama.cpp, and local/remote OpenAI-compatible backends."
+  }
+}

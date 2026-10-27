@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Home",
+    "career": "Career",
+    "projects": "Projects",
+    "bookreader": "BookReader",
+    "contact": "Contact",
+    "fullstack_engineer": "Fullstack Engineer"
+  },
+  "actions": {
+    "download_cv": "Download CV",
+    "view_showcase": "View Showcase",
+    "read_more": "Read More",
+    "view_all_projects": "View All Projects",
+    "talk_whatsapp": "Let's Talk on WhatsApp",
+    "back_to_home": "Back to Home",
+    "back_to_projects": "Back to Projects",
+    "copy_link": "Copy Link",
+    "copied": "Copied!",
+    "print_cv": "Print CV",
+    "open_new_tab": "Open in New Tab"
+  },
+  "theme": {
+    "toggle": "Toggle dark and light theme",
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "lang": {
+    "select": "Language",
+    "en": "English",
+    "fr": "Français",
+    "ar": "العربية"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "bio_summary": "Fullstack Engineer with 6+ years shipping high-scale distributed systems and native mobile apps.",
+    "quick_links": "Navigation",
+    "connect": "Connect",
+    "flagships": "Flagship Apps",
+    "back_to_top": "Back to Top"
+  }
+}

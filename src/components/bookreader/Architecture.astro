@@ -1,0 +1,70 @@
+---
+// src/components/bookreader/Architecture.astro
+// Architecture and engineering breakdown for BookReader Flagship
+
+const layers = [
+  {
+    layer: 'UI Layer',
+    color: 'blue',
+    tech: 'Jetpack Compose M3',
+    desc: 'Fully declarative Kotlin UI with Material Design 3 theming. Signature sepia/dark/light themes, bottom dock media controls, and full-width adaptive dialogs for settings.',
+  },
+  {
+    layer: 'Audio Engine',
+    color: 'amber',
+    tech: 'AndroidX Media3 + ExoPlayer',
+    desc: 'Decoupled MediaSessionService operating in an independent Android Service lifecycle. Survives orientation changes, app minimization, and handles audio focus for calls and navigation prompts.',
+  },
+  {
+    layer: 'TTS Processing',
+    color: 'green',
+    tech: 'Neural Engines (Kokoro / Piper) + Native TextToSpeech',
+    desc: 'Multi-engine speech synthesis abstraction. Regex-based quote-aware tokenizer with quote protection (", «», ""), abbreviation shielding (Mr., Dr., Ch.), and CJK terminal character detection.',
+  },
+  {
+    layer: 'Web Scraping',
+    color: 'purple',
+    tech: 'Jsoup + WebView',
+    desc: 'Jsoup DOM pipeline for chapter extraction using user-configurable CSS selectors. JavascriptInterface bridge for userscript injection with wildcard URL matching.',
+  },
+  {
+    layer: 'Storage',
+    color: 'orange',
+    tech: 'AtomicFile + Kotlin Coroutines',
+    desc: 'Crash-resistant persistence via Android AtomicFile (write → staging file → atomic rename). Thread-safe access with Coroutine Mutexes. Zero special permissions required.',
+  },
+  {
+    layer: 'Architecture Pattern',
+    color: 'zinc',
+    tech: 'Clean Architecture + MVVM',
+    desc: 'Decoupled domain, data, and presentation layers. StateFlow-driven reactive UI state, centralized AudioPlaybackCoordinator service, and Coroutine-based async operations.',
+  },
+];
+---
+
+<!-- ═══════════════════ ARCHITECTURE ═══════════════════ -->
+<section class="mb-14" aria-labelledby="arch-heading">
+  <h2 id="arch-heading" class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6">Architecture & Technology</h2>
+  <div class="overflow-hidden rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-xs">
+    {layers.map(({ layer, color, tech, desc }, i) => (
+      <div class:list={['flex items-start gap-4 p-5', i > 0 && 'border-t border-zinc-100 dark:border-zinc-800']}>
+        <div class:list={[
+          'flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xs font-bold mt-0.5',
+          color === 'blue' && 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
+          color === 'amber' && 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+          color === 'green' && 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300',
+          color === 'purple' && 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300',
+          color === 'orange' && 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300',
+          color === 'zinc' && 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300',
+        ]}>{String(i + 1).padStart(2, '0')}</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex flex-wrap items-baseline gap-2 mb-1">
+            <span class="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">{layer}</span>
+            <code class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{tech}</code>
+          </div>
+          <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

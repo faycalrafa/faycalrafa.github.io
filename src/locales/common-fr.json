@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "career": "Parcours",
+    "projects": "Projets",
+    "bookreader": "BookReader",
+    "contact": "Contact",
+    "fullstack_engineer": "Ingénieur Fullstack"
+  },
+  "actions": {
+    "download_cv": "Télécharger le CV",
+    "view_showcase": "Voir la Démo",
+    "read_more": "En Savoir Plus",
+    "view_all_projects": "Tous les Projets",
+    "talk_whatsapp": "Discutons sur WhatsApp",
+    "back_to_home": "Retour à l'Accueil",
+    "back_to_projects": "Retour aux Projets",
+    "copy_link": "Copier le Lien",
+    "copied": "Copié !",
+    "print_cv": "Imprimer le CV",
+    "open_new_tab": "Ouvrir dans un nouvel onglet"
+  },
+  "theme": {
+    "toggle": "Basculer entre thème sombre et clair",
+    "dark": "Sombre",
+    "light": "Clair"
+  },
+  "lang": {
+    "select": "Langue",
+    "en": "English",
+    "fr": "Français",
+    "ar": "العربية"
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "bio_summary": "Ingénieur Fullstack avec plus de 6 ans d'expérience dans les systèmes distribués haute performance et les applications mobiles natives.",
+    "quick_links": "Navigation",
+    "connect": "Contact & Réseaux",
+    "flagships": "Applications Phares",
+    "back_to_top": "Haut de page"
+  }
+}

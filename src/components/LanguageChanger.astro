@@ -1,0 +1,103 @@
+---
+// src/components/LanguageChanger.astro
+// Interactive Language Switcher supporting EN (English), FR (French), and AR (Arabic with RTL)
+// Compliant with Astro 5 ClientRouter, Tailwind CSS v4, and <= 500 lines rule.
+
+interface Props {
+  variant?: 'floating' | 'footer';
+}
+
+const { variant = 'floating' } = Astro.props;
+---
+
+{variant === 'floating' ? (
+  <div class="fixed top-4 right-4 sm:top-6 sm:right-6 z-40 print:hidden" id="floating-lang-changer" role="region" aria-label="Language Selector">
+    <div class="inline-flex items-center gap-1 rounded-full border border-zinc-700/60 bg-zinc-900/85 p-1 shadow-xl shadow-black/40 backdrop-blur-md transition-all duration-200 hover:border-blue-500/50">
+      <div class="flex items-center pl-2 pr-1 text-zinc-400" aria-hidden="true">
+        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+          <path d="M2 12h20" />
+        </svg>
+      </div>
+
+      <button
+        type="button"
+        data-lang-btn="en"
+        class="rounded-full px-2.5 py-1 text-xs font-bold transition-all focus-visible:outline-2 focus-visible:outline-blue-500 bg-blue-600 text-white dark:bg-blue-500"
+        aria-label="Switch to English"
+        aria-pressed="true"
+      >
+        EN
+      </button>
+
+      <button
+        type="button"
+        data-lang-btn="fr"
+        class="rounded-full px-2.5 py-1 text-xs font-semibold text-zinc-400 hover:text-zinc-100 transition-all focus-visible:outline-2 focus-visible:outline-blue-500"
+        aria-label="Passer en français"
+        aria-pressed="false"
+      >
+        FR
+      </button>
+
+      <button
+        type="button"
+        data-lang-btn="ar"
+        class="rounded-full px-2.5 py-1 text-xs font-semibold text-zinc-400 hover:text-zinc-100 transition-all focus-visible:outline-2 focus-visible:outline-blue-500 font-sans"
+        aria-label="التبديل إلى العربية"
+        aria-pressed="false"
+      >
+        عربي
+      </button>
+    </div>
+  </div>
+) : (
+  <div class="inline-flex flex-col gap-2" role="region" aria-label="Footer Language Selector">
+    <div class="flex items-center gap-1.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+      <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+        <path d="M2 12h20" />
+      </svg>
+      <span data-i18n="common.lang.select">Language</span>
+    </div>
+
+    <div class="inline-flex items-center gap-1 rounded-xl border border-zinc-200/80 bg-zinc-100/90 p-1 dark:border-zinc-800 dark:bg-zinc-900/90">
+      <button
+        type="button"
+        data-lang-btn="en"
+        class="rounded-lg px-2.5 py-1 text-xs font-bold transition-all focus-visible:outline-2 focus-visible:outline-blue-500 bg-blue-600 text-white dark:bg-blue-500"
+        aria-label="Switch to English"
+        aria-pressed="true"
+      >
+        English
+      </button>
+
+      <button
+        type="button"
+        data-lang-btn="fr"
+        class="rounded-lg px-2.5 py-1 text-xs font-semibold text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-all focus-visible:outline-2 focus-visible:outline-blue-500"
+        aria-label="Passer en français"
+        aria-pressed="false"
+      >
+        Français
+      </button>
+
+      <button
+        type="button"
+        data-lang-btn="ar"
+        class="rounded-lg px-2.5 py-1 text-xs font-semibold text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-all focus-visible:outline-2 focus-visible:outline-blue-500 font-sans"
+        aria-label="التبديل إلى العربية"
+        aria-pressed="false"
+      >
+        العربية
+      </button>
+    </div>
+  </div>
+)}
+
+<script>
+  import { initI18n } from '../scripts/i18n';
+  initI18n();
+</script>

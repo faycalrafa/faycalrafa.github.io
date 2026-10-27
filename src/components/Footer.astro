@@ -3,6 +3,8 @@
 // Production Blueprint for Faycal Rafa Portfolio
 // Compliant with Astro 5, Tailwind CSS v4, and modern accessibility standards.
 
+import LanguageChanger from './LanguageChanger.astro';
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -90,6 +92,11 @@ const currentYear = new Date().getFullYear();
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>
           </a>
+        </div>
+
+        <!-- Language Switcher in Footer -->
+        <div class="pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60">
+          <LanguageChanger variant="footer" />
         </div>
       </div>
 

@@ -5,6 +5,7 @@ import CommandPalette from '../components/CommandPalette.astro';
 import WhatsAppFab from '../components/WhatsAppFab.astro';
 import NightSky from '../components/NightSky.astro';
 import FloatingProjectsBtn from '../components/FloatingProjectsBtn.astro';
+import LanguageChanger from '../components/LanguageChanger.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -21,6 +22,8 @@ const {
   articleDate,
 } = Astro.props;
 
+const currentPath = Astro.url.pathname;
+const isHome = currentPath === '/' || currentPath === '';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://faycalrafa.github.io');
 const fullImageURL = new URL(image, Astro.site ?? 'https://faycalrafa.github.io').toString();
 ---
@@ -103,8 +106,12 @@ const fullImageURL = new URL(image, Astro.site ?? 'https://faycalrafa.github.io'
     <!-- Celestial Night Sky Background & Glowing Moon -->
     <NightSky />
 
-    <!-- Floating Persistent On-Screen Projects Navigation Capsule -->
-    <FloatingProjectsBtn />
+    <!-- Floating On-Screen Action Capsule: Language Changer on Home, Navigation on Other Pages -->
+    {isHome ? (
+      <LanguageChanger variant="floating" />
+    ) : (
+      <FloatingProjectsBtn />
+    )}
 
     <div class="relative flex min-h-screen flex-col">
       <main id="main-content" class="flex-1">

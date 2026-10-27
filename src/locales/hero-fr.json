@@ -1,0 +1,11 @@
+{
+  "greeting_prefix": "Bonjour, je suis",
+  "name": "Faycal Rafa",
+  "title": "Ingénieur Fullstack",
+  "experience_badge": "6+ Années d'Expérience",
+  "bio": "Ingénieur Fullstack avec plus de 6 ans d'expérience dans le déploiement de systèmes distribués à grande échelle et d'applications mobiles natives (ancien Senior Software Engineer et Lead Technique dans la fintech, le SaaS automobile et les plateformes grand public). Spécialisé dans l'architecture de microservices résilients, les applications mobiles offline-first et les interfaces web haute performance.",
+  "available_indicator": "Disponible pour de nouvelles opportunités",
+  "cta_flagship": "Découvrir BookReader Flagship",
+  "cta_whatsapp": "Discutons sur WhatsApp",
+  "cta_cv": "Télécharger le CV"
+}

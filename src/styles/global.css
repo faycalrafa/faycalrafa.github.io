@@ -193,3 +193,22 @@
     animation: none !important;
   }
 }
+
+/* RTL Layout Support for Arabic */
+[dir="rtl"] {
+  text-align: right;
+}
+[dir="rtl"] .font-mono {
+  direction: ltr;
+  display: inline-block;
+}
+[dir="rtl"] #floating-lang-changer {
+  right: auto;
+  left: 1rem;
+}
+@media (min-width: 640px) {
+  [dir="rtl"] #floating-lang-changer {
+    left: 1.5rem;
+  }
+}
+

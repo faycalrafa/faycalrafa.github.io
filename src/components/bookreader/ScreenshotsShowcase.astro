@@ -1,0 +1,263 @@
+---
+// src/components/bookreader/ScreenshotsShowcase.astro
+// Interactive smartphone mockup, tabs, thumbnail strip, and lightbox for BookReader
+import { APP_SCREENS } from '../../data/bookreader-screens';
+---
+
+<!-- ═══════════════════ ANDROID APP SCREENSHOTS SHOWCASE ═══════════════════ -->
+<section id="app-showcase-section" class="mb-16" aria-labelledby="showcase-heading">
+  <div id="app-showcase-card" class="rounded-3xl border-2 border-amber-500/25 bg-gradient-to-br from-amber-50/70 via-orange-50/40 to-zinc-50 dark:from-amber-950/25 dark:via-orange-950/15 dark:to-zinc-900 dark:border-amber-400/20 overflow-hidden shadow-xl p-6 sm:p-8">
+    
+    <!-- Showcase Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-amber-500/20 dark:border-amber-400/15">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="inline-flex items-center gap-1.5 rounded-md bg-amber-500/15 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300 ring-1 ring-amber-500/20">
+            <span class="h-2 w-2 rounded-full bg-amber-500 animate-pulse"></span>
+            Live Android Showcase
+          </span>
+          <span class="text-xs text-zinc-500 dark:text-zinc-400">5 Authentic Screens</span>
+        </div>
+        <h2 id="showcase-heading" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50">
+          Native Android Experience
+        </h2>
+        <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 mt-1 max-w-2xl">
+          Explore BookReader's custom Jetpack Compose interface in its signature sepia reading theme, on-device neural TTS voice engines, and persistent background playback.
+        </p>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs text-zinc-400 dark:text-zinc-500 hidden md:inline">Scroll or swipe to change screen</span>
+      </div>
+    </div>
+
+    <!-- Screen Selector Tabs -->
+    <div class="pt-6 pb-8">
+      <div class="flex flex-wrap gap-2 sm:gap-2.5" role="tablist" aria-label="BookReader App Screens">
+        {APP_SCREENS.map((screen, idx) => (
+          <button
+            type="button"
+            role="tab"
+            id={`tab-btn-${idx}`}
+            aria-selected={idx === 0 ? "true" : "false"}
+            aria-controls={`panel-screen-${idx}`}
+            data-index={idx}
+            class:list={[
+              'screen-tab-btn inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer select-none',
+              idx === 0
+                ? 'bg-amber-600 text-white shadow-md shadow-amber-600/30 ring-2 ring-amber-500/50'
+                : 'bg-white text-zinc-700 hover:bg-amber-50/80 border border-zinc-200 dark:bg-zinc-800/80 dark:text-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800'
+            ]}
+          >
+            <span class="text-[11px] font-mono opacity-80">{screen.num}</span>
+            <span>{screen.title}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Featured Showcase Stage (Phone Mockup + Feature Deep-Dive) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      
+      <!-- Left: Realistic Android Smartphone Mockup Frame -->
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="relative w-[280px] sm:w-[310px]">
+          <!-- Phone Chassis Silhouette -->
+          <div class="relative rounded-[2.8rem] p-3 bg-gradient-to-b from-zinc-800 via-zinc-900 to-black shadow-2xl ring-1 ring-white/10 shadow-amber-950/30">
+            <!-- Top Ear Speaker & Ambient Sensor -->
+            <div class="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
+              <div class="h-1 w-10 rounded-full bg-zinc-700/80"></div>
+              <div class="h-2 w-2 rounded-full bg-zinc-800 ring-1 ring-zinc-700"></div>
+            </div>
+
+            <!-- Screen Viewport with Click-to-Enlarge Action -->
+            <div
+              id="phone-screen-trigger"
+              class="relative aspect-[460/1024] w-full overflow-hidden rounded-[2.1rem] bg-zinc-950 shadow-inner cursor-zoom-in group select-none"
+              title="Click to view high-resolution screenshot"
+            >
+              <!-- Active Screenshot Layer -->
+              <img
+                id="mockup-screen-img"
+                src={APP_SCREENS[0].image}
+                alt={APP_SCREENS[0].title}
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                loading="eager"
+              />
+              <!-- Incoming Transition Screenshot Layer (Eliminates Flashing) -->
+              <img
+                id="mockup-screen-incoming"
+                src={APP_SCREENS[0].image}
+                alt=""
+                class="absolute inset-0 h-full w-full object-cover opacity-0 pointer-events-none"
+                loading="eager"
+              />
+              <!-- Hover Hint Pill -->
+              <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-black/75 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-xs shadow-lg">
+                  <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line>
+                  </svg>
+                  View Fullscreen
+                </span>
+              </div>
+            </div>
+
+            <!-- Bottom Android Home Indicator Line -->
+            <div class="mt-2 flex justify-center">
+              <div class="h-1 w-24 rounded-full bg-zinc-700/60"></div>
+            </div>
+          </div>
+
+          <!-- Mobile Interactive Snapping & Locking Navigation Bar -->
+          <div
+            id="mobile-snap-nav"
+            class="mt-3 flex items-center justify-between gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-amber-500/40 text-[11px] font-medium text-zinc-300 shadow-md backdrop-blur-md transition-all duration-300 md:hidden"
+            aria-live="polite"
+          >
+            <span class="flex items-center gap-1.5 text-amber-400 font-semibold">
+              <span id="mobile-snap-dot" class="h-2 w-2 rounded-full bg-amber-400"></span>
+              <span id="mobile-snap-count">Screen 1 of 5</span>
+            </span>
+            <span id="mobile-snap-hint" class="text-zinc-400 text-[10px]">Swipe to change</span>
+            <button
+              id="mobile-snap-unlock-btn"
+              type="button"
+              class="font-semibold text-amber-400 hover:text-amber-300 underline cursor-pointer text-[11px]"
+            >
+              Done ↓
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Contextual Screen Description & Technical Architecture -->
+      <div id="screen-details-container" class="lg:col-span-7 flex flex-col justify-center transition-all duration-200">
+        <div class="flex items-center gap-2 mb-2">
+          <span id="detail-tag" class="inline-flex items-center rounded-full bg-amber-500/15 border border-amber-500/25 px-2.5 py-0.5 text-xs font-semibold text-amber-800 dark:text-amber-300">
+            {APP_SCREENS[0].tag}
+          </span>
+          <span id="detail-num" class="text-xs font-mono text-zinc-400">
+            Screen {APP_SCREENS[0].num} / 05
+          </span>
+        </div>
+
+        <h3 id="detail-title" class="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-50">
+          {APP_SCREENS[0].title}
+        </h3>
+        <p id="detail-subtitle" class="text-sm font-semibold text-amber-700 dark:text-amber-400 mt-1">
+          {APP_SCREENS[0].subtitle}
+        </p>
+
+        <p id="detail-desc" class="mt-4 text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+          {APP_SCREENS[0].description}
+        </p>
+
+        <!-- Highlights Checklist -->
+        <div class="mt-6 space-y-2.5">
+          <p class="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Key Capabilities</p>
+          <ul id="detail-highlights" class="space-y-2 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
+            {APP_SCREENS[0].highlights.map(h => (
+              <li class="flex items-start gap-2.5">
+                <svg class="h-4 w-4 shrink-0 text-amber-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>{h}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Tech Badge -->
+        <div class="mt-6 pt-5 border-t border-amber-500/20 dark:border-amber-400/15 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-zinc-500 dark:text-zinc-400">Architecture:</span>
+            <code id="detail-tech" class="rounded bg-amber-500/10 px-2 py-0.5 font-mono text-xs font-bold text-amber-800 dark:text-amber-300">
+              {APP_SCREENS[0].tech}
+            </code>
+          </div>
+
+          <!-- Previous / Next screen buttons -->
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              id="btn-prev-screen"
+              class="inline-flex items-center justify-center h-8 w-8 rounded-lg border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 cursor-pointer transition-colors"
+              aria-label="Previous screenshot"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" /></svg>
+            </button>
+            <button
+              type="button"
+              id="btn-next-screen"
+              class="inline-flex items-center justify-center h-8 w-8 rounded-lg border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 cursor-pointer transition-colors"
+              aria-label="Next screenshot"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thumbnail Strip Preview -->
+    <div class="mt-12 pt-6 border-t border-amber-500/20 dark:border-amber-400/15">
+      <p class="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3">All Screen Captures</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+        {APP_SCREENS.map((screen, idx) => (
+          <button
+            type="button"
+            data-thumbnail-index={idx}
+            class:list={[
+              'thumbnail-card group relative rounded-xl border p-2 text-left transition-all cursor-pointer',
+              idx === 0
+                ? 'border-amber-500 bg-amber-500/10 ring-2 ring-amber-500/30'
+                : 'border-zinc-200/90 bg-white dark:border-zinc-800 dark:bg-zinc-900/60 hover:border-amber-400/60'
+            ]}
+          >
+            <div class="aspect-[460/1024] w-full rounded-lg overflow-hidden bg-black mb-2 shadow-xs">
+              <img
+                src={screen.image}
+                alt={screen.title}
+                class="h-full w-full object-cover transition-transform group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="text-[11px] font-bold text-zinc-900 dark:text-zinc-100 truncate">{screen.title}</div>
+            <div class="text-[10px] text-zinc-500 dark:text-zinc-400 truncate">{screen.tag}</div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ LIGHTBOX DIALOG ═══════════════════ -->
+<dialog
+  id="screenshot-lightbox"
+  closedby="any"
+  aria-label="Screenshot Fullscreen View"
+  class="m-auto rounded-3xl border border-zinc-700 bg-zinc-950/95 p-4 shadow-2xl backdrop:bg-black/85 backdrop:backdrop-blur-md max-w-lg open:flex open:flex-col items-center transition-all"
+>
+  <div class="w-full flex items-center justify-between pb-3 border-b border-zinc-800 text-white">
+    <h3 id="lightbox-title" class="text-sm font-bold truncate">Screenshot View</h3>
+    <button
+      type="button"
+      id="lightbox-close-btn"
+      class="rounded-lg p-1.5 text-zinc-400 hover:text-white hover:bg-zinc-800 cursor-pointer"
+      aria-label="Close fullscreen view"
+    >
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  <div class="p-2 max-h-[82vh] overflow-auto flex justify-center">
+    <img
+      id="lightbox-img"
+      src={APP_SCREENS[0].image}
+      alt="Full screen preview"
+      class="max-h-[78vh] w-auto rounded-xl shadow-2xl object-contain"
+    />
+  </div>
+</dialog>

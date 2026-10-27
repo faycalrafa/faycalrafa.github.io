@@ -1,0 +1,11 @@
+{
+  "title": "BookReader Pro",
+  "tagline": "Lecteur d'eBooks et de documents natif pour Android avec synthèse vocale neurale en temps réel et moteur typographique personnalisé",
+  "hero_description": "Une application de lecture native performante et riche en fonctionnalités conçue avec Jetpack Compose. Conçue pour les passionnés de lecture, chercheurs et étudiants, BookReader Pro offre un rendu instantané des documents, la lecture audio neurale en arrière-plan et une immersion plein écran fluide.",
+  "features": {
+    "rendering": "Rendu Instantané de Documents : Pagination haute performance avec moteur de rendu PDF et EPUB.",
+    "tts": "Synthèse Vocale Neurale : Lecture audio en arrière-plan avec vitesse réglable et surlignage des mots.",
+    "typography": "Expérience de Lecture Personnalisée : Interlignage précis, marges ajustables, polices sur mesure et thèmes nuit/sépia.",
+    "library": "Gestion de Bibliothèque Hors-Ligne : Organisation intelligente par étagères, suivi de lecture et signets."
+  }
+}

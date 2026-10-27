@@ -1,0 +1,13 @@
+{
+  "badge": "Portfolio & Systems",
+  "title": "Selected Projects",
+  "subtitle": "A curated collection of production systems, developer tooling, native mobile apps, and open-source packages.",
+  "filter_all": "All Projects",
+  "filter_featured": "Flagships",
+  "filter_open_source": "Open Source",
+  "filter_mobile": "Mobile (Android)",
+  "filter_enterprise": "Enterprise & SaaS",
+  "view_all": "View All Projects Archive",
+  "interactive_showcase": "Interactive Showcase Available",
+  "production_ready": "Production Ready"
+}

@@ -1,0 +1,11 @@
+{
+  "title": "BookReader Pro",
+  "tagline": "Advanced native Android eBook & document reader featuring real-time neural TTS, custom typography engine, and seamless offline storage",
+  "hero_description": "A feature-rich, high-performance native Android reading application crafted with Jetpack Compose. Engineered for avid readers, researchers, and students, BookReader Pro delivers instant document rendering, background neural text-to-speech, and responsive full-screen reading immersion.",
+  "features": {
+    "rendering": "Instant Document Rendering: High-performance pagination with PDF and EPUB rendering engine.",
+    "tts": "Neural Text-to-Speech: Background audio playback with variable speeds and word highlighting.",
+    "typography": "Customizable Reading Experience: Fine-tuned line heights, margins, font sizes, and dark/sepia reading themes.",
+    "library": "Offline Library Management: Smart shelf organization, progress synchronization, and bookmarks."
+  }
+}

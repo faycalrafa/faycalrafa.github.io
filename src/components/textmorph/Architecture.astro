@@ -1,0 +1,68 @@
+---
+// src/components/textmorph/Architecture.astro
+// Architecture and engineering breakdown for TextMorph Flagship
+
+const layers = [
+  {
+    layer: 'UI & Design System',
+    color: 'slate',
+    tech: 'Jetpack Compose M3 + Charcoal Slate',
+    desc: 'Fully declarative Kotlin UI with bespoke Charcoal & Slate palette, responsive full-width dialogs (DialogProperties(usePlatformDefaultWidth = false)), and tactile cards.',
+  },
+  {
+    layer: 'System Integration',
+    color: 'slate',
+    tech: 'AccessibilityService + WindowManager',
+    desc: 'High-performance accessibility event loop monitoring focused text nodes with FLAG_NOT_FOCUSABLE overlay window, allowing simultaneous physical/software keyboard typing.',
+  },
+  {
+    layer: 'AI Runtime & Inference',
+    color: 'blue',
+    tech: 'Multi-Engine Runtime (LiteRT-LM, llama.cpp & OpenAI APIs)',
+    desc: 'Hardware-accelerated edge inference capable of running any open-weights LLM locally. Modular engine abstraction supports Google LiteRT-LM, llama.cpp (GGUF quantization), and OpenAI-compatible API backends with dynamic GPU/NPU acceleration and multi-threaded CPU XNNPACK fallback.',
+  },
+  {
+    layer: 'Local Server Engine',
+    color: 'purple',
+    tech: 'Ktor CIO + Server-Sent Events',
+    desc: 'Asynchronous non-blocking HTTP server listening on 127.0.0.1:8080. Implements standard OpenAI /v1/models and streaming /v1/chat/completions for local edge automations.',
+  },
+  {
+    layer: 'Storage & Zero-Copy mmap',
+    color: 'orange',
+    tech: 'Linux mmap + ParcelFileDescriptor',
+    desc: 'Direct memory mapping of model weights residing in Downloads folder via Scoped Storage and ParcelFileDescriptor, eliminating multi-gigabyte file duplication.',
+  },
+  {
+    layer: 'Architecture Pattern',
+    color: 'zinc',
+    tech: 'Clean Architecture + MVVM + StateFlow',
+    desc: 'Decoupled domain, data, and presentation layers. Reactive StateFlow UI streams, Room persistence for custom prompt recipes, and Coroutine Mutex concurrency control.',
+  },
+];
+---
+
+<section class="mb-14" aria-labelledby="arch-heading">
+  <h2 id="arch-heading" class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6">Architecture & Technology</h2>
+  <div class="overflow-hidden rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-xs">
+    {layers.map(({ layer, color, tech, desc }, i) => (
+      <div class:list={['flex items-start gap-4 p-5', i > 0 && 'border-t border-zinc-100 dark:border-zinc-800']}>
+        <div class:list={[
+          'flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xs font-bold mt-0.5',
+          color === 'slate' && 'bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200',
+          color === 'blue' && 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
+          color === 'purple' && 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300',
+          color === 'orange' && 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300',
+          color === 'zinc' && 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300',
+        ]}>{String(i + 1).padStart(2, '0')}</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex flex-wrap items-baseline gap-2 mb-1">
+            <span class="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">{layer}</span>
+            <code class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{tech}</code>
+          </div>
+          <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

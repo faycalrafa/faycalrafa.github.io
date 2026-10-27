@@ -9,12 +9,14 @@ stack:
   - "Kotlin"
   - "Jetpack Compose"
   - "Multi-Engine LLM"
-  - "LiteRT-LM"
+  - "Google LiteRT-LM"
+  - "llama.cpp"
+  - "OpenAI API"
   - "AccessibilityService"
   - "Ktor Localhost"
   - "Scoped Storage"
 highlights:
-  - "Multi-Engine On-Device Inference: Hardware-accelerated GPU/NPU inference running any local LLM with zero cloud latency and total privacy"
+  - "Multi-Engine On-Device Inference: Hardware-accelerated runtime supporting Google LiteRT-LM, llama.cpp, and OpenAI-compatible APIs locally with zero cloud latency"
   - "Universal Zero-Copy Model Loader: Memory-maps large models directly from Downloads via ParcelFileDescriptor mmap without duplicate storage"
   - "System-Wide Floating AI Toolbar: AccessibilityService overlay anchored above active input fields without stealing keyboard focus"
   - "Embedded Localhost OpenAI Server: Ktor CIO server on 127.0.0.1:8080 exposing OpenAI-compatible streaming chat completions"
@@ -37,7 +39,7 @@ screenshots:
 
 # TextMorph: System-Wide On-Device Multimodal AI Assistant
 
-**TextMorph** is an open-source, privacy-first multimodal AI assistant engineered by Faycal Rafa for Android. Built from the ground up to operate completely on-device with zero cloud telemetry or subscription barriers, TextMorph features a versatile **multi-engine runtime architecture** capable of executing any open-weight LLM or vision-language model locally with full GPU and NPU hardware acceleration, delivering intelligent text transformations, visual reasoning, and context-aware smart replies directly inside any text field on your phone.
+**TextMorph** is an open-source, privacy-first multimodal AI assistant engineered by Faycal Rafa for Android. Built from the ground up to operate completely on-device with zero cloud telemetry or subscription barriers, TextMorph features a versatile **multi-engine runtime architecture** supporting Google LiteRT-LM, llama.cpp, and OpenAI-compatible APIs capable of executing any open-weight LLM or vision-language model locally with full GPU and NPU hardware acceleration, delivering intelligent text transformations, visual reasoning, and context-aware smart replies directly inside any text field on your phone.
 
 ---
 
@@ -45,7 +47,7 @@ screenshots:
 
 Modern AI writing tools frequently compromise user confidentiality by shipping private clipboard buffers and on-screen text to remote cloud servers. TextMorph eliminates this risk through high-performance local edge execution:
 
-- **Universal Multi-Engine Local Execution**: Rather than locking into a single proprietary model, TextMorph integrates multiple high-efficiency inference engines (including Google LiteRT-LM and native hardware backends). Users can load and run any compatible open foundation model locally with seamless hardware acceleration.
+- **Universal Multi-Engine Local Execution**: Rather than locking into a single proprietary model, TextMorph integrates multiple high-efficiency inference engines (including Google LiteRT-LM, llama.cpp for GGUF models, and OpenAI-compatible APIs). Users can load and run any compatible open foundation model locally with seamless hardware acceleration.
 - **100% On-Device Privacy & Zero Telemetry**: Sensitive keystrokes, personal correspondence, and proprietary documents never leave device memory.
 - **Zero-Copy Memory-Mapped Storage**: Large model weights residing in the user's `Downloads/` directory are memory-mapped via Linux `mmap` and Android `ParcelFileDescriptor` directly into native memory buffers—saving gigabytes of redundant flash storage.
 

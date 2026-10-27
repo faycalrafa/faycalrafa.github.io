@@ -1,0 +1,20 @@
+{
+  "title": "Curriculum Vitae",
+  "name": "Faycal Rafa",
+  "role": "Ingénieur Fullstack",
+  "contact": {
+    "location": "Alger, Algérie",
+    "email": "rafafaycal@gmail.com",
+    "phone": "+213 540 980 238",
+    "github": "github.com/faycalrafa",
+    "portfolio": "faycalrafa.github.io"
+  },
+  "summary_title": "Profil Professionnel",
+  "summary": "Ingénieur Fullstack avec plus de 6 ans d'expérience dans le déploiement de systèmes distribués à grande échelle et d'applications mobiles natives (ancien Senior Software Engineer et Lead Technique dans la fintech, le SaaS automobile et les plateformes grand public). Spécialisé dans l'architecture de microservices résilients, les applications mobiles offline-first et les interfaces web haute performance.",
+  "flagships_title": "Applications Android Phares",
+  "experience_title": "Expérience Professionnelle",
+  "education_title": "Formation & Diplômes",
+  "skills_title": "Compétences Techniques",
+  "print_action": "Imprimer / Enregistrer en PDF",
+  "print_hint": "Optimisé pour une impression parfaite sur une page A4."
+}

@@ -35,3 +35,11 @@ Every time work is completed on this project:
 git push origin main
 ```
 This triggers the automatic GitHub Pages deployment pipeline.
+
+## 4. Maximum File Size Rule
+No single code file in `src/` (Astro, TypeScript, JavaScript) may exceed 500 lines of code.
+Whenever a component or page grows near or beyond 500 lines:
+- Break it down into cohesive, single-responsibility subcomponents or helper modules.
+- Extract client scripts into dedicated controller files under `src/scripts/`.
+- Extract data, configuration, and text strings into centralized files or locale chunks.
+- Keep components focused and maintainable.
