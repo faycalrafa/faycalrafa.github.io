@@ -70,10 +70,12 @@ const highlights = rawHighlights.filter(
 
 // Flagship check and details routing:
 // BookReader routes directly to dedicated flagship showcase /projects/bookreader
+// TextMorph routes directly to dedicated flagship showcase /projects/textmorph
 // Other projects route to dynamic details page /projects/${id}
 const isBookReader = id === 'bookreader';
+const isTextMorph = id === 'textmorph';
 const isHobby = category === 'hobby';
-const detailsUrl = isBookReader ? '/projects/bookreader' : id ? `/projects/${id}` : '/projects';
+const detailsUrl = isBookReader ? '/projects/bookreader' : isTextMorph ? '/projects/textmorph' : id ? `/projects/${id}` : '/projects';
 
 // Aggregated search text for client-side search filtering
 const searchableText = `${title} ${tagline} ${stack.join(' ')} ${highlights.join(' ')}`.toLowerCase();
@@ -176,7 +178,7 @@ const searchableText = `${title} ${tagline} ${stack.join(' ')} ${highlights.join
       href={detailsUrl}
       class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors group/link"
     >
-      <span>{isBookReader ? 'Flagship Showcase' : 'View Architecture'}</span>
+      <span>{isBookReader ? 'Flagship Showcase' : isTextMorph ? 'View Showcase' : 'Read More'}</span>
       <svg class="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
       </svg>

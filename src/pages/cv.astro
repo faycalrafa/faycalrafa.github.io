@@ -1,0 +1,343 @@
+---
+// src/pages/cv.astro
+// Standalone, Pixel-Perfect Single-Page A4 Printable HTML CV for Faycal Rafa
+// Backed by authoritative centralized cv.ts data layer with official company logos,
+// GitHub URL, Portfolio URL, and automatic print dialogue initiation.
+
+import { cvData, experiences } from '../data/cv';
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faycal Rafa — CV / Resume | Fullstack Engineer & Technical Lead</title>
+    <meta name="description" content="Official single-page CV of Faycal Rafa, Fullstack Engineer & Technical Lead with 6+ years shipping distributed microservices, fintech platforms, and offline-first Android apps." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      @media print {
+        *,
+        *:before,
+        *:after {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+
+        html,
+        body {
+          margin: 0 !important;
+          padding: 0 !important;
+          background: #ffffff !important;
+          color: #0f172a !important;
+          width: 210mm !important;
+          height: 297mm !important;
+          max-height: 297mm !important;
+          overflow: hidden !important;
+        }
+
+        .no-print {
+          display: none !important;
+        }
+
+        .cv-page {
+          width: 210mm !important;
+          height: 297mm !important;
+          max-height: 297mm !important;
+          margin: 0 !important;
+          padding: 8mm 10mm 6mm 10mm !important;
+          box-shadow: none !important;
+          border: none !important;
+          overflow: hidden !important;
+          page-break-after: avoid !important;
+          page-break-inside: avoid !important;
+          break-after: avoid !important;
+        }
+      }
+
+      /* Screen presentation: Centered paper view */
+      @media screen {
+        body {
+          background-color: #f1f5f9;
+        }
+        .cv-page {
+          width: 210mm;
+          min-height: 297mm;
+          max-height: 297mm;
+          margin: 24px auto 48px auto;
+          padding: 8mm 10mm 6mm 10mm;
+          background: #ffffff;
+          box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+          border-radius: 2px;
+          overflow: hidden;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="font-sans antialiased text-slate-900 selection:bg-slate-200">
+    <!-- Non-printable top interactive action bar -->
+    <header class="no-print sticky top-0 z-50 flex items-center justify-between border-b border-slate-200 bg-slate-900/95 px-4 py-3 text-white shadow-md backdrop-blur-md">
+      <div class="flex items-center gap-3">
+        <a
+          href="/"
+          class="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-white transition-colors"
+        >
+          <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0110 10z" clip-rule="evenodd" />
+          </svg>
+          <span>Back to Portfolio</span>
+        </a>
+        <span class="hidden sm:inline-block text-xs font-mono text-slate-400">
+          Faycal Rafa — Pure HTML Single-Page A4 CV
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          id="print-btn"
+          onclick="window.print()"
+          class="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-blue-500 transition-colors cursor-pointer"
+        >
+          <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5 2.75C5 1.784 5.784 1 6.75 1h6.5c.966 0 1.75.784 1.75 1.75v3.5A1.75 1.75 0 0113.25 8H6.75A1.75 1.75 0 015 6.25v-3.5zm1.75-.25a.25.25 0 00-.25.25v3.5c0 .138.112.25.25.25h6.5a.25.25 0 00.25-.25v-3.5a.25.25 0 00-.25-.25h-6.5z" clip-rule="evenodd" />
+            <path d="M4 9a2 2 0 00-2 2v4a2 2 0 002 2h1v-4a1 1 0 011-1h8a1 1 0 011 1v4h1a2 2 0 002-2v-4a2 2 0 00-2-2H4z" />
+            <path d="M6 14v4h8v-4H6z" />
+          </svg>
+          <span>Print / Save as PDF</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ═══════════════════ SINGLE-PAGE A4 CONTAINER ═══════════════════ -->
+    <main class="cv-page box-border flex flex-col justify-between">
+      <div>
+        <!-- ── HEADER ── -->
+        <header class="border-b-2 border-slate-900 pb-2">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+            <div>
+              <h1 class="text-[25px] font-black tracking-tight text-slate-950 uppercase leading-none">
+                {cvData.name}
+              </h1>
+              <p class="text-[12px] font-bold text-slate-700 tracking-wide mt-1">
+                {cvData.role}
+              </p>
+            </div>
+            <p class="text-[9.5px] italic font-medium text-slate-600 sm:text-right">
+              {cvData.tagline}
+            </p>
+          </div>
+
+          <!-- Contact & URLs row -->
+          <div class="mt-2 grid grid-cols-2 sm:grid-cols-3 gap-x-3 gap-y-1 text-[9.5px] text-slate-700 pt-1.5 border-t border-slate-200">
+            <!-- Location -->
+            <div class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-slate-500 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433 1.244-.77 3.131-2.184 4.542-4.225C17.314 12.099 18 9.99 18 7.5 18 3.358 14.418 0 10 0S2 3.358 2 7.5c0 2.49.686 4.599 2.086 6.627 1.411 2.041 3.298 3.455 4.542 4.225.311.193.571.337.757.433.092.047.17.086.23.116.03.016.053.027.07.035l.018.008.006.003zM10 11a3.5 3.5 0 100-7 3.5 3.5 0 000 7z" clip-rule="evenodd" />
+              </svg>
+              <span>{cvData.location}</span>
+            </div>
+
+            <!-- Phone -->
+            <div class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-slate-500 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
+              <a href={`tel:${cvData.phone.replace(/\s+/g, '')}`} class="hover:underline text-slate-900 font-medium">
+                {cvData.phone}
+              </a>
+            </div>
+
+            <!-- Email -->
+            <div class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-slate-500 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+                <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+              </svg>
+              <a href={`mailto:${cvData.email}`} class="hover:underline text-slate-900 font-medium">
+                {cvData.email}
+              </a>
+            </div>
+
+            <!-- GitHub URL (Requested by user) -->
+            <div class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-slate-700 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+              <a href={cvData.githubUrl} target="_blank" rel="noopener noreferrer" class="hover:underline font-semibold text-slate-900">
+                {cvData.githubDisplay}
+              </a>
+            </div>
+
+            <!-- Portfolio URL (Requested by user) -->
+            <div class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-slate-700 shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="10" cy="10" r="7" /><path d="M3 10h14" /><path d="M10 3a10.5 10.5 0 010 14" /><path d="M10 3a10.5 10.5 0 000 14" />
+              </svg>
+              <a href={cvData.portfolioUrl} target="_blank" rel="noopener noreferrer" class="hover:underline font-semibold text-slate-900">
+                {cvData.portfolioDisplay}
+              </a>
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-[#0A66C2] shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg>
+              <a href={cvData.linkedinUrl} target="_blank" rel="noopener noreferrer" class="hover:underline font-semibold text-slate-900 truncate">
+                {cvData.linkedinDisplay}
+              </a>
+            </div>
+          </div>
+        </header>
+
+        <!-- ── MAIN TWO-COLUMN BODY ── -->
+        <div class="mt-2.5 grid grid-cols-12 gap-4">
+          
+          <!-- ── LEFT SIDEBAR (Skills, Profile, Languages) ── -->
+          <aside class="col-span-4 border-r border-slate-200 pr-3.5 space-y-2.5">
+            
+            <!-- Profile / Summary -->
+            <section>
+              <h2 class="text-[10px] font-black uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">
+                Profile
+              </h2>
+              <p class="mt-1 text-[8.5px] leading-[1.3] text-slate-700 text-justify">
+                {cvData.profile}
+              </p>
+            </section>
+
+            <!-- Technical Skills Matrix -->
+            <section>
+              <h2 class="text-[10px] font-black uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">
+                Technical Expertise
+              </h2>
+              <div class="mt-1.5 space-y-1.5">
+                {cvData.skills.map((cat) => (
+                  <div>
+                    <h3 class="text-[8.5px] font-bold text-slate-800 uppercase tracking-tight">
+                      {cat.title}
+                    </h3>
+                    <div class="flex flex-wrap gap-1 mt-0.5">
+                      {cat.items.map((skill) => (
+                        <span class="rounded bg-slate-100 px-1.5 py-0.2 text-[8px] font-medium text-slate-700 border border-slate-200">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <!-- Flagship Projects -->
+            <section>
+              <h2 class="text-[10px] font-black uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">
+                Flagship Applications
+              </h2>
+              <div class="mt-1 space-y-1">
+                {cvData.flagships.map((f) => (
+                  <div class="border-l-2 border-slate-700 pl-1.5 py-0.5">
+                    <p class="text-[8.5px] font-bold text-slate-900 leading-tight">{f.name}</p>
+                    <p class="text-[7.5px] text-slate-600 leading-tight mt-0.5">{f.description}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <!-- Spoken Languages -->
+            <section>
+              <h2 class="text-[10px] font-black uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">
+                Languages
+              </h2>
+              <ul class="mt-1 space-y-0.5 text-[8.5px]">
+                {cvData.spokenLanguages.map((l) => (
+                  <li class="flex items-center justify-between text-slate-700">
+                    <span class="font-medium text-slate-900">{l.name}</span>
+                    <span class="text-[8px] text-slate-500">{l.level}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </aside>
+
+          <!-- ── RIGHT COLUMN (All 7 Experiences with Logos) ── -->
+          <div class="col-span-8 pl-1">
+            <h2 class="text-[10px] font-black uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5 flex items-center justify-between">
+              <span>Work Experience</span>
+              <span class="text-[8px] font-mono font-normal text-slate-500 uppercase">7 Companies • Chronological</span>
+            </h2>
+
+            <div class="mt-2 space-y-2">
+              {experiences.map((exp) => (
+                <article class="relative flex flex-col">
+                  <!-- Company Header: Logo + Name + Dates -->
+                  <div class="flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-1.5 min-w-0">
+                      <!-- Official Company Logo -->
+                      <img
+                        src={exp.logo}
+                        alt={`${exp.company} logo`}
+                        width="18"
+                        height="18"
+                        class="h-4.5 w-4.5 shrink-0 rounded object-contain bg-white border border-slate-200 shadow-2xs"
+                        loading="eager"
+                      />
+                      <span class="text-[10.5px] font-bold text-slate-900 truncate">
+                        {exp.company}
+                      </span>
+                      <span class="text-[8.5px] text-slate-500 truncate">
+                        • {exp.location}
+                      </span>
+                    </div>
+
+                    <!-- Period Badge -->
+                    <span class="shrink-0 rounded bg-slate-100 px-1.5 py-0.2 text-[8px] font-mono font-semibold text-slate-700 border border-slate-200">
+                      {exp.period}
+                    </span>
+                  </div>
+
+                  <!-- Role Title -->
+                  <div class="text-[9.5px] font-bold text-slate-800 tracking-tight mt-0.5">
+                    {exp.role}
+                  </div>
+
+                  <!-- Achievement Bullets (1-2 concise points per company) -->
+                  <ul class="mt-0.5 space-y-0.5 text-[8.5px] leading-[1.25] text-slate-700 pl-3 list-disc marker:text-slate-400">
+                    {exp.achievements.slice(0, exp.id === 'autoqual' || exp.id === 'sabil' || exp.id === 'finnetude' ? 2 : 1).map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CV FOOTER ── -->
+      <footer class="mt-2 pt-1 border-t border-slate-200 text-center text-[7.5px] text-slate-500 flex items-center justify-between">
+        <span>Faycal Rafa • Fullstack Engineer &amp; Technical Lead</span>
+        <span>Portfolio: faycalrafa.github.io • GitHub: github.com/faycalrafa</span>
+        <span>Generated from dynamic verified records</span>
+      </footer>
+    </main>
+
+    <!-- Auto-Print Trigger Script -->
+    <script>
+      // Automatically trigger print dialogue when page loads
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          window.print();
+        }, 350);
+      });
+    </script>
+  </body>
+</html>

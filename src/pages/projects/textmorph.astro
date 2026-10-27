@@ -149,18 +149,18 @@ const APP_SCREENS = [
         <!-- App Icon -->
         <div class="shrink-0">
           <div class="relative h-28 w-28 sm:h-36 sm:w-36">
-            <div class="absolute inset-0 rounded-[32%] bg-gradient-to-br from-emerald-400 via-teal-500 to-emerald-700 opacity-25 blur-2xl scale-110"></div>
+            <div class="absolute inset-0 rounded-[32%] bg-gradient-to-br from-slate-600 via-slate-700 to-zinc-900 opacity-25 blur-2xl scale-110"></div>
             <img
               src={APP_ICON_URL}
               alt="TextMorph app launcher icon"
               width="144"
               height="144"
-              class="relative h-full w-full rounded-[32%] object-cover shadow-2xl shadow-emerald-600/30 ring-4 ring-emerald-500/20 bg-zinc-900 p-2"
+              class="relative h-full w-full rounded-[32%] object-cover shadow-2xl shadow-slate-900/50 ring-4 ring-slate-600/30 bg-zinc-900 p-2"
               loading="eager"
               fetchpriority="high"
               onerror="this.style.display='none';document.getElementById('icon-fallback').style.display='flex'"
             />
-            <div id="icon-fallback" class="relative hidden h-full w-full rounded-[32%] bg-gradient-to-br from-emerald-600 to-teal-700 items-center justify-center shadow-2xl">
+            <div id="icon-fallback" class="relative hidden h-full w-full rounded-[32%] bg-gradient-to-br from-slate-700 to-zinc-900 items-center justify-center shadow-2xl">
               <span class="text-3xl font-black text-white font-mono">TM</span>
             </div>
           </div>
@@ -169,16 +169,16 @@ const APP_SCREENS = [
         <!-- Hero Content -->
         <div class="flex-1 min-w-0">
           <div class="flex flex-wrap items-center gap-2 mb-3">
-            <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/15 dark:text-emerald-300 ring-1 ring-emerald-500/20">
-              <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true"></span>
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-slate-500/30 bg-slate-800/10 px-3 py-1 text-xs font-semibold text-slate-800 dark:border-slate-400/30 dark:bg-slate-800/60 dark:text-slate-200 ring-1 ring-slate-500/20">
+              <span class="h-1.5 w-1.5 rounded-full bg-slate-500 dark:bg-slate-400 animate-pulse" aria-hidden="true"></span>
               Open Source
               <span class="sr-only">Flagship Project</span>
             </span>
             <span
               id="textmorph-version-badge"
-              class="inline-flex items-center gap-1.5 rounded-full border border-teal-500/30 bg-teal-500/10 px-2.5 py-1 text-xs font-semibold text-teal-700 dark:border-teal-400/30 dark:bg-teal-400/15 dark:text-teal-300"
+              class="inline-flex items-center gap-1.5 rounded-full border border-slate-400/30 bg-slate-400/10 px-2.5 py-1 text-xs font-semibold text-slate-700 dark:border-slate-500/30 dark:bg-slate-800/50 dark:text-slate-300"
             >
-              <span class="h-1.5 w-1.5 rounded-full bg-teal-500" aria-hidden="true"></span>
+              <span class="h-1.5 w-1.5 rounded-full bg-slate-500 dark:bg-slate-400" aria-hidden="true"></span>
               <span id="textmorph-version-text">{releaseInfo.version} · Latest</span>
             </span>
             <span class="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">
@@ -200,20 +200,20 @@ const APP_SCREENS = [
               href={releaseInfo.apkUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/25 hover:from-emerald-500 hover:to-teal-500 dark:from-emerald-500 dark:to-teal-600 dark:hover:from-emerald-400 dark:hover:to-teal-400 transition-all hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+              class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-slate-900 via-slate-800 to-zinc-900 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-900/30 hover:from-slate-800 hover:to-slate-700 dark:from-slate-100 dark:via-slate-200 dark:to-white dark:text-slate-950 dark:hover:from-white dark:hover:to-slate-100 transition-all hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700"
             >
               <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
               </svg>
               <span>Download Releases / APK</span>
-              <span id="textmorph-apk-size" class="text-emerald-200 font-normal text-xs">{releaseInfo.sizeMb}</span>
+              <span id="textmorph-apk-size" class="text-slate-300 dark:text-slate-600 font-normal text-xs">{releaseInfo.sizeMb}</span>
             </a>
 
             <a
               href={REPO_URL}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-700 shadow-xs hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+              class="inline-flex items-center gap-2 rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-700 shadow-xs hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700"
             >
               <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
@@ -237,14 +237,14 @@ const APP_SCREENS = [
 
     <!-- ═══════════════════ PLAY STORE SCREENSHOTS SHOWCASE ═══════════════════ -->
     <section id="app-showcase-section" class="mb-16" aria-labelledby="showcase-heading">
-      <div id="app-showcase-card" class="rounded-3xl border-2 border-emerald-500/25 bg-gradient-to-br from-emerald-50/70 via-teal-50/40 to-zinc-50 dark:from-emerald-950/25 dark:via-teal-950/15 dark:to-zinc-900 dark:border-emerald-400/20 overflow-hidden shadow-xl p-6 sm:p-8">
+      <div id="app-showcase-card" class="rounded-3xl border-2 border-slate-300/80 bg-gradient-to-br from-slate-100/80 via-zinc-100/50 to-slate-100/30 dark:from-slate-950/70 dark:via-zinc-900/80 dark:to-zinc-950 dark:border-slate-700/60 overflow-hidden shadow-xl p-6 sm:p-8">
         
         <!-- Showcase Header -->
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-emerald-500/20 dark:border-emerald-400/15">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-slate-300/60 dark:border-slate-700/60">
           <div>
             <div class="flex items-center gap-2 mb-2">
-              <span class="inline-flex items-center gap-1.5 rounded-md bg-emerald-500/15 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300 ring-1 ring-emerald-500/20">
-                <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="inline-flex items-center gap-1.5 rounded-md bg-slate-800/10 dark:bg-slate-800/60 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 ring-1 ring-slate-500/20">
+                <span class="h-2 w-2 rounded-full bg-slate-500 dark:bg-slate-400 animate-pulse"></span>
                 Play Store Showcase
               </span>
               <span class="text-xs text-zinc-500 dark:text-zinc-400">5 High-Definition Marketing Screens</span>
@@ -275,8 +275,8 @@ const APP_SCREENS = [
                 class:list={[
                   'screen-tab-btn inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer select-none',
                   idx === 0
-                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30 ring-2 ring-emerald-500/50'
-                    : 'bg-white text-zinc-700 hover:bg-emerald-50/80 border border-zinc-200 dark:bg-zinc-800/80 dark:text-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800'
+                    ? 'bg-slate-900 text-white shadow-md shadow-slate-900/30 ring-2 ring-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:ring-slate-300'
+                    : 'bg-white text-zinc-700 hover:bg-slate-100 border border-zinc-200 dark:bg-zinc-800/80 dark:text-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800'
                 ]}
               >
                 <span class="text-[11px] font-mono opacity-80">{screen.num}</span>
@@ -293,7 +293,7 @@ const APP_SCREENS = [
           <div class="lg:col-span-5 flex justify-center">
             <div class="relative w-[280px] sm:w-[320px]">
               <!-- Sleek Card Chassis Silhouette -->
-              <div class="relative rounded-[2.5rem] p-2.5 bg-gradient-to-b from-zinc-800 via-zinc-900 to-black shadow-2xl ring-1 ring-emerald-500/30 shadow-emerald-950/40">
+              <div class="relative rounded-[2.5rem] p-2.5 bg-gradient-to-b from-zinc-800 via-zinc-900 to-black shadow-2xl ring-1 ring-slate-600/40 shadow-slate-950/50">
                 <!-- Screen Viewport with Click-to-Enlarge Action -->
                 <div
                   id="phone-screen-trigger"
@@ -332,18 +332,18 @@ const APP_SCREENS = [
               <!-- Mobile Interactive Snapping & Locking Navigation Bar -->
               <div
                 id="mobile-snap-nav"
-                class="mt-3 flex items-center justify-between gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-emerald-500/40 text-[11px] font-medium text-zinc-300 shadow-md backdrop-blur-md transition-all duration-300 md:hidden"
+                class="mt-3 flex items-center justify-between gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-slate-500/40 text-[11px] font-medium text-zinc-300 shadow-md backdrop-blur-md transition-all duration-300 md:hidden"
                 aria-live="polite"
               >
-                <span class="flex items-center gap-1.5 text-emerald-400 font-semibold">
-                  <span id="mobile-snap-dot" class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                <span class="flex items-center gap-1.5 text-slate-300 font-semibold">
+                  <span id="mobile-snap-dot" class="h-2 w-2 rounded-full bg-slate-400"></span>
                   <span id="mobile-snap-count">Screen 1 of 5</span>
                 </span>
                 <span id="mobile-snap-hint" class="text-zinc-400 text-[10px]">Swipe to change</span>
                 <button
                   id="mobile-snap-unlock-btn"
                   type="button"
-                  class="font-semibold text-emerald-400 hover:text-emerald-300 underline cursor-pointer text-[11px]"
+                  class="font-semibold text-slate-300 hover:text-white underline cursor-pointer text-[11px]"
                 >
                   Next ↓
                 </button>
@@ -354,7 +354,7 @@ const APP_SCREENS = [
           <!-- Right: Contextual Screen Description & Technical Architecture -->
           <div id="screen-details-container" class="lg:col-span-7 flex flex-col justify-center transition-all duration-200">
             <div class="flex items-center gap-2 mb-2">
-              <span id="detail-tag" class="inline-flex items-center rounded-full bg-emerald-500/15 border border-emerald-500/25 px-2.5 py-0.5 text-xs font-semibold text-emerald-800 dark:text-emerald-300">
+              <span id="detail-tag" class="inline-flex items-center rounded-full bg-slate-800/10 dark:bg-slate-800/60 border border-slate-500/30 px-2.5 py-0.5 text-xs font-semibold text-slate-800 dark:text-slate-200">
                 {APP_SCREENS[0].tag}
               </span>
               <span id="detail-num" class="text-xs font-mono text-zinc-400">
@@ -365,7 +365,7 @@ const APP_SCREENS = [
             <h3 id="detail-title" class="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-50">
               {APP_SCREENS[0].title}
             </h3>
-            <p id="detail-subtitle" class="text-sm font-semibold text-emerald-700 dark:text-emerald-400 mt-1">
+            <p id="detail-subtitle" class="text-sm font-semibold text-slate-700 dark:text-slate-300 mt-1">
               {APP_SCREENS[0].subtitle}
             </p>
 
@@ -379,7 +379,7 @@ const APP_SCREENS = [
               <ul id="detail-highlights" class="space-y-2 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
                 {APP_SCREENS[0].highlights.map(h => (
                   <li class="flex items-start gap-2.5">
-                    <svg class="h-4 w-4 shrink-0 text-emerald-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                    <svg class="h-4 w-4 shrink-0 text-slate-600 dark:text-slate-400 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                     </svg>
                     <span>{h}</span>
@@ -389,10 +389,10 @@ const APP_SCREENS = [
             </div>
 
             <!-- Tech Badge -->
-            <div class="mt-6 pt-5 border-t border-emerald-500/20 dark:border-emerald-400/15 flex flex-wrap items-center justify-between gap-3">
+            <div class="mt-6 pt-5 border-t border-slate-300/60 dark:border-slate-700/60 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-2">
                 <span class="text-xs text-zinc-500 dark:text-zinc-400">Architecture:</span>
-                <code id="detail-tech" class="rounded bg-emerald-500/10 px-2 py-0.5 font-mono text-xs font-bold text-emerald-800 dark:text-emerald-300">
+                <code id="detail-tech" class="rounded bg-slate-800/10 dark:bg-slate-800/60 px-2 py-0.5 font-mono text-xs font-bold text-slate-800 dark:text-slate-200">
                   {APP_SCREENS[0].tech}
                 </code>
               </div>
@@ -421,7 +421,7 @@ const APP_SCREENS = [
         </div>
 
         <!-- Thumbnail Strip Preview -->
-        <div class="mt-12 pt-6 border-t border-emerald-500/20 dark:border-emerald-400/15">
+        <div class="mt-12 pt-6 border-t border-slate-300/60 dark:border-slate-700/60">
           <p class="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3">All Play Store Cards</p>
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
             {APP_SCREENS.map((screen, idx) => (
@@ -431,8 +431,8 @@ const APP_SCREENS = [
                 class:list={[
                   'thumbnail-card group relative rounded-xl border p-2 text-left transition-all cursor-pointer',
                   idx === 0
-                    ? 'border-emerald-500 bg-emerald-500/10 ring-2 ring-emerald-500/30'
-                    : 'border-zinc-200/90 bg-white dark:border-zinc-800 dark:bg-zinc-900/60 hover:border-emerald-400/60'
+                    ? 'border-slate-700 bg-slate-800/20 ring-2 ring-slate-600/40 dark:border-slate-400 dark:bg-slate-800/60'
+                    : 'border-zinc-200/90 bg-white dark:border-zinc-800 dark:bg-zinc-900/60 hover:border-slate-400/60 dark:hover:border-slate-500/60'
                 ]}
               >
                 <div class="aspect-[9/16] w-full rounded-lg overflow-hidden bg-black mb-2 shadow-xs">
@@ -495,9 +495,9 @@ const APP_SCREENS = [
           { emoji: '👁️', title: 'Multimodal Vision Screen Assist', desc: 'MediaProjection integration captures active screen context and provides instant on-device multimodal reasoning and answers without cloud exposure.' },
           { emoji: '📋', title: 'Direct Companion Actions', desc: 'Top 5 customizable prompt actions accessible with a single tap in the floating companion bar. Drag-and-drop reordering with persistent Room DB.' },
           { emoji: '✂️', title: 'Zero-Permission Action Menu', desc: 'Registers directly as an Android ACTION_PROCESS_TEXT context menu provider for highlight-and-transform operations in any browser or app.' },
-          { emoji: '🌿', title: 'Forest Clay Material 3 Design', desc: 'Bespoke claymorphic aesthetic balancing deep forest emerald tones with warm clay accents and adaptive full-width dialog properties.' },
+          { emoji: '🌿', title: 'Charcoal & Slate Modern Material Design', desc: 'Bespoke aesthetic balancing deep charcoal slate tones with high-contrast neutral accents and adaptive full-width dialog properties.' },
         ].map(({ emoji, title, desc }) => (
-          <div class="rounded-xl border border-zinc-200/80 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900/60 hover:border-emerald-300/60 dark:hover:border-emerald-600/40 transition-colors">
+          <div class="rounded-xl border border-zinc-200/80 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900/60 hover:border-slate-400/60 dark:hover:border-slate-500/60 transition-colors">
             <div class="text-2xl mb-3">{emoji}</div>
             <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-1.5">{title}</h3>
             <p class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">{desc}</p>
@@ -513,13 +513,13 @@ const APP_SCREENS = [
         {[
           {
             layer: 'UI & Design System',
-            color: 'emerald',
-            tech: 'Jetpack Compose M3 + Forest Clay',
-            desc: 'Fully declarative Kotlin UI with bespoke Forest Clay palette, responsive full-width dialogs (DialogProperties(usePlatformDefaultWidth = false)), and tactile claymorphic cards.',
+            color: 'slate',
+            tech: 'Jetpack Compose M3 + Charcoal Slate',
+            desc: 'Fully declarative Kotlin UI with bespoke Charcoal & Slate palette, responsive full-width dialogs (DialogProperties(usePlatformDefaultWidth = false)), and tactile cards.',
           },
           {
             layer: 'System Integration',
-            color: 'teal',
+            color: 'slate',
             tech: 'AccessibilityService + WindowManager',
             desc: 'High-performance accessibility event loop monitoring focused text nodes with FLAG_NOT_FOCUSABLE overlay window, allowing simultaneous physical/software keyboard typing.',
           },
@@ -551,8 +551,7 @@ const APP_SCREENS = [
           <div class:list={['flex items-start gap-4 p-5', i > 0 && 'border-t border-zinc-100 dark:border-zinc-800']}>
             <div class:list={[
               'flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xs font-bold mt-0.5',
-              color === 'emerald' && 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300',
-              color === 'teal' && 'bg-teal-100 text-teal-700 dark:bg-teal-900/40 dark:text-teal-300',
+              color === 'slate' && 'bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200',
               color === 'blue' && 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
               color === 'purple' && 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300',
               color === 'orange' && 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300',
@@ -647,7 +646,7 @@ const APP_SCREENS = [
           mobileSnapHint.textContent = activeIndex === screens.length - 1 ? 'Scroll down for architecture' : 'Swipe to change';
         }
         if (mobileSnapDot) {
-          mobileSnapDot.className = activeIndex === screens.length - 1 ? 'h-2 w-2 rounded-full bg-emerald-400' : 'h-2 w-2 rounded-full bg-emerald-400 animate-pulse';
+          mobileSnapDot.className = activeIndex === screens.length - 1 ? 'h-2 w-2 rounded-full bg-slate-400' : 'h-2 w-2 rounded-full bg-slate-400 animate-pulse';
         }
         if (mobileSnapUnlockBtn) {
           if (activeIndex === screens.length - 1) {
@@ -750,7 +749,7 @@ const APP_SCREENS = [
             .map(
               (h) => `
               <li class="flex items-start gap-2.5">
-                <svg class="h-4 w-4 shrink-0 text-emerald-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <svg class="h-4 w-4 shrink-0 text-slate-600 dark:text-slate-400 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                 </svg>
                 <span>${h}</span>
@@ -764,9 +763,9 @@ const APP_SCREENS = [
           const isSelected = idx === activeIndex;
           btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
           if (isSelected) {
-            btn.className = 'screen-tab-btn inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer select-none bg-emerald-600 text-white shadow-md shadow-emerald-600/30 ring-2 ring-emerald-500/50';
+            btn.className = 'screen-tab-btn inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer select-none bg-slate-900 text-white shadow-md shadow-slate-900/30 ring-2 ring-slate-700 dark:bg-slate-100 dark:text-slate-950 dark:ring-slate-300';
           } else {
-            btn.className = 'screen-tab-btn inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer select-none bg-white text-zinc-700 hover:bg-emerald-50/80 border border-zinc-200 dark:bg-zinc-800/80 dark:text-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800';
+            btn.className = 'screen-tab-btn inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer select-none bg-white text-zinc-700 hover:bg-slate-100 border border-zinc-200 dark:bg-zinc-800/80 dark:text-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800';
           }
         });
 
@@ -774,9 +773,9 @@ const APP_SCREENS = [
         thumbnailCards.forEach((thumb, idx) => {
           const isSelected = idx === activeIndex;
           if (isSelected) {
-            thumb.className = 'thumbnail-card group relative rounded-xl border p-2 text-left transition-all cursor-pointer border-emerald-500 bg-emerald-500/10 ring-2 ring-emerald-500/30';
+            thumb.className = 'thumbnail-card group relative rounded-xl border p-2 text-left transition-all cursor-pointer border-slate-700 bg-slate-800/20 ring-2 ring-slate-600/40 dark:border-slate-400 dark:bg-slate-800/60';
           } else {
-            thumb.className = 'thumbnail-card group relative rounded-xl border p-2 text-left transition-all cursor-pointer border-zinc-200/90 bg-white dark:border-zinc-800 dark:bg-zinc-900/60 hover:border-emerald-400/60';
+            thumb.className = 'thumbnail-card group relative rounded-xl border p-2 text-left transition-all cursor-pointer border-zinc-200/90 bg-white dark:border-zinc-800 dark:bg-zinc-900/60 hover:border-slate-400/60 dark:hover:border-slate-500/60';
           }
         });
 

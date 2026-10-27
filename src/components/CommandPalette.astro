@@ -315,12 +315,7 @@
 
 
   function triggerCvDownload() {
-    const link = document.createElement('a');
-    link.href = '/Faycal_Rafa_CV_2026.pdf';
-    link.download = 'Faycal_Rafa_CV_2026.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    window.open('/cv', '_blank');
   }
 
   function openCvModal() {
