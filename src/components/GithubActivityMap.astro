@@ -97,8 +97,8 @@ monthLabels[49] = 'Oct';
     </a>
   </div>
 
-  <!-- Heatmap Calendar Grid Container (Touch-scrollable on mobile, aligned to the left) -->
-  <div class="mt-5 overflow-x-auto pb-2 scrollbar-thin flex justify-start">
+  <!-- Heatmap Calendar Grid Container (Touch-scrollable on mobile, aligned to the left, dir="ltr" for consistent chronological timeline) -->
+  <div class="mt-5 overflow-x-auto pb-2 scrollbar-thin flex justify-start" dir="ltr">
     <div class="min-w-[740px]">
       
       <!-- Month Labels Row (precisely aligned with column widths) -->
@@ -147,7 +147,7 @@ monthLabels[49] = 'Oct';
       <!-- Legend Footer -->
       <div class="mt-4 flex items-center justify-between text-[11px] text-zinc-500 dark:text-zinc-400 font-mono pt-3 border-t border-zinc-100 dark:border-zinc-800/60">
         <span class="text-xs" data-i18n="hero.github_legend">Continuous open-source commits, code reviews &amp; production deployments</span>
-        <div class="flex items-center gap-1.5">
+        <div class="flex items-center gap-1.5" dir="ltr">
           <span data-i18n="hero.github_less">Less</span>
           <span class="h-2.5 w-2.5 rounded-[2px] bg-zinc-200 dark:bg-zinc-800/80"></span>
           <span class="h-2.5 w-2.5 rounded-[2px] bg-emerald-200 dark:bg-emerald-950/90 border border-emerald-800/50"></span>

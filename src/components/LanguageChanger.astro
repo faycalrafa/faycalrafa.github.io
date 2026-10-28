@@ -91,7 +91,7 @@ const { variant = 'floating' } = Astro.props;
       <span data-i18n="common.lang.select">Language</span>
     </div>
 
-    <div class="relative inline-block text-left" data-lang-dropdown>
+    <div class="relative inline-block text-left rtl:text-right" data-lang-dropdown>
       <button
         type="button"
         data-lang-dropdown-trigger
@@ -111,7 +111,7 @@ const { variant = 'floating' } = Astro.props;
         data-lang-menu
         role="menu"
         aria-orientation="vertical"
-        class="lang-dropdown-panel hidden absolute left-0 bottom-full mb-2 w-40 origin-bottom-left rounded-2xl border border-zinc-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-zinc-700/80 dark:bg-zinc-900/95 dark:ring-white/10 z-50 transition-all duration-150"
+        class="lang-dropdown-panel hidden absolute left-0 rtl:left-auto rtl:right-0 bottom-full mb-2 w-40 origin-bottom-left rtl:origin-bottom-right rounded-2xl border border-zinc-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-zinc-700/80 dark:bg-zinc-900/95 dark:ring-white/10 z-50 transition-all duration-150"
       >
         <button
           type="button"
