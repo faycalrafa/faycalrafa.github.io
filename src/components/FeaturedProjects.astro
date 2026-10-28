@@ -40,9 +40,9 @@ import SabilSlide from './slides/SabilSlide.astro';
       <!-- Top Slide Indicator Pill (Desktop/tablet only, hidden on mobile to reclaim vertical space) -->
       <div class="hidden sm:flex items-center justify-between mb-3 border-b border-zinc-100 dark:border-zinc-800/60 pb-2">
         <span class="text-xs font-mono font-semibold text-amber-600 dark:text-amber-400">
-          Featured Project 01 / 05
+          <span data-i18n="projects.featured_indicator">Featured Project</span> 01 / 05
         </span>
-        <span class="text-[11px] text-zinc-400 font-mono">
+        <span class="text-[11px] text-zinc-400 font-mono" data-i18n="projects.snap_hint">
           Scroll down ↓ to snap
         </span>
       </div>
@@ -54,7 +54,7 @@ import SabilSlide from './slides/SabilSlide.astro';
             <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2 sm:px-2.5 py-0.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400">
                 <span class="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" aria-hidden="true"></span>
-                Flagship App • Free to Use
+                <span data-i18n="common.badges.free_to_use">Flagship App • Free to Use</span>
               </span>
               <span class="rounded-md bg-zinc-100 px-2 py-0.5 text-[11px] sm:text-xs font-mono font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
                 Android Native
@@ -75,11 +75,11 @@ import SabilSlide from './slides/SabilSlide.astro';
             <!-- Role & Impact Bullets -->
             <ul class="space-y-1 sm:space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
               <li class="flex items-start gap-1.5 sm:gap-2">
-                <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
+                <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0" data-i18n="projects.role_label">Role:</span>
                 <span class="leading-snug sm:leading-relaxed">Solo Creator &amp; Lead Android Engineer. Built Kotlin M3 UI, C++ neural model runtime, and Media3 background service.</span>
               </li>
               <li class="flex items-start gap-1.5 sm:gap-2">
-                <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0">Impact:</span>
+                <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0" data-i18n="projects.impact_label">Impact:</span>
                 <span class="leading-snug sm:leading-relaxed">Shipped Kokoro 82M &amp; Piper on-device TTS with zero telemetry, surviving aggressive OS battery killers.</span>
               </li>
             </ul>
@@ -100,11 +100,12 @@ import SabilSlide from './slides/SabilSlide.astro';
               href="/projects/bookreader"
               class="inline-flex items-center gap-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs font-semibold text-white shadow-xs transition-colors"
             >
-              <span data-i18n="common.actions.view_showcase">Flagship Showcase</span>
-              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+              <span data-i18n="projects.flagship_showcase">Flagship Showcase</span>
+              <svg class="h-3.5 w-3.5 arrow-icon" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
               </svg>
             </a>
+
 
             <a
               href="https://github.com/faycalrafa/free-novel-reader-tts-android/releases/tag/v3.4.0"
@@ -151,9 +152,9 @@ import SabilSlide from './slides/SabilSlide.astro';
       <!-- Top Slide Indicator Pill (Desktop/tablet only, hidden on mobile to reclaim vertical space) -->
       <div class="hidden sm:flex items-center justify-between mb-3 border-b border-zinc-100 dark:border-zinc-800/60 pb-2">
         <span class="text-xs font-mono font-semibold text-blue-600 dark:text-blue-400">
-          Featured Project 02 / 05
+          <span data-i18n="projects.featured_indicator">Featured Project</span> 02 / 05
         </span>
-        <span class="text-[11px] text-zinc-400 font-mono">
+        <span class="text-[11px] text-zinc-400 font-mono" data-i18n="projects.snap_hint">
           Scroll down ↓ to snap
         </span>
       </div>
@@ -186,11 +187,11 @@ import SabilSlide from './slides/SabilSlide.astro';
             <!-- Role & Impact Bullets -->
             <ul class="space-y-1 sm:space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
               <li class="flex items-start gap-1.5 sm:gap-2">
-                <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
+                <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0" data-i18n="projects.role_label">Role:</span>
                 <span class="leading-snug sm:leading-relaxed">Fullstack Engineer. Connected merchant storefronts to commerce microservices, built reusable themes.</span>
               </li>
               <li class="flex items-start gap-1.5 sm:gap-2">
-                <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0">Impact:</span>
+                <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0" data-i18n="projects.impact_label">Impact:</span>
                 <span class="leading-snug sm:leading-relaxed">Delivered multi-tenant architecture supporting 7 distinct industry themes and high-velocity order management.</span>
               </li>
             </ul>
@@ -212,7 +213,7 @@ import SabilSlide from './slides/SabilSlide.astro';
               class="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs font-semibold text-white shadow-xs transition-colors"
             >
               <span data-i18n="common.actions.read_more">Read More</span>
-              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+              <svg class="h-3.5 w-3.5 arrow-icon" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
               </svg>
             </a>
@@ -258,9 +259,9 @@ import SabilSlide from './slides/SabilSlide.astro';
       <!-- Top Slide Indicator Pill (Desktop/tablet only, hidden on mobile to reclaim vertical space) -->
       <div class="hidden sm:flex items-center justify-between mb-3 border-b border-zinc-100 dark:border-zinc-800/60 pb-2">
         <span class="text-xs font-mono font-semibold text-indigo-600 dark:text-indigo-400">
-          Featured Project 05 / 05
+          <span data-i18n="projects.featured_indicator">Featured Project</span> 05 / 05
         </span>
-        <span class="text-[11px] text-zinc-400 font-mono">
+        <span class="text-[11px] text-zinc-400 font-mono" data-i18n="projects.snap_hint_contact">
           Scroll down ↓ to snap to Contact
         </span>
       </div>
@@ -293,11 +294,11 @@ import SabilSlide from './slides/SabilSlide.astro';
             <!-- Role & Impact Bullets -->
             <ul class="space-y-1 sm:space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
               <li class="flex items-start gap-1.5 sm:gap-2">
-                <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0">Role:</span>
+                <span class="font-bold text-blue-600 dark:text-blue-400 shrink-0" data-i18n="projects.role_label">Role:</span>
                 <span class="leading-snug sm:leading-relaxed">Technical Lead. Co-architected orderbook routing, streaming market feeds, and PostgreSQL models.</span>
               </li>
               <li class="flex items-start gap-1.5 sm:gap-2">
-                <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0">Impact:</span>
+                <span class="font-bold text-emerald-600 dark:text-emerald-400 shrink-0" data-i18n="projects.impact_label">Impact:</span>
                 <span class="leading-snug sm:leading-relaxed">Passerelles WebSockets temps réel, conformité COSOB, Transactional Outbox, et -65 % requêtes base.</span>
               </li>
             </ul>
@@ -319,7 +320,7 @@ import SabilSlide from './slides/SabilSlide.astro';
               class="inline-flex items-center gap-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs font-semibold text-white shadow-xs transition-colors"
             >
               <span data-i18n="common.actions.read_more">Read More</span>
-              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+              <svg class="h-3.5 w-3.5 arrow-icon" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
               </svg>
             </a>
@@ -366,8 +367,8 @@ import SabilSlide from './slides/SabilSlide.astro';
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-white"></span>
       </span>
-      <span class="tracking-normal sm:tracking-wide whitespace-nowrap">Continue to the rest of projects</span>
-      <svg class="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+      <span class="tracking-normal sm:tracking-wide whitespace-nowrap" data-i18n="projects.continue_to_projects">Continue to the rest of projects</span>
+      <svg class="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1 arrow-icon" viewBox="0 0 20 20" fill="currentColor">
         <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
       </svg>
     </a>

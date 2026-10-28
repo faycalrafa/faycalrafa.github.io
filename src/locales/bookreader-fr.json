@@ -1,11 +1,76 @@
 {
   "title": "BookReader Pro",
-  "tagline": "Lecteur d'eBooks et de documents natif pour Android avec synthèse vocale neurale en temps réel et moteur typographique personnalisé",
-  "hero_description": "Une application de lecture native performante et riche en fonctionnalités conçue avec Jetpack Compose. Conçue pour les passionnés de lecture, chercheurs et étudiants, BookReader Pro offre un rendu instantané des documents, la lecture audio neurale en arrière-plan et une immersion plein écran fluide.",
-  "features": {
-    "rendering": "Rendu Instantané de Documents : Pagination haute performance avec moteur de rendu PDF et EPUB.",
-    "tts": "Synthèse Vocale Neurale : Lecture audio en arrière-plan avec vitesse réglable et surlignage des mots.",
-    "typography": "Expérience de Lecture Personnalisée : Interlignage précis, marges ajustables, polices sur mesure et thèmes nuit/sépia.",
-    "library": "Gestion de Bibliothèque Hors-Ligne : Organisation intelligente par étagères, suivi de lecture et signets."
+  "tagline": "Lecteur d'eBooks et de documents natif Android avec synthèse vocale neuronale en temps réel, moteur typographique personnalisé et stockage hors ligne",
+  "hero_description": "Mon projet personnel Android gratuit en développement actif : un lecteur de romans natif haute performance avec synthèse vocale neuronale on-device, découpage intelligent des phrases par citations, barre de notification multimédia persistante et synthèse de livres audio hors ligne.",
+  "features_heading": "Fonctionnalités Clés",
+  "tech_stack_heading": "Stack Technique",
+  "release_notes_link": "Notes de version →",
+  "tts_live_sim": "Simulateur en direct",
+  "tts_chunker_title": "Découpeur de phrases TTS sensible aux citations",
+  "tts_chunker_desc": "SpeechSynthesisUtterance avec vitesse de lecture et réglages personnalisés.",
+  "tts_speed_label": "Vitesse / Débit",
+  "tts_unsupported": "⚠️ window.speechSynthesis n'est pas pris en charge dans ce navigateur.",
+  "showcase_badge": "Vitrine Android en direct",
+  "showcase_badge_count": "5 Écrans Authentiques",
+  "showcase_title": "Expérience Android Native",
+  "showcase_subtitle": "Découvrez l'interface Jetpack Compose de BookReader dans son thème de lecture sépia emblématique, ses moteurs vocaux neuronaux locaux et sa lecture continue en arrière-plan.",
+  "showcase_scroll_hint": "Faites défiler ou glissez pour changer d'écran",
+  "showcase_fullscreen": "Plein écran",
+  "showcase_mobile_swipe": "Faites défiler ou glissez pour naviguer",
+  "showcase_key_capabilities": "Capacités Clés",
+  "showcase_architecture_label": "Architecture :",
+  "showcase_prev": "Précédent",
+  "showcase_next": "Suivant",
+  "all_captures": "Toutes les captures d'écran",
+  "arch_heading": "Architecture & Technologies",
+  "arch_layer_1_name": "Couche UI",
+  "arch_layer_1_tech": "Jetpack Compose M3",
+  "arch_layer_1_desc": "Interface Kotlin déclarative avec Material Design 3. Thèmes sépia, sombre et clair, commandes multimédias ancrées et boîtes de dialogue adaptatives pleine largeur.",
+  "arch_layer_2_name": "Moteur Audio",
+  "arch_layer_2_tech": "AndroidX Media3 + ExoPlayer",
+  "arch_layer_2_desc": "MediaSessionService découplé fonctionnant dans un cycle de vie Android Service indépendant. Résiste aux rotations d'écran et gère la priorité audio lors des appels.",
+  "arch_layer_3_name": "Traitement TTS",
+  "arch_layer_3_tech": "Moteurs neuronaux (Kokoro / Piper) + TextToSpeech natif",
+  "arch_layer_3_desc": "Abstraction de synthèse vocale multi-moteurs. Tokenizer basé sur des expressions régulières avec protection des citations et des abréviations.",
+  "arch_layer_4_name": "Extraction Web",
+  "arch_layer_4_tech": "Jsoup + WebView",
+  "arch_layer_4_desc": "Pipeline DOM Jsoup pour l'extraction de chapitres avec sélecteurs CSS configurables. Injection de userscripts avec correspondance d'URL par jokers.",
+  "arch_layer_5_name": "Stockage",
+  "arch_layer_5_tech": "AtomicFile + Kotlin Coroutines",
+  "arch_layer_5_desc": "Persistance résistante aux crashs via Android AtomicFile (écriture → fichier temporaire → renommage atomique) avec Mutex Coroutines sans permissions superflues.",
+  "arch_layer_6_name": "Modèle Architectural",
+  "arch_layer_6_tech": "Clean Architecture + MVVM",
+  "arch_layer_6_desc": "Découplage des couches domaine, données et présentation. État d'interface réactif piloté par StateFlow et opérations asynchrones gérées par Coroutines.",
+  "screens": {
+    "home": {
+      "title": "Bibliothèque & Playlists",
+      "subtitle": "NovelArrow Reader Pro · Dossier racine & Stockage délimité",
+      "tag": "Stockage & Playlists",
+      "desc": "Sélectionnez n'importe quel dossier racine sur votre appareil Android. Chaque sous-dossier devient une playlist de lecture autonome avec suivi de progression et synthèse vocale hors ligne."
+    },
+    "voice_engine": {
+      "title": "Moteur Vocal Neural",
+      "subtitle": "Voix IA locales · Kokoro, Piper & KittenTTS",
+      "tag": "Synthèse vocale & IA",
+      "desc": "Basculez aisément entre la synthèse Google intégrée (474 voix) et les modèles neuraux locaux. Profitez d'une prosodie naturelle sans abonnement cloud ni risque de confidentialité."
+    },
+    "toolbar_settings": {
+      "title": "Barre Média Persistante",
+      "subtitle": "Service d'arrière-plan AndroidX Media3 & Commandes rapides",
+      "tag": "Audio en arrière-plan",
+      "desc": "Une barre d'accès rapide épinglée dans la zone de notification et l'écran de verrouillage. Maintient la lecture active même après la fermeture de l'application."
+    },
+    "audio_studio": {
+      "title": "Studio Audio & Générateur de Livres Audio",
+      "subtitle": "Synthèse hors ligne de chapitres & Fichiers MP3 autonomes",
+      "tag": "Génération audio",
+      "desc": "Transformez des chapitres entiers en livres audio MP3 stockés localement. Écoutez avec la barre de progression, le réglage de vitesse (0.5×–2.5×) et le suivi en arrière-plan."
+    },
+    "live_web_tts": {
+      "title": "Lecteur Web & TTS en Direct",
+      "subtitle": "Extracteur Web intégré & Lecteur audio d'articles",
+      "tag": "Extraction Web",
+      "desc": "Navigateur intégré avec pipeline DOM Jsoup qui élimine les publicités et bannières. Diffuse le texte nettoyé directement dans le lecteur audio TTS superposé."
+    }
   }
 }

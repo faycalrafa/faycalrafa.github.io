@@ -98,17 +98,17 @@ try {
           <div class="flex flex-wrap items-center gap-2 mb-3">
             <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/15 dark:text-amber-300 ring-1 ring-amber-500/20">
               <span class="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" aria-hidden="true"></span>
-              Free to Use
+              <span data-i18n="common.badges.free_to_use">Free to Use</span>
               <span class="sr-only">Hobby Project</span>
             </span>
             <span
               id="bookreader-version-badge"
-              class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/15 dark:text-emerald-300"
+              class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/15 dark:text-emerald-300 ltr-isolate"
             >
               <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
               <span id="bookreader-version-text">{releaseInfo.version} · Latest</span>
             </span>
-            <span class="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">
+            <span class="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400 ltr-isolate">
               Android · Kotlin · Jetpack Compose
             </span>
           </div>
@@ -169,7 +169,7 @@ try {
 
     <!-- ═══════════════════ FEATURES GRID ═══════════════════ -->
     <section class="mb-14" aria-labelledby="features-heading">
-      <h2 id="features-heading" class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6">Key Features</h2>
+      <h2 id="features-heading" class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6" data-i18n="bookreader.features_heading">Key Features</h2>
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {[
           { emoji: '🎙️', title: 'On-Device Neural Voices', desc: 'Kokoro TTS (82M prosody), Piper TTS (<65MB Arabic, French, and English), and KittenTTS (<30MB) running entirely on device with zero cloud latency.' },
@@ -196,7 +196,7 @@ try {
 
     <!-- ═══════════════════ TECH STACK PILLS ═══════════════════ -->
     <section class="mb-12" aria-label="Technology stack">
-      <h2 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-4">Tech Stack</h2>
+      <h2 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-4" data-i18n="bookreader.tech_stack_heading">Tech Stack</h2>
       <div class="flex flex-wrap gap-2">
         {['Android Kotlin', 'Jetpack Compose M3', 'AndroidX Media3', 'ExoPlayer', 'TextToSpeech', 'Kokoro TTS', 'Piper TTS', 'Jsoup', 'AtomicFile', 'Kotlin Coroutines', 'MVVM', 'Clean Architecture', 'Material Design 3'].map(tech => (
           <span class="inline-flex items-center rounded-lg border border-zinc-200/90 bg-zinc-100/80 px-2.5 py-1 font-mono text-xs font-medium text-zinc-800 dark:border-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-200">
@@ -209,11 +209,12 @@ try {
     <!-- ═══════════════════ FOOTER LINKS ═══════════════════ -->
     <footer class="flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200/80 pt-8 dark:border-zinc-800/80">
       <a href="/projects" class="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors">
-        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" /></svg>
-        All Projects
+        <svg class="h-4 w-4 arrow-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" /></svg>
+        <span data-i18n="common.actions.back_to_projects">All Projects</span>
       </a>
       <a href={REPO_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-500 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-100 transition-colors">
-        View Source on GitHub →
+        <span data-i18n="common.actions.github_repo">GitHub Repo</span>
+        <span class="arrow-icon">→</span>
       </a>
     </footer>
   </div>

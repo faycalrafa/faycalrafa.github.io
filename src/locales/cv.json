@@ -1,7 +1,16 @@
 {
   "title": "Curriculum Vitae",
+  "modal_title": "Faycal Rafa | Curriculum Vitae",
+  "badge_a4": "A4 · 1 Page Complete",
+  "role_full": "Senior Software Engineer & Technical Lead",
+  "zoom_fit": "Fit Page",
+  "zoom_actual": "Actual Size",
+  "open_a4_cv": "Open CV (A4 Page)",
+  "status_preview": "Complete A4 CV • High Resolution Preview • Single Page",
+  "status_hint": "Click preview to zoom • Press Esc to close",
   "name": "Faycal Rafa",
   "role": "Fullstack Engineer",
+  "tagline": "Senior Software Engineer & Technical Lead · 6+ Years Experience",
   "contact": {
     "location": "Algiers, Algeria",
     "email": "rafafaycal@gmail.com",
@@ -15,6 +24,10 @@
   "experience_title": "Professional Experience",
   "education_title": "Education & Degrees",
   "skills_title": "Technical Expertise",
+  "spoken_languages_title": "Languages",
+  "experience_subtitle": "7 Companies • Chronological",
+  "footer_headline": "Faycal Rafa • Fullstack Engineer & Technical Lead",
+  "footer_generated": "Generated from dynamic verified records",
   "print_action": "Print / Save as PDF",
   "print_hint": "Optimized for single-page A4 printing."
 }

@@ -1,23 +1,77 @@
 {
   "title": "TextMorph",
-  "tagline": "Assistant d'écriture IA multimodal sous Android, respectueux de la vie privée, propulsé par une inférence LLM locale multi-moteurs",
-  "hero_description": "Un assistant d'écriture IA multimodal pour Android, entièrement axé sur la confidentialité. Propulsé par une architecture multi-moteurs modulaire prenant en charge Google LiteRT-LM, llama.cpp et les API compatibles OpenAI pour exécuter tout modèle de fondation en local avec cartographie mémoire sans copie, commandes slash et serveur embarqué.",
+  "tagline": "Assistant d'écriture IA multimodal on-device et barre flottante pour Android avec inférence locale multi-moteurs",
+  "hero_description": "Un assistant d'écriture IA multimodal et barre d'outils flottante respectueux de la vie privée pour Android. Propulsé par une architecture multi-moteurs modulaire (Google LiteRT-LM, llama.cpp et API compatibles OpenAI) pour exécuter n'importe quel modèle open-weights localement avec mmap sans copie, commandes slash et serveur intégré.",
+  "features_heading": "Fonctionnalités Clés",
+  "tech_stack_heading": "Stack Technique",
+  "release_notes_link": "Notes de version →",
+  "showcase_badge": "Vitrine Play Store",
+  "showcase_badge_count": "IA On-Device en Action",
+  "showcase_title": "Écrans Marketing Haute Définition",
+  "showcase_subtitle": "Découvrez l'architecture multi-moteurs de TextMorph, les commandes slash universelles, le serveur OpenAI localhost intégré et l'interface flottante sans permissions superflues.",
+  "showcase_scroll_hint": "Faites défiler ou glissez pour changer d'écran",
+  "showcase_fullscreen": "Plein écran",
+  "showcase_mobile_swipe": "Faites défiler ou glissez pour naviguer",
+  "showcase_key_capabilities": "Capacités Clés",
+  "showcase_architecture_label": "Architecture :",
+  "showcase_prev": "Précédent",
+  "showcase_next": "Suivant",
+  "all_cards": "Toutes les fiches Play Store",
   "engines": {
-    "title": "Moteurs d'Inférence Locaux et API Pris en Charge",
+    "title": "Moteurs d'Inférence Locaux et API Supportés",
     "litert": "Google LiteRT-LM (Accélération GPU/NPU mobile, mmap sans copie)",
-    "llamacpp": "Moteur llama.cpp (Modèles quantifiés GGUF universels sur CPU/GPU)",
-    "openai": "API compatibles OpenAI (Serveur Ktor embarqué sur 127.0.0.1:8080 et points d'accès externes)"
+    "llamacpp": "Runtime llama.cpp (Modèles quantifiés GGUF universels sur CPU/GPU)",
+    "openai": "API compatibles OpenAI (Serveur Ktor intégré sur 127.0.0.1:8080 et points d'accès distants)"
   },
-  "features": {
-    "multi_engine": "IA On-Device Multi-Moteurs : Exécutez des modèles via LiteRT-LM, llama.cpp ou des points d'accès compatibles OpenAI directement sur votre puce mobile, sans latence cloud et en toute confidentialité.",
-    "floating_bar": "Pilule IA Flottante à l'Échelle du Système : Superposition AccessibilityService non intrusive qui s'ancre au-dessus des champs de saisie sans voler le focus du clavier (FLAG_NOT_FOCUSABLE).",
-    "zero_copy": "Chargeur Zero-Copy Universel : Mappe directement les modèles multi-gigaoctets depuis le dossier Téléchargements via Linux mmap et ParcelFileDescriptor sans doubler l'espace de stockage.",
-    "slash_commands": "Commandes Slash Universelles : Déclenchez des transformations IA dans n'importe quelle zone de texte en tapant /fix, /summarize, /fr (français) ou /ar (arabe) avec remplacement instantané.",
-    "server": "Serveur OpenAI Localhost Embarqué : Serveur HTTP Ktor CIO léger sur 127.0.0.1:8080 exposant des complétions de chat en streaming compatibles OpenAI pour Termux et outils locaux.",
-    "vision": "Assistance Visuelle Multimodale : Capture l'écran actif via MediaProjection pour fournir un raisonnement visuel immédiat en local sans transmission vers le cloud."
-  },
-  "architecture": {
-    "layer_runtime": "Runtime Multi-Moteurs (LiteRT-LM, llama.cpp & API OpenAI)",
-    "layer_runtime_desc": "Inférence matérielle accélérée exécutant tout LLM open-source en local. L'abstraction modulaire supporte Google LiteRT-LM, llama.cpp et les backends compatibles OpenAI."
+  "arch_heading": "Architecture & Technologies",
+  "arch_layer_1_name": "UI & Design System",
+  "arch_layer_1_tech": "Jetpack Compose M3 + Charcoal Slate",
+  "arch_layer_1_desc": "Interface Kotlin déclarative avec palette Charcoal & Slate sur-mesure, boîtes de dialogue adaptatives pleine largeur et cartes tactiles réactives.",
+  "arch_layer_2_name": "Intégration Système",
+  "arch_layer_2_tech": "AccessibilityService + WindowManager",
+  "arch_layer_2_desc": "Boucle d'événements d'accessibilité haute performance surveillant les champs de texte avec superposition FLAG_NOT_FOCUSABLE sans interférence clavier.",
+  "arch_layer_3_name": "Runtime IA & Inférence",
+  "arch_layer_3_tech": "Runtime Multi-Moteurs (LiteRT-LM, llama.cpp & APIs OpenAI)",
+  "arch_layer_3_desc": "Inférence matérielle accélérée exécutant n'importe quel LLM ouvert localement. Abstraction modulaire supportant Google LiteRT-LM, llama.cpp et backends OpenAI.",
+  "arch_layer_4_name": "Moteur Serveur Local",
+  "arch_layer_4_tech": "Ktor CIO + Server-Sent Events",
+  "arch_layer_4_desc": "Serveur HTTP non bloquant asynchrone sur 127.0.0.1:8080 implémentant /v1/models et /v1/chat/completions en streaming pour automatisations locales.",
+  "arch_layer_5_name": "Stockage & mmap Zero-Copy",
+  "arch_layer_5_tech": "Linux mmap + ParcelFileDescriptor",
+  "arch_layer_5_desc": "Mise en mémoire directe des poids de modèles dans le dossier Téléchargements via Scoped Storage, éliminant toute duplication d'espace de stockage.",
+  "arch_layer_6_name": "Modèle Architectural",
+  "arch_layer_6_tech": "Clean Architecture + MVVM + StateFlow",
+  "arch_layer_6_desc": "Découplage des couches domaine, données et présentation. Flux réactifs StateFlow, persistance Room des invites personnalisées et concurrence avec Mutex.",
+  "screens": {
+    "floating_toolbar": {
+      "title": "Barre Flottante IA Système",
+      "subtitle": "Overlay AccessibilityService & WindowManager sans perte de focus",
+      "tag": "Fonctionnalité Phare",
+      "desc": "Une capsule intelligente ancrée au-dessus des champs de saisie dans toute application Android. Elle observe la sélection sans voler le focus du clavier, vous permettant de reformuler ou traduire en un clic dans WhatsApp, Gmail et Chrome."
+    },
+    "model_hub": {
+      "title": "Hub de Modèles Accéléré Matériellement",
+      "subtitle": "Mappage Linux mmap sans copie & Moteurs multiples (LiteRT-LM, llama.cpp)",
+      "tag": "Moteur IA Local",
+      "desc": "Chargez des modèles de fondation volumineux directement depuis vos Téléchargements sans copie de fichiers grâce à mmap. Architecture modulaire (LiteRT-LM, llama.cpp et API OpenAI) accélérée par GPU/NPU."
+    },
+    "slash_commands": {
+      "title": "Architecture de Commandes Slash Dédiées",
+      "subtitle": "Macros universelles dans les champs (/fix, /summarize, /fr, /ar)",
+      "tag": "Productivité & Macros",
+      "desc": "Tapez /commande directement dans n'importe quel champ de saisie pour déclencher des pipelines IA locaux. Traduisez en français (/fr), arabe (/ar) ou anglais (/en) instantanément."
+    },
+    "custom_prompts": {
+      "title": "Prompts Personnalisés & Vision Multimodale",
+      "subtitle": "Screen Assist, Amélioration créative & Actions presse-papiers",
+      "tag": "Multimodal & Prompts",
+      "desc": "Personnalisez votre assistant avec des chaînes de prompts sur mesure. Épinglez vos 5 actions favorites dans la barre flottante. Utilisez Screen Assist pour analyser l'écran avec des LLM vision locaux."
+    },
+    "settings_server": {
+      "title": "Serveur HTTP Localhost Compatible OpenAI",
+      "subtitle": "Serveur Ktor CIO embarqué sur 127.0.0.1:8080",
+      "tag": "Serveur Local & API",
+      "desc": "Transforme votre smartphone en un serveur API LLM privé. Expose des endpoints compatibles OpenAI (/v1/chat/completions et /v1/models) pour les scripts Termux et outils locaux."
+    }
   }
 }

@@ -48,9 +48,9 @@ const openSourceCount = sortedProjects.filter((p) => p.data.category === 'open-s
       <!-- Page Header: Highlighting architectural versatility and hobby passion -->
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-700 dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-400">
-          <span>Portfolio Catalog</span>
+          <span data-i18n="projects.catalog_badge">Portfolio Catalog</span>
           <span class="text-zinc-400 dark:text-zinc-600">•</span>
-          <span>{totalCount} Engineered Works</span>
+          <span><span class="ltr-isolate">{totalCount}</span> <span data-i18n="projects.engineered_works">Engineered Works</span></span>
         </div>
 
         <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl dark:text-zinc-50" data-i18n="projects.archive_title">
@@ -96,7 +96,7 @@ const openSourceCount = sortedProjects.filter((p) => p.data.category === 'open-s
 
           <!-- Live Status Counter -->
           <div class="text-xs text-zinc-500 dark:text-zinc-400 font-mono sm:text-right">
-            Showing <span id="visible-count" class="font-bold text-zinc-800 dark:text-zinc-200">{totalCount}</span> of {totalCount} projects
+            <span data-i18n="projects.showing_label">Showing</span> <span id="visible-count" class="font-bold text-zinc-800 dark:text-zinc-200 ltr-isolate">{totalCount}</span> <span data-i18n="projects.of_label">of</span> <span class="ltr-isolate">{totalCount}</span> <span data-i18n="projects.showing_counter">projects</span>
           </div>
         </div>
 
@@ -113,8 +113,8 @@ const openSourceCount = sortedProjects.filter((p) => p.data.category === 'open-s
             aria-pressed="true"
             class="filter-btn active inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all focus-visible:outline-2 focus-visible:outline-blue-600 cursor-pointer bg-zinc-900 text-white shadow-xs dark:bg-zinc-100 dark:text-zinc-900"
           >
-            <span>All Projects</span>
-            <span class="filter-count rounded-full bg-zinc-700 px-2 py-0.5 text-[11px] font-mono text-white dark:bg-zinc-300 dark:text-zinc-900">
+            <span data-i18n="projects.filter_all">All Projects</span>
+            <span class="filter-count rounded-full bg-zinc-700 px-2 py-0.5 text-[11px] font-mono text-white dark:bg-zinc-300 dark:text-zinc-900 ltr-isolate">
               {totalCount}
             </span>
           </button>
@@ -126,9 +126,9 @@ const openSourceCount = sortedProjects.filter((p) => p.data.category === 'open-s
             class="filter-btn inline-flex items-center gap-2 rounded-xl border border-zinc-200/80 bg-white px-4 py-2 text-xs font-medium text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-800/60 transition-all focus-visible:outline-2 focus-visible:outline-blue-600 cursor-pointer"
           >
             <span class="h-2 w-2 rounded-full bg-amber-500" aria-hidden="true"></span>
-            <span>Free to Use</span>
+            <span data-i18n="projects.filter_hobby">Free to Use</span>
             <span class="sr-only">Hobby Projects</span>
-            <span class="filter-count rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-mono text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+            <span class="filter-count rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-mono text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 ltr-isolate">
               {hobbyCount}
             </span>
           </button>
@@ -140,8 +140,8 @@ const openSourceCount = sortedProjects.filter((p) => p.data.category === 'open-s
             class="filter-btn inline-flex items-center gap-2 rounded-xl border border-zinc-200/80 bg-white px-4 py-2 text-xs font-medium text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-800/60 transition-all focus-visible:outline-2 focus-visible:outline-blue-600 cursor-pointer"
           >
             <span class="h-2 w-2 rounded-full bg-blue-500" aria-hidden="true"></span>
-            <span>Commercial</span>
-            <span class="filter-count rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-mono text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+            <span data-i18n="projects.filter_commercial">Commercial</span>
+            <span class="filter-count rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-mono text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 ltr-isolate">
               {commercialCount}
             </span>
           </button>
@@ -153,8 +153,8 @@ const openSourceCount = sortedProjects.filter((p) => p.data.category === 'open-s
             class="filter-btn inline-flex items-center gap-2 rounded-xl border border-zinc-200/80 bg-white px-4 py-2 text-xs font-medium text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-800/60 transition-all focus-visible:outline-2 focus-visible:outline-blue-600 cursor-pointer"
           >
             <span class="h-2 w-2 rounded-full bg-purple-500" aria-hidden="true"></span>
-            <span>Open Source</span>
-            <span class="filter-count rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-mono text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+            <span data-i18n="projects.filter_open_source">Open Source</span>
+            <span class="filter-count rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-mono text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 ltr-isolate">
               {openSourceCount}
             </span>
           </button>
@@ -184,10 +184,10 @@ const openSourceCount = sortedProjects.filter((p) => p.data.category === 'open-s
             <path d="M21 21l-4.35-4.35" />
           </svg>
         </div>
-        <h3 class="mt-4 text-base font-semibold text-zinc-900 dark:text-zinc-100">
+        <h3 class="mt-4 text-base font-semibold text-zinc-900 dark:text-zinc-100" data-i18n="projects.empty_title">
           No projects found matching your criteria
         </h3>
-        <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+        <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400" data-i18n="projects.empty_desc">
           Try clearing your search query or selecting another category filter.
         </p>
         <button
@@ -195,7 +195,7 @@ const openSourceCount = sortedProjects.filter((p) => p.data.category === 'open-s
           id="reset-filter-btn"
           class="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-xs font-semibold text-white hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400 transition-colors cursor-pointer"
         >
-          Reset Filters
+          <span data-i18n="projects.empty_reset">Reset Filters</span>
         </button>
       </div>
 

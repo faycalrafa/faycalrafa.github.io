@@ -123,14 +123,16 @@ function isActive(href: string): boolean {
         rel="noopener noreferrer"
         class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400 shadow-xs transition-all focus-visible:outline-2 focus-visible:outline-blue-600"
         aria-label="Download Faycal Rafa CV"
+        data-i18n-aria="common.actions.download_cv_aria"
       >
         <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M10 3v10" />
           <path d="M6 9l4 4 4-4" />
           <path d="M3 15v1a2 2 0 002 2h10a2 2 0 002-2v-1" />
         </svg>
-        <span>Download CV</span>
+        <span data-i18n="common.actions.download_cv">Download CV</span>
       </a>
+
     </div>
 
     <!-- Mobile Header Controls -->
@@ -230,7 +232,7 @@ function isActive(href: string): boolean {
 
     <!-- Direct Contact & Connect Grid -->
     <div class="mt-5 border-t border-zinc-200/80 pt-5 dark:border-zinc-800/80">
-      <div class="mb-3 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+      <div class="mb-3 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400" data-i18n="common.nav.direct_contact">
         Direct Contact & Connect
       </div>
 
@@ -249,10 +251,10 @@ function isActive(href: string): boolean {
             </svg>
           </div>
           <div class="min-w-0 flex-1">
-            <div class="text-xs font-semibold">WhatsApp Chat</div>
-            <div class="text-[11px] opacity-80">+213 540 98 02 38</div>
+            <div class="text-xs font-semibold" data-i18n="common.nav.whatsapp_chat">WhatsApp Chat</div>
+            <div class="text-[11px] opacity-80 font-mono ltr-isolate">+213 540 98 02 38</div>
           </div>
-          <span class="text-xs font-medium text-emerald-700 dark:text-emerald-300">&rarr;</span>
+          <span class="text-xs font-medium text-emerald-700 dark:text-emerald-300 arrow-icon">&rarr;</span>
         </a>
 
         <!-- Direct Phone / Call Card -->
@@ -267,11 +269,12 @@ function isActive(href: string): boolean {
             </svg>
           </div>
           <div class="min-w-0 flex-1">
-            <div class="text-xs font-semibold">Direct Call</div>
-            <div class="text-[11px] text-zinc-500 dark:text-zinc-400">+213 540 98 02 38</div>
+            <div class="text-xs font-semibold" data-i18n="common.nav.phone_call">Direct Call</div>
+            <div class="text-[11px] text-zinc-500 dark:text-zinc-400 font-mono ltr-isolate">+213 540 98 02 38</div>
           </div>
-          <span class="text-xs text-zinc-400">&rarr;</span>
+          <span class="text-xs text-zinc-400 arrow-icon">&rarr;</span>
         </a>
+
 
         <!-- LinkedIn Card -->
         <a

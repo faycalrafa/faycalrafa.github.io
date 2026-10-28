@@ -2,6 +2,7 @@
 // Interactive smartphone mockup, gesture snapping, and latest release auto-hydration controller for BookReader
 
 import { APP_SCREENS, type BookReaderScreen } from '../data/bookreader-screens';
+import { t, getCurrentLang } from './i18n';
 
 declare global {
   interface Window {
@@ -151,12 +152,19 @@ export function initAppShowcase(): void {
       }, 80);
     }
 
-    // Update Details text
-    if (detailTag) detailTag.textContent = data.tag;
+    // Update Details text with dynamic translation
+    const lang = getCurrentLang();
+    const screenKey = data.id.replace(/-/g, '_');
+    const trTag = t(`bookreader.screens.${screenKey}.tag`, lang);
+    const trTitle = t(`bookreader.screens.${screenKey}.title`, lang);
+    const trSub = t(`bookreader.screens.${screenKey}.subtitle`, lang);
+    const trDesc = t(`bookreader.screens.${screenKey}.desc`, lang);
+
+    if (detailTag) detailTag.textContent = (trTag !== `bookreader.screens.${screenKey}.tag` ? trTag : null) || data.tag;
     if (detailNum) detailNum.textContent = `Screen ${data.num} / 05`;
-    if (detailTitle) detailTitle.textContent = data.title;
-    if (detailSubtitle) detailSubtitle.textContent = data.subtitle;
-    if (detailDesc) detailDesc.textContent = data.description;
+    if (detailTitle) detailTitle.textContent = (trTitle !== `bookreader.screens.${screenKey}.title` ? trTitle : null) || data.title;
+    if (detailSubtitle) detailSubtitle.textContent = (trSub !== `bookreader.screens.${screenKey}.subtitle` ? trSub : null) || data.subtitle;
+    if (detailDesc) detailDesc.textContent = (trDesc !== `bookreader.screens.${screenKey}.desc` ? trDesc : null) || data.description;
     if (detailTech) detailTech.textContent = data.tech;
 
     // Update Highlights list
@@ -175,10 +183,17 @@ export function initAppShowcase(): void {
         .join('');
     }
 
-    // Update tab button styles
+    // Update tab button styles and localized titles
     tabButtons.forEach((btn, i) => {
       const isSelected = i === activeIndex;
       btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      const scr = screens[i];
+      if (scr) {
+        const k = scr.id.replace(/-/g, '_');
+        const tit = t(`bookreader.screens.${k}.title`, lang);
+        const titleSpan = btn.querySelector('span:last-child');
+        if (titleSpan && tit && tit !== `bookreader.screens.${k}.title`) titleSpan.textContent = tit;
+      }
       if (isSelected) {
         btn.className = 'screen-tab-btn inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer select-none bg-amber-600 text-white shadow-md shadow-amber-600/30 ring-2 ring-amber-500/50';
       } else {
@@ -186,8 +201,18 @@ export function initAppShowcase(): void {
       }
     });
 
-    // Update thumbnail borders
+    // Update thumbnail borders and localized labels
     thumbnailCards.forEach((card, i) => {
+      const scr = screens[i];
+      if (scr) {
+        const k = scr.id.replace(/-/g, '_');
+        const tit = t(`bookreader.screens.${k}.title`, lang);
+        const tg = t(`bookreader.screens.${k}.tag`, lang);
+        const titEl = card.querySelector('.text-\\[11px\\]');
+        const tgEl = card.querySelector('.text-\\[10px\\]');
+        if (titEl && tit && tit !== `bookreader.screens.${k}.title`) titEl.textContent = tit;
+        if (tgEl && tg && tg !== `bookreader.screens.${k}.tag`) tgEl.textContent = tg;
+      }
       if (i === activeIndex) {
         card.className = 'thumbnail-card group relative rounded-xl border p-2 text-left transition-all cursor-pointer border-amber-500 bg-amber-500/10 ring-2 ring-amber-500/30';
       } else {
@@ -368,6 +393,11 @@ export function initAppShowcase(): void {
     setScreen(activeIndex + 1, 'forward');
   });
 
+  function onLangChanged() {
+    setScreen(activeIndex);
+  }
+  window.addEventListener('lang-changed', onLangChanged);
+
   if (window._bookreaderShowcaseCleanup) {
     window._bookreaderShowcaseCleanup();
   }
@@ -377,6 +407,7 @@ export function initAppShowcase(): void {
     window.removeEventListener('touchstart', onWindowTouchStart);
     window.removeEventListener('touchmove', onWindowTouchMove);
     window.removeEventListener('touchend', onWindowTouchEnd);
+    window.removeEventListener('lang-changed', onLangChanged);
   };
 
   document.addEventListener('astro:before-swap', window._bookreaderShowcaseCleanup, { once: true });

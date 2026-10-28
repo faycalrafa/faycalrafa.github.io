@@ -50,6 +50,7 @@
         id="command-palette-input"
         class="h-10 w-full bg-transparent px-3 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none dark:text-zinc-100 dark:placeholder-zinc-500"
         placeholder="Type a command or search... (Navigation, Projects, CV, Theme)"
+        data-i18n-placeholder="common.palette.search_placeholder"
         autocomplete="off"
         autocorrect="off"
         spellcheck="false"
@@ -92,10 +93,10 @@
           <path d="m21 21-4.3-4.3" />
         </svg>
       </div>
-      <p class="mt-4 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+      <p class="mt-4 text-sm font-semibold text-zinc-900 dark:text-zinc-100" data-i18n="common.palette.empty_title">
         No results found
       </p>
-      <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+      <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400" data-i18n="common.palette.empty_desc">
         No commands or navigation destinations matching <span id="command-palette-empty-query" class="font-mono font-medium text-zinc-700 dark:text-zinc-300"></span>. Try another keyword.
       </p>
     </div>
@@ -106,17 +107,17 @@
         <span class="inline-flex items-center gap-1">
           <kbd class="rounded border border-zinc-200 bg-white px-1.5 py-0.5 font-mono text-[10px] text-zinc-600 shadow-2xs dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">↑</kbd>
           <kbd class="rounded border border-zinc-200 bg-white px-1.5 py-0.5 font-mono text-[10px] text-zinc-600 shadow-2xs dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">↓</kbd>
-          <span>Navigate</span>
+          <span data-i18n="common.palette.hint_navigate">Navigate</span>
         </span>
         <span class="inline-flex items-center gap-1">
           <kbd class="rounded border border-zinc-200 bg-white px-1.5 py-0.5 font-mono text-[10px] text-zinc-600 shadow-2xs dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">↵</kbd>
-          <span>Select</span>
+          <span data-i18n="common.palette.hint_select">Select</span>
         </span>
       </div>
       <div class="hidden sm:flex items-center gap-3">
         <span class="inline-flex items-center gap-1">
           <kbd class="rounded border border-zinc-200 bg-white px-1.5 py-0.5 font-mono text-[10px] text-zinc-600 shadow-2xs dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">esc</kbd>
-          <span>Close</span>
+          <span data-i18n="common.palette.hint_close">Close</span>
         </span>
       </div>
     </div>
@@ -125,6 +126,7 @@
 
 <script>
   import { createCommandDefinitions, type CommandItem } from '../data/commands';
+  import { t, getCurrentLang } from '../scripts/i18n';
 
   let isPaletteOpen = false;
   let selectedIndex = 0;
@@ -191,8 +193,15 @@
 
       emptyState.classList.add('hidden');
 
+      const categoryMap: Record<CommandItem['category'], string> = {
+        'Navigation': 'common.palette.cat_nav',
+        'Actions': 'common.palette.cat_actions',
+        'Projects': 'common.palette.cat_projects',
+        'Social & Links': 'common.palette.cat_social',
+      };
       const categories: CommandItem['category'][] = ['Navigation', 'Actions', 'Projects', 'Social & Links'];
       let globalIndexCounter = 0;
+      const currentLang = getCurrentLang();
 
       categories.forEach((cat) => {
         const catCommands = filteredCommands.filter((c) => c.category === cat);
@@ -200,8 +209,9 @@
 
         const groupHeader = document.createElement('div');
         groupHeader.className = 'px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500';
-        groupHeader.textContent = cat;
+        groupHeader.textContent = t(categoryMap[cat], currentLang) || cat;
         resultsContainer.appendChild(groupHeader);
+
 
         catCommands.forEach((cmd) => {
           const itemIdx = globalIndexCounter++;

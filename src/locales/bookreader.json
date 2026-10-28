@@ -1,11 +1,76 @@
 {
   "title": "BookReader Pro",
   "tagline": "Advanced native Android eBook & document reader featuring real-time neural TTS, custom typography engine, and seamless offline storage",
-  "hero_description": "A feature-rich, high-performance native Android reading application crafted with Jetpack Compose. Engineered for avid readers, researchers, and students, BookReader Pro delivers instant document rendering, background neural text-to-speech, and responsive full-screen reading immersion.",
-  "features": {
-    "rendering": "Instant Document Rendering: High-performance pagination with PDF and EPUB rendering engine.",
-    "tts": "Neural Text-to-Speech: Background audio playback with variable speeds and word highlighting.",
-    "typography": "Customizable Reading Experience: Fine-tuned line heights, margins, font sizes, and dark/sepia reading themes.",
-    "library": "Offline Library Management: Smart shelf organization, progress synchronization, and bookmarks."
+  "hero_description": "My ongoing Android free to use project: a high-performance native novel reader with on-device neural TTS audio, quote-aware sentence chunking, persistent notification media bar, and offline audiobook synthesis.",
+  "features_heading": "Key Features",
+  "tech_stack_heading": "Tech Stack",
+  "release_notes_link": "Release Notes →",
+  "tts_live_sim": "Live Simulator",
+  "tts_chunker_title": "Quote-Aware TTS Sentence Chunker",
+  "tts_chunker_desc": "SpeechSynthesisUtterance with custom speech rate and speed adjustments.",
+  "tts_speed_label": "Speed / Rate",
+  "tts_unsupported": "⚠️ window.speechSynthesis is not supported in this browser.",
+  "showcase_badge": "Live Android Showcase",
+  "showcase_badge_count": "5 Authentic Screens",
+  "showcase_title": "Native Android Experience",
+  "showcase_subtitle": "Explore BookReader's custom Jetpack Compose interface in its signature sepia reading theme, on-device neural TTS voice engines, and persistent background playback.",
+  "showcase_scroll_hint": "Scroll or swipe to change screen",
+  "showcase_fullscreen": "View Fullscreen",
+  "showcase_mobile_swipe": "Scroll or swipe to change",
+  "showcase_key_capabilities": "Key Capabilities",
+  "showcase_architecture_label": "Architecture:",
+  "showcase_prev": "Previous",
+  "showcase_next": "Next",
+  "all_captures": "All Screen Captures",
+  "arch_heading": "Architecture & Technology",
+  "arch_layer_1_name": "UI Layer",
+  "arch_layer_1_tech": "Jetpack Compose M3",
+  "arch_layer_1_desc": "Fully declarative Kotlin UI with Material Design 3 theming. Signature sepia/dark/light themes, bottom dock media controls, and full-width adaptive dialogs for settings.",
+  "arch_layer_2_name": "Audio Engine",
+  "arch_layer_2_tech": "AndroidX Media3 + ExoPlayer",
+  "arch_layer_2_desc": "Decoupled MediaSessionService operating in an independent Android Service lifecycle. Survives orientation changes, app minimization, and handles audio focus for calls and navigation prompts.",
+  "arch_layer_3_name": "TTS Processing",
+  "arch_layer_3_tech": "Neural Engines (Kokoro / Piper) + Native TextToSpeech",
+  "arch_layer_3_desc": "Multi-engine speech synthesis abstraction. Regex-based quote-aware tokenizer with quote protection, abbreviation shielding (Mr., Dr., Ch.), and CJK terminal character detection.",
+  "arch_layer_4_name": "Web Scraping",
+  "arch_layer_4_tech": "Jsoup + WebView",
+  "arch_layer_4_desc": "Jsoup DOM pipeline for chapter extraction using user-configurable CSS selectors. JavascriptInterface bridge for userscript injection with wildcard URL matching.",
+  "arch_layer_5_name": "Storage",
+  "arch_layer_5_tech": "AtomicFile + Kotlin Coroutines",
+  "arch_layer_5_desc": "Crash-resistant persistence via Android AtomicFile (write → staging file → atomic rename). Thread-safe access with Coroutine Mutexes. Zero special permissions required.",
+  "arch_layer_6_name": "Architecture Pattern",
+  "arch_layer_6_tech": "Clean Architecture + MVVM",
+  "arch_layer_6_desc": "Decoupled domain, data, and presentation layers. StateFlow-driven reactive UI state, centralized AudioPlaybackCoordinator service, and Coroutine-based async operations.",
+  "screens": {
+    "home": {
+      "title": "Library & Playlist Hub",
+      "subtitle": "NovelArrow Reader Pro · Root Folder & Scoped Storage",
+      "tag": "Storage & Playlists",
+      "desc": "Pick any root folder on your Android device. Every subfolder automatically becomes its own reading playlist with independently tracked chapter progression and offline text-to-speech audio state."
+    },
+    "voice_engine": {
+      "title": "Neural Voice Engine",
+      "subtitle": "On-Device AI Voices · Kokoro, Piper & KittenTTS",
+      "tag": "Speech Synthesis & AI",
+      "desc": "Switch effortlessly between Android built-in Google TTS (474 voices) and cutting-edge on-device neural voice bundles. Experience natural human-grade prosody without any cloud subscriptions or privacy exposure."
+    },
+    "toolbar_settings": {
+      "title": "Persistent Notification Media Bar",
+      "subtitle": "AndroidX Media3 Foreground Service & Quick Controls",
+      "tag": "Background Audio",
+      "desc": "A customized, quick-access reader bar pinned directly in your Android notification shade and lock screen. Keeps playback alive even after closing the app with battery optimization unrestricted."
+    },
+    "audio_studio": {
+      "title": "Audio Studio & Audiobook Generator",
+      "subtitle": "Offline Chapter Synthesis & Standalone MP3 Tracks",
+      "tag": "Audio Generation",
+      "desc": "Transform full web novel chapters into standalone MP3 audiobooks stored in local audio folders. Listen with the integrated chapter seekbar, speed adjustments (0.5×–2.5×), and background progress tracking."
+    },
+    "live_web_tts": {
+      "title": "Live Web TTS & Reader",
+      "subtitle": "In-App Web Scraper & Article Audio Player",
+      "tag": "Web Scraping",
+      "desc": "Integrated in-app browser with Jsoup DOM pipeline that strips ads, banners, and clutter from online novels and news sites. Streams clean extracted text straight into the live TTS audio player overlay."
+    }
   }
 }

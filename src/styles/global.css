@@ -194,7 +194,9 @@
   }
 }
 
-/* RTL Layout & Premium Arabic Typography Support */
+/* ═══════════════════ COMPLETE RTL & ARABIC DESIGN SYSTEM ═══════════════════ */
+
+/* 1. Typography & Base Alignment */
 [dir="rtl"] {
   font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   text-align: right;
@@ -220,38 +222,138 @@
   letter-spacing: normal !important;
 }
 
+/* 2. Bidirectional & Monospace Isolation */
 [dir="rtl"] .font-mono,
 [dir="rtl"] code,
 [dir="rtl"] pre,
-[dir="rtl"] [data-ltr-isolate] {
-  direction: ltr;
-  unicode-bidi: isolate;
+[dir="rtl"] [data-ltr-isolate],
+[dir="rtl"] .ltr-isolate {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
   display: inline-block;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
 }
 
-[dir="rtl"] #floating-lang-changer {
-  right: auto;
-  left: 1rem;
-}
-
-@media (min-width: 640px) {
-  [dir="rtl"] #floating-lang-changer {
-    left: 1.5rem;
-  }
-}
-
-/* Flip directional indicators in RTL */
+/* 3. Directional Icon & Arrow Flipping */
 [dir="rtl"] .arrow-icon,
 [dir="rtl"] [data-rtl-flip] {
   transform: scaleX(-1);
 }
 
-/* Dropdown alignment in RTL */
-[dir="rtl"] .lang-dropdown-panel {
-  right: auto;
-  left: 0;
-  transform-origin: top left;
+[dir="rtl"] .group:hover .arrow-icon,
+[dir="rtl"] .group:hover [data-rtl-flip] {
+  transform: scaleX(-1) translateX(-2px);
 }
+
+/* 4. Top/Bottom Floating Controls Mirroring */
+[dir="rtl"] #floating-lang-changer,
+[dir="rtl"] #floating-projects-btn {
+  right: auto !important;
+  left: 1rem !important;
+}
+
+@media (min-width: 640px) {
+  [dir="rtl"] #floating-lang-changer,
+  [dir="rtl"] #floating-projects-btn {
+    left: 1.5rem !important;
+  }
+}
+
+/* 5. Dropdown Menu Alignment */
+[dir="rtl"] .lang-dropdown-panel,
+[dir="rtl"] [data-lang-menu] {
+  right: auto !important;
+  left: 0 !important;
+  transform-origin: top left !important;
+}
+
+/* 6. FeaturedProjects Fixed Laser Bar Mirroring */
+[dir="rtl"] #projects-laser-bar {
+  left: auto !important;
+  right: 0.5rem !important;
+  transform: translate(1.5rem, -50%) !important;
+}
+
+@media (min-width: 640px) {
+  [dir="rtl"] #projects-laser-bar {
+    right: 1.5rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  [dir="rtl"] #projects-laser-bar {
+    right: 2rem !important;
+  }
+}
+
+[dir="rtl"] .project-snap-slide {
+  padding-left: 0.875rem !important;
+  padding-right: 2.5rem !important;
+}
+
+@media (min-width: 640px) {
+  [dir="rtl"] .project-snap-slide {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}
+
+/* 7. Career Timeline Mirroring */
+[dir="rtl"] .timeline-container > div:first-child,
+[dir="rtl"] #timeline-progress-laser {
+  left: auto !important;
+  right: 1rem !important;
+}
+
+@media (min-width: 768px) {
+  [dir="rtl"] .timeline-container > div:first-child,
+  [dir="rtl"] #timeline-progress-laser {
+    right: 2rem !important;
+  }
+}
+
+[dir="rtl"] .timeline-beacon {
+  left: auto !important;
+  right: 1rem !important;
+  transform: translateX(50%) !important;
+}
+
+@media (min-width: 768px) {
+  [dir="rtl"] .timeline-beacon {
+    right: 2rem !important;
+  }
+}
+
+[dir="rtl"] .timeline-item {
+  padding-left: 0 !important;
+  padding-right: 3rem !important;
+}
+
+@media (min-width: 768px) {
+  [dir="rtl"] .timeline-item {
+    padding-right: 5rem !important;
+  }
+}
+
+/* 8. Search Input Icons & Spacing in Projects Archive */
+[dir="rtl"] #project-search-input {
+  padding-left: 2rem !important;
+  padding-right: 2.25rem !important;
+  text-align: right !important;
+}
+
+[dir="rtl"] .search-icon-wrapper {
+  left: auto !important;
+  right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0.75rem !important;
+}
+
+[dir="rtl"] #clear-search-btn {
+  right: auto !important;
+  left: 0 !important;
+  padding-right: 0 !important;
+  padding-left: 0.625rem !important;
+}
+
 
 

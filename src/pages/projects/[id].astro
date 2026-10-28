@@ -61,18 +61,18 @@ const formattedDate = data.publishedDate
         {isHobby ? (
           <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/15 dark:text-amber-300 ring-1 ring-amber-500/20 shadow-xs">
             <span class="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" aria-hidden="true" />
-            Free to Use
+            <span data-i18n="common.badges.free_to_use">Free to Use</span>
             <span class="sr-only">Hobby Project</span>
           </span>
         ) : isOss ? (
           <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/15 dark:text-emerald-300 shadow-xs">
             <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
-            Open Source
+            <span data-i18n="common.badges.open_source">Open Source</span>
           </span>
         ) : isCommercial ? (
           <span class="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-700 dark:border-blue-400/30 dark:bg-blue-400/15 dark:text-blue-300 shadow-xs">
             <span class="h-1.5 w-1.5 rounded-full bg-blue-500" aria-hidden="true" />
-            Commercial Solution
+            <span data-i18n="common.badges.commercial">Commercial Solution</span>
           </span>
         ) : null}
 
@@ -81,12 +81,12 @@ const formattedDate = data.publishedDate
             <svg class="h-3 w-3 text-purple-600 dark:text-purple-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
             </svg>
-            Featured
+            <span data-i18n="common.badges.featured">Featured</span>
           </span>
         )}
 
         {formattedDate && (
-          <span class="text-xs text-zinc-500 dark:text-zinc-400">
+          <span class="text-xs text-zinc-500 dark:text-zinc-400 ltr-isolate">
             {formattedDate}
           </span>
         )}
@@ -166,7 +166,7 @@ const formattedDate = data.publishedDate
               <polyline points="15 3 21 3 21 9" />
               <line x1="10" y1="14" x2="21" y2="3" />
             </svg>
-            <span>Live Website</span>
+            <span data-i18n="common.actions.live_website">Live Website</span>
           </a>
         )}
 
@@ -185,7 +185,7 @@ const formattedDate = data.publishedDate
     <!-- Highlights Card List (satisfying T2.F07.05) -->
     {data.highlights && data.highlights.filter(Boolean).length > 0 && (
       <section class="my-10" aria-labelledby="highlights-heading">
-        <h2 id="highlights-heading" class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+        <h2 id="highlights-heading" class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100" data-i18n="projects.highlights_heading">
           Technical Highlights & Architectural Focus
         </h2>
         <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -213,9 +213,9 @@ const formattedDate = data.publishedDate
             <svg class="h-5 w-5 text-blue-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
             </svg>
-            <span>Interface Screenshots &amp; Platform Architecture</span>
+            <span data-i18n="projects.screenshots_heading">Interface Screenshots &amp; Platform Architecture</span>
           </h2>
-          <span class="text-xs text-zinc-400 font-mono">
+          <span class="text-xs text-zinc-400 font-mono ltr-isolate">
             {data.screenshots.length} {data.screenshots.length === 1 ? 'screen' : 'screens'}
           </span>
         </div>
@@ -257,10 +257,10 @@ const formattedDate = data.publishedDate
         href="/projects"
         class="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-2 focus-visible:outline-blue-600"
       >
-        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <svg class="h-4 w-4 arrow-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" />
         </svg>
-        <span>Back to All Projects</span>
+        <span data-i18n="common.actions.back_to_projects">Back to All Projects</span>
       </a>
 
       {isBookReader && (
@@ -268,7 +268,7 @@ const formattedDate = data.publishedDate
           href="/projects/bookreader"
           class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-amber-600 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300 transition-colors"
         >
-          <span>Open BookReader Interactive Showcase →</span>
+          <span data-i18n="projects.open_bookreader_showcase">Open BookReader Interactive Showcase →</span>
         </a>
       )}
 
@@ -277,7 +277,7 @@ const formattedDate = data.publishedDate
           href="/projects/textmorph"
           class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 transition-colors"
         >
-          <span>Open TextMorph Interactive Showcase →</span>
+          <span data-i18n="projects.open_textmorph_showcase">Open TextMorph Interactive Showcase →</span>
         </a>
       )}
     </footer>

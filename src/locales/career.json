@@ -1,9 +1,14 @@
 {
-  "badge": "Experience & Track Record",
-  "title": "Career Journey",
-  "subtitle": "6+ years of engineering progression: architecting microservices, leading cross-functional squads, and shipping production platforms across fintech, enterprise logistics, automotive SaaS, and consumer applications.",
-  "present": "Present",
-  "view_certificate": "View Certificate",
-  "technologies": "Technologies & Stack",
-  "achievements": "Key Deliverables & Responsibilities"
+  "breadcrumb": "Career Journey",
+  "badge_progression": "Professional Progression",
+  "badge_track_record": "6+ Years Track Record",
+  "title": "Career Journey & Milestones",
+  "subtitle": "A chronological timeline of roles, companies, and platforms shipped: from full-stack engineering to technical leadership across fintech, enterprise logistics, automotive SaaS, and high-traffic consumer mobile apps.",
+  "track_record": "Experience & Track Record",
+  "journey_title": "Career Journey",
+  "journey_desc": "6+ years of engineering progression: architecting microservices, leading cross-functional squads, and shipping production platforms across fintech, enterprise logistics, automotive SaaS, and consumer applications.",
+  "current_role": "Current Role • Present",
+  "timeline_badge": "Engineering Trajectory",
+  "timeline_title": "Career Timeline",
+  "timeline_subtitle": "Track record of technical leadership and core architectural impact across 7 technology companies."
 }

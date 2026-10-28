@@ -2,6 +2,7 @@
 // Interactive smartphone mockup and lightbox controller for TextMorph Showcase
 
 import { APP_SCREENS, type AppScreen } from '../data/textmorph-screens';
+import { t, getCurrentLang } from './i18n';
 
 export function initAppShowcase(): void {
   const screens: AppScreen[] = APP_SCREENS;
@@ -93,11 +94,18 @@ export function initAppShowcase(): void {
       screenImg.alt = data.title;
     }
 
-    if (detailTag) detailTag.textContent = data.tag;
+    const lang = getCurrentLang();
+    const screenKey = data.id.replace(/-/g, '_');
+    const trTag = t(`textmorph.screens.${screenKey}.tag`, lang);
+    const trTitle = t(`textmorph.screens.${screenKey}.title`, lang);
+    const trSub = t(`textmorph.screens.${screenKey}.subtitle`, lang);
+    const trDesc = t(`textmorph.screens.${screenKey}.desc`, lang);
+
+    if (detailTag) detailTag.textContent = (trTag !== `textmorph.screens.${screenKey}.tag` ? trTag : null) || data.tag;
     if (detailNum) detailNum.textContent = `${data.num} / ${String(screens.length).padStart(2, '0')}`;
-    if (detailTitle) detailTitle.textContent = data.title;
-    if (detailSubtitle) detailSubtitle.textContent = data.subtitle;
-    if (detailDesc) detailDesc.textContent = data.description;
+    if (detailTitle) detailTitle.textContent = (trTitle !== `textmorph.screens.${screenKey}.title` ? trTitle : null) || data.title;
+    if (detailSubtitle) detailSubtitle.textContent = (trSub !== `textmorph.screens.${screenKey}.subtitle` ? trSub : null) || data.subtitle;
+    if (detailDesc) detailDesc.textContent = (trDesc !== `textmorph.screens.${screenKey}.desc` ? trDesc : null) || data.description;
     if (detailTech) detailTech.textContent = data.tech;
 
     if (detailHighlights) {
@@ -115,17 +123,34 @@ export function initAppShowcase(): void {
         .join('');
     }
 
-    // Update Tab Buttons Active Styling
+    // Update Tab Buttons Active Styling & Localized Title
     tabButtons.forEach((btn, i) => {
       const isSelected = i === index;
       btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      const scr = screens[i];
+      if (scr) {
+        const k = scr.id.replace(/-/g, '_');
+        const tit = t(`textmorph.screens.${k}.title`, lang);
+        const titleSpan = btn.querySelector('span:last-child');
+        if (titleSpan && tit && tit !== `textmorph.screens.${k}.title`) titleSpan.textContent = tit;
+      }
       btn.className = isSelected
         ? 'screen-tab-btn flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold shadow-sm transition-all focus-visible:outline-2 focus-visible:outline-slate-500 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-950 scale-102'
         : 'screen-tab-btn flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold shadow-sm transition-all focus-visible:outline-2 focus-visible:outline-slate-500 bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700 hover:scale-101';
     });
 
-    // Update Thumbnail Strip Cards Active Styling
+    // Update Thumbnail Strip Cards Active Styling & Localized Labels
     thumbnailCards.forEach((card, i) => {
+      const scr = screens[i];
+      if (scr) {
+        const k = scr.id.replace(/-/g, '_');
+        const tit = t(`textmorph.screens.${k}.title`, lang);
+        const tg = t(`textmorph.screens.${k}.tag`, lang);
+        const titEl = card.querySelector('.text-\\[11px\\]');
+        const tgEl = card.querySelector('.text-\\[10px\\]');
+        if (titEl && tit && tit !== `textmorph.screens.${k}.title`) titEl.textContent = tit;
+        if (tgEl && tg && tg !== `textmorph.screens.${k}.tag`) tgEl.textContent = tg;
+      }
       const isSelected = i === index;
       card.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
       card.className = isSelected
@@ -210,6 +235,10 @@ export function initAppShowcase(): void {
       }
     });
   }
+
+  window.addEventListener('lang-changed', () => {
+    setScreen(activeIndex);
+  });
 
   updateMobileIndicator();
 }

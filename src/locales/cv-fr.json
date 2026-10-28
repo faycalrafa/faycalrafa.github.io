@@ -1,7 +1,16 @@
 {
   "title": "Curriculum Vitae",
+  "modal_title": "Faycal Rafa | Curriculum Vitae",
+  "badge_a4": "Format A4 · 1 Page Complète",
+  "role_full": "Senior Software Engineer & Lead Technique",
+  "zoom_fit": "Ajuster à la page",
+  "zoom_actual": "Taille réelle",
+  "open_a4_cv": "Ouvrir le CV (Page A4)",
+  "status_preview": "CV A4 Complet • Aperçu Haute Résolution • Page Unique",
+  "status_hint": "Cliquez pour zoomer • Touche Échap pour fermer",
   "name": "Faycal Rafa",
   "role": "Ingénieur Fullstack",
+  "tagline": "Senior Software Engineer & Lead Technique · 6+ ans d'expérience",
   "contact": {
     "location": "Alger, Algérie",
     "email": "rafafaycal@gmail.com",
@@ -9,12 +18,16 @@
     "github": "github.com/faycalrafa",
     "portfolio": "faycalrafa.github.io"
   },
-  "summary_title": "Profil Professionnel",
-  "summary": "Ingénieur Fullstack avec plus de 6 ans d'expérience dans le déploiement de systèmes distribués à grande échelle et d'applications mobiles natives (ancien Senior Software Engineer et Lead Technique dans la fintech, le SaaS automobile et les plateformes grand public). Spécialisé dans l'architecture de microservices résilients, les applications mobiles offline-first et les interfaces web haute performance.",
+  "summary_title": "Résumé Professionnel",
+  "summary": "Ingénieur Fullstack avec 6+ ans d'expérience dans la livraison de systèmes distribués à grande échelle et d'applications mobiles natives (ancien Senior Software Engineer et Lead Technique dans la fintech, le SaaS automobile et les plateformes grand public). Spécialisé dans l'architecture de microservices robustes, d'applications mobiles offline-first et de produits web performants.",
   "flagships_title": "Applications Android Phares",
   "experience_title": "Expérience Professionnelle",
   "education_title": "Formation & Diplômes",
   "skills_title": "Compétences Techniques",
+  "spoken_languages_title": "Langues",
+  "experience_subtitle": "7 Entreprises • Chronologique",
+  "footer_headline": "Faycal Rafa • Ingénieur Fullstack & Lead Technique",
+  "footer_generated": "Généré à partir de données vérifiées",
   "print_action": "Imprimer / Enregistrer en PDF",
-  "print_hint": "Optimisé pour une impression parfaite sur une page A4."
+  "print_hint": "Optimisé pour une impression parfaite sur une page A4 unique."
 }

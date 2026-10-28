@@ -1,11 +1,12 @@
 {
   "badge": "Contact",
-  "status": "À l'écoute d'opportunités",
-  "title": "Contactez-moi & Opportunités",
-  "subtitle": "Disponible pour des postes d'Ingénieur Fullstack, Senior Software Engineer et Lead Tech à l'international. Pour une opportunité CDI, une mission contractuelle ou un projet ambitieux, contactez-moi directement via les canaux ci-dessous.",
-  "whatsapp_cta": "Ouvrir WhatsApp",
+  "status": "Ouvert aux Opportunités",
+  "title": "Contact & Opportunités Professionnelles",
+  "subtitle": "Disponible pour des postes d'Ingénieur Fullstack, Senior Software Engineer et Lead Technique dans le monde entier. Que vous ayez un poste à plein temps, une mission à fort impact ou un projet novateur, contactez-moi directement via les canaux ci-dessous.",
+  "whatsapp_cta": "Ouvrir la discussion WhatsApp",
+  "whatsapp_fab": "Discutons sur WhatsApp",
   "email_cta": "Envoyer un e-mail",
   "github_cta": "Voir le profil GitHub",
   "linkedin_cta": "Se connecter sur LinkedIn",
-  "direct_response": "Réponse habituelle sous quelques heures."
+  "direct_response": "Réponse habituelle en quelques heures."
 }

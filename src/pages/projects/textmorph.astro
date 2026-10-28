@@ -90,17 +90,17 @@ try {
           <div class="flex flex-wrap items-center gap-2 mb-3">
             <span class="inline-flex items-center gap-1.5 rounded-full border border-slate-500/30 bg-slate-800/10 px-3 py-1 text-xs font-semibold text-slate-800 dark:border-slate-400/30 dark:bg-slate-800/60 dark:text-slate-200 ring-1 ring-slate-500/20">
               <span class="h-1.5 w-1.5 rounded-full bg-slate-500 dark:bg-slate-400 animate-pulse" aria-hidden="true"></span>
-              Open Source
+              <span data-i18n="common.badges.open_source">Open Source</span>
               <span class="sr-only">Flagship Project</span>
             </span>
             <span
               id="textmorph-version-badge"
-              class="inline-flex items-center gap-1.5 rounded-full border border-slate-400/30 bg-slate-400/10 px-2.5 py-1 text-xs font-semibold text-slate-700 dark:border-slate-500/30 dark:bg-slate-800/50 dark:text-slate-300"
+              class="inline-flex items-center gap-1.5 rounded-full border border-slate-400/30 bg-slate-400/10 px-2.5 py-1 text-xs font-semibold text-slate-700 dark:border-slate-500/30 dark:bg-slate-800/50 dark:text-slate-300 ltr-isolate"
             >
               <span class="h-1.5 w-1.5 rounded-full bg-slate-500 dark:bg-slate-400" aria-hidden="true"></span>
               <span id="textmorph-version-text">{releaseInfo.version} · Latest</span>
             </span>
-            <span class="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">
+            <span class="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400 ltr-isolate">
               Android · Kotlin · Multi-Engine LLM · LiteRT-LM
             </span>
           </div>
@@ -124,7 +124,7 @@ try {
               <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              <span data-i18n="common.actions.download_apk">Download Releases / APK</span>
+              <span data-i18n="common.actions.releases_apk">Download Releases / APK</span>
               <span id="textmorph-apk-size" class="text-slate-300 dark:text-slate-600 font-normal text-xs">{releaseInfo.sizeMb}</span>
             </a>
 
@@ -159,7 +159,7 @@ try {
 
     <!-- ═══════════════════ FEATURES GRID ═══════════════════ -->
     <section class="mb-14" aria-labelledby="features-heading">
-      <h2 id="features-heading" class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6">Key Features</h2>
+      <h2 id="features-heading" class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6" data-i18n="textmorph.features_heading">Key Features</h2>
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {[
           { emoji: '🤖', title: 'Multi-Engine On-Device AI', desc: 'Modular multi-engine inference runtime (Google LiteRT-LM and native engines) capable of executing any open foundation LLM directly on mobile silicon with hardware GPU/NPU acceleration and total privacy.' },
@@ -186,7 +186,7 @@ try {
 
     <!-- ═══════════════════ TECH STACK PILLS ═══════════════════ -->
     <section class="mb-12" aria-label="Technology stack">
-      <h2 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-4">Tech Stack</h2>
+      <h2 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-4" data-i18n="textmorph.tech_stack_heading">Tech Stack</h2>
       <div class="flex flex-wrap gap-2">
         {['Android Kotlin', 'Jetpack Compose M3', 'Multi-Engine LLM', 'Google LiteRT-LM', 'llama.cpp (GGUF)', 'OpenAI-Compatible APIs', 'AccessibilityService', 'Ktor CIO Server', 'Linux mmap', 'ParcelFileDescriptor', 'WindowManager Overlay', 'Kotlin Coroutines', 'StateFlow', 'Room DB'].map(tech => (
           <span class="inline-flex items-center rounded-lg border border-zinc-200/90 bg-zinc-100/80 px-2.5 py-1 font-mono text-xs font-medium text-zinc-800 dark:border-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-200">
@@ -199,15 +199,16 @@ try {
     <!-- ═══════════════════ FOOTER LINKS ═══════════════════ -->
     <footer class="flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200/80 pt-8 dark:border-zinc-800/80">
       <a href="/projects" class="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors">
-        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" /></svg>
-        All Projects
+        <svg class="h-4 w-4 arrow-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" /></svg>
+        <span data-i18n="common.actions.back_to_projects">All Projects</span>
       </a>
       <div class="flex items-center gap-4">
         <a href="/projects/bookreader" class="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-600 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300 transition-colors">
-          <span>BookReader Showcase →</span>
+          <span data-i18n="projects.open_bookreader_showcase">BookReader Showcase →</span>
         </a>
         <a href={REPO_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-500 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-100 transition-colors">
-          View Source on GitHub →
+          <span data-i18n="common.actions.github_repo">GitHub Repo</span>
+          <span class="arrow-icon">→</span>
         </a>
       </div>
     </footer>

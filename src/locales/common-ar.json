@@ -1,26 +1,53 @@
 {
+  "skip_to_content": "الانتقال إلى المحتوى الرئيسي",
   "nav": {
     "home": "الرئيسية",
     "career": "المسيرة المهنية",
     "projects": "المشاريع",
     "bookreader": "BookReader",
     "contact": "تواصل معي",
-    "fullstack_engineer": "مهندس برمجيات شامل"
+    "fullstack_engineer": "مهندس برمجيات شامل (Fullstack)",
+    "direct_contact": "تواصل مباشر وروابط سريعة",
+    "whatsapp_chat": "محادثة واتساب",
+    "phone_call": "اتصال هاتفي"
   },
   "actions": {
     "download_cv": "تحميل السيرة الذاتية",
-    "view_showcase": "عرض النموذج التفاعلي",
+    "download_cv_aria": "تحميل السيرة الذاتية لـ فيصل رافة",
+    "view_showcase": "عرض المشروع",
     "read_more": "اقرأ المزيد",
     "view_all_projects": "عرض جميع المشاريع",
     "talk_whatsapp": "تحدث معي عبر واتساب",
     "back_to_home": "العودة للرئيسية",
-    "back_to_projects": "العودة للمشاريع",
+    "back_to_projects": "← العودة إلى المشاريع",
     "copy_link": "نسخ الرابط",
     "copied": "تم النسخ!",
     "print_cv": "طباعة السيرة الذاتية",
     "open_new_tab": "فتح في نافذة جديدة",
-    "download_apk": "تحميل ملف APK",
-    "github_repo": "مستودع GitHub"
+    "download_apk": "تحميل تطبيق APK",
+    "releases_apk": "الإصدارات وحزمة APK",
+    "github_repo": "مستودع GitHub",
+    "live_website": "الموقع المباشر",
+    "close": "إغلاق"
+  },
+  "palette": {
+    "search_placeholder": "اكتب أمراً أو ابحث... (التنقل، المشاريع، السيرة الذاتية، المظهر)",
+    "empty_title": "لم يتم العثور على نتائج",
+    "empty_desc": "لا توجد أوامر أو وجهات تنقل مطابقة لكلمة البحث. جرب كلمة مفتاحية أخرى.",
+    "hint_navigate": "تنقل",
+    "hint_select": "اختيار",
+    "hint_close": "إغلاق",
+    "cat_nav": "التنقل",
+    "cat_actions": "الإجراءات السريعة",
+    "cat_projects": "المشاريع",
+    "cat_social": "الشبكات والروابط"
+  },
+  "badges": {
+    "free_to_use": "مجاني للاستخدام",
+    "commercial": "تجاري",
+    "open_source": "مفتوح المصدر",
+    "featured": "مميز",
+    "current_role": "المنصب الحالي • مستمر"
   },
   "theme": {
     "toggle": "تبديل المظهر الداكن والفاتح",
@@ -35,14 +62,18 @@
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",
-    "bio_summary": "مهندس برمجيات شامل بخبرة تفوق 6 سنوات في بناء الأنظمة الموزعة عالية الأداء والتطبيقات الأصلية.",
-    "quick_links": "روابط سريعة",
-    "connect": "التواصل والشبكات",
-    "flagships": "المشاريع الرائدة",
-    "back_to_top": "إلى الأعلى"
+    "bio_summary": "مهندس برمجيات شامل بخبرة +6 سنوات في بناء وتطوير الخدمات المصغرة الموزعة والأنظمة السحابية وتطبيقات أندرويد الأصلية.",
+    "quick_links": "الموارد والوثائق",
+    "connect": "التواصل",
+    "flagships": "المشاريع البارزة",
+    "back_to_top": "إلى الأعلى",
+    "cv_link": "السيرة الذاتية لـ فيصل رافة",
+    "github_repos": "مستودعات GitHub (@faycalrafa)",
+    "command_palette_trigger": "لوحة الأوامر (⌘K)"
   },
   "not_found": {
     "title": "الصفحة غير موجودة",
-    "description": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها. استكشف ملف أعمال ومشاريع فيصل رافة."
-  }
+    "description": "الصفحة التي تبحث عنها غير متوفرة أو تم نقلها. تفضل باستكشاف أعمال ومشاريع فيصل رافة."
+  },
+  "arch_heading": "الهندسة المعمارية والتقنيات"
 }

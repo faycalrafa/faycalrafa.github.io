@@ -1,26 +1,53 @@
 {
+  "skip_to_content": "Passer au contenu principal",
   "nav": {
     "home": "Accueil",
     "career": "Parcours",
     "projects": "Projets",
     "bookreader": "BookReader",
     "contact": "Contact",
-    "fullstack_engineer": "Ingénieur Fullstack"
+    "fullstack_engineer": "Ingénieur Fullstack",
+    "direct_contact": "Contact direct & Réseaux",
+    "whatsapp_chat": "Discussion WhatsApp",
+    "phone_call": "Appel téléphonique"
   },
   "actions": {
     "download_cv": "Télécharger le CV",
-    "view_showcase": "Voir la Démo",
-    "read_more": "En Savoir Plus",
-    "view_all_projects": "Tous les Projets",
+    "download_cv_aria": "Télécharger le CV de Faycal Rafa",
+    "view_showcase": "Voir la présentation",
+    "read_more": "Lire la suite",
+    "view_all_projects": "Voir tous les projets",
     "talk_whatsapp": "Discutons sur WhatsApp",
-    "back_to_home": "Retour à l'Accueil",
-    "back_to_projects": "Retour aux Projets",
-    "copy_link": "Copier le Lien",
+    "back_to_home": "Retour à l'accueil",
+    "back_to_projects": "← Retour aux projets",
+    "copy_link": "Copier le lien",
     "copied": "Copié !",
     "print_cv": "Imprimer le CV",
     "open_new_tab": "Ouvrir dans un nouvel onglet",
     "download_apk": "Télécharger l'APK",
-    "github_repo": "Dépôt GitHub"
+    "releases_apk": "Versions & APK",
+    "github_repo": "Dépôt GitHub",
+    "live_website": "Site en direct",
+    "close": "Fermer"
+  },
+  "palette": {
+    "search_placeholder": "Tapez une commande ou recherchez... (Navigation, Projets, CV, Thème)",
+    "empty_title": "Aucun résultat trouvé",
+    "empty_desc": "Aucune commande ni destination ne correspond à votre recherche. Essayez un autre mot-clé.",
+    "hint_navigate": "Naviguer",
+    "hint_select": "Sélectionner",
+    "hint_close": "Fermer",
+    "cat_nav": "Navigation",
+    "cat_actions": "Actions",
+    "cat_projects": "Projets",
+    "cat_social": "Réseaux & Liens"
+  },
+  "badges": {
+    "free_to_use": "Accès gratuit",
+    "commercial": "Commercial",
+    "open_source": "Open Source",
+    "featured": "En vedette",
+    "current_role": "Poste actuel • Présent"
   },
   "theme": {
     "toggle": "Basculer entre thème sombre et clair",
@@ -35,14 +62,18 @@
   },
   "footer": {
     "rights": "Tous droits réservés.",
-    "bio_summary": "Ingénieur Fullstack avec plus de 6 ans d'expérience dans les systèmes distribués haute performance et les applications mobiles natives.",
-    "quick_links": "Navigation",
-    "connect": "Contact & Réseaux",
-    "flagships": "Applications Phares",
-    "back_to_top": "Haut de page"
+    "bio_summary": "Ingénieur Fullstack avec 6+ ans d'expérience dans la conception de microservices à haute disponibilité et d'applications mobiles natives.",
+    "quick_links": "Ressources & Documents",
+    "connect": "Contact",
+    "flagships": "Projets phares",
+    "back_to_top": "Haut de page",
+    "cv_link": "CV de Faycal Rafa",
+    "github_repos": "Dépôts GitHub (@faycalrafa)",
+    "command_palette_trigger": "Palette de commandes (⌘K)"
   },
   "not_found": {
-    "title": "Page Introuvable",
-    "description": "La page que vous recherchez n'existe pas ou a été déplacée. Explorez le portfolio de développeur ou les projets de Faycal Rafa."
-  }
+    "title": "Page non trouvée",
+    "description": "La page demandée n'existe pas ou a été déplacée. Découvrez le portfolio et les projets de Faycal Rafa."
+  },
+  "arch_heading": "Architecture & Technologies"
 }

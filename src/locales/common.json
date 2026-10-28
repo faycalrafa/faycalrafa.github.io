@@ -1,26 +1,53 @@
 {
+  "skip_to_content": "Skip to main content",
   "nav": {
     "home": "Home",
     "career": "Career",
     "projects": "Projects",
     "bookreader": "BookReader",
     "contact": "Contact",
-    "fullstack_engineer": "Fullstack Engineer"
+    "fullstack_engineer": "Fullstack Engineer",
+    "direct_contact": "Direct Contact & Connect",
+    "whatsapp_chat": "WhatsApp Chat",
+    "phone_call": "Phone Call"
   },
   "actions": {
     "download_cv": "Download CV",
+    "download_cv_aria": "Download Faycal Rafa CV",
     "view_showcase": "View Showcase",
     "read_more": "Read More",
     "view_all_projects": "View All Projects",
     "talk_whatsapp": "Let's Talk on WhatsApp",
     "back_to_home": "Back to Home",
-    "back_to_projects": "Back to Projects",
+    "back_to_projects": "← Back to Projects",
     "copy_link": "Copy Link",
     "copied": "Copied!",
     "print_cv": "Print CV",
     "open_new_tab": "Open in New Tab",
     "download_apk": "Download APK",
-    "github_repo": "GitHub Repo"
+    "releases_apk": "Releases & APK",
+    "github_repo": "GitHub Repo",
+    "live_website": "Live Website",
+    "close": "Close"
+  },
+  "palette": {
+    "search_placeholder": "Type a command or search... (Navigation, Projects, CV, Theme)",
+    "empty_title": "No results found",
+    "empty_desc": "No commands or navigation destinations matching. Try another keyword.",
+    "hint_navigate": "Navigate",
+    "hint_select": "Select",
+    "hint_close": "Close",
+    "cat_nav": "Navigation",
+    "cat_actions": "Actions",
+    "cat_projects": "Projects",
+    "cat_social": "Social & Links"
+  },
+  "badges": {
+    "free_to_use": "Free to Use",
+    "commercial": "Commercial",
+    "open_source": "Open Source",
+    "featured": "Featured",
+    "current_role": "Current Role • Present"
   },
   "theme": {
     "toggle": "Toggle dark and light theme",
@@ -35,14 +62,18 @@
   },
   "footer": {
     "rights": "All rights reserved.",
-    "bio_summary": "Fullstack Engineer with 6+ years shipping high-scale distributed systems and native mobile apps.",
-    "quick_links": "Navigation",
+    "bio_summary": "Fullstack Engineer with 6+ years shipping high-scale distributed systems, enterprise microservices, and native mobile apps.",
+    "quick_links": "Resources & Assets",
     "connect": "Connect",
-    "flagships": "Flagship Apps",
-    "back_to_top": "Back to Top"
+    "flagships": "Featured Works",
+    "back_to_top": "Back to top",
+    "cv_link": "Faycal Rafa CV",
+    "github_repos": "GitHub Repositories (@faycalrafa)",
+    "command_palette_trigger": "Command Palette (⌘K)"
   },
   "not_found": {
     "title": "Page Not Found",
     "description": "The page you're looking for doesn't exist or has been moved. Explore Faycal Rafa's developer portfolio or projects."
-  }
+  },
+  "arch_heading": "Architecture & Technology"
 }

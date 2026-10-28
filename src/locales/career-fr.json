@@ -1,9 +1,14 @@
 {
-  "badge": "Expérience & Réalisations",
-  "title": "Parcours Professionnel",
-  "subtitle": "Plus de 6 ans d'évolution en ingénierie logicielle : conception d'architectures microservices, direction d'équipes pluridisciplinaires et livraison de plateformes de production dans la fintech, la logistique d'entreprise, le SaaS automobile et les applications grand public.",
-  "present": "Aujourd'hui",
-  "view_certificate": "Voir l'attestation",
-  "technologies": "Technologies & Stack",
-  "achievements": "Livrables clés & Responsabilités"
+  "breadcrumb": "Parcours Professionnel",
+  "badge_progression": "Progression Professionnelle",
+  "badge_track_record": "6+ ans d'expérience",
+  "title": "Parcours & Étapes Clés",
+  "subtitle": "Une chronologie détaillée des postes, entreprises et plateformes déployées : de l'ingénierie full-stack au leadership technique dans la fintech, la logistique d'entreprise, le SaaS automobile et les applications mobiles grand public.",
+  "track_record": "Expérience & Bilan",
+  "journey_title": "Parcours Professionnel",
+  "journey_desc": "6+ ans d'évolution en ingénierie : architecture de microservices, direction d'équipes pluridisciplinaires et livraison de plateformes de production dans la fintech, la logistique et les applications grand public.",
+  "current_role": "Poste actuel • Présent",
+  "timeline_badge": "Trajectoire d'Ingénierie",
+  "timeline_title": "Chronologie de Carrière",
+  "timeline_subtitle": "Bilan de leadership technique et d'impact architectural au sein de 7 entreprises technologiques."
 }

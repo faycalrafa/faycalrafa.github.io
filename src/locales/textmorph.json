@@ -2,22 +2,76 @@
   "title": "TextMorph",
   "tagline": "System-wide, privacy-first multimodal AI writing assistant & floating toolbar for Android powered by multi-engine local LLM inference",
   "hero_description": "A system-wide, privacy-first multimodal AI writing assistant & floating toolbar for Android. Powered by a modular multi-engine architecture supporting Google LiteRT-LM, llama.cpp, and OpenAI-compatible APIs to run any open foundation model locally with zero-copy memory mapping, slash commands, and an embedded server.",
+  "features_heading": "Key Features",
+  "tech_stack_heading": "Tech Stack",
+  "release_notes_link": "Release Notes →",
+  "showcase_badge": "Play Store Showcase",
+  "showcase_badge_count": "On-Device AI in Action",
+  "showcase_title": "High-Definition Marketing Screens",
+  "showcase_subtitle": "Explore TextMorph's modular multi-engine architecture, universal slash command expansions, embedded localhost OpenAI server, and zero-permission overlay interface.",
+  "showcase_scroll_hint": "Scroll or swipe to change screen",
+  "showcase_fullscreen": "View Fullscreen",
+  "showcase_mobile_swipe": "Scroll or swipe to change",
+  "showcase_key_capabilities": "Key Capabilities",
+  "showcase_architecture_label": "Architecture:",
+  "showcase_prev": "Previous",
+  "showcase_next": "Next",
+  "all_cards": "All Play Store Cards",
   "engines": {
     "title": "Supported Local & API Inference Engines",
     "litert": "Google LiteRT-LM (Mobile GPU/NPU acceleration, zero-copy mmap)",
     "llamacpp": "llama.cpp Runtime (Universal GGUF quantized models on CPU/GPU)",
     "openai": "OpenAI-Compatible APIs (Embedded Ktor server on 127.0.0.1:8080 and external endpoints)"
   },
-  "features": {
-    "multi_engine": "Multi-Engine On-Device AI: Run models via LiteRT-LM, llama.cpp, or connect via OpenAI-compatible endpoints directly on mobile silicon with zero cloud latency and total privacy.",
-    "floating_bar": "System-Wide Floating AI Pill: Non-intrusive AccessibilityService overlay that anchors above active input fields without stealing keyboard focus (FLAG_NOT_FOCUSABLE).",
-    "zero_copy": "Universal Zero-Copy Downloads Loader: Memory-maps multi-gigabyte models directly via Linux mmap and ParcelFileDescriptor without duplicate flash storage overhead.",
-    "slash_commands": "Universal Slash Commands: Trigger AI transformations in any text box by typing /fix, /summarize, /fr (French), or /ar (Arabic) with instant in-place buffer replacement.",
-    "server": "Embedded Localhost OpenAI Server: Lightweight Ktor CIO HTTP server on 127.0.0.1:8080 exposing standard OpenAI-compatible streaming chat completions for Termux and local tools.",
-    "vision": "Multimodal Vision Screen Assist: MediaProjection integration captures active screen context and provides instant on-device multimodal reasoning without cloud exposure."
-  },
-  "architecture": {
-    "layer_runtime": "Multi-Engine Runtime (LiteRT-LM, llama.cpp & OpenAI APIs)",
-    "layer_runtime_desc": "Hardware-accelerated edge inference executing any open-weights LLM locally. Modular engine abstraction supports Google LiteRT-LM, llama.cpp, and local/remote OpenAI-compatible backends."
+  "arch_heading": "Architecture & Technology",
+  "arch_layer_1_name": "UI & Design System",
+  "arch_layer_1_tech": "Jetpack Compose M3 + Charcoal Slate",
+  "arch_layer_1_desc": "Fully declarative Kotlin UI with bespoke Charcoal & Slate palette, responsive full-width dialogs (DialogProperties(usePlatformDefaultWidth = false)), and tactile cards.",
+  "arch_layer_2_name": "System Integration",
+  "arch_layer_2_tech": "AccessibilityService + WindowManager",
+  "arch_layer_2_desc": "High-performance accessibility event loop monitoring focused text nodes with FLAG_NOT_FOCUSABLE overlay window, allowing simultaneous physical/software keyboard typing.",
+  "arch_layer_3_name": "AI Runtime & Inference",
+  "arch_layer_3_tech": "Multi-Engine Runtime (LiteRT-LM, llama.cpp & OpenAI APIs)",
+  "arch_layer_3_desc": "Hardware-accelerated edge inference capable of running any open-weights LLM locally. Modular engine abstraction supports Google LiteRT-LM, llama.cpp (GGUF quantization), and OpenAI-compatible API backends with dynamic GPU/NPU acceleration and multi-threaded CPU XNNPACK fallback.",
+  "arch_layer_4_name": "Local Server Engine",
+  "arch_layer_4_tech": "Ktor CIO + Server-Sent Events",
+  "arch_layer_4_desc": "Asynchronous non-blocking HTTP server listening on 127.0.0.1:8080. Implements standard OpenAI /v1/models and streaming /v1/chat/completions for local edge automations.",
+  "arch_layer_5_name": "Storage & Zero-Copy mmap",
+  "arch_layer_5_tech": "Linux mmap + ParcelFileDescriptor",
+  "arch_layer_5_desc": "Direct memory mapping of model weights residing in Downloads folder via Scoped Storage and ParcelFileDescriptor, eliminating multi-gigabyte file duplication.",
+  "arch_layer_6_name": "Architecture Pattern",
+  "arch_layer_6_tech": "Clean Architecture + MVVM + StateFlow",
+  "arch_layer_6_desc": "Decoupled domain, data, and presentation layers. Reactive StateFlow UI streams, Room persistence for custom prompt recipes, and Coroutine Mutex concurrency control.",
+  "screens": {
+    "floating_toolbar": {
+      "title": "System-Wide Floating AI Toolbar",
+      "subtitle": "AccessibilityService & WindowManager Non-Focusable Overlay",
+      "tag": "Flagship Feature",
+      "desc": "An intelligent floating capsule anchored directly above focused input fields across any Android application. It monitors text selection without stealing keyboard focus (FLAG_NOT_FOCUSABLE), allowing you to transform, rephrase, or translate text with a single tap inside WhatsApp, Gmail, Slack, and Chrome."
+    },
+    "model_hub": {
+      "title": "Hardware-Accelerated Model Hub",
+      "subtitle": "Zero-Copy Linux mmap & Multi-Engine Inference (LiteRT-LM, llama.cpp)",
+      "tag": "On-Device AI Engine",
+      "desc": "Load multi-gigabyte foundation models directly from your Downloads folder with zero file copying and instant mmap. Features a modular multi-engine architecture (Google LiteRT-LM, llama.cpp, and OpenAI-compatible APIs) capable of executing any open foundation LLM locally with mobile GPU/NPU acceleration."
+    },
+    "slash_commands": {
+      "title": "Custom Slash Commands Architecture",
+      "subtitle": "Universal In-Field Macros (/fix, /summarize, /fr, /ar)",
+      "tag": "Productivity & Macros",
+      "desc": "Type /command directly inside any text field on your phone to trigger automated on-device AI pipelines. Translate to French (/fr), Arabic (/ar), English (/en), or execute bespoke multi-step prompt chains with the Quick Execute button."
+    },
+    "custom_prompts": {
+      "title": "Custom Prompts & Multimodal Vision",
+      "subtitle": "Screen Assist, Creative Polish & Clipboard Actions",
+      "tag": "Multimodal & Prompts",
+      "desc": "Tailor your AI assistant with personalized prompt chains. Pin your top 5 companion actions directly into the floating bar for single-tap execution. Use Screen Assist to take instant on-device screenshots and ask multimodal questions."
+    },
+    "settings_server": {
+      "title": "Localhost OpenAI-Compatible HTTP Server",
+      "subtitle": "Embedded Ktor CIO Server on 127.0.0.1:8080",
+      "tag": "Local Server & API",
+      "desc": "Turns your Android smartphone into a private edge LLM API server. Exposes standard OpenAI-compatible endpoints (/v1/chat/completions and /v1/models) over localhost for Termux automations, local scripts, and mobile companion tools."
+    }
   }
 }
