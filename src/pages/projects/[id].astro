@@ -105,7 +105,7 @@ const formattedDate = data.publishedDate
         </h1>
       </div>
 
-      <p class="mt-4 text-lg sm:text-xl leading-relaxed text-zinc-600 dark:text-zinc-300">
+      <p class="mt-4 text-lg sm:text-xl leading-relaxed text-zinc-600 dark:text-zinc-300" data-i18n={`projects.items.${project.id}.tagline`}>
         {data.tagline}
       </p>
 
@@ -189,14 +189,14 @@ const formattedDate = data.publishedDate
           Technical Highlights & Architectural Focus
         </h2>
         <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {data.highlights.filter(Boolean).map((highlight) => (
+          {data.highlights.filter(Boolean).map((highlight, idx) => (
             <div class="flex items-start gap-3 rounded-xl border border-zinc-200/80 bg-white p-4 shadow-xs dark:border-zinc-800 dark:bg-zinc-900/60 transition-colors">
               <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-600 dark:bg-blue-400/15 dark:text-blue-400 font-bold text-xs mt-0.5">
                 <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                 </svg>
               </div>
-              <p class="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+              <p class="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300" data-i18n={`projects.items.${project.id}.highlights.${idx}`}>
                 {highlight}
               </p>
             </div>

@@ -10,5 +10,78 @@
   "current_role": "Poste actuel • Présent",
   "timeline_badge": "Trajectoire d'Ingénierie",
   "timeline_title": "Chronologie de Carrière",
-  "timeline_subtitle": "Bilan de leadership technique et d'impact architectural au sein de 7 entreprises technologiques."
+  "timeline_subtitle": "Bilan de leadership technique et d'impact architectural au sein de 7 entreprises technologiques.",
+  "items": {
+    "autoqual": {
+      "role": "Lead Technique & Ingénieur Logiciel Senior",
+      "location": "Alger, Algérie",
+      "summary": "Direction des opérations techniques et de l'architecture système globale, livraison de plateformes de gestion d'ateliers automobiles, suivi automatisé des véhicules et gestion multi-entrepôts des pièces de rechange.",
+      "achievements": [
+        "Architecture et déploiement de portails de diagnostic et de suivi des véhicules en temps réel, éliminant les goulets d'étranglement de répartition manuelle.",
+        "Conception de schémas relationnels normalisés sous PostgreSQL et automatisation des flux de réapprovisionnement multi-entrepôts.",
+        "Mise en place des standards d'ingénierie d'équipe, de modèles d'API modulaires et de pipelines de déploiement continu automatisés."
+      ]
+    },
+    "sabil": {
+      "role": "Ingénieur Logiciel Senior",
+      "location": "Bab Ezzouar, Alger",
+      "summary": "Architecture et mise à l'échelle de microservices à haut débit propulsant les transactions de portefeuilles numériques critiques et les opérations bancaires multi-tenants.",
+      "achievements": [
+        "Architecture de microservices distribués et tolérants aux pannes avec NestJS et Redis gérant des transactions à forte concurrence avec zéro perte de transaction.",
+        "Optimisation du partitionnement, de l'indexation PostgreSQL et des flux d'événements asynchrones pour atteindre une latence P99 inférieure à 45 ms.",
+        "Ingénierie des flux de réconciliation des paiements multicanaux avec idempotence stricte, pistes d'audit et vérification automatisée des règlements."
+      ]
+    },
+    "finnetude": {
+      "role": "Lead Technique",
+      "location": "Hydra, Alger",
+      "summary": "Direction des équipes d'ingénierie sur tout le cycle de développement pour concevoir et déployer des plateformes de négociation d'actions en temps réel et de simulation multi-actifs.",
+      "achievements": [
+        "Direction d'une équipe pluridisciplinaire de 6 ingénieurs pour livrer InvestMarket (plateforme boursière) et ALFA+ (simulateur de trading).",
+        "Décomposition des systèmes monolithiques existants en microservices élastiques pilotés par événements, garantissant 99,9 % de disponibilité.",
+        "Architecture d'une infrastructure de streaming bidirectionnel WebSocket offrant une latence inférieure à 5 ms pour l'exécution d'ordres tick par tick."
+      ]
+    },
+    "instaclean": {
+      "role": "Développeur Mobile",
+      "location": "Chéraga, Alger",
+      "concurrentNote": "Simultané avec le développement de la plateforme automobile début 2024",
+      "summary": "Ingénierie d'une plateforme mobile de commande de lavage automobile et de gestion de flotte reliant directement les agents de service aux propriétaires de véhicules.",
+      "achievements": [
+        "Développement d'une architecture mobile réactive Flutter avec géolocalisation GPS en direct, algorithmes de répartition par géorepérage et mise en file hors ligne.",
+        "Conception d'interactions d'interface à 60 fps et de couches de mise en cache locale résistantes aux conditions réseau instables.",
+        "Configuration de notifications push automatisées et d'alertes transactionnelles via Firebase Cloud Messaging."
+      ]
+    },
+    "kabri-auto": {
+      "role": "Développeur Full-stack",
+      "location": "Chéraga, Alger",
+      "concurrentNote": "Simultané avec le développement d'applications mobiles début 2024",
+      "summary": "Architecture d'une plateforme e-commerce transfrontalière à fort volume pour pièces de rechange automobiles lancée à Dubaï (marché des Émirats).",
+      "achievements": [
+        "Moteur d'indexation de compatibilité de pièces associant plus de 10 000 spécifications constructeurs (OEM) aux stocks de remplacement.",
+        "Développement de flux de paiement multidevises, d'API de calcul dynamique des frais de port et de synchronisation multi-entrepôts."
+      ]
+    },
+    "piassa-dz": {
+      "role": "Développeur Full-stack",
+      "location": "Oued Romane, Alger",
+      "summary": "Architecture d'un écosystème SaaS B2B automobile, CRM d'engagement client et API de synchronisation des catalogues fournisseurs en temps réel.",
+      "achievements": [
+        "Développement de portails clients réactifs et fonctionnalités mobiles pour fournisseurs automobiles et mécaniciens.",
+        "Architecture d'un CRM automatisant les devis fournisseurs, bons de commande et alertes de stock, réduisant le délai de traitement des devis de 65 %.",
+        "Création d'API de synchronisation bidirectionnelle à haut débit reliant le catalogue central Piassa aux terminaux de point de vente des clients."
+      ]
+    },
+    "bfln-technologies": {
+      "role": "Développeur Full-stack",
+      "location": "Ouled Fayet, Alger",
+      "summary": "Direction du développement et du déploiement de systèmes omnicanaux de suivi des commandes et de gestion de centre d'appels.",
+      "achievements": [
+        "Direction du développement complet et du déploiement d'un système omnicanal de suivi des commandes et de routage de téléphonie de centre d'appels.",
+        "Automatisation des opérations du service client, réduisant les délais de répartition manuelle de 40 % et éliminant les blocages logistiques.",
+        "Conception de schémas de bases de données relationnelles normalisés, de requêtes d'agrégation complexes et de tableaux de bord de télémétrie en temps réel."
+      ]
+    }
+  }
 }

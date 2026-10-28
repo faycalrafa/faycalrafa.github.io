@@ -316,7 +316,7 @@ import '../styles/global.css';
                       <span class="text-[10.5px] font-bold text-slate-900 truncate">
                         {exp.company}
                       </span>
-                      <span class="text-[8.5px] text-slate-500 truncate">
+                      <span class="text-[8.5px] text-slate-500 truncate" data-i18n={`career.items.${exp.id}.location`}>
                         • {exp.location}
                       </span>
                     </div>
@@ -328,14 +328,14 @@ import '../styles/global.css';
                   </div>
 
                   <!-- Role Title -->
-                  <div class="text-[9.5px] font-bold text-slate-800 tracking-tight mt-0.5">
+                  <div class="text-[9.5px] font-bold text-slate-800 tracking-tight mt-0.5" data-i18n={`career.items.${exp.id}.role`}>
                     {exp.role}
                   </div>
 
                   <!-- Achievement Bullets (1-2 concise points per company) -->
                   <ul class="mt-0.5 space-y-0.5 text-[8.5px] leading-[1.25] text-slate-700 pl-3 list-disc marker:text-slate-400">
-                    {exp.achievements.slice(0, exp.id === 'autoqual' || exp.id === 'sabil' || exp.id === 'finnetude' ? 2 : 1).map((item) => (
-                      <li>{item}</li>
+                    {exp.achievements.slice(0, exp.id === 'autoqual' || exp.id === 'sabil' || exp.id === 'finnetude' ? 2 : 1).map((item, idx) => (
+                      <li data-i18n={`career.items.${exp.id}.achievements.${idx}`}>{item}</li>
                     ))}
                   </ul>
                 </article>

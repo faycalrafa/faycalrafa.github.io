@@ -135,7 +135,7 @@ const searchableText = `${title} ${tagline} ${stack.join(' ')} ${highlights.join
           {title}
         </a>
       </h3>
-      <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+      <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400" data-i18n={id ? `projects.items.${id}.tagline` : undefined}>
         {tagline}
       </p>
     </div>
@@ -158,12 +158,12 @@ const searchableText = `${title} ${tagline} ${stack.join(' ')} ${highlights.join
           Key Highlights
         </p>
         <ul class="space-y-1.5 text-xs text-zinc-600 dark:text-zinc-400">
-          {highlights.slice(0, 3).map((item) => (
+          {highlights.slice(0, 3).map((item, idx) => (
             <li class="flex items-start gap-2">
               <svg class="h-3.5 w-3.5 shrink-0 text-emerald-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
-              <span class="line-clamp-2 leading-relaxed">{item}</span>
+              <span class="line-clamp-2 leading-relaxed" data-i18n={id ? `projects.items.${id}.highlights.${idx}` : undefined}>{item}</span>
             </li>
           ))}
         </ul>

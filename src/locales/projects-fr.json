@@ -32,5 +32,134 @@
   "highlights_heading": "Points Forts Techniques & Focus Architectural",
   "screenshots_heading": "Captures d'Interface & Architecture de la Plateforme",
   "open_bookreader_showcase": "Ouvrir la présentation interactive de BookReader →",
-  "open_textmorph_showcase": "Ouvrir la présentation interactive de TextMorph →"
+  "open_textmorph_showcase": "Ouvrir la présentation interactive de TextMorph →",
+  "featured": {
+    "bookreader": {
+      "desc": "Mon projet personnel Android : un lecteur de romans natif haute performance avec synthèse vocale neurale locale, découpage intelligent des citations, barre média permanente dans les notifications et synthèse de livres audio hors ligne.",
+      "role": "Ingénieur Android & Systèmes. Conception du runtime vocal neural local, du lecteur Media3 et du scraper Jsoup.",
+      "impact": "Livraison d'un lecteur 100 % hors ligne respectueux de la vie privée avec synthèse vocale naturelle, zéro dépendance cloud et interface Compose à 60 fps."
+    },
+    "storesdz": {
+      "badge": "Plateforme Multi-Tenant",
+      "subtitle": "Shopify pour l'Algérie",
+      "desc": "Comme Shopify, mais ouvert et conçu pour l'Algérie — propulsant des boutiques personnalisées, des tunnels de vente et le suivi du paiement à la livraison.",
+      "role": "Ingénieur Fullstack. Connexion des vitrines marchandes aux microservices de commerce, création de thèmes réutilisables.",
+      "impact": "Livraison d'une architecture multi-tenant prenant en charge 7 thèmes sectoriels distincts et la gestion des commandes à haut volume."
+    },
+    "textmorph": {
+      "desc": "Un assistant d'écriture IA multimodal flottant pour Android respectueux de la vie privée. Propulsé par une architecture multi-moteurs supportant Google LiteRT-LM, llama.cpp et les API OpenAI pour exécuter tout modèle de fondation localement avec mappage mémoire sans copie, commandes slash et serveur local embarqué.",
+      "role": "Créateur & Architecte Systèmes. Conception de la boucle d'événements AccessibilityService, du chargeur de modèles mmap et de l'inférence multi-moteurs.",
+      "impact": "Intégration d'une IA locale privée accélérée matériellement dans toutes les applications Android sans télémétrie cloud et avec macros flottantes instantanées."
+    },
+    "sabil": {
+      "desc": "Méga-application fintech d'entreprise servant des millions d'utilisateurs en Algérie avec paiements de factures en direct, portefeuilles numériques et opérations bancaires multi-tenants.",
+      "role": "Ingénieur Logiciel Senior. Architecture des microservices backend distribués, pipelines de transactions en direct et intégrations de paiement multi-fournisseurs résilientes.",
+      "impact": "Prise en charge d'un fort volume quotidien de transactions avec zéro perte, latence de confirmation P99 sous 45 ms et haute disponibilité."
+    },
+    "investmarket": {
+      "desc": "Plateforme électronique de négociation d'actions et de performance de portefeuille agréée par la COSOB en Algérie, offrant la profondeur du carnet d'ordres en direct et la télémétrie de portefeuille institutionnel.",
+      "role": "Lead Technique. Architecture de l'infrastructure de streaming WebSocket, flux de marché à faible latence et pipelines de passage d'ordres à forte concurrence.",
+      "impact": "Déploiement de la première plateforme de trading digital d'actions en Algérie avec exécution d'ordres en moins de 5 ms et flux d'événements tolérants aux pannes."
+    }
+  },
+  "items": {
+    "bookreader": {
+      "tagline": "Lecteur de romans Android natif haute performance avec streaming audio de synthèse vocale en temps réel",
+      "highlights": [
+        "Moteur TextToSpeech natif avec découpage de phrases sensible aux citations et ponctuation CJK",
+        "Service MediaSessionService AndroidX Media3 en arrière-plan avec commandes sur écran de verrouillage et notifications",
+        "Interface Jetpack Compose Material 3 avec thèmes dynamiques, défilement fluide et typographie soignée"
+      ]
+    },
+    "textmorph": {
+      "tagline": "Assistant d'écriture IA multimodal flottant pour Android respectueux de la vie privée, propulsé par des moteurs d'inférence LLM locaux",
+      "highlights": [
+        "Inférence locale multi-moteurs : Runtime accéléré matériellement supportant Google LiteRT-LM, llama.cpp et les API OpenAI",
+        "Chargeur de modèles sans copie mémoire : Mappage direct des modèles depuis les Téléchargements via Linux mmap et ParcelFileDescriptor",
+        "Barre d'outils IA flottante globale : Overlay AccessibilityService ancré au-dessus des champs actifs sans voler le focus du clavier"
+      ]
+    },
+    "storesdz": {
+      "tagline": "Plateforme e-commerce full-stack multi-tenant — comme Shopify, mais ouverte et conçue pour l'Algérie",
+      "highlights": [
+        "Plateforme commerciale multi-tenant reliant les vitrines marchandes dynamiques à des API de commerce partagées",
+        "Moteur de rendu Liquid personnalisé haute performance écrit en Rust offrant un affichage serveur ultra-rapide",
+        "7 thèmes sectoriels conçus indépendamment sur une base commerciale partagée et extensible",
+        "Intégration des paiements locaux algériens, calcul dynamique des frais de livraison et gestion complète des tunnels de vente"
+      ]
+    },
+    "sabil": {
+      "tagline": "Plateforme de services financiers d'entreprise à haut débit et de paiement numérique multicanal",
+      "highlights": [
+        "Architecture de microservices distribués propulsant les opérations fintech pour des milliers d'utilisateurs quotidiens",
+        "Ingénierie de flux d'orchestration de paiement résilients prenant en charge plusieurs passerelles financières",
+        "Partitionnement de base de données et optimisation des index assurant un temps de réponse inférieur à 50 ms à forte charge",
+        "Déploiement conteneurisé multiservices sous Docker avec sondes de santé et reprise automatique sur incident"
+      ]
+    },
+    "investmarket": {
+      "tagline": "Outil de gestion de portefeuille et d'analyse de performance pour investisseurs institutionnels et particuliers",
+      "highlights": [
+        "Plateforme institutionnelle de gestion de portefeuille et d'analyse de performance agréée par la COSOB en Algérie",
+        "Passerelles WebSockets haute fréquence pour la diffusion en direct du carnet d'ordres et des flux de cotation",
+        "Pattern Transactional Outbox garantissant la cohérence stricte des transactions et l'intégrité comptable",
+        "Couche de cache Redis en mémoire réduisant la charge de lecture en base de plus de 65 % en pic de marché"
+      ]
+    },
+    "alfa": {
+      "tagline": "Plateforme de formation révolutionnaire et simulateur 100 % digital dédié à l'apprentissage du trading multi-actifs",
+      "highlights": [
+        "Simulateur 100 % digital permettant aux utilisateurs de développer leurs compétences de trading en temps réel",
+        "Expérience d'apprentissage immersive conçue pour les apprenants professionnels, les entreprises et les étudiants",
+        "Reproduction dynamique des carnets d'ordres multi-actifs, de la liquidité et de l'exécution de marché",
+        "Architecture microservices robuste garantissant 99,9 % de disponibilité et une faible latence de streaming"
+      ]
+    },
+    "piassa": {
+      "tagline": "Marketplace B2B de pièces détachées automobiles, moteur de compatibilité et CRM fournisseurs",
+      "highlights": [
+        "Indexation haute performance du catalogue de pièces automobiles et recherche de compatibilité par numéro VIN",
+        "Architecture d'un CRM complet pour les fournisseurs de pièces et les ateliers de réparation automobile",
+        "API de synchronisation des stocks en direct reliant l'entrepôt central aux systèmes d'encaissement décentralisés",
+        "Application mobile multiplateforme en Flutter avec mise en cache du catalogue hors ligne et notifications push"
+      ]
+    },
+    "instaclean": {
+      "tagline": "Service à la demande de lavage et d'entretien automobile avec géolocalisation GPS en direct et planification",
+      "highlights": [
+        "Application mobile de répartition reliant directement les propriétaires de véhicules aux agents d'entretien",
+        "Suivi de localisation GPS en temps réel et notifications automatisées basées sur le géorepérage",
+        "Interface Flutter fluide à 60 fps avec calendrier de réservation interactif et configuration d'options",
+        "Architecture mobile offline-first avec cache local SQLite et synchronisation optimiste en arrière-plan"
+      ]
+    },
+    "kbari-auto": {
+      "tagline": "Plateforme e-commerce transfrontalière de pièces de rechange reliant les fournisseurs de Dubaï au marché algérien",
+      "highlights": [
+        "Boutique e-commerce client permettant aux particuliers et garagistes de rechercher et commander des pièces auto",
+        "Suite d'administration complète pour gérer les commandes multi-vendeurs et le suivi des livraisons en direct",
+        "Moteur de recherche de compatibilité cartographiant les pièces d'origine (OEM) et adaptables",
+        "Circuits logistiques localisés avec paiement multidevises et webhooks automatisés de statut de commande"
+      ]
+    },
+    "startingpack": {
+      "tagline": "Boilerplate de démarrage moderne pour Svelte 5 et TypeScript avec Runes et Tailwind CSS",
+      "highlights": [
+        "Développé avec les Runes réactives de Svelte 5 ($state, $derived, $effect) pour une réactivité chirurgicale",
+        "Typage TypeScript rigoureux avec vérification stricte des nulls et zéro type 'any' dans les composants",
+        "Système de design Tailwind CSS préconfiguré avec flux d'analyse statique et de formatage automatisés",
+        "Pipeline de build Vite ultra-rapide garantissant un rechargement HMR instantané et 100/100 sur Lighthouse"
+      ]
+    },
+    "tassouik": {
+      "tagline": "ERP tout-en-un de gestion e-commerce : centre d'appels, livraison, comptabilité analytique, Meta Ads et entrepôts",
+      "highlights": [
+        "Module de centre d'appels pour la confirmation des commandes, le routage téléphonique et la relation client",
+        "Gestionnaire d'agents de livraison avec répartition des colis en direct et suivi de l'acheminement",
+        "Tableaux de bord de comptabilité analytique et de rentabilité pour des opérations commerciales intensives",
+        "Synchronisation avec Meta Ads Manager pour le suivi automatique des campagnes et des conversions",
+        "Gestion multi-entrepôts avec alertes de réapprovisionnement et suivi des lots pour BFLN Technologies"
+      ]
+    }
+  }
 }

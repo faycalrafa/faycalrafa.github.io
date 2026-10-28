@@ -32,5 +32,134 @@
   "highlights_heading": "Technical Highlights & Architectural Focus",
   "screenshots_heading": "Interface Screenshots & Platform Architecture",
   "open_bookreader_showcase": "Open BookReader Interactive Showcase →",
-  "open_textmorph_showcase": "Open TextMorph Interactive Showcase →"
+  "open_textmorph_showcase": "Open TextMorph Interactive Showcase →",
+  "featured": {
+    "bookreader": {
+      "desc": "My ongoing Android hobby project: a high-performance native novel reader with on-device neural TTS audio, quote-aware sentence chunking, persistent notification media bar, and offline audiobook synthesis.",
+      "role": "Android & Systems Engineer. Designed on-device neural voice runtime, Media3 player, and Jsoup scraper.",
+      "impact": "Delivered 100% offline, privacy-first reader with natural speech synthesis, zero cloud dependencies, and 60fps Compose UI."
+    },
+    "storesdz": {
+      "badge": "Multi-Tenant Platform",
+      "subtitle": "Shopify for Algeria",
+      "desc": "Think Shopify, but open and built for Algeria — powering localized custom storefronts, sales funnels, and cash-on-delivery tracking.",
+      "role": "Fullstack Engineer. Connected merchant storefronts to commerce microservices, built reusable themes.",
+      "impact": "Delivered multi-tenant architecture supporting 7 distinct industry themes and high-velocity order management."
+    },
+    "textmorph": {
+      "desc": "A system-wide, privacy-first multimodal AI writing assistant & floating toolbar for Android. Powered by a modular multi-engine architecture supporting Google LiteRT-LM, llama.cpp, and OpenAI-compatible APIs to run any open foundation model locally with zero-copy memory mapping, slash commands, and an embedded server.",
+      "role": "Creator & Systems Architect. Engineered AccessibilityService event loop, mmap model loader, and multi-engine LLM inference.",
+      "impact": "Brought private, hardware-accelerated on-device AI across all Android apps with zero cloud telemetry and instant floating macros."
+    },
+    "sabil": {
+      "desc": "Enterprise fintech mega-application platform serving millions of users across Algeria with real-time bill payments, digital wallet services, and multi-tenant banking operations.",
+      "role": "Senior Software Engineer. Architected distributed backend microservices, real-time transaction pipelines, and resilient multi-provider payment integrations.",
+      "impact": "Handled high-volume daily transactional load with zero transaction loss, sub-45ms P99 confirmation latencies, and high availability."
+    },
+    "investmarket": {
+      "desc": "Real-time electronic stock trading and portfolio performance platform approved by the Algerian COSOB, delivering live order-book depth and institutional portfolio telemetry.",
+      "role": "Technical Lead. Architected WebSocket streaming infrastructure, low-latency market feeds, and high-concurrency order placement pipelines.",
+      "impact": "Shipped Algeria's premier digital stock trading platform with sub-5ms order execution and fault-tolerant event streams."
+    }
+  },
+  "items": {
+    "bookreader": {
+      "tagline": "High-performance native Android novel reader with real-time text-to-speech audio streaming",
+      "highlights": [
+        "Native TextToSpeech engine with quote-aware sentence chunking and CJK punctuation splitting",
+        "AndroidX Media3 background MediaSessionService with persistent lock screen & notification controls",
+        "Jetpack Compose Material 3 UI with dynamic theming, smooth scrolling, and custom font rendering"
+      ]
+    },
+    "textmorph": {
+      "tagline": "System-wide, privacy-first multimodal AI writing assistant & floating toolbar for Android powered by multi-engine local LLM inference",
+      "highlights": [
+        "Multi-Engine On-Device Inference: Hardware-accelerated runtime supporting Google LiteRT-LM, llama.cpp, and OpenAI APIs",
+        "Universal Zero-Copy Model Loader: Memory-maps large models directly from Downloads via Linux mmap and ParcelFileDescriptor",
+        "System-Wide Floating AI Toolbar: AccessibilityService overlay anchored above active input fields without stealing keyboard focus"
+      ]
+    },
+    "storesdz": {
+      "tagline": "Full-stack, multi-tenant e-commerce platform — think Shopify, but open and built for Algeria",
+      "highlights": [
+        "Multi-tenant commerce platform connecting dynamic merchant storefronts to shared commerce APIs",
+        "High-performance custom Rust-based Liquid templating engine delivering ultra-fast server rendering",
+        "7 independently designed industry themes built on a shared extensible commerce foundation",
+        "Localized Algerian payment, dynamic shipping calculations, and end-to-end sales funnel management"
+      ]
+    },
+    "sabil": {
+      "tagline": "High-throughput enterprise financial services and multi-channel digital payment platform",
+      "highlights": [
+        "Architected enterprise distributed microservices powering fintech operations for thousands of active daily users",
+        "Engineered resilient payment orchestration workflows supporting multiple digital financial payment gateways",
+        "Database partitioning and index optimization yielding sub-50ms API response times under high concurrency",
+        "Containerized multi-service deployment with Docker, health probes, and automated failover recovery"
+      ]
+    },
+    "investmarket": {
+      "tagline": "Portfolio management and performance analytics tool for institutional and retail investors",
+      "highlights": [
+        "Institutional portfolio management and performance analytics platform certified by the COSOB in Algeria",
+        "High-frequency WebSocket gateways for live order-book broadcasting and streaming market tickers",
+        "Transactional Outbox pattern guaranteeing strict transactional consistency and accounting integrity",
+        "In-memory Redis caching layer reducing database read load by over 65% during market volatility peaks"
+      ]
+    },
+    "alfa": {
+      "tagline": "Revolutionary digital financial training platform and interactive multi-asset trading simulator",
+      "highlights": [
+        "100% digital simulator allowing users to develop and stress-test real-time trading skills",
+        "Immersive learning experience tailored for professional financial trainees, corporate teams, and students",
+        "Dynamic reproduction of multi-asset order books, liquidity dynamics, and realistic market executions",
+        "Robust microservices architecture guaranteeing 99.9% uptime and low-latency market feed streaming"
+      ]
+    },
+    "piassa": {
+      "tagline": "Automotive spare parts B2B marketplace, parts compatibility engine, and supplier CRM",
+      "highlights": [
+        "Engineered high-performance B2B automotive parts catalog indexing and vehicle VIN compatibility search",
+        "Architected end-to-end Customer Relationship Management (CRM) system for parts suppliers and auto repair shops",
+        "Real-time inventory synchronization APIs linking central warehouse databases with distributed merchant POS systems",
+        "Cross-platform mobile application in Flutter with offline catalog caching and push notifications"
+      ]
+    },
+    "instaclean": {
+      "tagline": "On-demand mobile vehicle care service dispatching with real-time GPS tracking and scheduling",
+      "highlights": [
+        "Developed on-demand mobile dispatching app connecting vehicle owners directly with mobile detailing agents",
+        "Integrated live GPS location tracking and geofenced automated job status dispatch notifications",
+        "Engineered fluid 60fps Flutter UI with reactive scheduling calendar and multi-step service configuration",
+        "Implemented offline-first mobile architecture with local SQLite state caching and optimistic background syncing"
+      ]
+    },
+    "kbari-auto": {
+      "tagline": "Cross-border automotive replacement parts e-commerce platform connecting Dubai suppliers with the Algerian market",
+      "highlights": [
+        "Engineered customer-facing e-commerce storefront for vehicle owners and repair shops to search, filter, and order automotive parts",
+        "Built full backoffice administration suite to manage multi-vendor orders, customer accounts, and real-time delivery status tracking",
+        "Architected parts compatibility search engine mapping complex OEM and aftermarket parts for Dubai's import market",
+        "Integrated localized shipping and delivery workflows with multi-currency checkout and automated status webhooks"
+      ]
+    },
+    "startingpack": {
+      "tagline": "Modern Svelte 5 and TypeScript starter boilerplate with Runes and Tailwind CSS",
+      "highlights": [
+        "Engineered with Svelte 5 reactive Runes ($state, $derived, $effect) for fine-grained reactivity",
+        "Strict TypeScript type system with strict null checks and zero any-types across components",
+        "Pre-configured Tailwind CSS design system with automated linting and formatting workflows",
+        "Ultra-lean Vite build pipeline achieving sub-second HMR and 100/100 Lighthouse performance"
+      ]
+    },
+    "tassouik": {
+      "tagline": "All-in-one e-commerce backoffice ERP: call center, delivery dispatch, accounting analytics, Meta ads & warehousing",
+      "highlights": [
+        "Built comprehensive backoffice call center manager for order confirmations, telephony routing, and customer outreach",
+        "Architected delivery agents manager with real-time package dispatching, route status tracking, and delivery confirmation",
+        "Engineered financial accounting, statistical analysis, and profit/loss reporting dashboards for high-velocity commerce operations",
+        "Integrated Meta Ads Manager sync for automated campaign tracking, attribution metrics, and conversion analysis",
+        "Developed multi-warehouse inventory management module with stock replenishment alerts and batch tracking"
+      ]
+    }
+  }
 }
