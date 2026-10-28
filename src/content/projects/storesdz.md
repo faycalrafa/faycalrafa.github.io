@@ -19,6 +19,7 @@ highlights:
 featured: true
 order: 2
 publishedDate: "2024-11-01"
+logo: "/images/logos/storesdz-logo.webp"
 screenshots:
   - url: "/images/projects/storesdz/storesdz-site-screenshot.webp"
     caption: "StoresDZ Platform Interface — Multi-Store Management & Visual Storefront Builder"

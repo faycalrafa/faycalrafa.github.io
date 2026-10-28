@@ -1,6 +1,7 @@
 ---
 // src/components/LanguageChanger.astro
-// Interactive Language Switcher supporting EN (English), FR (French), and AR (Arabic with RTL)
+// Compact Dropdown Language Switcher supporting EN (English), FR (French), and AR (Arabic with RTL)
+// Space-efficient pill (~60px) with glassmorphic dropdown popup, click-outside dismissal, and keyboard navigation.
 // Compliant with Astro 5 ClientRouter, Tailwind CSS v4, and <= 500 lines rule.
 
 interface Props {
@@ -12,50 +13,77 @@ const { variant = 'floating' } = Astro.props;
 
 {variant === 'floating' ? (
   <div class="fixed top-4 right-4 sm:top-6 sm:right-6 z-40 print:hidden" id="floating-lang-changer" role="region" aria-label="Language Selector">
-    <div class="inline-flex items-center gap-1 rounded-full border border-zinc-700/60 bg-zinc-900/85 p-1 shadow-xl shadow-black/40 backdrop-blur-md transition-all duration-200 hover:border-blue-500/50">
-      <div class="flex items-center pl-2 pr-1 text-zinc-400" aria-hidden="true">
-        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <div class="relative inline-block text-left" data-lang-dropdown>
+      <button
+        type="button"
+        data-lang-dropdown-trigger
+        aria-expanded="false"
+        aria-haspopup="true"
+        aria-label="Select language"
+        class="inline-flex items-center gap-1.5 rounded-full border border-zinc-700/70 bg-zinc-900/90 px-2.5 py-1.5 text-xs font-semibold text-zinc-200 shadow-xl shadow-black/40 backdrop-blur-md transition-all duration-200 hover:border-blue-500/60 hover:text-white cursor-pointer ring-1 ring-white/10"
+      >
+        <svg class="h-3.5 w-3.5 text-zinc-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="10" />
           <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
           <path d="M2 12h20" />
         </svg>
+        <span class="font-bold font-mono tracking-wider text-[11px] uppercase text-blue-400" data-current-lang-badge>EN</span>
+        <svg class="h-3 w-3 text-zinc-400 transition-transform duration-200 shrink-0" data-lang-chevron viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+        </svg>
+      </button>
+
+      <div
+        data-lang-menu
+        role="menu"
+        aria-orientation="vertical"
+        class="lang-dropdown-panel hidden absolute right-0 mt-2 w-40 origin-top-right rounded-2xl border border-zinc-700/80 bg-zinc-900/95 p-1.5 shadow-2xl backdrop-blur-xl ring-1 ring-white/10 z-50 transition-all duration-150"
+      >
+        <button
+          type="button"
+          role="menuitem"
+          data-lang-btn="en"
+          class="flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors cursor-pointer"
+        >
+          <div class="flex items-center gap-2">
+            <span class="active-dot h-1.5 w-1.5 rounded-full bg-blue-500 opacity-100"></span>
+            <span>English</span>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-zinc-500">EN</span>
+        </button>
+
+        <button
+          type="button"
+          role="menuitem"
+          data-lang-btn="fr"
+          class="flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors cursor-pointer"
+        >
+          <div class="flex items-center gap-2">
+            <span class="active-dot h-1.5 w-1.5 rounded-full bg-blue-500 opacity-0"></span>
+            <span>Français</span>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-zinc-500">FR</span>
+        </button>
+
+        <button
+          type="button"
+          role="menuitem"
+          data-lang-btn="ar"
+          class="flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors cursor-pointer font-sans"
+        >
+          <div class="flex items-center gap-2">
+            <span class="active-dot h-1.5 w-1.5 rounded-full bg-blue-500 opacity-0"></span>
+            <span>العربية</span>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-zinc-500">AR</span>
+        </button>
       </div>
-
-      <button
-        type="button"
-        data-lang-btn="en"
-        class="rounded-full px-2.5 py-1 text-xs font-bold transition-all focus-visible:outline-2 focus-visible:outline-blue-500 bg-blue-600 text-white dark:bg-blue-500"
-        aria-label="Switch to English"
-        aria-pressed="true"
-      >
-        EN
-      </button>
-
-      <button
-        type="button"
-        data-lang-btn="fr"
-        class="rounded-full px-2.5 py-1 text-xs font-semibold text-zinc-400 hover:text-zinc-100 transition-all focus-visible:outline-2 focus-visible:outline-blue-500"
-        aria-label="Passer en français"
-        aria-pressed="false"
-      >
-        FR
-      </button>
-
-      <button
-        type="button"
-        data-lang-btn="ar"
-        class="rounded-full px-2.5 py-1 text-xs font-semibold text-zinc-400 hover:text-zinc-100 transition-all focus-visible:outline-2 focus-visible:outline-blue-500 font-sans"
-        aria-label="التبديل إلى العربية"
-        aria-pressed="false"
-      >
-        عربي
-      </button>
     </div>
   </div>
 ) : (
   <div class="inline-flex flex-col gap-2" role="region" aria-label="Footer Language Selector">
     <div class="flex items-center gap-1.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-      <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10" />
         <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
         <path d="M2 12h20" />
@@ -63,36 +91,67 @@ const { variant = 'floating' } = Astro.props;
       <span data-i18n="common.lang.select">Language</span>
     </div>
 
-    <div class="inline-flex items-center gap-1 rounded-xl border border-zinc-200/80 bg-zinc-100/90 p-1 dark:border-zinc-800 dark:bg-zinc-900/90">
+    <div class="relative inline-block text-left" data-lang-dropdown>
       <button
         type="button"
-        data-lang-btn="en"
-        class="rounded-lg px-2.5 py-1 text-xs font-bold transition-all focus-visible:outline-2 focus-visible:outline-blue-500 bg-blue-600 text-white dark:bg-blue-500"
-        aria-label="Switch to English"
-        aria-pressed="true"
+        data-lang-dropdown-trigger
+        aria-expanded="false"
+        aria-haspopup="true"
+        aria-label="Select language"
+        class="inline-flex items-center gap-2 rounded-xl border border-zinc-200/80 bg-zinc-100/90 px-3 py-2 text-xs font-semibold text-zinc-800 transition-all hover:bg-zinc-200/80 dark:border-zinc-800 dark:bg-zinc-900/90 dark:text-zinc-200 dark:hover:bg-zinc-800 cursor-pointer"
       >
-        English
+        <span class="font-bold font-mono tracking-wider text-[11px] uppercase text-blue-600 dark:text-blue-400" data-current-lang-badge>EN</span>
+        <span data-current-lang-full class="text-xs">English</span>
+        <svg class="h-3 w-3 text-zinc-500 transition-transform duration-200 shrink-0" data-lang-chevron viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+        </svg>
       </button>
 
-      <button
-        type="button"
-        data-lang-btn="fr"
-        class="rounded-lg px-2.5 py-1 text-xs font-semibold text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-all focus-visible:outline-2 focus-visible:outline-blue-500"
-        aria-label="Passer en français"
-        aria-pressed="false"
+      <div
+        data-lang-menu
+        role="menu"
+        aria-orientation="vertical"
+        class="lang-dropdown-panel hidden absolute left-0 bottom-full mb-2 w-40 origin-bottom-left rounded-2xl border border-zinc-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-zinc-700/80 dark:bg-zinc-900/95 dark:ring-white/10 z-50 transition-all duration-150"
       >
-        Français
-      </button>
+        <button
+          type="button"
+          role="menuitem"
+          data-lang-btn="en"
+          class="flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white transition-colors cursor-pointer"
+        >
+          <div class="flex items-center gap-2">
+            <span class="active-dot h-1.5 w-1.5 rounded-full bg-blue-500 opacity-100"></span>
+            <span>English</span>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-zinc-400">EN</span>
+        </button>
 
-      <button
-        type="button"
-        data-lang-btn="ar"
-        class="rounded-lg px-2.5 py-1 text-xs font-semibold text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-all focus-visible:outline-2 focus-visible:outline-blue-500 font-sans"
-        aria-label="التبديل إلى العربية"
-        aria-pressed="false"
-      >
-        العربية
-      </button>
+        <button
+          type="button"
+          role="menuitem"
+          data-lang-btn="fr"
+          class="flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white transition-colors cursor-pointer"
+        >
+          <div class="flex items-center gap-2">
+            <span class="active-dot h-1.5 w-1.5 rounded-full bg-blue-500 opacity-0"></span>
+            <span>Français</span>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-zinc-400">FR</span>
+        </button>
+
+        <button
+          type="button"
+          role="menuitem"
+          data-lang-btn="ar"
+          class="flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white transition-colors cursor-pointer font-sans"
+        >
+          <div class="flex items-center gap-2">
+            <span class="active-dot h-1.5 w-1.5 rounded-full bg-blue-500 opacity-0"></span>
+            <span>العربية</span>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-zinc-400">AR</span>
+        </button>
+      </div>
     </div>
   </div>
 )}

@@ -61,12 +61,17 @@ const fullImageURL = new URL(image, Astro.site ?? 'https://faycalrafa.github.io'
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={fullImageURL} />
 
+    <!-- Google Fonts: Cairo for modern Arabic typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
     <!-- Astro 5 Client Router (View Transitions with Prefetching) -->
     <ClientRouter />
 
     <!--
-      CRITICAL ZERO-FOUC DARK MODE LOCK SCRIPT
-      Executes synchronously before body rendering to guarantee dark night mode immediately.
+      CRITICAL ZERO-FOUC SCRIPTS
+      Executes synchronously before body rendering to guarantee dark night mode & correct language/direction immediately.
     -->
     <script is:inline>
       (function () {
@@ -79,6 +84,17 @@ const fullImageURL = new URL(image, Astro.site ?? 'https://faycalrafa.github.io'
           localStorage.setItem('theme', 'dark');
           const meta = document.querySelector('meta[name="color-scheme"]');
           if (meta) meta.content = 'dark';
+
+          // Zero-FOUC Language & RTL Restoration
+          const lang = localStorage.getItem('portfolio_lang');
+          if (lang === 'ar') {
+            document.documentElement.lang = 'ar';
+            document.documentElement.dir = 'rtl';
+            document.documentElement.classList.add('rtl-layout');
+          } else if (lang === 'fr') {
+            document.documentElement.lang = 'fr';
+            document.documentElement.dir = 'ltr';
+          }
         } catch (e) {
           if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');

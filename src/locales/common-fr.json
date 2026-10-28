@@ -18,7 +18,9 @@
     "copy_link": "Copier le Lien",
     "copied": "Copié !",
     "print_cv": "Imprimer le CV",
-    "open_new_tab": "Ouvrir dans un nouvel onglet"
+    "open_new_tab": "Ouvrir dans un nouvel onglet",
+    "download_apk": "Télécharger l'APK",
+    "github_repo": "Dépôt GitHub"
   },
   "theme": {
     "toggle": "Basculer entre thème sombre et clair",
@@ -38,5 +40,9 @@
     "connect": "Contact & Réseaux",
     "flagships": "Applications Phares",
     "back_to_top": "Haut de page"
+  },
+  "not_found": {
+    "title": "Page Introuvable",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée. Explorez le portfolio de développeur ou les projets de Faycal Rafa."
   }
 }

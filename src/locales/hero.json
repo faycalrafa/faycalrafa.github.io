@@ -7,5 +7,11 @@
   "available_indicator": "Available for Opportunities",
   "cta_flagship": "Explore BookReader Flagship",
   "cta_whatsapp": "Let's Talk on WhatsApp",
-  "cta_cv": "Download CV"
+  "cta_cv": "Download CV",
+  "teams_badge": "Teams I've Built & Collaborated With",
+  "teams_title": "Companies, Startups & Platforms",
+  "teams_subtitle": "From national fintech mega-apps and stock brokerages to automotive SaaS and scaling e-commerce platforms.",
+  "skills_badge": "Technical Architecture & Capabilities",
+  "skills_title": "Skills & Architecture Matrix",
+  "skills_subtitle": "A categorized overview of core engineering proficiencies, frameworks, and tools proven through 6+ years of technical leadership, enterprise microservices, and flagship mobile applications."
 }

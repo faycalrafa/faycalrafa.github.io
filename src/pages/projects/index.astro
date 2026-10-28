@@ -53,11 +53,11 @@ const openSourceCount = sortedProjects.filter((p) => p.data.category === 'open-s
           <span>{totalCount} Engineered Works</span>
         </div>
 
-        <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl dark:text-zinc-50">
+        <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl dark:text-zinc-50" data-i18n="projects.archive_title">
           Projects & Architecture Archive
         </h1>
 
-        <p class="mt-4 text-base leading-relaxed text-zinc-600 sm:text-lg dark:text-zinc-400">
+        <p class="mt-4 text-base leading-relaxed text-zinc-600 sm:text-lg dark:text-zinc-400" data-i18n="projects.archive_subtitle">
           A comprehensive showcase of enterprise microservices architectures, commercial systems, and personal free to use projects built by <strong class="font-semibold text-zinc-900 dark:text-zinc-200">Faycal Rafa</strong>. <span class="sr-only">Hobby projects</span>Featuring his flagship BookReader Android application, high-throughput financial trading platforms, and multi-tenant logistics microservices.
         </p>
       </div>
@@ -78,6 +78,7 @@ const openSourceCount = sortedProjects.filter((p) => p.data.category === 'open-s
             <input
               type="search"
               id="project-search-input"
+              data-i18n-placeholder="projects.search_placeholder"
               placeholder="Search projects, tech, keywords..."
               class="w-full rounded-xl border border-zinc-200 bg-white py-2 pl-9 pr-8 text-xs sm:text-sm text-zinc-900 placeholder-zinc-400 transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500 dark:focus:border-blue-400"
             />

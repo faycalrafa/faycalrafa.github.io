@@ -1,10 +1,11 @@
 {
-  "badge": "Prendre Contact",
-  "title": "Restons en Contact",
-  "subtitle": "Vous avez un défi d'ingénierie, un système à grande échelle ou une application mobile à concevoir ? N'hésitez pas à me contacter directement.",
-  "whatsapp_cta": "Discuter sur WhatsApp",
+  "badge": "Contact",
+  "status": "À l'écoute d'opportunités",
+  "title": "Contactez-moi & Opportunités",
+  "subtitle": "Disponible pour des postes d'Ingénieur Fullstack, Senior Software Engineer et Lead Tech à l'international. Pour une opportunité CDI, une mission contractuelle ou un projet ambitieux, contactez-moi directement via les canaux ci-dessous.",
+  "whatsapp_cta": "Ouvrir WhatsApp",
   "email_cta": "Envoyer un e-mail",
   "github_cta": "Voir le profil GitHub",
   "linkedin_cta": "Se connecter sur LinkedIn",
-  "direct_response": "Réponse habituelle en quelques heures."
+  "direct_response": "Réponse habituelle sous quelques heures."
 }

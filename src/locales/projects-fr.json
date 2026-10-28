@@ -1,13 +1,16 @@
 {
   "badge": "Portfolio & Systèmes",
   "title": "Projets Sélectionnés",
-  "subtitle": "Une sélection de systèmes de production, d'outils pour développeurs, d'applications mobiles natives et de bibliothèques open source.",
-  "filter_all": "Tous les projets",
+  "subtitle": "Une collection de systèmes en production, outils pour développeurs, applications mobiles natives et packages open source.",
+  "archive_title": "Archives des Projets & Architectures",
+  "archive_subtitle": "Une vitrine complète d'architectures de microservices d'entreprise, de solutions commerciales et de projets gratuits créés par Faycal Rafa. Comprenant son application phare BookReader pour Android, des plateformes de trading à haute fréquence et des microservices logistiques multi-tenants.",
+  "search_placeholder": "Rechercher projets, technologies, mots-clés...",
+  "filter_all": "Tous les Projets",
   "filter_featured": "Projets Phares",
   "filter_open_source": "Open Source",
   "filter_mobile": "Mobile (Android)",
   "filter_enterprise": "Entreprise & SaaS",
-  "view_all": "Voir l'Archive Complète des Projets",
-  "interactive_showcase": "Démonstration Interactive Disponible",
-  "production_ready": "Prêt pour la Production"
+  "view_all": "Consulter toutes les archives",
+  "interactive_showcase": "Démonstration interactive disponible",
+  "production_ready": "Prêt pour la production"
 }

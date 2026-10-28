@@ -185,20 +185,75 @@ export function applyTranslations(lang: Lang): void {
 }
 
 function updateActiveButtons(lang: Lang): void {
+  // Update badge labels
+  const badges = document.querySelectorAll<HTMLElement>('[data-current-lang-badge]');
+  badges.forEach((badge) => {
+    badge.textContent = lang.toUpperCase();
+  });
+
+  const fullLabels = document.querySelectorAll<HTMLElement>('[data-current-lang-full]');
+  fullLabels.forEach((label) => {
+    label.textContent = lang === 'ar' ? 'العربية' : lang === 'fr' ? 'Français' : 'English';
+  });
+
+  // Update button states and active dots
   const buttons = document.querySelectorAll<HTMLButtonElement>('[data-lang-btn]');
   buttons.forEach((btn) => {
     const targetLang = btn.getAttribute('data-lang-btn');
     const isActive = targetLang === lang;
     btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+
+    const dot = btn.querySelector<HTMLElement>('.active-dot');
+    if (dot) {
+      if (isActive) {
+        dot.classList.remove('opacity-0');
+        dot.classList.add('opacity-100');
+      } else {
+        dot.classList.remove('opacity-100');
+        dot.classList.add('opacity-0');
+      }
+    }
+
     if (isActive) {
-      btn.classList.add('bg-blue-600', 'text-white', 'dark:bg-blue-500');
-      btn.classList.remove('text-zinc-400', 'hover:text-zinc-100', 'text-zinc-600', 'hover:text-zinc-900');
+      btn.classList.add('text-blue-500', 'font-bold');
+      btn.classList.remove('text-zinc-300', 'text-zinc-700');
     } else {
-      btn.classList.remove('bg-blue-600', 'text-white', 'dark:bg-blue-500');
-      btn.classList.add('text-zinc-400', 'hover:text-zinc-100');
+      btn.classList.remove('text-blue-500', 'font-bold');
+      btn.classList.add('text-zinc-300');
     }
   });
 }
+
+export function closeAllLangDropdowns(): void {
+  const dropdowns = document.querySelectorAll<HTMLElement>('[data-lang-dropdown]');
+  dropdowns.forEach((dd) => {
+    const menu = dd.querySelector<HTMLElement>('[data-lang-menu]');
+    const trigger = dd.querySelector<HTMLButtonElement>('[data-lang-dropdown-trigger]');
+    const chevron = dd.querySelector<HTMLElement>('[data-lang-chevron]');
+    if (menu) menu.classList.add('hidden');
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    if (chevron) chevron.classList.remove('rotate-180');
+  });
+}
+
+export function toggleLangDropdown(dropdownEl: HTMLElement): void {
+  const menu = dropdownEl.querySelector<HTMLElement>('[data-lang-menu]');
+  const trigger = dropdownEl.querySelector<HTMLButtonElement>('[data-lang-dropdown-trigger]');
+  const chevron = dropdownEl.querySelector<HTMLElement>('[data-lang-chevron]');
+  if (!menu) return;
+
+  const isClosed = menu.classList.contains('hidden');
+  closeAllLangDropdowns();
+
+  if (isClosed) {
+    menu.classList.remove('hidden');
+    if (trigger) trigger.setAttribute('aria-expanded', 'true');
+    if (chevron) chevron.classList.add('rotate-180');
+  }
+}
+
+let handlersAttached = false;
 
 export function initI18n(): void {
   if (typeof window === 'undefined') return;
@@ -213,19 +268,49 @@ export function initI18n(): void {
     document.documentElement.classList.remove('rtl-layout');
   }
 
-  // Bind click handlers to language change buttons
-  document.addEventListener('click', (e) => {
-    const target = (e.target as HTMLElement)?.closest<HTMLButtonElement>('[data-lang-btn]');
-    if (target) {
-      const lang = target.getAttribute('data-lang-btn') as Lang;
-      if (lang && (lang === 'en' || lang === 'fr' || lang === 'ar')) {
-        setLang(lang);
-      }
-    }
-  });
-
   applyTranslations(current);
   updateActiveButtons(current);
+
+  if (!handlersAttached) {
+    handlersAttached = true;
+
+    // Dropdown trigger toggles & menu item clicks
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+
+      // 1. Dropdown Trigger Click
+      const trigger = target?.closest<HTMLButtonElement>('[data-lang-dropdown-trigger]');
+      if (trigger) {
+        e.stopPropagation();
+        const dropdown = trigger.closest<HTMLElement>('[data-lang-dropdown]');
+        if (dropdown) toggleLangDropdown(dropdown);
+        return;
+      }
+
+      // 2. Language Option Click
+      const btn = target?.closest<HTMLButtonElement>('[data-lang-btn]');
+      if (btn) {
+        const lang = btn.getAttribute('data-lang-btn') as Lang;
+        if (lang && (lang === 'en' || lang === 'fr' || lang === 'ar')) {
+          setLang(lang);
+          closeAllLangDropdowns();
+        }
+        return;
+      }
+
+      // 3. Click outside closes dropdowns
+      if (!target.closest('[data-lang-dropdown]')) {
+        closeAllLangDropdowns();
+      }
+    });
+
+    // Escape key closes dropdowns
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeAllLangDropdowns();
+      }
+    });
+  }
 }
 
 // ClientRouter lifecycle listeners
@@ -242,5 +327,6 @@ if (typeof document !== 'undefined') {
     }
     applyTranslations(current);
     updateActiveButtons(current);
+    closeAllLangDropdowns();
   });
 }

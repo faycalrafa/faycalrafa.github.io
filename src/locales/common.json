@@ -18,7 +18,9 @@
     "copy_link": "Copy Link",
     "copied": "Copied!",
     "print_cv": "Print CV",
-    "open_new_tab": "Open in New Tab"
+    "open_new_tab": "Open in New Tab",
+    "download_apk": "Download APK",
+    "github_repo": "GitHub Repo"
   },
   "theme": {
     "toggle": "Toggle dark and light theme",
@@ -38,5 +40,9 @@
     "connect": "Connect",
     "flagships": "Flagship Apps",
     "back_to_top": "Back to Top"
+  },
+  "not_found": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved. Explore Faycal Rafa's developer portfolio or projects."
   }
 }

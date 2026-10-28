@@ -10,10 +10,10 @@ import Layout from '../layouts/Layout.astro';
     <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-100 font-mono text-2xl font-bold text-blue-600 dark:bg-blue-950/60 dark:text-blue-400">
       404
     </div>
-    <h1 class="mt-6 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100">
+    <h1 class="mt-6 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100" data-i18n="common.not_found.title">
       Page Not Found
     </h1>
-    <p class="mt-3 max-w-md text-sm text-zinc-600 dark:text-zinc-400">
+    <p class="mt-3 max-w-md text-sm text-zinc-600 dark:text-zinc-400" data-i18n="common.not_found.description">
       The page you're looking for doesn't exist or has been moved. Explore Faycal Rafa's developer portfolio or projects.
     </p>
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -24,13 +24,13 @@ import Layout from '../layouts/Layout.astro';
         <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M3 9.5L10 3l7 6.5" /><path d="M19 13v6a1 1 0 01-1 1H2a1 1 0 01-1-1v-6" />
         </svg>
-        <span>Back to Home</span>
+        <span data-i18n="common.actions.back_to_home">Back to Home</span>
       </a>
       <a
         href="/projects"
         class="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors"
       >
-        <span>Browse Projects</span>
+        <span data-i18n="common.actions.view_all_projects">Browse Projects</span>
       </a>
     </div>
   </div>
