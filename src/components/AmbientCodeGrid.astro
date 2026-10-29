@@ -1,0 +1,20 @@
+---
+// src/components/AmbientCodeGrid.astro
+// Ambient Architectural Engineering Grid & Mathematical / Code Expressions Background Canvas
+---
+
+<canvas
+  id="ambient-grid-canvas"
+  class="pointer-events-none fixed inset-0 -z-10 h-full w-full select-none"
+  aria-hidden="true"
+  transition:persist="ambient-grid-canvas"
+></canvas>
+
+<script>
+  import { initAmbientGrid } from '../scripts/ambient-grid';
+
+  // Initialize on initial page load and persist across Astro view transitions
+  document.addEventListener('astro:page-load', () => {
+    initAmbientGrid();
+  });
+</script>

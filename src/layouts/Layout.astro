@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import CommandPalette from '../components/CommandPalette.astro';
 import WhatsAppFab from '../components/WhatsAppFab.astro';
 import NightSky from '../components/NightSky.astro';
+import AmbientCodeGrid from '../components/AmbientCodeGrid.astro';
 import FloatingProjectsBtn from '../components/FloatingProjectsBtn.astro';
 import LanguageChanger from '../components/LanguageChanger.astro';
 import '../styles/global.css';
@@ -61,10 +62,10 @@ const fullImageURL = new URL(image, Astro.site ?? 'https://faycalrafa.github.io'
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={fullImageURL} />
 
-    <!-- Google Fonts: Cairo for modern Arabic typography -->
+    <!-- Google Fonts: Cairo for modern Arabic typography & JetBrains Mono for equations/code -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <!-- Astro 5 Client Router (View Transitions with Prefetching) -->
     <ClientRouter />
@@ -121,6 +122,9 @@ const fullImageURL = new URL(image, Astro.site ?? 'https://faycalrafa.github.io'
 
     <!-- Celestial Night Sky Background & Glowing Moon -->
     <NightSky />
+
+    <!-- Ambient Architectural Grid & Mathematical / Code Expressions Background -->
+    <AmbientCodeGrid />
 
     <!-- Floating On-Screen Action Capsule: Language Changer on Home, Navigation on Other Pages -->
     {isHome ? (
