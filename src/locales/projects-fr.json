@@ -33,6 +33,10 @@
   "screenshots_heading": "Captures d'Interface & Architecture de la Plateforme",
   "open_bookreader_showcase": "Ouvrir la présentation interactive de BookReader →",
   "open_textmorph_showcase": "Ouvrir la présentation interactive de TextMorph →",
+  "bookreader_banner_title": "Simulateur TTS Intégré & Vitrine de l'Application",
+  "bookreader_banner_desc": "Explorez la vitrine dédiée avec le découpeur de phrases Web Speech en direct (EN, AR, FR), l'icône 3D squircle coussin, les téléchargements directs d'APK v3.4.0 et l'architecture AndroidX Media3 & Jetpack Compose.",
+  "textmorph_banner_title": "Vitrine Interactive de l'Application & Architecture",
+  "textmorph_banner_desc": "Explorez la vitrine dédiée avec des aperçus interactifs, des visites détaillées des fonctionnalités et une plongée dans le runtime local Gemma 4, l'agent autonome et l'architecture AccessibilityService.",
   "featured": {
     "bookreader": {
       "desc": "Mon projet personnel Android : un lecteur de romans natif haute performance avec synthèse vocale neurale locale, découpage intelligent des citations, barre média permanente dans les notifications et synthèse de livres audio hors ligne.",

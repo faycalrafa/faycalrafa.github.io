@@ -29,7 +29,7 @@ export function initAppShowcase(): void {
   const lightboxTitle = document.getElementById('lightbox-title');
   const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
 
-  // Preload all Play Store images into browser memory
+  // Preload all showcase screen images into browser memory
   screens.forEach((s) => {
     const img = new Image();
     img.src = s.image;
@@ -210,7 +210,7 @@ export function initAppShowcase(): void {
     phoneTrigger.addEventListener('click', () => {
       const currentData = screens[activeIndex];
       lightboxImg.src = currentData.image;
-      lightboxImg.alt = currentData ? currentData.title : 'TextMorph Play Store Screenshot';
+      lightboxImg.alt = currentData ? currentData.title : 'TextMorph App Screen Preview';
       if (lightboxTitle && currentData) {
         lightboxTitle.textContent = `${currentData.num} · ${currentData.title}`;
       }

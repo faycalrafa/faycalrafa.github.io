@@ -33,6 +33,10 @@
   "screenshots_heading": "Interface Screenshots & Platform Architecture",
   "open_bookreader_showcase": "Open BookReader Interactive Showcase →",
   "open_textmorph_showcase": "Open TextMorph Interactive Showcase →",
+  "bookreader_banner_title": "Interactive In-Browser TTS Simulator & App Showcase",
+  "bookreader_banner_desc": "Explore the dedicated flagship showcase with the live Web Speech sentence chunker (EN, AR, FR), 3D cushion squircle icon, direct APK v3.4.0 downloads, and deep-dive into AndroidX Media3 & Jetpack Compose architecture.",
+  "textmorph_banner_title": "Interactive App Showcase & Architecture Deep-Dive",
+  "textmorph_banner_desc": "Explore the dedicated flagship showcase with interactive screen previews, in-depth feature tours, and a comprehensive deep-dive into its local Gemma 4 runtime, autonomous device agent, and AccessibilityService architecture.",
   "featured": {
     "bookreader": {
       "desc": "My ongoing Android hobby project: a high-performance native novel reader with on-device neural TTS audio, quote-aware sentence chunking, persistent notification media bar, and offline audiobook synthesis.",

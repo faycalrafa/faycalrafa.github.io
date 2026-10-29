@@ -13,15 +13,15 @@ import { APP_SCREENS } from '../../data/textmorph-screens';
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-flex items-center gap-1.5 rounded-md bg-slate-800/10 dark:bg-slate-800/60 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 ring-1 ring-slate-500/20">
             <span class="h-2 w-2 rounded-full bg-slate-500 dark:bg-slate-400 animate-pulse"></span>
-            <span data-i18n="textmorph.showcase_badge">Play Store Showcase</span>
+            <span data-i18n="textmorph.showcase_badge">Interactive Showcase</span>
           </span>
-          <span class="text-xs text-zinc-500 dark:text-zinc-400" data-i18n="textmorph.showcase_badge_count">5 High-Definition Marketing Screens</span>
+          <span class="text-xs text-zinc-500 dark:text-zinc-400" data-i18n="textmorph.showcase_badge_count">5 Interface Previews</span>
         </div>
         <h2 id="showcase-heading" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50" data-i18n="textmorph.showcase_title">
           On-Device AI in Action
         </h2>
         <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 mt-1 max-w-2xl" data-i18n="textmorph.showcase_subtitle">
-          Explore TextMorph's official Google Play Store visuals highlighting on-device LiteRT-LM & llama.cpp inference, floating accessibility overlay bar, slash commands, and embedded localhost OpenAI server.
+          Explore TextMorph's autonomous multi-step device agent, living floating companion bubble across apps, offline wake-word studio, and hardware telemetry.
         </p>
       </div>
       <div class="flex items-center gap-2">
@@ -31,7 +31,7 @@ import { APP_SCREENS } from '../../data/textmorph-screens';
 
     <!-- Screen Selector Tabs -->
     <div class="pt-6 pb-8">
-      <div class="flex flex-wrap gap-2 sm:gap-2.5" role="tablist" aria-label="TextMorph Play Store Screens">
+      <div class="flex flex-wrap gap-2 sm:gap-2.5" role="tablist" aria-label="TextMorph Feature Screens">
         {APP_SCREENS.map((screen, idx) => (
           <button
             type="button"
@@ -54,10 +54,10 @@ import { APP_SCREENS } from '../../data/textmorph-screens';
       </div>
     </div>
 
-    <!-- Featured Showcase Stage (Play Store Card Mockup + Feature Deep-Dive) -->
+    <!-- Featured Showcase Stage (Phone Display Frame + Feature Deep-Dive) -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
       
-      <!-- Left: Play Store Card Display Frame -->
+      <!-- Left: Phone Display Frame -->
       <div class="lg:col-span-5 flex justify-center">
         <div class="relative w-[300px] sm:w-[340px] md:w-[360px]">
           <!-- Sleek Card Chassis Silhouette -->
@@ -66,7 +66,7 @@ import { APP_SCREENS } from '../../data/textmorph-screens';
             <div
               id="phone-screen-trigger"
               class="relative aspect-[9/16] w-full overflow-hidden rounded-[2.1rem] bg-zinc-950 shadow-inner cursor-zoom-in group select-none"
-              title="Click to view high-resolution Play Store card"
+              title="Click to view high-resolution screen"
             >
               <!-- Active Screenshot Layer -->
               <img
@@ -190,7 +190,7 @@ import { APP_SCREENS } from '../../data/textmorph-screens';
 
     <!-- Thumbnail Strip Preview -->
     <div class="mt-12 pt-6 border-t border-slate-300/60 dark:border-slate-700/60">
-      <p class="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3" data-i18n="textmorph.all_cards">All Play Store Cards</p>
+      <p class="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3" data-i18n="textmorph.all_cards">All Feature Screens</p>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
         {APP_SCREENS.map((screen, idx) => (
           <button
