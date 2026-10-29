@@ -1,28 +1,8 @@
 // src/scripts/ambient-grid.ts
 // Ambient Architectural Engineering Grid & Mathematical / Code Expressions Background Canvas Controller
 
-export const FORMULAS: readonly string[] = [
-  '∇ × B = μ₀J',
-  '∂L/∂w',
-  'λ = h/p',
-  'f(x) = ∫ e^(-t²)dt',
-  'z.infer<typeof Schema>',
-  'hash(chunk) >> 4',
-  'O(log n)',
-  'tensor.dot(W, x) + b',
-  '∑_{i=1}^n w_i x_i',
-  'loss: 0.0024',
-  'dim=[128, 768]',
-  'softmax(QK^T / √d_k)',
-  'E[X] = ∫ x p(x) dx',
-  'curl(E) = -∂B/∂t',
-  '|ψ⟩ = α|0⟩ + β|1⟩',
-  'H(p, q) = -∑ p(x) log q(x)',
-  'det(A - λI) = 0',
-  'KL(P || Q)',
-  'σ(z) = 1/(1+e^-z)',
-  'L_reg = λ ‖θ‖₂²'
-];
+import { FORMULAS } from '../data/ambient-formulas';
+export { FORMULAS };
 
 interface AmbientToken {
   text: string;
@@ -36,6 +16,7 @@ interface AmbientToken {
   life: number;
   maxLife: number;
   fontSize: number;
+  isPointer?: boolean;
 }
 
 interface PointerState {
@@ -89,7 +70,7 @@ export function initAmbientGrid(): void {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function getMaxTokens(): number {
-    return window.innerWidth < 768 ? 14 : 22;
+    return window.innerWidth < 768 ? 65 : 120;
   }
 
   function getPalette(): string[] {
@@ -110,20 +91,19 @@ export function initAmbientGrid(): void {
         ];
   }
 
-  function createToken(customX?: number, customY?: number): AmbientToken {
+  function createAmbientToken(): AmbientToken {
     const text = FORMULAS[Math.floor(Math.random() * FORMULAS.length)];
     const palette = getPalette();
     const baseColor = palette[Math.floor(Math.random() * palette.length)];
 
-    // Spawn randomly across the entire view area (with gentle margin)
+    // Spawn randomly across the entire view area
     const paddingX = Math.min(60, width * 0.08);
     const paddingY = Math.min(60, height * 0.08);
     const usableW = Math.max(width - paddingX * 2, 200);
     const usableH = Math.max(height - paddingY * 2, 200);
 
-    const x = typeof customX === 'number' ? customX : paddingX + Math.random() * usableW;
-    const y = typeof customY === 'number' ? customY : paddingY + Math.random() * usableH;
-
+    const x = paddingX + Math.random() * usableW;
+    const y = paddingY + Math.random() * usableH;
     const speedScale = prefersReducedMotion ? 0 : 1;
 
     return {
@@ -137,11 +117,60 @@ export function initAmbientGrid(): void {
       baseColor,
       life: 0,
       maxLife: 420 + Math.random() * 360, // ~10 to 18 seconds lifespan
-      fontSize: 11 + Math.floor(Math.random() * 3)
+      fontSize: 11 + Math.floor(Math.random() * 3),
+      isPointer: false
     };
   }
 
   const activeTokens: AmbientToken[] = [];
+
+  function spawnPointerToken(originX: number, originY: number, customAngle?: number, customSpeed?: number): void {
+    if (activeTokens.length >= getMaxTokens()) {
+      // Discard the oldest pointer token to prioritize responsive new ones
+      const oldestIdx = activeTokens.findIndex(t => t.isPointer);
+      if (oldestIdx !== -1) {
+        activeTokens.splice(oldestIdx, 1);
+      } else {
+        return;
+      }
+    }
+
+    const text = FORMULAS[Math.floor(Math.random() * FORMULAS.length)];
+    const palette = getPalette();
+    const baseColor = palette[Math.floor(Math.random() * palette.length)];
+    const speedScale = prefersReducedMotion ? 0 : 1;
+
+    // Small radial offset from exact pointer center so multiple tokens distribute smoothly
+    const jitterX = (Math.random() - 0.5) * 16;
+    const jitterY = (Math.random() - 0.5) * 16;
+
+    const angle = typeof customAngle === 'number' ? customAngle : Math.random() * Math.PI * 2;
+    const speed = (typeof customSpeed === 'number' ? customSpeed : 0.45 + Math.random() * 1.3) * speedScale;
+
+    activeTokens.push({
+      text,
+      x: originX + jitterX,
+      y: originY + jitterY,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 0.32 * speedScale, // graceful upward floating bias
+      alpha: 0,
+      maxAlpha: 0.55 + Math.random() * 0.35, // crisp, vibrant, glowing visibility
+      baseColor,
+      life: 0,
+      maxLife: 90 + Math.random() * 95, // ~1.5 to 3.0 seconds
+      fontSize: 11 + Math.floor(Math.random() * 3),
+      isPointer: true
+    });
+  }
+
+  function spawnPointerBurst(originX: number, originY: number, count = 6): void {
+    const angleStep = (Math.PI * 2) / count;
+    for (let i = 0; i < count; i++) {
+      const angle = i * angleStep + (Math.random() - 0.5) * 0.4;
+      const speed = 0.85 + Math.random() * 1.35;
+      spawnPointerToken(originX, originY, angle, speed);
+    }
+  }
 
   function resize(): void {
     width = window.innerWidth;
@@ -157,10 +186,35 @@ export function initAmbientGrid(): void {
   window.addEventListener('resize', resize, { passive: true });
   resize();
 
-  // Subtle pointer tracking for parallax & proximity node highlights (NO SPAWNING)
+  let lastMoveX = -2000;
+  let lastMoveY = -2000;
+  let lastMoveSpawnTime = 0;
+
+  // Real-time mouse movement: generate continuous streams of math/code at cursor tip
   const onPointerMove = (e: PointerEvent): void => {
     pointer.targetX = e.clientX;
     pointer.targetY = e.clientY;
+
+    const now = performance.now();
+    const dist = Math.hypot(e.clientX - lastMoveX, e.clientY - lastMoveY);
+
+    if (dist > 10 || (dist > 3 && now - lastMoveSpawnTime > 45)) {
+      const spawnCount = window.innerWidth < 768 ? 1 : 2;
+      for (let k = 0; k < spawnCount; k++) {
+        spawnPointerToken(e.clientX, e.clientY);
+      }
+      lastMoveX = e.clientX;
+      lastMoveY = e.clientY;
+      lastMoveSpawnTime = now;
+    }
+  };
+
+  // Mouse click or stylus press: spawn radiant burst of math/code
+  const onPointerDown = (e: PointerEvent): void => {
+    pointer.targetX = e.clientX;
+    pointer.targetY = e.clientY;
+    const burstCount = window.innerWidth < 768 ? 4 : 7;
+    spawnPointerBurst(e.clientX, e.clientY, burstCount);
   };
 
   const onPointerLeave = (): void => {
@@ -168,13 +222,40 @@ export function initAmbientGrid(): void {
     pointer.targetY = -2000;
   };
 
+  // Finger tap: spawn rich burst directly under fingertip
+  const onTouchStart = (e: TouchEvent): void => {
+    for (let i = 0; i < e.touches.length; i++) {
+      const touch = e.touches[i];
+      pointer.targetX = touch.clientX;
+      pointer.targetY = touch.clientY;
+      const burstCount = window.innerWidth < 768 ? 4 : 6;
+      spawnPointerBurst(touch.clientX, touch.clientY, burstCount);
+    }
+  };
+
+  // Finger drag: generate continuous trail directly at fingertip
+  const onTouchMove = (e: TouchEvent): void => {
+    for (let i = 0; i < e.touches.length; i++) {
+      const touch = e.touches[i];
+      pointer.targetX = touch.clientX;
+      pointer.targetY = touch.clientY;
+      spawnPointerToken(touch.clientX, touch.clientY);
+      if (Math.random() > 0.45) {
+        spawnPointerToken(touch.clientX, touch.clientY);
+      }
+    }
+  };
+
   window.addEventListener('pointermove', onPointerMove, { passive: true });
+  window.addEventListener('pointerdown', onPointerDown, { passive: true });
   window.addEventListener('pointerleave', onPointerLeave, { passive: true });
+  window.addEventListener('touchstart', onTouchStart, { passive: true });
+  window.addEventListener('touchmove', onTouchMove, { passive: true });
 
   // Initial ambient seeding distributed everywhere across the view
   const initialSeedCount = window.innerWidth < 768 ? 6 : 10;
   for (let i = 0; i < initialSeedCount; i++) {
-    const t = createToken();
+    const t = createAmbientToken();
     t.life = Math.random() * t.maxLife * 0.65;
     activeTokens.push(t);
   }
@@ -183,14 +264,14 @@ export function initAmbientGrid(): void {
   let isRunning = true;
   let lastTime = performance.now();
   let lastSpawnTime = performance.now();
-  const SPAWN_INTERVAL_MS = 2400; // Slow, serene cadence: ~1 spawn every 2.4s
+  const SPAWN_INTERVAL_MS = 2400; // Slow ambient cadence for general background
 
   function render(time: number): void {
     if (!isRunning) return;
 
     animationId = requestAnimationFrame(render);
 
-    // Pause heavy calculations if tab is hidden
+    // Pause calculations if tab is hidden
     if (document.hidden) {
       lastTime = time;
       return;
@@ -252,17 +333,17 @@ export function initAmbientGrid(): void {
       }
     }
 
-    // SLOW-PACED AMBIENT SPAWNING EVERYWHERE IN VIEW (NOT AT POINTER)
-    const maxTokens = getMaxTokens();
-    if (time - lastSpawnTime > SPAWN_INTERVAL_MS && activeTokens.length < maxTokens) {
-      // Spawn at a random position somewhere in the view
-      activeTokens.push(createToken());
+    // Slow ambient background spawning everywhere in view
+    const ambientCount = activeTokens.filter(t => !t.isPointer).length;
+    const maxAmbient = window.innerWidth < 768 ? 10 : 16;
+    if (time - lastSpawnTime > SPAWN_INTERVAL_MS && ambientCount < maxAmbient) {
+      activeTokens.push(createAmbientToken());
       lastSpawnTime = time;
     }
 
     // Minimum baseline guarantee
-    if (activeTokens.length < 5) {
-      activeTokens.push(createToken());
+    if (ambientCount < 4) {
+      activeTokens.push(createAmbientToken());
     }
 
     // Render & drift tokens
@@ -270,22 +351,38 @@ export function initAmbientGrid(): void {
       const token = activeTokens[i];
       token.life += 1 * deltaFactor;
 
-      // Smooth envelope: 20% fade-in, 55% hold, 25% fade-out
       const progress = token.life / token.maxLife;
-      if (progress < 0.2) {
-        token.alpha = (progress / 0.2) * token.maxAlpha;
-      } else if (progress > 0.75) {
-        token.alpha = ((1 - progress) / 0.25) * token.maxAlpha;
+
+      if (token.isPointer) {
+        // Pointer / finger tip tokens: snappy fade-in (12%), sustained glow (50%), graceful fade-out (38%)
+        if (progress < 0.12) {
+          token.alpha = (progress / 0.12) * token.maxAlpha;
+        } else if (progress > 0.62) {
+          token.alpha = ((1 - progress) / 0.38) * token.maxAlpha;
+        } else {
+          token.alpha = token.maxAlpha;
+        }
+
+        // Slight deceleration for organic particle physics
+        token.vx *= Math.pow(0.985, deltaFactor);
+        token.vy *= Math.pow(0.985, deltaFactor);
       } else {
-        token.alpha = token.maxAlpha;
+        // Ambient background tokens: gentle 20% fade-in, 55% hold, 25% fade-out
+        if (progress < 0.2) {
+          token.alpha = (progress / 0.2) * token.maxAlpha;
+        } else if (progress > 0.75) {
+          token.alpha = ((1 - progress) / 0.25) * token.maxAlpha;
+        } else {
+          token.alpha = token.maxAlpha;
+        }
       }
 
-      // Gentle drift
+      // Drift position
       token.x += token.vx * deltaFactor;
       token.y += token.vy * deltaFactor;
 
-      // Soft non-intrusive cursor avoidance (water ripple feel, NO spawning)
-      if (pointer.x > -1000 && pointer.y > -1000 && !prefersReducedMotion) {
+      // Soft non-intrusive cursor avoidance applies only to ambient background tokens
+      if (!token.isPointer && pointer.x > -1000 && pointer.y > -1000 && !prefersReducedMotion) {
         const pdx = token.x - pointer.x;
         const pdy = token.y - pointer.y;
         const pdist = Math.hypot(pdx, pdy);
@@ -324,7 +421,10 @@ export function initAmbientGrid(): void {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', resize);
       window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerdown', onPointerDown);
       window.removeEventListener('pointerleave', onPointerLeave);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
     }
   };
 }
