@@ -1,5 +1,5 @@
 // src/data/textmorph-screens.ts
-// Showcase screens configuration for TextMorph Flagship
+// Showcase screens configuration for TextMorph Flagship (v4.2.1)
 
 export interface AppScreen {
   id: string;
@@ -15,83 +15,83 @@ export interface AppScreen {
 
 export const APP_SCREENS: AppScreen[] = [
   {
-    id: 'floating-toolbar',
+    id: 'floating-agent',
     num: '01',
-    title: 'System-Wide Floating AI Toolbar',
-    subtitle: 'AccessibilityService & WindowManager Non-Focusable Overlay',
-    tag: 'Flagship Feature',
-    image: '/images/textmorph/playstore-01-floating-toolbar.jpg',
-    description: 'An intelligent floating capsule anchored directly above focused input fields across any Android application. It monitors text selection without stealing keyboard focus (FLAG_NOT_FOCUSABLE), allowing you to transform, rephrase, or translate text with a single tap inside WhatsApp, Gmail, Slack, and Chrome.',
+    title: 'System-Wide Floating AI Agent',
+    subtitle: 'Universal AccessibilityService & WindowManager Overlay Across Any App',
+    tag: 'Everywhere Assistant',
+    image: '/images/textmorph/playstore-01-floating-agent.jpg',
+    description: 'A living, intelligent floating companion widget anchored over any Android application. Powered by a non-intrusive AccessibilityService and WindowManager overlay (FLAG_NOT_FOCUSABLE), it lets you trigger autonomous agent workflows, voice missions, or instant screen analysis over WhatsApp, YouTube, Chrome, or Settings without switching apps.',
     highlights: [
-      'AccessibilityService window tracker monitoring focused text nodes',
-      'FLAG_NOT_FOCUSABLE overlay window preserving keyboard interaction',
-      'Instant in-place text replacement directly into the active editable buffer',
-      'Non-intrusive floating pill draggable to any screen edge with spring snap'
+      'Living companion bubble with expressive visual status cues (thinking, acting, completed)',
+      'Universal overlay functioning over any 3rd-party Android app without keyboard focus loss',
+      'Single-tap screen assist & long-press quick autonomous agent mission trigger',
+      'Non-intrusive draggable pill with smooth edge snapping and animated pulse halos'
     ],
-    tech: 'AccessibilityService · WindowManager Overlay · FLAG_NOT_FOCUSABLE · AccessibilityNodeInfo'
+    tech: 'AccessibilityService · WindowManager Overlay · FLAG_NOT_FOCUSABLE · Multi-Step Dispatcher'
+  },
+  {
+    id: 'autonomous-agent',
+    num: '02',
+    title: 'Autonomous Agent Workspace',
+    subtitle: 'Code-as-Action Multi-Step OS Navigation on Local Gemma 3 & 4',
+    tag: 'Autonomous Agent',
+    image: '/images/textmorph/playstore-02-autonomous-agent.jpg',
+    description: 'Direct the local agent to automate real-world multi-step tasks across device apps. Using a Code-as-Action execution paradigm with deepest-leaf text matching, magnetic target snapping, and reticle overlays, it launches apps, inspects settings, searches feeds, and interacts with UI elements autonomously.',
+    highlights: [
+      'Code-as-Action execution engine interpreting natural language into concrete UI actions',
+      'Magnetic target snapping with deepest-leaf node matching and click_element(id)',
+      'Visual click trace dot and precision reticle overlay tracking real-time UI interactions',
+      'Self-healing recovery engine with SkillMemoryService caching successful execution paths'
+    ],
+    tech: 'Code-as-Action · AccessibilityNodeInfo · TaskExecutor · SkillMemoryService · LiteRT-LM'
+  },
+  {
+    id: 'conversation-workspace',
+    num: '03',
+    title: 'AI Conversation Workspace',
+    subtitle: 'Dual Chat & Agent Switching with Local Context & Tool Integration',
+    tag: 'Multimodal Chat',
+    image: '/images/textmorph/playstore-03-conversation-workspace.jpg',
+    description: 'An advanced conversational workspace featuring instant segmented switching between [Chat] and [Agent] modes. Direct local LiteRT-LM models to brainstorm, summarize, or debug, complete with user approval cards, follow-up suggestion chips, HTML sandbox rendering, and GIF trace export.',
+    highlights: [
+      'Instant segmented toggle between conversational reasoning [Chat] and [Agent] execution',
+      'Interactive chat tools: user approval cards, follow-up suggestions, and HTML sandbox share',
+      'Native Markdown formatting with syntax highlighting, token speed counters, and thinking toggle',
+      '100% on-device local execution on gemma3-1b-it-int4 with zero cloud dependencies'
+    ],
+    tech: 'LiteRT-LM · Jetpack Compose M3 · HTML Sandbox · GIF Encoder · Mutex Session Queuing'
+  },
+  {
+    id: 'navigation-telemetry',
+    num: '04',
+    title: 'Hardware Telemetry & Command Center',
+    subtitle: 'Live CPU, RAM & Thermals, Voice Automations & Wake-Word Studio',
+    tag: 'System Telemetry',
+    image: '/images/textmorph/playstore-04-navigation-telemetry.jpg',
+    description: 'A slide-out command drawer featuring real-time on-device hardware telemetry (LiteRT CPU load, active RAM allocation, and thermal temperatures) alongside quick access to Voice Agent Missions, Custom Prompts, Offline Wake-Word Studio, and Agent Tools.',
+    highlights: [
+      'Real-time on-device hardware telemetry monitoring RAM footprint (5.7GB), CPU load, and thermals (38°C)',
+      'Offline Wake-Word Studio powered by Sherpa-ONNX with 3-attempt acoustic calibration ("Computer", "Hey Tamim")',
+      'Voice & Automations hub managing AI script generators, hotkeys, and automated triggers',
+      'Agent Tools sandbox with built-in action tester and JavaScript plugin runtime preview'
+    ],
+    tech: 'Sherpa-ONNX KWS · Hardware Profiler · VoiceTriggerDispatcher · AppLogger Near-Logging'
   },
   {
     id: 'model-hub',
-    num: '02',
-    title: 'Hardware-Accelerated Model Hub',
-    subtitle: 'Zero-Copy Linux mmap & Multi-Engine Inference (LiteRT-LM, llama.cpp)',
-    tag: 'On-Device AI Engine',
-    image: '/images/textmorph/playstore-02-model-hub.jpg',
-    description: 'Load multi-gigabyte foundation models directly from your Downloads folder with zero file copying and instant mmap. Features a modular multi-engine architecture (Google LiteRT-LM, llama.cpp, and OpenAI-compatible APIs) capable of executing any open foundation LLM locally with mobile GPU/NPU acceleration.',
-    highlights: [
-      'Zero-copy memory mapping via ParcelFileDescriptor mmap directly into native buffers',
-      'Multi-engine inference runtime with GPU acceleration (OpenCL/Vulkan) & CPU XNNPACK fallbacks',
-      'Support for Google LiteRT-LM, llama.cpp GGUF quantization, and OpenAI-compatible endpoints',
-      'Strict 100% on-device execution with zero cloud telemetry or data leakage'
-    ],
-    tech: 'Multi-Engine Runtime · LiteRT-LM · llama.cpp · Linux mmap · ParcelFileDescriptor · GPU/NPU Acceleration'
-  },
-  {
-    id: 'slash-commands',
-    num: '03',
-    title: 'Custom Slash Commands Architecture',
-    subtitle: 'Universal In-Field Macros (/fix, /summarize, /fr, /ar)',
-    tag: 'Productivity & Macros',
-    image: '/images/textmorph/playstore-03-slash-commands.jpg',
-    description: 'Type /command directly inside any text field on your phone to trigger automated on-device AI pipelines. Translate to French (/fr), Arabic (/ar), English (/en), or execute bespoke multi-step prompt chains with the Quick Execute button.',
-    highlights: [
-      'Real-time text field watcher detecting leading slash trigger sequences',
-      'Pre-configured high-accuracy translation prompts for Arabic, French, and English',
-      'Custom slash command creator with dynamic prompt templating & variable injection',
-      'Instant text replacement directly in the active editable buffer'
-    ],
-    tech: 'AccessibilityNodeInfo · TextWatcher · Coroutine Reactive Pipeline'
-  },
-  {
-    id: 'custom-prompts',
-    num: '04',
-    title: 'Custom Prompts & Multimodal Vision',
-    subtitle: 'Screen Assist, Creative Polish & Clipboard Actions',
-    tag: 'Multimodal & Prompts',
-    image: '/images/textmorph/playstore-04-custom-prompts.jpg',
-    description: 'Tailor your AI assistant with personalized prompt chains. Pin your top 5 companion actions directly into the floating bar for single-tap execution. Use Screen Assist to take instant on-device screenshots and ask multimodal questions.',
-    highlights: [
-      'Top 5 companion slots directly accessible in the floating overlay bar',
-      'Screen Assist vision action analyzing active screen context with on-device multimodal vision LLMs',
-      'One-tap Clipboard Summarizer condensing copied documents into concise bullet points',
-      'Intuitive drag-and-drop reordering with persistent room database storage'
-    ],
-    tech: 'MediaProjection · Multimodal Vision LLMs · Android Room · StateFlow'
-  },
-  {
-    id: 'settings-server',
     num: '05',
-    title: 'Localhost OpenAI-Compatible HTTP Server',
-    subtitle: 'Embedded Ktor CIO Server on 127.0.0.1:8080',
-    tag: 'Local Server & API',
-    image: '/images/textmorph/playstore-05-settings-server.jpg',
-    description: 'Turns your Android smartphone into a private edge LLM API server. Exposes standard OpenAI-compatible endpoints (/v1/chat/completions and /v1/models) over localhost for Termux automations, local scripts, and mobile companion tools.',
+    title: 'Hardware-Accelerated Model Hub',
+    subtitle: 'Zero-Copy Linux mmap for Gemma 4 (Vision) & Gemma 3 LiteRT-LM',
+    tag: 'On-Device AI Engine',
+    image: '/images/textmorph/playstore-05-model-hub.jpg',
+    description: 'High-performance model manager supporting Gemma 4 (2.41GB / 3.41GB with Vision) and Gemma 3 (1B int4 at 557MB). Loads multi-gigabyte models directly from the user Downloads folder with zero file copying via Linux mmap and ParcelFileDescriptor, with OpenAI cloud fallbacks.',
     highlights: [
-      'Non-blocking Ktor CIO HTTP server bound exclusively to 127.0.0.1 for maximum privacy',
-      'Standard OpenAI streaming chat completion protocol support (/v1/chat/completions)',
-      'Direct integration with Termux curl scripts and local on-device developer workflows',
-      'Real-time token generation telemetry, context size monitoring, and temperature controls'
+      'Zero-copy memory mapping via ParcelFileDescriptor mmap directly from /sdcard/Download',
+      'Support for Google LiteRT-LM (Gemma 4 Vision, Gemma 3 1B) and universal GGUF quantization',
+      'Hardware-accelerated mobile GPU inference with automatic CPU XNNPACK multi-threaded fallback',
+      'Custom system prompt inspector directing model persona and agent execution rules'
     ],
-    tech: 'Ktor CIO Server · Kotlinx Serialization · Server-Sent Events (SSE) · Localhost Only'
+    tech: 'LiteRT-LM GPU Runtime · Linux mmap · ParcelFileDescriptor · Gemma 4 Vision · OpenAI API'
   }
 ];

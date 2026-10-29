@@ -1,14 +1,14 @@
 {
   "title": "TextMorph",
-  "tagline": "System-wide, privacy-first multimodal AI writing assistant & floating toolbar for Android powered by multi-engine local LLM inference",
-  "hero_description": "A system-wide, privacy-first multimodal AI writing assistant & floating toolbar for Android. Powered by a modular multi-engine architecture supporting Google LiteRT-LM, llama.cpp, and OpenAI-compatible APIs to run any open foundation model locally with zero-copy memory mapping, slash commands, and an embedded server.",
+  "tagline": "System-wide, privacy-first autonomous device agent & floating AI companion for Android powered by local Gemma 4 & 3 inference",
+  "hero_description": "A privacy-first Android assistant featuring an autonomous device agent that executes multi-step OS tasks via Code-as-Action, living floating companion overlays over any app, offline wake-word studio, and on-device Gemma 4 GPU inference.",
   "features_heading": "Key Features",
   "tech_stack_heading": "Tech Stack",
   "release_notes_link": "Release Notes →",
   "showcase_badge": "Play Store Showcase",
   "showcase_badge_count": "On-Device AI in Action",
   "showcase_title": "High-Definition Marketing Screens",
-  "showcase_subtitle": "Explore TextMorph's modular multi-engine architecture, universal slash command expansions, embedded localhost OpenAI server, and zero-permission overlay interface.",
+  "showcase_subtitle": "Explore TextMorph's autonomous multi-step device agent, living floating companion bubble across apps, offline wake-word studio, and hardware telemetry.",
   "showcase_scroll_hint": "Scroll or swipe to change screen",
   "showcase_fullscreen": "View Fullscreen",
   "showcase_mobile_swipe": "Scroll or swipe to change",
@@ -19,59 +19,59 @@
   "all_cards": "All Play Store Cards",
   "engines": {
     "title": "Supported Local & API Inference Engines",
-    "litert": "Google LiteRT-LM (Mobile GPU/NPU acceleration, zero-copy mmap)",
+    "litert": "Google LiteRT-LM (Gemma 4 Vision, Gemma 3 1B, mobile GPU acceleration, zero-copy mmap)",
     "llamacpp": "llama.cpp Runtime (Universal GGUF quantized models on CPU/GPU)",
     "openai": "OpenAI-Compatible APIs (Embedded Ktor server on 127.0.0.1:8080 and external endpoints)"
   },
   "arch_heading": "Architecture & Technology",
-  "arch_layer_1_name": "UI & Design System",
-  "arch_layer_1_tech": "Jetpack Compose M3 + Charcoal Slate",
-  "arch_layer_1_desc": "Fully declarative Kotlin UI with bespoke Charcoal & Slate palette, responsive full-width dialogs (DialogProperties(usePlatformDefaultWidth = false)), and tactile cards.",
-  "arch_layer_2_name": "System Integration",
-  "arch_layer_2_tech": "AccessibilityService + WindowManager",
-  "arch_layer_2_desc": "High-performance accessibility event loop monitoring focused text nodes with FLAG_NOT_FOCUSABLE overlay window, allowing simultaneous physical/software keyboard typing.",
-  "arch_layer_3_name": "AI Runtime & Inference",
-  "arch_layer_3_tech": "Multi-Engine Runtime (LiteRT-LM, llama.cpp & OpenAI APIs)",
-  "arch_layer_3_desc": "Hardware-accelerated edge inference capable of running any open-weights LLM locally. Modular engine abstraction supports Google LiteRT-LM, llama.cpp (GGUF quantization), and OpenAI-compatible API backends with dynamic GPU/NPU acceleration and multi-threaded CPU XNNPACK fallback.",
-  "arch_layer_4_name": "Local Server Engine",
-  "arch_layer_4_tech": "Ktor CIO + Server-Sent Events",
-  "arch_layer_4_desc": "Asynchronous non-blocking HTTP server listening on 127.0.0.1:8080. Implements standard OpenAI /v1/models and streaming /v1/chat/completions for local edge automations.",
-  "arch_layer_5_name": "Storage & Zero-Copy mmap",
-  "arch_layer_5_tech": "Linux mmap + ParcelFileDescriptor",
-  "arch_layer_5_desc": "Direct memory mapping of model weights residing in Downloads folder via Scoped Storage and ParcelFileDescriptor, eliminating multi-gigabyte file duplication.",
-  "arch_layer_6_name": "Architecture Pattern",
-  "arch_layer_6_tech": "Clean Architecture + MVVM + StateFlow",
-  "arch_layer_6_desc": "Decoupled domain, data, and presentation layers. Reactive StateFlow UI streams, Room persistence for custom prompt recipes, and Coroutine Mutex concurrency control.",
+  "arch_layer_1_name": "UI & Companion Overlays",
+  "arch_layer_1_tech": "Jetpack Compose M3 + Floating Companion WindowManager",
+  "arch_layer_1_desc": "Bespoke Charcoal Slate palette with living floating companion bubble anchored via WindowManager (FLAG_NOT_FOCUSABLE), full-width responsive dialogs, and tactile cards.",
+  "arch_layer_2_name": "Autonomous Agent Engine",
+  "arch_layer_2_tech": "Code-as-Action + Tri-Modal Perception + Magnetic Snapping",
+  "arch_layer_2_desc": "Autonomous multi-step device task executor with deepest-leaf text matching, magnetic target snapping, click_element(id), precision reticle overlays, and SkillMemoryService.",
+  "arch_layer_3_name": "Voice & Offline Wake-Word Studio",
+  "arch_layer_3_tech": "Sherpa-ONNX KWS + 3-Attempt Acoustic Calibration",
+  "arch_layer_3_desc": "100% offline keyword spotting for custom wake-words (\"Computer\", \"Hey Tamim\") with 3-attempt acoustic tuning studio, hardware hotkeys, and automated voice script runners.",
+  "arch_layer_4_name": "Local AI Runtime & Vision",
+  "arch_layer_4_tech": "LiteRT-LM Gemma 4 Vision + Zero-Copy mmap + llama.cpp",
+  "arch_layer_4_desc": "Hardware-accelerated mobile GPU inference supporting Google Gemma 4 (with Vision tokens) and Gemma 3 1B with zero-copy Linux mmap direct from /sdcard/Download.",
+  "arch_layer_5_name": "Embedded Localhost Server",
+  "arch_layer_5_tech": "Ktor CIO + Server-Sent Events (127.0.0.1:8080)",
+  "arch_layer_5_desc": "Asynchronous non-blocking HTTP server listening on 127.0.0.1:8080. Implements standard OpenAI /v1/models and streaming /v1/chat/completions for local edge automations.",
+  "arch_layer_6_name": "Telemetry & Resilient Architecture",
+  "arch_layer_6_tech": "Live CPU/RAM/Thermal Profiler + Zero Process Death Contract",
+  "arch_layer_6_desc": "Real-time on-device hardware profiler monitoring LiteRT-LM CPU load, RAM footprint (5.7GB), and thermals (38°C), paired with near-logging (AppLogger) and zero-crash contracts.",
   "screens": {
-    "floating_toolbar": {
-      "title": "System-Wide Floating AI Toolbar",
-      "subtitle": "AccessibilityService & WindowManager Non-Focusable Overlay",
-      "tag": "Flagship Feature",
-      "desc": "An intelligent floating capsule anchored directly above focused input fields across any Android application. It monitors text selection without stealing keyboard focus (FLAG_NOT_FOCUSABLE), allowing you to transform, rephrase, or translate text with a single tap inside WhatsApp, Gmail, Slack, and Chrome."
+    "floating_agent": {
+      "title": "System-Wide Floating AI Agent",
+      "subtitle": "Universal AccessibilityService & WindowManager Overlay Across Any App",
+      "tag": "Everywhere Assistant",
+      "desc": "A living, intelligent floating companion widget anchored over any Android application. Powered by a non-intrusive AccessibilityService and WindowManager overlay (FLAG_NOT_FOCUSABLE), it lets you trigger autonomous agent workflows, voice missions, or instant screen analysis over WhatsApp, YouTube, Chrome, or Settings without switching apps."
+    },
+    "autonomous_agent": {
+      "title": "Autonomous Agent Workspace",
+      "subtitle": "Code-as-Action Multi-Step OS Navigation on Local Gemma 3 & 4",
+      "tag": "Autonomous Agent",
+      "desc": "Direct the local agent to automate real-world multi-step tasks across device apps. Using a Code-as-Action execution paradigm with deepest-leaf text matching, magnetic target snapping, and reticle overlays, it launches apps, inspects settings, searches feeds, and interacts with UI elements autonomously."
+    },
+    "conversation_workspace": {
+      "title": "AI Conversation Workspace",
+      "subtitle": "Dual Chat & Agent Switching with Local Context & Tool Integration",
+      "tag": "Multimodal Chat",
+      "desc": "An advanced conversational workspace featuring instant segmented switching between [Chat] and [Agent] modes. Direct local LiteRT-LM models to brainstorm, summarize, or debug, complete with user approval cards, follow-up suggestion chips, HTML sandbox rendering, and GIF trace export."
+    },
+    "navigation_telemetry": {
+      "title": "Hardware Telemetry & Command Center",
+      "subtitle": "Live CPU, RAM & Thermals, Voice Automations & Wake-Word Studio",
+      "tag": "System Telemetry",
+      "desc": "A slide-out command drawer featuring real-time on-device hardware telemetry (LiteRT CPU load, active RAM allocation, and thermal temperatures) alongside quick access to Voice Agent Missions, Custom Prompts, Offline Wake-Word Studio, and Agent Tools."
     },
     "model_hub": {
       "title": "Hardware-Accelerated Model Hub",
-      "subtitle": "Zero-Copy Linux mmap & Multi-Engine Inference (LiteRT-LM, llama.cpp)",
+      "subtitle": "Zero-Copy Linux mmap for Gemma 4 (Vision) & Gemma 3 LiteRT-LM",
       "tag": "On-Device AI Engine",
-      "desc": "Load multi-gigabyte foundation models directly from your Downloads folder with zero file copying and instant mmap. Features a modular multi-engine architecture (Google LiteRT-LM, llama.cpp, and OpenAI-compatible APIs) capable of executing any open foundation LLM locally with mobile GPU/NPU acceleration."
-    },
-    "slash_commands": {
-      "title": "Custom Slash Commands Architecture",
-      "subtitle": "Universal In-Field Macros (/fix, /summarize, /fr, /ar)",
-      "tag": "Productivity & Macros",
-      "desc": "Type /command directly inside any text field on your phone to trigger automated on-device AI pipelines. Translate to French (/fr), Arabic (/ar), English (/en), or execute bespoke multi-step prompt chains with the Quick Execute button."
-    },
-    "custom_prompts": {
-      "title": "Custom Prompts & Multimodal Vision",
-      "subtitle": "Screen Assist, Creative Polish & Clipboard Actions",
-      "tag": "Multimodal & Prompts",
-      "desc": "Tailor your AI assistant with personalized prompt chains. Pin your top 5 companion actions directly into the floating bar for single-tap execution. Use Screen Assist to take instant on-device screenshots and ask multimodal questions."
-    },
-    "settings_server": {
-      "title": "Localhost OpenAI-Compatible HTTP Server",
-      "subtitle": "Embedded Ktor CIO Server on 127.0.0.1:8080",
-      "tag": "Local Server & API",
-      "desc": "Turns your Android smartphone into a private edge LLM API server. Exposes standard OpenAI-compatible endpoints (/v1/chat/completions and /v1/models) over localhost for Termux automations, local scripts, and mobile companion tools."
+      "desc": "High-performance model manager supporting Gemma 4 (2.41GB / 3.41GB with Vision) and Gemma 3 (1B int4 at 557MB). Loads multi-gigabyte models directly from the user Downloads folder with zero file copying via Linux mmap and ParcelFileDescriptor, with OpenAI cloud fallbacks."
     }
   }
 }

@@ -59,13 +59,13 @@ import { APP_SCREENS } from '../../data/textmorph-screens';
       
       <!-- Left: Play Store Card Display Frame -->
       <div class="lg:col-span-5 flex justify-center">
-        <div class="relative w-[280px] sm:w-[320px]">
+        <div class="relative w-[300px] sm:w-[340px] md:w-[360px]">
           <!-- Sleek Card Chassis Silhouette -->
-          <div class="relative rounded-[2.5rem] p-2.5 bg-gradient-to-b from-zinc-800 via-zinc-900 to-black shadow-2xl ring-1 ring-slate-600/40 shadow-slate-950/50">
+          <div class="relative rounded-[2.5rem] p-2 bg-gradient-to-b from-zinc-800 via-zinc-900 to-black shadow-2xl ring-1 ring-slate-600/40 shadow-slate-950/50">
             <!-- Screen Viewport with Click-to-Enlarge Action -->
             <div
               id="phone-screen-trigger"
-              class="relative aspect-[9/16] w-full overflow-hidden rounded-[2rem] bg-zinc-950 shadow-inner cursor-zoom-in group select-none"
+              class="relative aspect-[9/16] w-full overflow-hidden rounded-[2.1rem] bg-zinc-950 shadow-inner cursor-zoom-in group select-none"
               title="Click to view high-resolution Play Store card"
             >
               <!-- Active Screenshot Layer -->
@@ -73,7 +73,7 @@ import { APP_SCREENS } from '../../data/textmorph-screens';
                 id="mockup-screen-img"
                 src={APP_SCREENS[0].image}
                 alt={APP_SCREENS[0].title}
-                class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                 loading="eager"
               />
               <!-- Incoming Transition Screenshot Layer (Eliminates Flashing) -->

@@ -4,40 +4,40 @@
 
 const layers = [
   {
-    layer: 'UI & Design System',
+    layer: 'UI & Companion Overlays',
     color: 'slate',
-    tech: 'Jetpack Compose M3 + Charcoal Slate',
-    desc: 'Fully declarative Kotlin UI with bespoke Charcoal & Slate palette, responsive full-width dialogs (DialogProperties(usePlatformDefaultWidth = false)), and tactile cards.',
+    tech: 'Jetpack Compose M3 + Floating Companion WindowManager',
+    desc: 'Bespoke Charcoal Slate palette with living floating companion bubble anchored via WindowManager (FLAG_NOT_FOCUSABLE), full-width responsive dialogs, and tactile cards.',
   },
   {
-    layer: 'System Integration',
-    color: 'slate',
-    tech: 'AccessibilityService + WindowManager',
-    desc: 'High-performance accessibility event loop monitoring focused text nodes with FLAG_NOT_FOCUSABLE overlay window, allowing simultaneous physical/software keyboard typing.',
-  },
-  {
-    layer: 'AI Runtime & Inference',
+    layer: 'Autonomous Agent Engine',
     color: 'blue',
-    tech: 'Multi-Engine Runtime (LiteRT-LM, llama.cpp & OpenAI APIs)',
-    desc: 'Hardware-accelerated edge inference capable of running any open-weights LLM locally. Modular engine abstraction supports Google LiteRT-LM, llama.cpp (GGUF quantization), and OpenAI-compatible API backends with dynamic GPU/NPU acceleration and multi-threaded CPU XNNPACK fallback.',
+    tech: 'Code-as-Action + Tri-Modal Perception + Magnetic Snapping',
+    desc: 'Autonomous multi-step device task executor with deepest-leaf text matching, magnetic target snapping, click_element(id), precision reticle overlays, and SkillMemoryService.',
   },
   {
-    layer: 'Local Server Engine',
+    layer: 'Voice & Offline Wake-Word Studio',
     color: 'purple',
-    tech: 'Ktor CIO + Server-Sent Events',
+    tech: 'Sherpa-ONNX KWS + 3-Attempt Acoustic Calibration',
+    desc: '100% offline keyword spotting for custom wake-words ("Computer", "Hey Tamim") with 3-attempt acoustic tuning studio, hardware hotkeys, and automated voice script runners.',
+  },
+  {
+    layer: 'Local AI Runtime & Vision',
+    color: 'orange',
+    tech: 'LiteRT-LM Gemma 4 Vision + Zero-Copy mmap + llama.cpp',
+    desc: 'Hardware-accelerated mobile GPU inference supporting Google Gemma 4 (with Vision tokens) and Gemma 3 1B with zero-copy Linux mmap direct from /sdcard/Download.',
+  },
+  {
+    layer: 'Embedded Localhost Server',
+    color: 'slate',
+    tech: 'Ktor CIO + Server-Sent Events (127.0.0.1:8080)',
     desc: 'Asynchronous non-blocking HTTP server listening on 127.0.0.1:8080. Implements standard OpenAI /v1/models and streaming /v1/chat/completions for local edge automations.',
   },
   {
-    layer: 'Storage & Zero-Copy mmap',
-    color: 'orange',
-    tech: 'Linux mmap + ParcelFileDescriptor',
-    desc: 'Direct memory mapping of model weights residing in Downloads folder via Scoped Storage and ParcelFileDescriptor, eliminating multi-gigabyte file duplication.',
-  },
-  {
-    layer: 'Architecture Pattern',
+    layer: 'Telemetry & Resilient Architecture',
     color: 'zinc',
-    tech: 'Clean Architecture + MVVM + StateFlow',
-    desc: 'Decoupled domain, data, and presentation layers. Reactive StateFlow UI streams, Room persistence for custom prompt recipes, and Coroutine Mutex concurrency control.',
+    tech: 'Live CPU/RAM/Thermal Profiler + Zero Process Death Contract',
+    desc: 'Real-time on-device hardware profiler monitoring LiteRT-LM CPU load, RAM footprint (5.7GB), and thermals (38°C), paired with near-logging (AppLogger) and zero-crash contracts.',
   },
 ];
 ---

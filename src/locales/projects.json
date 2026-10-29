@@ -47,9 +47,9 @@
       "impact": "Delivered multi-tenant architecture supporting 7 distinct industry themes and high-velocity order management."
     },
     "textmorph": {
-      "desc": "A system-wide, privacy-first multimodal AI writing assistant & floating toolbar for Android. Powered by a modular multi-engine architecture supporting Google LiteRT-LM, llama.cpp, and OpenAI-compatible APIs to run any open foundation model locally with zero-copy memory mapping, slash commands, and an embedded server.",
-      "role": "Creator & Systems Architect. Engineered AccessibilityService event loop, mmap model loader, and multi-engine LLM inference.",
-      "impact": "Brought private, hardware-accelerated on-device AI across all Android apps with zero cloud telemetry and instant floating macros."
+      "desc": "A privacy-first Android assistant featuring an autonomous device agent that executes multi-step OS tasks via Code-as-Action, living floating companion overlays over any app, offline wake-word studio, and on-device Gemma 4 GPU inference.",
+      "role": "Solo Creator & Lead Android Engineer. Engineered autonomous agent task executor, Sherpa-ONNX offline wake-word detection, and floating WindowManager companion.",
+      "impact": "Shipped system-wide autonomous device automation, zero-copy Linux mmap loading from Downloads/, and 100% private on-device multimodal execution."
     },
     "sabil": {
       "desc": "Enterprise fintech mega-application platform serving millions of users across Algeria with real-time bill payments, digital wallet services, and multi-tenant banking operations.",
@@ -72,11 +72,11 @@
       ]
     },
     "textmorph": {
-      "tagline": "System-wide, privacy-first multimodal AI writing assistant & floating toolbar for Android powered by multi-engine local LLM inference",
+      "tagline": "System-wide, privacy-first autonomous device agent & floating AI companion for Android powered by local Gemma 4 & 3 inference",
       "highlights": [
-        "Multi-Engine On-Device Inference: Hardware-accelerated runtime supporting Google LiteRT-LM, llama.cpp, and OpenAI APIs",
-        "Universal Zero-Copy Model Loader: Memory-maps large models directly from Downloads via Linux mmap and ParcelFileDescriptor",
-        "System-Wide Floating AI Toolbar: AccessibilityService overlay anchored above active input fields without stealing keyboard focus"
+        "System-Wide Floating AI Companion: Living overlay button anchored across any Android application without keyboard focus interruption",
+        "Autonomous Device Agent: Code-as-Action multi-step OS navigation, magnetic target snapping, and task automation on local Gemma models",
+        "Offline Wake-Word Studio: On-device Sherpa-ONNX voice detection for 'Computer' and 'Hey Tamim' with 3-attempt acoustic calibration"
       ]
     },
     "storesdz": {
